@@ -34,7 +34,13 @@ include Makefile
 OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
-OBJECTFILES=
+OBJECTFILES= \
+	${OBJECTDIR}/AssetManager.o \
+	${OBJECTDIR}/Game.o \
+	${OBJECTDIR}/InputManager.o \
+	${OBJECTDIR}/SplashState.o \
+	${OBJECTDIR}/StateMachine.o \
+	${OBJECTDIR}/main.o
 
 
 # C Compiler Flags
@@ -51,15 +57,55 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=
+LDLIBSOPTIONS=-L/usr/lib/86x_64-linux-GNU /usr/lib/x86_64-linux-gnu/libsfml-audio.so /usr/lib/x86_64-linux-gnu/libsfml-graphics.so /usr/lib/x86_64-linux-gnu/libsfml-network.so /usr/lib/x86_64-linux-gnu/libsfml-system.so /usr/lib/x86_64-linux-gnu/libsfml-window.so
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
 	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf
 
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf: /usr/lib/x86_64-linux-gnu/libsfml-audio.so
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf: /usr/lib/x86_64-linux-gnu/libsfml-graphics.so
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf: /usr/lib/x86_64-linux-gnu/libsfml-network.so
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf: /usr/lib/x86_64-linux-gnu/libsfml-system.so
+
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf: /usr/lib/x86_64-linux-gnu/libsfml-window.so
+
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/AssetManager.o: AssetManager.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AssetManager.o AssetManager.cpp
+
+${OBJECTDIR}/Game.o: Game.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Game.o Game.cpp
+
+${OBJECTDIR}/InputManager.o: InputManager.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/InputManager.o InputManager.cpp
+
+${OBJECTDIR}/SplashState.o: SplashState.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SplashState.o SplashState.cpp
+
+${OBJECTDIR}/StateMachine.o: StateMachine.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/StateMachine.o StateMachine.cpp
+
+${OBJECTDIR}/main.o: main.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 # Subprojects
 .build-subprojects:
@@ -67,6 +113,8 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf: ${OBJECTFILES}
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
+	${RM} -r ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libsfml-audio.so ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libsfml-graphics.so ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libsfml-network.so ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libsfml-system.so ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libsfml-window.so
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf
 
 # Subprojects
 .clean-subprojects:

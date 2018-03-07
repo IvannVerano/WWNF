@@ -34,7 +34,13 @@ include Makefile
 OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
-OBJECTFILES=
+OBJECTFILES= \
+	${OBJECTDIR}/AssetManager.o \
+	${OBJECTDIR}/Game.o \
+	${OBJECTDIR}/InputManager.o \
+	${OBJECTDIR}/SplashState.o \
+	${OBJECTDIR}/StateMachine.o \
+	${OBJECTDIR}/main.o
 
 
 # C Compiler Flags
@@ -59,7 +65,37 @@ LDLIBSOPTIONS=
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/AssetManager.o: AssetManager.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AssetManager.o AssetManager.cpp
+
+${OBJECTDIR}/Game.o: Game.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Game.o Game.cpp
+
+${OBJECTDIR}/InputManager.o: InputManager.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/InputManager.o InputManager.cpp
+
+${OBJECTDIR}/SplashState.o: SplashState.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SplashState.o SplashState.cpp
+
+${OBJECTDIR}/StateMachine.o: StateMachine.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/StateMachine.o StateMachine.cpp
+
+${OBJECTDIR}/main.o: main.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 # Subprojects
 .build-subprojects:

@@ -4,6 +4,13 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>AssetManager.hpp</itemPath>
+      <itemPath>DEFINITIONS.hpp</itemPath>
+      <itemPath>Game.hpp</itemPath>
+      <itemPath>InputManager.hpp</itemPath>
+      <itemPath>SplashState.hpp</itemPath>
+      <itemPath>State.hpp</itemPath>
+      <itemPath>StateMachine.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -12,6 +19,12 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>AssetManager.cpp</itemPath>
+      <itemPath>Game.cpp</itemPath>
+      <itemPath>InputManager.cpp</itemPath>
+      <itemPath>SplashState.cpp</itemPath>
+      <itemPath>StateMachine.cpp</itemPath>
+      <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -34,7 +47,51 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <compileType>
+        <ccTool>
+          <standard>8</standard>
+          <incDir>
+            <pElem>/usr/include/SFML</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <linkerAddLib>
+            <pElem>/usr/lib/86x_64-linux-GNU</pElem>
+          </linkerAddLib>
+          <linkerLibItems>
+            <linkerLibFileItem>/usr/lib/x86_64-linux-gnu/libsfml-audio.so</linkerLibFileItem>
+            <linkerLibFileItem>/usr/lib/x86_64-linux-gnu/libsfml-graphics.so</linkerLibFileItem>
+            <linkerLibFileItem>/usr/lib/x86_64-linux-gnu/libsfml-network.so</linkerLibFileItem>
+            <linkerLibFileItem>/usr/lib/x86_64-linux-gnu/libsfml-system.so</linkerLibFileItem>
+            <linkerLibFileItem>/usr/lib/x86_64-linux-gnu/libsfml-window.so</linkerLibFileItem>
+          </linkerLibItems>
+        </linkerTool>
       </compileType>
+      <item path="AssetManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AssetManager.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DEFINITIONS.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Game.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Game.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="InputManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="InputManager.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SplashState.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SplashState.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="State.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="StateMachine.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="StateMachine.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
     </conf>
     <conf name="Release" type="1">
       <toolsSet>
@@ -56,6 +113,32 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="AssetManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="AssetManager.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DEFINITIONS.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Game.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Game.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="InputManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="InputManager.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SplashState.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SplashState.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="State.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="StateMachine.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="StateMachine.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
     </conf>
   </confs>
 </configurationDescriptor>
