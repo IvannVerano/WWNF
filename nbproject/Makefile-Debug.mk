@@ -36,8 +36,11 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/AssetManager.o \
+	${OBJECTDIR}/Ataque.o \
+	${OBJECTDIR}/Defensa.o \
 	${OBJECTDIR}/Game.o \
 	${OBJECTDIR}/InputManager.o \
+	${OBJECTDIR}/Placer.o \
 	${OBJECTDIR}/SplashState.o \
 	${OBJECTDIR}/StateMachine.o \
 	${OBJECTDIR}/main.o
@@ -82,6 +85,16 @@ ${OBJECTDIR}/AssetManager.o: AssetManager.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/AssetManager.o AssetManager.cpp
 
+${OBJECTDIR}/Ataque.o: Ataque.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Ataque.o Ataque.cpp
+
+${OBJECTDIR}/Defensa.o: Defensa.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Defensa.o Defensa.cpp
+
 ${OBJECTDIR}/Game.o: Game.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -91,6 +104,11 @@ ${OBJECTDIR}/InputManager.o: InputManager.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/InputManager.o InputManager.cpp
+
+${OBJECTDIR}/Placer.o: Placer.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Placer.o Placer.cpp
 
 ${OBJECTDIR}/SplashState.o: SplashState.cpp
 	${MKDIR} -p ${OBJECTDIR}
