@@ -19,15 +19,17 @@ namespace Zenon
     class Trampa
     {
         public:
-            Trampa(GameDataRef data):_datos(data) 
+            Trampa(GameDataRef l_data):m_datos(l_data) 
             {
                  
             }
             virtual void Update(float dt){};
             virtual void Draw(){};
         protected:
-            GameDataRef _datos;
-            sf::Sprite mainSprite;
+            GameDataRef m_datos;
+            sf::Sprite m_mainSprite;
+            int m_state;
+            sf::Clock m_timeAppear;
             
     };
 }

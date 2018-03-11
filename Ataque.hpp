@@ -20,7 +20,7 @@ namespace Zenon
     class Ataque : public Trampa
     {
         public:
-            Ataque(GameDataRef data, sf::Vector2f posicion);
+            Ataque(GameDataRef l_data, sf::Vector2f l_posicion);
             void Draw();
             void Update(float dt);
         private:

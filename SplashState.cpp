@@ -5,63 +5,77 @@
 #include "Trampa.hpp"
 #include "Ataque.hpp"
 #include "Defensa.hpp"
+#include "HUD.hpp"
 #include <iostream>
 
 namespace Zenon {
 
-    SplashState::SplashState(GameDataRef data) : _data(data) {
+    SplashState::SplashState(GameDataRef data) : m_data(data) {
 
     }
 
     void SplashState::Init() 
     {
-       _data->assets.LoadTexture("No_trampa", NO_TRAP_SPRITE);
-       _data->assets.LoadTexture("Metralleta", METRALLETA_SPRITE);
-       _data->assets.LoadTexture("Defensa", DEFENSA_SPRITE);
+       m_data->assets.LoadTexture("No_trampa", NO_TRAP_SPRITE);
+       m_data->assets.LoadTexture("Metralleta", METRALLETA_SPRITE);
+       m_data->assets.LoadTexture("Defensa", DEFENSA_SPRITE);
+       m_data->assets.LoadTexture("MetralletaS", ATAQUE_HIGHLIGHT);
+       m_data->assets.LoadTexture("DefensaS", DEFENSA_HIGHLIGHT);
+
        int i = 60;
        for(int x = 0; x<3; x++)
        {
-            Placer* plaser = new Placer(_data, sf::Vector2f(80*x+200, i));
-            placer.push_back(plaser);
+            Placer* plaser = new Placer(m_data, sf::Vector2f(80*x+200, i));
+            m_placer.push_back(plaser);
             i += 60;
        }
-       trampa = 1;
+       m_trampa = -1;
+       
+       m_hud = new HUD(m_data);
+       m_noCompruebes = false;
     }
 
     void SplashState::HandleInput() {
         sf::Event event;
 
-        while (this->_data->window.pollEvent(event)) {
+        while (this->m_data->window.pollEvent(event)) {
             if (sf::Event::Closed == event.type) {
-                this->_data->window.close();
+                this->m_data->window.close();
             }
             if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
             {
-                for(int i = 0; i<placer.size(); i++)
+                if(m_hud->CheckClick())
                 {
-                    if(placer.at(i)->Clicked())
+                    m_trampa = m_hud->GetClick();
+                    std::cout<<m_trampa<<std::endl;
+                }
+                for(int i = 0; i<m_placer.size(); i++)
+                {
+                    if(m_placer.at(i)->Clicked())
                     {
-                        if(trampa == 1)
+                        if(m_trampa == 1)
                         {
-                            Trampa* tramp = new Ataque(_data, placer.at(i)->GetPosicion());
-                            trampas.push_back(tramp);
+                            std::cout<<m_trampa<<std::endl;
+                            Trampa* tramp = new Ataque(m_data, m_placer.at(i)->GetPosicion());
+                            m_trampas.push_back(tramp);
                         }
-                        else
+                        else if(m_trampa == 2)
                         {
-                            Trampa* tramp = new Defensa(_data, placer.at(i)->GetPosicion());
-                            trampas.push_back(tramp);
+                            std::cout<<m_trampa<<std::endl;
+                            Trampa* tramp = new Defensa(m_data, m_placer.at(i)->GetPosicion());
+                            m_trampas.push_back(tramp);
                         }
                     }
                 }
             }
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
             {
-                trampa = 1;
+                m_trampa = 1;
                 std::cout<<"Cambio a metralletas"<<std::endl;
             }
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
             {
-                trampa = 2;
+                m_trampa = 2;
                 std::cout<<"Cambio a Defensa"<<std::endl;
             }
         }
@@ -69,26 +83,31 @@ namespace Zenon {
 
     void SplashState::Update(float dt) {
 
-
+        for(int i=0; i<m_trampas.size() ; i++)
+        {
+            m_trampas.at(i)->Update(dt);
+        }
 
     }
 
     void SplashState::Draw(float dt) {
-        this->_data->window.clear(sf::Color::Black);
+        this->m_data->window.clear(sf::Color::Black);
 
-        this->_data->window.draw(this->_background);
+        this->m_data->window.draw(this->_background);
         
-        for(int i = 0; i<placer.size(); i++)
+        for(int i = 0; i<m_placer.size(); i++)
         {
-            placer.at(i)->Draw();
+            m_placer.at(i)->Draw();
         }
         
-        for(int i = 0; i<trampas.size(); i++)
+        for(int i = 0; i<m_trampas.size(); i++)
         {
-            trampas.at(i)->Draw();
+            m_trampas.at(i)->Draw();
         }
+        
+        m_hud->Draw();
 
-        this->_data->window.display();
+        this->m_data->window.display();
     }
 }
 

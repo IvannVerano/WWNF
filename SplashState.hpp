@@ -5,13 +5,14 @@
 #include "Game.hpp"
 #include "Trampa.hpp"
 #include "Placer.hpp"
+#include "HUD.hpp"
 #include <vector>
 
 namespace Zenon {
 
     class SplashState : public State {
     public:
-        SplashState(GameDataRef data);
+        SplashState(GameDataRef l_data);
 
         void Init();
 
@@ -20,14 +21,13 @@ namespace Zenon {
         void Draw(float dt);
 
     private:
-        GameDataRef _data;
-
-        sf::Clock _clock;
-        int trampa;
+        GameDataRef m_data;
+        int m_trampa;
         sf::Texture _backgroundTexture;
         sf::Sprite _background;
-        std::vector<SplashState*> states;
-        std::vector<Trampa*> trampas;
-        std::vector<Placer*> placer;
+        std::vector<Trampa*> m_trampas;
+        std::vector<Placer*> m_placer;
+        HUD * m_hud;
+        bool m_noCompruebes;
     };
 }

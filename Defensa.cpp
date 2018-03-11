@@ -12,22 +12,33 @@
  */
 
 #include "Defensa.hpp"
+#include "DEFINITIONS.hpp"
 
 namespace Zenon
 {
-    Defensa::Defensa(GameDataRef data, sf::Vector2f posicion):Trampa(data)
+    Defensa::Defensa(GameDataRef l_data, sf::Vector2f l_posicion):Trampa(l_data)
     {
-        mainSprite.setTexture(_datos->assets.GetTexture("Defensa"));
-        mainSprite.setOrigin(mainSprite.getGlobalBounds().width/2, mainSprite.getGlobalBounds().height/2);
-        mainSprite.setPosition(posicion);
+        m_mainSprite.setTexture(m_datos->assets.GetTexture("Defensa"));
+        m_mainSprite.setOrigin(m_mainSprite.getGlobalBounds().width/2, m_mainSprite.getGlobalBounds().height/2);
+        m_mainSprite.scale(0.8,0.8);
+        m_mainSprite.setPosition(l_posicion);
+        m_timeAppear.restart();
+        m_state = TRAP_STATE_APPEARING;
     }
     void Defensa::Update(float dt)
     {
-        
+         if(m_state == TRAP_STATE_APPEARING)
+        {
+            if(m_timeAppear.getElapsedTime().asSeconds() > DTRAP_APPEARING_TIME)
+            {
+                m_state = TRAP_STATE_PLACED;
+            }
+        }
     }
     void Defensa::Draw()
     {
-        _datos->window.draw(mainSprite);
+        if(m_state == TRAP_STATE_PLACED)
+            m_datos->window.draw(m_mainSprite);
     }
 }
 

@@ -39,6 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Ataque.o \
 	${OBJECTDIR}/Defensa.o \
 	${OBJECTDIR}/Game.o \
+	${OBJECTDIR}/HUD.o \
 	${OBJECTDIR}/InputManager.o \
 	${OBJECTDIR}/Placer.o \
 	${OBJECTDIR}/SplashState.o \
@@ -89,6 +90,11 @@ ${OBJECTDIR}/Game.o: Game.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Game.o Game.cpp
+
+${OBJECTDIR}/HUD.o: HUD.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/HUD.o HUD.cpp
 
 ${OBJECTDIR}/InputManager.o: InputManager.cpp
 	${MKDIR} -p ${OBJECTDIR}

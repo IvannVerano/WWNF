@@ -12,22 +12,32 @@
  */
 
 #include "Ataque.hpp"
+#include "DEFINITIONS.hpp"
 #include <iostream>
 
 namespace Zenon
 {
-    Ataque::Ataque(GameDataRef data, sf::Vector2f posicion):Trampa(data)
+    Ataque::Ataque(GameDataRef l_data, sf::Vector2f l_posicion):Trampa(l_data)
     {
-        mainSprite.setTexture(_datos->assets.GetTexture("Metralleta"));
-        mainSprite.setOrigin(mainSprite.getGlobalBounds().width/2, mainSprite.getGlobalBounds().height/2);
-        mainSprite.setPosition(posicion);
+        m_mainSprite.setTexture(m_datos->assets.GetTexture("Metralleta"));
+        m_mainSprite.setOrigin(m_mainSprite.getGlobalBounds().width/2, m_mainSprite.getGlobalBounds().height/2);
+        m_mainSprite.setPosition(l_posicion);
+        m_timeAppear.restart();
+        m_state = TRAP_STATE_APPEARING;
     }
     void Ataque::Update(float dt)
     {
-        
+        if(m_state == TRAP_STATE_APPEARING)
+        {
+            if(m_timeAppear.getElapsedTime().asSeconds() > ATRAP_APPEARING_TIME)
+            {
+                m_state = TRAP_STATE_PLACED;
+            }
+        }
     }
     void Ataque::Draw()
     {
-        _datos->window.draw(mainSprite);
+        if(m_state == TRAP_STATE_PLACED)
+            m_datos->window.draw(m_mainSprite);
     }
 }
