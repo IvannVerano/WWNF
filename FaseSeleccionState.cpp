@@ -85,6 +85,9 @@ namespace Zenon {
                 m_trampasSel.push_back(m_trampasdisp.at(i));
         }
         
-        m_data->machine.AddState(StateRef(new SplashState(this->m_data, m_trampasSel)));
+        if(m_trampasSel.size()>0)
+        {
+            m_data->machine.AddState(StateRef(new SplashState(this->m_data, m_trampasSel)));
+        }    
     }
 }

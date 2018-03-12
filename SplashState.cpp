@@ -18,7 +18,7 @@ namespace Zenon {
 
     void SplashState::Init() 
     {
-        std::cout<<"Tienes " << m_trampasSel.size()<<" trampas"<<std::endl;
+       std::cout<<"Tienes " << m_trampasSel.size()<<" trampas"<<std::endl;
        int i = 60;
        for(int x = 0; x<3; x++)
        {
@@ -50,17 +50,20 @@ namespace Zenon {
                 {
                     if(m_placer.at(i)->Clicked())
                     {
-                        if(m_trampasSel.at(m_trampa)->GetTipo() == 1)
+                        if(m_trampa> -1)
                         {
-                            std::cout<<m_trampa<<std::endl;
-                            Trampa* tramp = new Ataque(m_data, m_placer.at(i)->GetPosicion(), m_trampasSel.at(m_trampa)->GetTexturaPosicion());
-                            m_trampas.push_back(tramp);
-                        }
-                        else if(m_trampasSel.at(m_trampa)->GetTipo() == 2)
-                        {
-                            std::cout<<m_trampa<<std::endl;
-                            Trampa* tramp = new Defensa(m_data, m_placer.at(i)->GetPosicion(), m_trampasSel.at(m_trampa)->GetTexturaPosicion());
-                            m_trampas.push_back(tramp);
+                            if(m_trampasSel.at(m_trampa)->GetTipo() == 1)
+                            {
+                                std::cout<<m_trampa<<std::endl;
+                                Trampa* tramp = new Ataque(m_data, m_placer.at(i)->GetPosicion(), m_trampasSel.at(m_trampa)->GetTexturaPosicion());
+                                m_trampas.push_back(tramp);
+                            }
+                            else if(m_trampasSel.at(m_trampa)->GetTipo() == 2)
+                            {
+                                std::cout<<m_trampa<<std::endl;
+                                Trampa* tramp = new Defensa(m_data, m_placer.at(i)->GetPosicion(), m_trampasSel.at(m_trampa)->GetTexturaPosicion());
+                                m_trampas.push_back(tramp);
+                            }
                         }
                     }
                 }
