@@ -37,17 +37,5 @@ namespace Zenon {
         sf::Sprite _background;
         std::vector<SplashState*> states;
 
-
-
-        /*Spline2D m_path;
-        std::vector<sf::CircleShape> m_circles;
-        int m_selectedPoint = 0;
-        bool m_cambio = false;
-        int m_circleDirH;
-        int m_circleDirV;
-        bool m_isMoving = true;
-        std::vector<sf::RectangleShape> m_pathShape;
-        sf::RectangleShape * rect;*/
-
     };
 }
