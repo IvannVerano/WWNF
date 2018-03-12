@@ -17,6 +17,17 @@ namespace Zenon {
         void Update(float dt);
         void Draw(float dt);
 
+        std::vector<sf::Vector2f> CalculateBQ
+        (
+                const sf::Vector2f &start,
+                const sf::Vector2f &end,
+                const sf::Vector2f &startControl,
+                const sf::Vector2f &endControl,
+                const std::size_t nSegments
+                );
+
+        sf::VertexArray ToVertex(std::vector<sf::Vector2f> l_points);
+
     private:
         GameDataRef _data;
 
@@ -25,6 +36,18 @@ namespace Zenon {
         sf::Texture _backgroundTexture;
         sf::Sprite _background;
         std::vector<SplashState*> states;
+
+
+
+        /*Spline2D m_path;
+        std::vector<sf::CircleShape> m_circles;
+        int m_selectedPoint = 0;
+        bool m_cambio = false;
+        int m_circleDirH;
+        int m_circleDirV;
+        bool m_isMoving = true;
+        std::vector<sf::RectangleShape> m_pathShape;
+        sf::RectangleShape * rect;*/
 
     };
 }

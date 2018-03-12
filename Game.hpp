@@ -6,6 +6,7 @@
 #include "StateMachine.hpp"
 #include "AssetManager.hpp"
 #include "InputManager.hpp"
+#include "MathHelper.hpp"
 
 namespace Zenon {
 
@@ -23,7 +24,6 @@ namespace Zenon {
         Game(int width, int height, std::string title);
 
     private:
-        // Updates run at 60 per second.
         const float dt = 1.0f / 60.0f;
         sf::Clock _clock;
 
