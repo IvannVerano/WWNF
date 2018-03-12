@@ -1,6 +1,7 @@
 
 #include <sstream>
 #include "SplashState.hpp"
+#include "FichaTrampa.hpp"
 #include "DEFINITIONS.hpp"
 #include "Trampa.hpp"
 #include "Ataque.hpp"
@@ -10,18 +11,14 @@
 
 namespace Zenon {
 
-    SplashState::SplashState(GameDataRef data) : m_data(data) {
-
+    SplashState::SplashState(GameDataRef data, std::vector<FichaTrampa*> l_fichaTrampa) : m_data(data) 
+    {
+        m_trampasSel = l_fichaTrampa;
     }
 
     void SplashState::Init() 
     {
-       m_data->assets.LoadTexture("No_trampa", NO_TRAP_SPRITE);
-       m_data->assets.LoadTexture("Metralleta", METRALLETA_SPRITE);
-       m_data->assets.LoadTexture("Defensa", DEFENSA_SPRITE);
-       m_data->assets.LoadTexture("MetralletaS", ATAQUE_HIGHLIGHT);
-       m_data->assets.LoadTexture("DefensaS", DEFENSA_HIGHLIGHT);
-
+        std::cout<<"Tienes " << m_trampasSel.size()<<" trampas"<<std::endl;
        int i = 60;
        for(int x = 0; x<3; x++)
        {
@@ -31,7 +28,7 @@ namespace Zenon {
        }
        m_trampa = -1;
        
-       m_hud = new HUD(m_data);
+       m_hud = new HUD(m_data, m_trampasSel);
        m_noCompruebes = false;
     }
 
@@ -53,16 +50,16 @@ namespace Zenon {
                 {
                     if(m_placer.at(i)->Clicked())
                     {
-                        if(m_trampa == 1)
+                        if(m_trampasSel.at(m_trampa)->GetTipo() == 1)
                         {
                             std::cout<<m_trampa<<std::endl;
-                            Trampa* tramp = new Ataque(m_data, m_placer.at(i)->GetPosicion());
+                            Trampa* tramp = new Ataque(m_data, m_placer.at(i)->GetPosicion(), m_trampasSel.at(m_trampa)->GetTexturaPosicion());
                             m_trampas.push_back(tramp);
                         }
-                        else if(m_trampa == 2)
+                        else if(m_trampasSel.at(m_trampa)->GetTipo() == 2)
                         {
                             std::cout<<m_trampa<<std::endl;
-                            Trampa* tramp = new Defensa(m_data, m_placer.at(i)->GetPosicion());
+                            Trampa* tramp = new Defensa(m_data, m_placer.at(i)->GetPosicion(), m_trampasSel.at(m_trampa)->GetTexturaPosicion());
                             m_trampas.push_back(tramp);
                         }
                     }

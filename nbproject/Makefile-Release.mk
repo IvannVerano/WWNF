@@ -38,6 +38,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/AssetManager.o \
 	${OBJECTDIR}/Ataque.o \
 	${OBJECTDIR}/Defensa.o \
+	${OBJECTDIR}/FaseSeleccionState.o \
+	${OBJECTDIR}/FichaTrampa.o \
 	${OBJECTDIR}/Game.o \
 	${OBJECTDIR}/HUD.o \
 	${OBJECTDIR}/InputManager.o \
@@ -85,6 +87,16 @@ ${OBJECTDIR}/Defensa.o: Defensa.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Defensa.o Defensa.cpp
+
+${OBJECTDIR}/FaseSeleccionState.o: FaseSeleccionState.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/FaseSeleccionState.o FaseSeleccionState.cpp
+
+${OBJECTDIR}/FichaTrampa.o: FichaTrampa.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/FichaTrampa.o FichaTrampa.cpp
 
 ${OBJECTDIR}/Game.o: Game.cpp
 	${MKDIR} -p ${OBJECTDIR}

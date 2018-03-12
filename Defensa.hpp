@@ -20,7 +20,7 @@ namespace Zenon
     class Defensa : public Trampa
     {
         public:
-            Defensa(GameDataRef l_data, sf::Vector2f l_posicion);
+            Defensa(GameDataRef l_data, sf::Vector2f l_posicion, sf::Texture &l_textura);
             void Draw();
             void Update(float dt);
         private:

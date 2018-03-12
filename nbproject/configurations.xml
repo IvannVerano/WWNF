@@ -8,6 +8,8 @@
       <itemPath>Ataque.hpp</itemPath>
       <itemPath>DEFINITIONS.hpp</itemPath>
       <itemPath>Defensa.hpp</itemPath>
+      <itemPath>FaseSeleccionState.hpp</itemPath>
+      <itemPath>FichaTrampa.hpp</itemPath>
       <itemPath>Game.hpp</itemPath>
       <itemPath>HUD.hpp</itemPath>
       <itemPath>InputManager.hpp</itemPath>
@@ -27,6 +29,8 @@
       <itemPath>AssetManager.cpp</itemPath>
       <itemPath>Ataque.cpp</itemPath>
       <itemPath>Defensa.cpp</itemPath>
+      <itemPath>FaseSeleccionState.cpp</itemPath>
+      <itemPath>FichaTrampa.cpp</itemPath>
       <itemPath>Game.cpp</itemPath>
       <itemPath>HUD.cpp</itemPath>
       <itemPath>InputManager.cpp</itemPath>
@@ -88,6 +92,14 @@
       <item path="Defensa.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Defensa.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FaseSeleccionState.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FaseSeleccionState.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FichaTrampa.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FichaTrampa.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Game.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -153,6 +165,14 @@
       <item path="Defensa.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Defensa.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FaseSeleccionState.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FaseSeleccionState.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FichaTrampa.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FichaTrampa.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Game.cpp" ex="false" tool="1" flavor2="0">
       </item>

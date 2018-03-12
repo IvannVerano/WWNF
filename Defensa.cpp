@@ -16,9 +16,9 @@
 
 namespace Zenon
 {
-    Defensa::Defensa(GameDataRef l_data, sf::Vector2f l_posicion):Trampa(l_data)
+    Defensa::Defensa(GameDataRef l_data, sf::Vector2f l_posicion, sf::Texture &l_textura):Trampa(l_data)
     {
-        m_mainSprite.setTexture(m_datos->assets.GetTexture("Defensa"));
+        m_mainSprite.setTexture(l_textura);
         m_mainSprite.setOrigin(m_mainSprite.getGlobalBounds().width/2, m_mainSprite.getGlobalBounds().height/2);
         m_mainSprite.scale(0.8,0.8);
         m_mainSprite.setPosition(l_posicion);

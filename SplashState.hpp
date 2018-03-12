@@ -6,13 +6,14 @@
 #include "Trampa.hpp"
 #include "Placer.hpp"
 #include "HUD.hpp"
+#include "FichaTrampa.hpp"
 #include <vector>
 
 namespace Zenon {
 
     class SplashState : public State {
     public:
-        SplashState(GameDataRef l_data);
+        SplashState(GameDataRef l_data, std::vector<FichaTrampa*> l_fichaTrampa);
 
         void Init();
 
@@ -29,5 +30,6 @@ namespace Zenon {
         std::vector<Placer*> m_placer;
         HUD * m_hud;
         bool m_noCompruebes;
+        std::vector<FichaTrampa*> m_trampasSel;
     };
 }

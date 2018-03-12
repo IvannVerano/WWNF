@@ -14,6 +14,7 @@
 #pragma once
 #include "Game.hpp"
 #include <SFML/Graphics.hpp>
+#include "FichaTrampa.hpp"
 #include <vector>
 
 namespace Zenon
@@ -21,7 +22,7 @@ namespace Zenon
     class HUD
     {
         public:
-            HUD(GameDataRef l_data);
+            HUD(GameDataRef l_data, std::vector<FichaTrampa*> l_trampas);
             bool CheckClick();
             void Update(float dt);
             void Draw();

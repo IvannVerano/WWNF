@@ -17,9 +17,9 @@
 
 namespace Zenon
 {
-    Ataque::Ataque(GameDataRef l_data, sf::Vector2f l_posicion):Trampa(l_data)
+    Ataque::Ataque(GameDataRef l_data, sf::Vector2f l_posicion, sf::Texture &l_textura):Trampa(l_data)
     {
-        m_mainSprite.setTexture(m_datos->assets.GetTexture("Metralleta"));
+        m_mainSprite.setTexture(l_textura);
         m_mainSprite.setOrigin(m_mainSprite.getGlobalBounds().width/2, m_mainSprite.getGlobalBounds().height/2);
         m_mainSprite.setPosition(l_posicion);
         m_timeAppear.restart();

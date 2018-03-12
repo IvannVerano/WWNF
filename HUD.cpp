@@ -13,28 +13,23 @@
 
 #include "HUD.hpp"
 #include "DEFINITIONS.hpp"
+#include "FichaTrampa.hpp"
 #include <iostream>
 
 namespace Zenon
 {
-    HUD::HUD(GameDataRef l_data):m_data(l_data)
+    HUD::HUD(GameDataRef l_data, std::vector<FichaTrampa*> l_trampas):m_data(l_data)
     {
-        sf::Sprite c_option1;
-        m_texturas_no_highlight.push_back(m_data->assets.GetTexture("Metralleta"));
-        m_texturas_highlight.push_back(m_data->assets.GetTexture("MetralletaS"));
-        c_option1.setTexture(m_data->assets.GetTexture("Metralleta"));
-        c_option1.setOrigin(c_option1.getGlobalBounds().width/2, c_option1.getGlobalBounds().height + 100);
-        c_option1.setPosition(200, 600);
-        m_options.push_back(c_option1);
-        
-        sf::Sprite c_option2;
-        m_texturas_no_highlight.push_back(m_data->assets.GetTexture("Defensa"));
-        m_texturas_highlight.push_back(m_data->assets.GetTexture("DefensaS"));
-        c_option2.setTexture(m_data->assets.GetTexture("Defensa"));
-        c_option2.setOrigin(c_option2.getGlobalBounds().width/2, c_option2.getGlobalBounds().height/2);
-        c_option2.scale(0.8,0.8);
-        c_option2.setPosition(400, 380);
-        m_options.push_back(c_option2);
+        for(int i = 0; i< l_trampas.size(); i++)
+        {
+            sf::Sprite c_option1;
+            m_texturas_no_highlight.push_back(l_trampas.at(i)->GetTexturaPosicion());
+            m_texturas_highlight.push_back(l_trampas.at(i)->GetTexturaHighlight());
+            c_option1.setTexture(l_trampas.at(i)->GetTexturaPosicion());
+            c_option1.setOrigin(c_option1.getGlobalBounds().width/2, c_option1.getGlobalBounds().height + 100);
+            c_option1.setPosition(300*(i+1), 600);
+            m_options.push_back(c_option1);
+        }
         m_clicked = -1;
     }
     
@@ -54,7 +49,7 @@ namespace Zenon
             //Reseteo todas las opciones del menú
             if(l_clicked!= -1)
             {
-               m_clicked = l_clicked+1;
+               m_clicked = l_clicked;
                for(int j = 0; j<m_options.size(); j++)
                 {
                    m_options.at(j).setTexture(m_texturas_no_highlight.at(j));
