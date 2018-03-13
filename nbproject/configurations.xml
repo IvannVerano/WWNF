@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>AssetManager.hpp</itemPath>
       <itemPath>DEFINITIONS.hpp</itemPath>
+      <itemPath>Enemy.hpp</itemPath>
       <itemPath>Game.hpp</itemPath>
       <itemPath>InputManager.hpp</itemPath>
       <itemPath>MathHelper.hpp</itemPath>
@@ -16,11 +17,17 @@
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
+      <itemPath>Resources/Sprites/effect.png</itemPath>
+      <itemPath>Resources/Sprites/enemy.png</itemPath>
+      <itemPath>Resources/Sprites/generador.png</itemPath>
+      <itemPath>Resources/Sprites/spawn.png</itemPath>
+      <itemPath>Resources/Sprites/tienda.png</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>AssetManager.cpp</itemPath>
+      <itemPath>Enemy.cpp</itemPath>
       <itemPath>Game.cpp</itemPath>
       <itemPath>InputManager.cpp</itemPath>
       <itemPath>SplashState.cpp</itemPath>
@@ -84,6 +91,10 @@
       </item>
       <item path="DEFINITIONS.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Enemy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Enemy.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Game.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Game.hpp" ex="false" tool="3" flavor2="0">
@@ -93,6 +104,16 @@
       <item path="InputManager.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="MathHelper.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Resources/Sprites/effect.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Resources/Sprites/enemy.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Resources/Sprites/generador.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Resources/Sprites/spawn.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Resources/Sprites/tienda.png" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SplashState.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -133,6 +154,10 @@
       </item>
       <item path="DEFINITIONS.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Enemy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Enemy.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Game.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Game.hpp" ex="false" tool="3" flavor2="0">
@@ -142,6 +167,16 @@
       <item path="InputManager.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="MathHelper.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Resources/Sprites/effect.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Resources/Sprites/enemy.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Resources/Sprites/generador.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Resources/Sprites/spawn.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Resources/Sprites/tienda.png" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SplashState.cpp" ex="false" tool="1" flavor2="0">
       </item>

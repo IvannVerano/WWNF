@@ -4,6 +4,7 @@
 #include "State.hpp"
 #include "Game.hpp"
 #include <vector>
+#include "Enemy.hpp"
 
 namespace Zenon {
 
@@ -16,6 +17,11 @@ namespace Zenon {
         void HandleInput();
         void Update(float dt);
         void Draw(float dt);
+
+        void LoadAssets();
+        void LoadDestinies();
+        void LoadPaths();
+        void SpawnEnemy();
 
         std::vector<sf::Vector2f> CalculateBQ
         (
@@ -33,9 +39,22 @@ namespace Zenon {
 
         sf::Clock _clock;
 
+        std::vector<sf::Vector2f> m_pathPoints;
+        std::vector<std::vector<sf::Vector2f>> m_caminos;
+        std::vector<Enemy*> m_enemyVector;
+        Enemy* m_enemy;
+
+        sf::VertexArray m_pathVertex;
+        sf::VertexArray m_pathVertex2;
+        bool enemyDiving = false;
+        bool m_cambio;
+        bool m_wantsNew;
+
+        sf::Sprite m_objective;
+        sf::Sprite m_objective2;
+        sf::Sprite m_spawn;
         sf::Texture _backgroundTexture;
         sf::Sprite _background;
-        std::vector<SplashState*> states;
 
     };
 }
