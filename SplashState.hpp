@@ -3,6 +3,8 @@
 #include <SFML/Graphics.hpp>
 #include "State.hpp"
 #include "Game.hpp"
+#include "Ataque.hpp"
+#include "Enemigo.hpp"
 
 namespace Zenon {
 
@@ -23,5 +25,10 @@ namespace Zenon {
 
         sf::Texture _backgroundTexture;
         sf::Sprite _background;
+    
+        Ataque * m_torreta;
+        std::vector <Enemigo *> m_enemigos;
+        
+        sf::Clock m_clock_Spawn;
     };
 }

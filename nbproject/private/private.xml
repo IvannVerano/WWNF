@@ -4,4 +4,20 @@
         <activeConfTypeElem>1</activeConfTypeElem>
         <activeConfIndexElem>0</activeConfIndexElem>
     </data>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/cesar/NetBeansProjects/WWNF/Enemigo.cpp</file>
+            <file>file:/home/cesar/NetBeansProjects/WWNF/Game.hpp</file>
+            <file>file:/home/cesar/NetBeansProjects/WWNF/Bala.cpp</file>
+            <file>file:/home/cesar/NetBeansProjects/WWNF/SplashState.cpp</file>
+            <file>file:/home/cesar/NetBeansProjects/WWNF/Ataque.cpp</file>
+            <file>file:/home/cesar/NetBeansProjects/WWNF/Enemigo.hpp</file>
+            <file>file:/home/cesar/NetBeansProjects/WWNF/SplashState.hpp</file>
+            <file>file:/home/cesar/NetBeansProjects/WWNF/Ataque.hpp</file>
+            <file>file:/home/cesar/NetBeansProjects/WWNF/Game.cpp</file>
+            <file>file:/home/cesar/NetBeansProjects/WWNF/DEFINITIONS.hpp</file>
+            <file>file:/home/cesar/NetBeansProjects/WWNF/Bala.hpp</file>
+        </group>
+    </open-files>
 </project-private>
