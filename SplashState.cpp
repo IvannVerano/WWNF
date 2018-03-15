@@ -102,7 +102,8 @@ namespace Zenon {
     }
 
     void SplashState::SpawnEnemy() {
-        m_enemy = new Enemy(_data, sf::Vector2f(m_caminos[0][0].x, m_caminos[0][0].y));
+        const std::vector<Enemy*>& l_neighbors = m_enemyVector;
+        m_enemy = new Enemy(_data, sf::Vector2f(m_caminos[0][0].x, m_caminos[0][0].y), l_neighbors);
         m_enemy->SetPath(m_caminos[0]);
         m_enemy->SetAlternative(m_caminos[1]);
         m_enemy->PutDiving();
