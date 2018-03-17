@@ -31,10 +31,9 @@ namespace Zenon {
        m_hud = new HUD(m_data, m_trampasSel);
        m_noCompruebes = false;
        
-       m_mouseConstruct.setTexture(m_data->assets.GetTexture("WHITE_GUI_ELEMENTS"));
-       m_mouseConstruct.setTextureRect(sf::IntRect(0,98,21,17));
+       m_mouseConstruct.setTexture(m_data->assets.GetTexture("CURSOR_BUILD"));
        m_mouseConstruct.setOrigin(m_mouseConstruct.getGlobalBounds().width/2,m_mouseConstruct.getGlobalBounds().height/2);
-       m_mouseConstruct.scale(2.0,2.0);
+       m_mouseConstruct.scale(0.7,0.7);
     }
 
     void SplashState::HandleInput() {
