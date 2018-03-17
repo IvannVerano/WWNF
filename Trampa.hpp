@@ -14,6 +14,7 @@
 #pragma once
 #include "Game.hpp"
 #include <SFML/Graphics.hpp>
+#include <vector>
 namespace Zenon
 {
     class Trampa
@@ -25,11 +26,16 @@ namespace Zenon
             }
             virtual void Update(float dt){};
             virtual void Draw(){};
+            virtual void AnimateApparition(){};
         protected:
             GameDataRef m_datos;
             sf::Sprite m_mainSprite;
+            sf::Sprite m_SpriteAnimation;
             int m_state;
             sf::Clock m_timeAppear;
+            int m_animationAppearCounter;
+            std::vector<sf::IntRect> m_AnimationFramesAppear;
+            sf::Clock m_aniAppearClock;
             
     };
 }
