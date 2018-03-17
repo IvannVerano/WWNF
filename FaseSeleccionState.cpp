@@ -24,6 +24,7 @@ namespace Zenon {
         m_data->assets.LoadTexture("GUI_DEFENSA", GUI_DEFENSA);
         m_data->assets.LoadTexture("GUI_DEFENSA_SEL", GUI_DEFENSA_SEL);
         m_data->assets.LoadTexture("GUI_ELEMENTS", GUI_ELEMENTS);
+        m_data->assets.LoadTexture("WHITE_GUI_ELEMENTS", WHITE_GUI_ELEMENTS);
         m_boton.setTexture(m_data->assets.GetTexture("Metralleta"));
         m_boton.setOrigin(m_boton.getGlobalBounds().width/2, m_boton.getGlobalBounds().height/2);
         m_boton.setPosition(600,400);

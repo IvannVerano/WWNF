@@ -31,5 +31,7 @@ namespace Zenon {
         HUD * m_hud;
         bool m_noCompruebes;
         std::vector<FichaTrampa*> m_trampasSel;
+        sf::Sprite m_mouseConstruct;
+        bool m_hideCursor;
     };
 }

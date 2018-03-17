@@ -21,9 +21,11 @@ namespace Zenon
         public:
             Placer(GameDataRef data, sf::Vector2f pos);
             ~Placer();
-            bool Clicked();
+            bool Clicked(int trampa);
             sf::Vector2f GetPosicion();
             void Draw();
+            bool GetOccuped();
+            bool Hovered();
         private:
             GameDataRef datos;
             sf::Sprite mainSprite;

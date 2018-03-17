@@ -20,9 +20,9 @@ namespace Zenon {
     {
        std::cout<<"Tienes " << m_trampasSel.size()<<" trampas"<<std::endl;
        int i = 60;
-       for(int x = 0; x<3; x++)
+       for(int x = 0; x<4; x++)
        {
-            Placer* plaser = new Placer(m_data, sf::Vector2f(80*x+200, i));
+            Placer* plaser = new Placer(m_data, sf::Vector2f(80*x+100+i, 150));
             m_placer.push_back(plaser);
             i += 60;
        }
@@ -30,6 +30,11 @@ namespace Zenon {
        
        m_hud = new HUD(m_data, m_trampasSel);
        m_noCompruebes = false;
+       
+       m_mouseConstruct.setTexture(m_data->assets.GetTexture("WHITE_GUI_ELEMENTS"));
+       m_mouseConstruct.setTextureRect(sf::IntRect(0,98,21,17));
+       m_mouseConstruct.setOrigin(m_mouseConstruct.getGlobalBounds().width/2,m_mouseConstruct.getGlobalBounds().height/2);
+       m_mouseConstruct.scale(2.0,2.0);
     }
 
     void SplashState::HandleInput() {
@@ -48,7 +53,7 @@ namespace Zenon {
                 }
                 for(int i = 0; i<m_placer.size(); i++)
                 {
-                    if(m_placer.at(i)->Clicked())
+                    if(m_placer.at(i)->Clicked(m_trampa))
                     {
                         if(m_trampa> -1)
                         {
@@ -82,11 +87,26 @@ namespace Zenon {
     }
 
     void SplashState::Update(float dt) {
-
+        
+        int counter = 0;
         for(int i=0; i<m_trampas.size() ; i++)
         {
             m_trampas.at(i)->Update(dt);
         }
+        for(int i=0; i<m_placer.size(); i++)
+        {
+            if(m_placer.at(i)->Hovered() && !m_placer.at(i)->GetOccuped())
+            {
+                counter++;
+            }
+        }
+        
+        if(counter > 0)
+            m_hideCursor = true;
+        else
+            m_hideCursor = false;
+        
+        m_mouseConstruct.setPosition((sf::Vector2f)m_data->input.GetMousePosition(m_data->window));
 
     }
 
@@ -106,6 +126,14 @@ namespace Zenon {
         }
         
         m_hud->Draw();
+        
+        if(m_hideCursor)
+        {
+            this->m_data->window.setMouseCursorVisible(false);
+            this->m_data->window.draw(m_mouseConstruct);
+        }
+        else
+            this->m_data->window.setMouseCursorVisible(true);
 
         this->m_data->window.display();
     }

@@ -14,6 +14,7 @@
 #define GUI_DEFENSA "resources/gui_defensa.png"
 #define GUI_DEFENSA_SEL "resources/gui_defensa_sel.png"
 #define GUI_ELEMENTS "resources/elementosGUI.png"
+#define WHITE_GUI_ELEMENTS "resources/elementosGUImej.png"
 
 //Relojes
 #define CLOCK_SELECTION 0.5f

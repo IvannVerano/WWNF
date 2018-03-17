@@ -27,9 +27,9 @@ namespace Zenon
     
     Placer::~Placer(){}
     
-    bool Placer::Clicked()
+    bool Placer::Clicked(int trampa)
     {
-        if(datos->input.IsSpriteClicked(mainSprite,sf::Mouse::Left,datos->window) && !ocupado)
+        if(datos->input.IsSpriteClicked(mainSprite,sf::Mouse::Left,datos->window) && !ocupado && trampa>-1)
         {
             ocupado = true;
             return true;
@@ -45,5 +45,18 @@ namespace Zenon
     void Placer::Draw()
     {
         this->datos->window.draw(mainSprite);
+    }
+    
+    bool Placer::GetOccuped()
+    {
+        return ocupado;
+    }
+    
+    bool Placer::Hovered()
+    {
+        if(datos->input.IsSpriteHovered(mainSprite, sf::Mouse::Left, datos->window))
+            return true;
+        else
+            return false;
     }
 }

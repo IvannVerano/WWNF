@@ -15,6 +15,17 @@ namespace Zenon {
 
         return false;
     }
+    
+     bool InputManager::IsSpriteHovered(sf::Sprite object, sf::Mouse::Button button, sf::RenderWindow &window) {
+            
+         sf::IntRect playButtonRect(object.getGlobalBounds());
+
+         if (playButtonRect.contains(sf::Mouse::getPosition(window))) {
+                return true;
+            }
+
+        return false;
+    }
 
     sf::Vector2i InputManager::GetMousePosition(sf::RenderWindow &window) {
         return sf::Mouse::getPosition(window);
