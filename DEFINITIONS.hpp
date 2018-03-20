@@ -11,7 +11,7 @@
 #define OBJECTIVE2_TEXTURE "Resources/Sprites/generador.png"
 #define SPAWN_TEXTURE "Resources/Sprites/effect.png"
 
-#define ENEMY_SPEED 80.0f
+#define ENEMY_SPEED 120.0f
 
 #define MINIMUM_WAYPOINT_DISTANCE 50.0f
-#define MINIMUM_NEIGHBOR_DISTANCE 10.0f
+#define MINIMUM_NEIGHBOR_DISTANCE 70.0f

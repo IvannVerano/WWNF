@@ -53,9 +53,12 @@ namespace Zenon {
                                 l_nvy *= -1;
                                 float l_vx = m_path[m_currentWP].x - m_enemySprite.getPosition().x;
                                 float l_vy = m_path[m_currentWP].y - m_enemySprite.getPosition().y;
+                                float l_vMod = std::sqrt(l_vx * l_vx + l_vy * l_vy);
                                 float l_resultanteX = l_nvx + l_vx;
                                 float l_resultanteY = l_nvy + l_vy;
                                 float l_waypointDistance = std::sqrt(l_resultanteX * l_resultanteX + l_resultanteY * l_resultanteY);
+                                l_resultanteX /= l_waypointDistance;
+                                l_resultanteY /= l_waypointDistance;
 
                                 if (l_waypointDistance <= MINIMUM_WAYPOINT_DISTANCE) {
                                     if (m_currentWP == m_path.size() - 1) {
@@ -69,8 +72,6 @@ namespace Zenon {
                                 }
 
                                 if (l_waypointDistance > MINIMUM_WAYPOINT_DISTANCE) {
-                                    l_resultanteX = l_resultanteX / l_waypointDistance;
-                                    l_resultanteY = l_resultanteY / l_waypointDistance;
                                     m_enemySprite.move(ENEMY_SPEED * l_resultanteX * dt, ENEMY_SPEED * l_resultanteY * dt);
                                 }
 
