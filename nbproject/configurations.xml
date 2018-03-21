@@ -5,12 +5,21 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>AssetManager.hpp</itemPath>
+      <itemPath>Ataque.hpp</itemPath>
+      <itemPath>Bala.hpp</itemPath>
       <itemPath>DEFINITIONS.hpp</itemPath>
+      <itemPath>Defensa.hpp</itemPath>
+      <itemPath>Enemigo.hpp</itemPath>
+      <itemPath>FaseSeleccionState.hpp</itemPath>
+      <itemPath>FichaTrampa.hpp</itemPath>
       <itemPath>Game.hpp</itemPath>
+      <itemPath>HUD.hpp</itemPath>
       <itemPath>InputManager.hpp</itemPath>
+      <itemPath>Placer.hpp</itemPath>
       <itemPath>SplashState.hpp</itemPath>
       <itemPath>State.hpp</itemPath>
       <itemPath>StateMachine.hpp</itemPath>
+      <itemPath>Trampa.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -20,8 +29,16 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>AssetManager.cpp</itemPath>
+      <itemPath>Ataque.cpp</itemPath>
+      <itemPath>Bala.cpp</itemPath>
+      <itemPath>Defensa.cpp</itemPath>
+      <itemPath>Enemigo.cpp</itemPath>
+      <itemPath>FaseSeleccionState.cpp</itemPath>
+      <itemPath>FichaTrampa.cpp</itemPath>
       <itemPath>Game.cpp</itemPath>
+      <itemPath>HUD.cpp</itemPath>
       <itemPath>InputManager.cpp</itemPath>
+      <itemPath>Placer.cpp</itemPath>
       <itemPath>SplashState.cpp</itemPath>
       <itemPath>StateMachine.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
@@ -70,15 +87,47 @@
       </item>
       <item path="AssetManager.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Ataque.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Ataque.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Bala.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Bala.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DEFINITIONS.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Defensa.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Defensa.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Enemigo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Enemigo.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FaseSeleccionState.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FaseSeleccionState.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FichaTrampa.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FichaTrampa.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Game.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Game.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="HUD.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="HUD.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="InputManager.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="InputManager.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Placer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Placer.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SplashState.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -89,6 +138,8 @@
       <item path="StateMachine.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="StateMachine.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Trampa.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -117,15 +168,47 @@
       </item>
       <item path="AssetManager.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Ataque.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Ataque.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Bala.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Bala.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DEFINITIONS.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Defensa.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Defensa.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Enemigo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Enemigo.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FaseSeleccionState.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FaseSeleccionState.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="FichaTrampa.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="FichaTrampa.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Game.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Game.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="HUD.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="HUD.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="InputManager.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="InputManager.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Placer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Placer.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="SplashState.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -136,6 +219,8 @@
       <item path="StateMachine.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="StateMachine.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Trampa.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

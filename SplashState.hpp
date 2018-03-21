@@ -3,13 +3,18 @@
 #include <SFML/Graphics.hpp>
 #include "State.hpp"
 #include "Game.hpp"
+#include "Trampa.hpp"
+#include "Placer.hpp"
+#include "HUD.hpp"
+#include "FichaTrampa.hpp"
+#include "Enemigo.hpp"
 #include <vector>
 
 namespace Zenon {
 
     class SplashState : public State {
     public:
-        SplashState(GameDataRef data);
+        SplashState(GameDataRef l_data, std::vector<FichaTrampa*> l_fichaTrampa);
 
         void Init();
 
@@ -18,13 +23,18 @@ namespace Zenon {
         void Draw(float dt);
 
     private:
-        GameDataRef _data;
-
-        sf::Clock _clock;
-
+        GameDataRef m_data;
+        int m_trampa;
         sf::Texture _backgroundTexture;
         sf::Sprite _background;
-        std::vector<SplashState*> states;
-
+        std::vector<Trampa*> m_trampas;
+        std::vector<Placer*> m_placer;
+        HUD * m_hud;
+        bool m_noCompruebes;
+        std::vector<FichaTrampa*> m_trampasSel;
+        sf::Sprite m_mouseConstruct;
+        bool m_hideCursor;
+        std::vector<Enemigo*> m_enemys;
+        sf::Clock m_enemy_dead;
     };
 }
