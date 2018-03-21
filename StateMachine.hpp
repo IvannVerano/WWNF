@@ -2,8 +2,8 @@
 
 #include <memory>
 #include <stack>
-
 #include "State.hpp"
+#include <vector>
 
 namespace Zenon {
     typedef std::unique_ptr<State> StateRef;
