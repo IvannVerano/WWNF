@@ -5,6 +5,7 @@
 #include "Game.hpp"
 #include "Ataque.hpp"
 #include "Enemigo.hpp"
+#include "Bala.hpp"
 
 namespace Zenon {
 
