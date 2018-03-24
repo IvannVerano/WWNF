@@ -1,15 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   Ataque.cpp
- * Author: antonio
- * 
- * Created on 8 de marzo de 2018, 17:40
- */
 
 #include "Ataque.hpp"
 #include "DEFINITIONS.hpp"
@@ -121,10 +109,10 @@ namespace Zenon
         {
             if(!m_is_attacking && m_target == -1)
             {
-                if(m_mainSprite.getPosition().x-m_enemy.at(i)->GetPosition().x < 200 && m_mainSprite.getPosition().y-m_enemy.at(i)->GetPosition().y < 200 && 
-                    m_enemy.at(i)->GetPosition().x - m_mainSprite.getPosition().x < 200 && m_enemy.at(i)->GetPosition().y-m_mainSprite.getPosition().y < 200 ||
-                        m_mainSprite.getPosition().x-m_enemy.at(i)->GetPosition().x < 200 && m_mainSprite.getPosition().y-m_enemy.at(i)->GetPosition().y < -200 && 
-                            m_enemy.at(i)->GetPosition().x - m_mainSprite.getPosition().x < -200 && m_enemy.at(i)->GetPosition().y-m_mainSprite.getPosition().y < -200    )
+                if(m_mainSprite.getPosition().x-m_enemy.at(i)->GetPosition().x < RANGO_TORRETA && m_mainSprite.getPosition().y-m_enemy.at(i)->GetPosition().y < RANGO_TORRETA && 
+                    m_enemy.at(i)->GetPosition().x - m_mainSprite.getPosition().x < RANGO_TORRETA && m_enemy.at(i)->GetPosition().y-m_mainSprite.getPosition().y < RANGO_TORRETA ||
+                        m_mainSprite.getPosition().x-m_enemy.at(i)->GetPosition().x < RANGO_TORRETA && m_mainSprite.getPosition().y-m_enemy.at(i)->GetPosition().y < -RANGO_TORRETA && 
+                            m_enemy.at(i)->GetPosition().x - m_mainSprite.getPosition().x < -RANGO_TORRETA && m_enemy.at(i)->GetPosition().y-m_mainSprite.getPosition().y < -RANGO_TORRETA    )
                 {
                     if(m_enemy[i]->GetActualState() == ENEMY_STATE_ALIVE)
                     {
@@ -143,8 +131,8 @@ namespace Zenon
     {
         if(m_is_attacking)
         {
-            if(m_mainSprite.getPosition().x-m_enemy[m_target]->GetPosition().x < 200 && m_mainSprite.getPosition().y-m_enemy[m_target]->GetPosition().y < 200 && 
-                   m_enemy[m_target]->GetPosition().x - m_mainSprite.getPosition().x < 200 && m_enemy[m_target]->GetPosition().y-m_mainSprite.getPosition().y < 200)
+            if(m_mainSprite.getPosition().x-m_enemy[m_target]->GetPosition().x < RANGO_TORRETA && m_mainSprite.getPosition().y-m_enemy[m_target]->GetPosition().y < RANGO_TORRETA && 
+                   m_enemy[m_target]->GetPosition().x - m_mainSprite.getPosition().x < RANGO_TORRETA && m_enemy[m_target]->GetPosition().y-m_mainSprite.getPosition().y < RANGO_TORRETA)
             {
                 float angle=0;
                 float hipotenusa;
@@ -185,7 +173,7 @@ namespace Zenon
                 m_mainSprite.setRotation(angle);
            //     m_bullet->Shoot(angle,incremento_x,incremento_y);
                 
-                if(shoot_time.getElapsedTime().asSeconds() > 0.5)
+                if(shoot_time.getElapsedTime().asSeconds() > CLOCK_CADENCIA_TORRETA)
                 {
                     Bala * c_bala= new Bala(m_datos,m_mainSprite.getPosition(),m_direccion_sentido,angle);
                     m_bala.push_back(c_bala);

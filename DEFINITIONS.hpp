@@ -37,3 +37,9 @@
 
 #define ENEMY_STATE_ALIVE 1
 #define ENEMY_STATE_DEAD 0
+
+//Rango, cadencia y demás variables de la torreta 
+
+#define RANGO_TORRETA 200
+#define CLOCK_CADENCIA_TORRETA 0.5
+
