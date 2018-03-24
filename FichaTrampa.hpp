@@ -19,13 +19,14 @@ namespace Zenon
     class FichaTrampa
     {
         public:
-            FichaTrampa(GameDataRef l_data, sf::Texture l_posicion, sf::Texture l_texHighlight, sf::Texture l_gui_defecto, sf::Texture l_gui_sel, int l_tipo, sf::Vector2f l_posicion_gui); 
+            FichaTrampa(GameDataRef l_data, sf::Texture l_posicion, sf::Texture l_gui_defecto, sf::Texture l_gui_sel, int l_tipo, sf::Vector2f l_posicion_gui); 
             void Draw();
             void GestionSeleccion();
             bool IsSelected();
             bool IsClicked();
             sf::Texture &GetTexturaPosicion();
             sf::Texture &GetTexturaHighlight();
+            sf::Texture &GetTexturaGUI();
             int GetTipo();
         protected:
             GameDataRef m_datos;

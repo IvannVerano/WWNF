@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux
-CND_ARTIFACT_NAME_Debug=wwnf
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/wwnf
+CND_ARTIFACT_NAME_Debug=enemigostrampas
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/enemigostrampas
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux/package
-CND_PACKAGE_NAME_Debug=wwnf.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/wwnf.tar
+CND_PACKAGE_NAME_Debug=enemigostrampas.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/enemigostrampas.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux
-CND_ARTIFACT_NAME_Release=wwnf
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/wwnf
+CND_ARTIFACT_NAME_Release=enemigostrampas
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/enemigostrampas
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux/package
-CND_PACKAGE_NAME_Release=wwnf.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/wwnf.tar
+CND_PACKAGE_NAME_Release=enemigostrampas.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/enemigostrampas.tar
 #
 # include compiler specific variables
 #

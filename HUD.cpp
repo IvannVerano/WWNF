@@ -23,11 +23,12 @@ namespace Zenon
         for(int i = 0; i< l_trampas.size(); i++)
         {
             sf::Sprite c_option1;
-            m_texturas_no_highlight.push_back(l_trampas.at(i)->GetTexturaPosicion());
+            m_texturas_no_highlight.push_back(l_trampas.at(i)->GetTexturaGUI());
             m_texturas_highlight.push_back(l_trampas.at(i)->GetTexturaHighlight());
-            c_option1.setTexture(l_trampas.at(i)->GetTexturaPosicion());
+            c_option1.setTexture(l_trampas.at(i)->GetTexturaGUI());
             c_option1.setOrigin(c_option1.getGlobalBounds().width/2, c_option1.getGlobalBounds().height + 100);
             c_option1.setPosition(300*(i+1), 600);
+            c_option1.setScale(0.25,0.25);
             m_options.push_back(c_option1);
         }
         m_clicked = -1;

@@ -15,12 +15,11 @@
 #include <iostream>
 namespace Zenon
 {
-    FichaTrampa::FichaTrampa(GameDataRef l_data, sf::Texture l_posicion, sf::Texture l_texHighlight, sf::Texture l_gui_defecto, sf::Texture l_gui_sel, int l_tipo, sf::Vector2f l_posicion_gui):m_datos(l_data)
+    FichaTrampa::FichaTrampa(GameDataRef l_data, sf::Texture l_posicion, sf::Texture l_gui_defecto, sf::Texture l_gui_sel, int l_tipo, sf::Vector2f l_posicion_gui):m_datos(l_data)
     {
         m_texturaPosicion = l_posicion;
         m_textura_gui_defecto = l_gui_defecto;
         m_textura_gui_seleccionado = l_gui_sel;
-        m_texturaHighlight =  l_texHighlight;
         m_tipo = l_tipo;
         m_mainSprite.setTexture(m_textura_gui_defecto);
         m_mainSprite.setOrigin(m_mainSprite.getGlobalBounds().width/2, m_mainSprite.getGlobalBounds().height/2);
@@ -64,10 +63,17 @@ namespace Zenon
         m_datos->window.draw(m_mainSprite);
     }
     
+    
     sf::Texture &FichaTrampa::GetTexturaHighlight()
     {
-        return m_texturaHighlight;
+        return m_textura_gui_seleccionado;
     }
+    
+    sf::Texture &FichaTrampa::GetTexturaGUI()
+    {
+        return m_textura_gui_defecto;
+    }
+    
     
     sf::Texture &FichaTrampa::GetTexturaPosicion()
     {

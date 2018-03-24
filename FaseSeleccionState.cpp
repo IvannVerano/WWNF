@@ -17,8 +17,6 @@ namespace Zenon {
         m_data->assets.LoadTexture("No_trampa", NO_TRAP_SPRITE);
         m_data->assets.LoadTexture("Metralleta", METRALLETA_SPRITE);
         m_data->assets.LoadTexture("Defensa", DEFENSA_SPRITE);
-        m_data->assets.LoadTexture("MetralletaS", ATAQUE_HIGHLIGHT);
-        m_data->assets.LoadTexture("DefensaS", DEFENSA_HIGHLIGHT);
         m_data->assets.LoadTexture("GUI_METRALLETA", GUI_METRALLETA);
         m_data->assets.LoadTexture("GUI_METRALLETA_SEL", GUI_METRALLETA_SEL);
         m_data->assets.LoadTexture("GUI_DEFENSA", GUI_DEFENSA);
@@ -35,8 +33,8 @@ namespace Zenon {
         m_boton.setOrigin(m_boton.getGlobalBounds().width/2, m_boton.getGlobalBounds().height/2);
         m_boton.setPosition(600,400);
         
-        FichaTrampa * metralleta = new FichaTrampa(m_data, m_data->assets.GetTexture("Metralleta"), m_data->assets.GetTexture("MetralletaS"), m_data->assets.GetTexture("GUI_METRALLETA"),m_data->assets.GetTexture("GUI_METRALLETA_SEL"), 1, sf::Vector2f(150,150));
-        FichaTrampa * defensa = new FichaTrampa(m_data, m_data->assets.GetTexture("Defensa"), m_data->assets.GetTexture("DefensaS"), m_data->assets.GetTexture("GUI_DEFENSA"),m_data->assets.GetTexture("GUI_DEFENSA_SEL"), 2, sf::Vector2f(400,150));
+        FichaTrampa * metralleta = new FichaTrampa(m_data, m_data->assets.GetTexture("Metralleta"), m_data->assets.GetTexture("GUI_METRALLETA"),m_data->assets.GetTexture("GUI_METRALLETA_SEL"), 1, sf::Vector2f(150,150));
+        FichaTrampa * defensa = new FichaTrampa(m_data, m_data->assets.GetTexture("Defensa"), m_data->assets.GetTexture("GUI_DEFENSA"),m_data->assets.GetTexture("GUI_DEFENSA_SEL"), 2, sf::Vector2f(400,150));
         
         m_trampasdisp.push_back(metralleta);
         m_trampasdisp.push_back(defensa);
