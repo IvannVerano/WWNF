@@ -24,6 +24,7 @@ namespace Zenon {
         void LoadPaths();
         void SpawnEnemy(sf::Vector2f l_position, int l_path);
 
+
         std::vector<sf::Vector2f> CalculateBQ
         (
                 const sf::Vector2f &start,
@@ -52,7 +53,10 @@ namespace Zenon {
 
         sf::Sprite m_point1;
         sf::Sprite m_point2;
+        sf::Sprite m_point3;
         sf::Sprite m_spawn;
+        sf::CircleShape m_tempCircle;
+        std::vector<sf::CircleShape> m_wps;
         sf::Texture _backgroundTexture;
         sf::Sprite _background;
 
