@@ -21,7 +21,7 @@
 #define LASER_SPRITE "resources/laser.png"
 
 
-
+#define FONT_DINERO "resources/emulogic.ttf"
 //Relojes
 #define CLOCK_SELECTION 0.5f
 

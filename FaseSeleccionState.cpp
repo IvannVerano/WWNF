@@ -29,6 +29,7 @@ namespace Zenon {
         m_data->assets.LoadTexture("ametralladora", AMETRALLADORA_SPRITE);
         m_data->assets.LoadTexture("GUI_AMETRALLADORA", GUI_AMETRALLADORA);
         m_data->assets.LoadTexture("GUI_AMETRALLADORA_SEL", GUI_AMETRALLADORA_SEL);
+        m_data->assets.LoadFont("FUENTE_DINERO", FONT_DINERO);
 
 
 

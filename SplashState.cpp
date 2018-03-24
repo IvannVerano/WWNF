@@ -46,10 +46,11 @@ namespace Zenon {
        
        std::cout<<"Hay: "<<m_enemys.size()<<std::endl;
        std::cout<<"tienes: "<<m_disponible<<std::endl;
+       m_textoDinero.setFont(m_data->assets.GetFont("FUENTE_DINERO"));
        m_textoDinero.setString(std::to_string(*m_disponible));
-       //m_textoDinero.setFillColor(sf::Color::White);
+       m_textoDinero.setCharacterSize(20);
        m_textoDinero.setOrigin(m_textoDinero.getGlobalBounds().width/2, m_textoDinero.getGlobalBounds().height/2 );
-       m_textoDinero.setPosition(100, 100);
+       m_textoDinero.setPosition(600, 100);
        
        
     }
