@@ -13,7 +13,7 @@ namespace Zenon{
         m_state = ENEMY_STATE_ALIVE;
         m_life = 50;
         this->id = id;
-        m_recuperacion = 25;
+        m_killer = -1;
     }
     
     void Enemigo::Update(float dt)
@@ -63,8 +63,13 @@ namespace Zenon{
         return id;
     }
     
-    int Enemigo::GetRecuperacion()
+    void Enemigo::SetKiller(int l_killer)
     {
-        return m_recuperacion;
+        m_killer = l_killer;
+    }
+    
+    int Enemigo::GetKiller()
+    {
+        return m_killer;
     }
 }

@@ -4,4 +4,20 @@
         <activeConfTypeElem>1</activeConfTypeElem>
         <activeConfIndexElem>0</activeConfIndexElem>
     </data>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/antonio/NetBeansProjects/EnemigosTrampas/Enemigo.hpp</file>
+            <file>file:/home/antonio/NetBeansProjects/EnemigosTrampas/Ataque.hpp</file>
+            <file>file:/home/antonio/NetBeansProjects/EnemigosTrampas/Defensa.cpp</file>
+            <file>file:/home/antonio/NetBeansProjects/EnemigosTrampas/main.cpp</file>
+            <file>file:/home/antonio/NetBeansProjects/EnemigosTrampas/Defensa.hpp</file>
+            <file>file:/home/antonio/NetBeansProjects/EnemigosTrampas/DEFINITIONS.hpp</file>
+            <file>file:/home/antonio/NetBeansProjects/EnemigosTrampas/Ataque.cpp</file>
+            <file>file:/home/antonio/NetBeansProjects/EnemigosTrampas/SplashState.cpp</file>
+            <file>file:/home/antonio/NetBeansProjects/EnemigosTrampas/Trampa.hpp</file>
+            <file>file:/home/antonio/NetBeansProjects/EnemigosTrampas/Enemigo.cpp</file>
+            <file>file:/home/antonio/NetBeansProjects/EnemigosTrampas/SplashState.hpp</file>
+        </group>
+    </open-files>
 </project-private>

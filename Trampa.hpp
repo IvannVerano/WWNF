@@ -27,6 +27,7 @@ namespace Zenon
             virtual void Update(float dt){};
             virtual void Draw(){};
             virtual void AnimateApparition(){};
+            virtual int CalculateRec(int l_sum){};
         protected:
             GameDataRef m_datos;
             sf::Sprite m_mainSprite;

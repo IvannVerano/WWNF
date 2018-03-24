@@ -24,6 +24,7 @@ namespace Zenon
             void Draw();
             void Update(float dt);
             void AnimateApparition();
+            int CalculateRec(int l_sum);
         private:
             
     };

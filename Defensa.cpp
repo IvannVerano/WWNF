@@ -79,5 +79,10 @@ namespace Zenon
 			m_aniAppearClock.restart();
 		}
     }
+    
+    int Defensa::CalculateRec(int l_sum)
+    {
+        return 1;
+    }
 }
 

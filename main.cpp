@@ -1,5 +1,6 @@
+#include "DEFINITIONS.hpp"
 #include "Game.hpp"
 
 int main() {
-    Zenon::Game(800, 600, "SFML Starter");
+    Zenon::Game(SCREEN_HEIGHT, SCREEN_WIDTH, "SFML Starter");
 }

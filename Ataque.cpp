@@ -5,7 +5,7 @@
 
 namespace Zenon
 {
-    Ataque::Ataque(GameDataRef l_data, sf::Vector2f l_posicion, sf::Texture &l_textura, const std::vector<Enemigo*> &l_enemigos,int l_precio,int l_porcentaje, int l_rango, int l_potencia, float l_cadencia, int l_refresco):Trampa(l_data), m_enemy(l_enemigos)
+    Ataque::Ataque(GameDataRef l_data, sf::Vector2f l_posicion, sf::Texture &l_textura, const std::vector<Enemigo*> &l_enemigos,int l_precio,int l_porcentaje, int l_rango, int l_potencia, float l_cadencia, int l_refresco, int l_id):Trampa(l_data), m_enemy(l_enemigos)
     {
         m_SpriteAnimation.setTexture(m_datos->assets.GetTexture("GUI_ELEMENTS"));
         m_SpriteAnimation.setTextureRect(sf::IntRect(321, 163, 24, 30));
@@ -37,8 +37,12 @@ namespace Zenon
         m_cadencia = l_cadencia;
         m_potencia = l_potencia;
         m_rango= l_rango;
+        m_precio = l_precio;
         m_refresco = l_refresco;
         
+        m_id = l_id;
+        
+       
    
     }
     void Ataque::Update(float dt)
@@ -218,7 +222,8 @@ namespace Zenon
                     m_enemy.at(j)->TakeDamage(m_potencia);
                     if(m_enemy[j]->GetActualState() == ENEMY_STATE_DEAD )
                     {
-                        std::cout<<"Enemigo muerto, su id es "<< m_enemy[j]->GetID() << std::endl;
+                        m_enemy[j]->SetKiller(m_id);
+                        std::cout<<"Enemigo muerto, mi id es "<< m_id << std::endl;
                         m_mainSprite.setRotation(0);
                         m_is_attacking = false;
                         m_target = -1;
@@ -226,5 +231,16 @@ namespace Zenon
                 }
             }
         }
+    }
+    
+    int Ataque::CalculateRec(int l_sum)
+    {   
+        float porcentaje = m_porcentaje/100.0;
+        std::cout<<porcentaje<<std::endl;
+        std::cout<<m_precio<<std::endl;
+        std::cout<<m_precio * porcentaje<<std::endl;
+        int resultado = l_sum + (m_precio * porcentaje);
+        std::cout<<"Entro y me sale un total de"<<resultado<<std::endl;
+        return resultado;
     }
 }

@@ -15,7 +15,7 @@ namespace Zenon {
     SplashState::SplashState(GameDataRef data, std::vector<FichaTrampa*> l_fichaTrampa,int l_dinero) : m_data(data) 
     {
         m_trampasSel = l_fichaTrampa;
-        m_disponible = new int(l_dinero);
+        m_disponible = l_dinero;
     }
 
     void SplashState::Init() 
@@ -47,7 +47,7 @@ namespace Zenon {
        std::cout<<"Hay: "<<m_enemys.size()<<std::endl;
        std::cout<<"tienes: "<<m_disponible<<std::endl;
        m_textoDinero.setFont(m_data->assets.GetFont("FUENTE_DINERO"));
-       m_textoDinero.setString(std::to_string(*m_disponible));
+       m_textoDinero.setString(std::to_string(m_disponible));
        m_textoDinero.setCharacterSize(20);
        m_textoDinero.setOrigin(m_textoDinero.getGlobalBounds().width/2, m_textoDinero.getGlobalBounds().height/2 );
        m_textoDinero.setPosition(600, 100);
@@ -77,15 +77,15 @@ namespace Zenon {
                         {
                             if(m_trampasSel.at(m_trampa)->GetTipo() == 1 )
                             {
-                                if(m_trampasSel.at(m_trampa)->Afordable(*m_disponible))
+                                if(m_trampasSel.at(m_trampa)->Afordable(m_disponible))
                                 {
                                     std::cout<<m_trampa<<std::endl;
                                     const std::vector<Enemigo *> &enes = m_enemys;
                                     std::cout<<m_trampasSel.at(m_trampa)->GetPotencia()<<std::endl;
-                                    Trampa* tramp = new Ataque(m_data, m_placer.at(i)->GetPosicion(), m_trampasSel.at(m_trampa)->GetTexturaPosicion(), enes,  m_trampasSel.at(m_trampa)->GetPrecio(), m_trampasSel.at(m_trampa)->GetPorcentaje(), m_trampasSel.at(m_trampa)->GetRango(), m_trampasSel.at(m_trampa)->GetPotencia(), m_trampasSel.at(m_trampa)->GetCadencia(), m_trampasSel.at(m_trampa)->GetRefresco());
+                                    Trampa* tramp = new Ataque(m_data, m_placer.at(i)->GetPosicion(), m_trampasSel.at(m_trampa)->GetTexturaPosicion(), enes,  m_trampasSel.at(m_trampa)->GetPrecio(), m_trampasSel.at(m_trampa)->GetPorcentaje(), m_trampasSel.at(m_trampa)->GetRango(), m_trampasSel.at(m_trampa)->GetPotencia(), m_trampasSel.at(m_trampa)->GetCadencia(), m_trampasSel.at(m_trampa)->GetRefresco(), m_trampas.size());
                                     m_trampas.push_back(tramp);
-                                    *m_disponible-=m_trampasSel.at(m_trampa)->GetPrecio();
-                                    std::cout<<"ahora te queda: "<<*m_disponible<<std::endl;
+                                    m_disponible-=m_trampasSel.at(m_trampa)->GetPrecio();
+                                    std::cout<<"ahora te queda: "<<m_disponible<<std::endl;
                                 }
                             }
                             else if(m_trampasSel.at(m_trampa)->GetTipo() == 2)
@@ -113,7 +113,7 @@ namespace Zenon {
 
     void SplashState::Update(float dt) {
         
-        m_textoDinero.setString(std::to_string(*m_disponible));
+        m_textoDinero.setString(std::to_string(m_disponible));
         int counter = 0;
         for(int i=0; i<m_trampas.size() ; i++)
         {
@@ -127,8 +127,7 @@ namespace Zenon {
         {
             if(m_enemys.at(i)->GetActualState() == ENEMY_STATE_DEAD)
             {
-                std::cout<<m_enemys[i]->GetRecuperacion();
-                *m_disponible += m_enemys[i]->GetRecuperacion();
+                m_disponible = m_trampas[m_enemys[i]->GetKiller()]->CalculateRec(m_disponible);
                 delete m_enemys[i];
                 m_enemys.erase(m_enemys.begin()+i);
             }
@@ -147,8 +146,6 @@ namespace Zenon {
             m_hideCursor = false;
         
         m_mouseConstruct.setPosition((sf::Vector2f)m_data->input.GetMousePosition(m_data->window));
-        
-        std::cout<<"Tienes ahora: "<<*m_disponible<<std::endl;
 
     }
 
