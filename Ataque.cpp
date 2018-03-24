@@ -76,11 +76,11 @@ namespace Zenon
             m_datos->window.draw(m_SpriteAnimation);
         else
         {
-            m_datos->window.draw(m_mainSprite);
             for(int i = 0; i<m_bala.size(); i++)
             {
                 m_bala.at(i)->Draw();
             }
+            m_datos->window.draw(m_mainSprite);
         }
     }
     

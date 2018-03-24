@@ -7,8 +7,6 @@
 #define METRALLETA_SPRITE "resources/seleccion1.png"
 #define DEFENSA_SPRITE "resources/seleccion3.png"
 #define SUPPORT_SPRITE "resources/seleccion4.png"
-#define DEFENSA_HIGHLIGHT "resources/defensas_highlited.png"
-#define ATAQUE_HIGHLIGHT "resources/torreta_highlited.png"
 #define GUI_METRALLETA "resources/gui_torreta.png"
 #define GUI_METRALLETA_SEL "resources/gui_torreta_sel.png"
 #define GUI_DEFENSA "resources/gui_defensa.png"
