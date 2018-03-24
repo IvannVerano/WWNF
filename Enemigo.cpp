@@ -13,6 +13,7 @@ namespace Zenon{
         m_state = ENEMY_STATE_ALIVE;
         m_life = 50;
         this->id = id;
+        m_recuperacion = 25;
     }
     
     void Enemigo::Update(float dt)
@@ -60,5 +61,10 @@ namespace Zenon{
     int Enemigo::GetID()
     {
         return id;
+    }
+    
+    int Enemigo::GetRecuperacion()
+    {
+        return m_recuperacion;
     }
 }

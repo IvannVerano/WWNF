@@ -36,6 +36,7 @@ namespace Zenon
             int m_animationAppearCounter;
             std::vector<sf::IntRect> m_AnimationFramesAppear;
             sf::Clock m_aniAppearClock;
-            
+            int m_precio;
+            int m_porcentaje;
     };
 }

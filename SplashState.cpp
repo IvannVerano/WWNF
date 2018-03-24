@@ -7,13 +7,15 @@
 #include "Ataque.hpp"
 #include "Defensa.hpp"
 #include "HUD.hpp"
+#include <string>
 #include <iostream>
 
 namespace Zenon {
 
-    SplashState::SplashState(GameDataRef data, std::vector<FichaTrampa*> l_fichaTrampa) : m_data(data) 
+    SplashState::SplashState(GameDataRef data, std::vector<FichaTrampa*> l_fichaTrampa,int l_dinero) : m_data(data) 
     {
         m_trampasSel = l_fichaTrampa;
+        m_disponible = new int(l_dinero);
     }
 
     void SplashState::Init() 
@@ -43,6 +45,13 @@ namespace Zenon {
        m_enemys.push_back(new Enemigo(m_data, sf::Vector2f(400,400), 3));
        
        std::cout<<"Hay: "<<m_enemys.size()<<std::endl;
+       std::cout<<"tienes: "<<m_disponible<<std::endl;
+       m_textoDinero.setString(std::to_string(*m_disponible));
+       //m_textoDinero.setFillColor(sf::Color::White);
+       m_textoDinero.setOrigin(m_textoDinero.getGlobalBounds().width/2, m_textoDinero.getGlobalBounds().height/2 );
+       m_textoDinero.setPosition(100, 100);
+       
+       
     }
 
     void SplashState::HandleInput() {
@@ -65,12 +74,18 @@ namespace Zenon {
                     {
                         if(m_trampa> -1)
                         {
-                            if(m_trampasSel.at(m_trampa)->GetTipo() == 1)
+                            if(m_trampasSel.at(m_trampa)->GetTipo() == 1 )
                             {
-                                std::cout<<m_trampa<<std::endl;
-                                const std::vector<Enemigo *> &enes = m_enemys;
-                                Trampa* tramp = new Ataque(m_data, m_placer.at(i)->GetPosicion(), m_trampasSel.at(m_trampa)->GetTexturaPosicion(), enes);
-                                m_trampas.push_back(tramp);
+                                if(m_trampasSel.at(m_trampa)->Afordable(*m_disponible))
+                                {
+                                    std::cout<<m_trampa<<std::endl;
+                                    const std::vector<Enemigo *> &enes = m_enemys;
+                                    std::cout<<m_trampasSel.at(m_trampa)->GetPotencia()<<std::endl;
+                                    Trampa* tramp = new Ataque(m_data, m_placer.at(i)->GetPosicion(), m_trampasSel.at(m_trampa)->GetTexturaPosicion(), enes,  m_trampasSel.at(m_trampa)->GetPrecio(), m_trampasSel.at(m_trampa)->GetPorcentaje(), m_trampasSel.at(m_trampa)->GetRango(), m_trampasSel.at(m_trampa)->GetPotencia(), m_trampasSel.at(m_trampa)->GetCadencia(), m_trampasSel.at(m_trampa)->GetRefresco());
+                                    m_trampas.push_back(tramp);
+                                    *m_disponible-=m_trampasSel.at(m_trampa)->GetPrecio();
+                                    std::cout<<"ahora te queda: "<<*m_disponible<<std::endl;
+                                }
                             }
                             else if(m_trampasSel.at(m_trampa)->GetTipo() == 2)
                             {
@@ -97,6 +112,7 @@ namespace Zenon {
 
     void SplashState::Update(float dt) {
         
+        m_textoDinero.setString(std::to_string(*m_disponible));
         int counter = 0;
         for(int i=0; i<m_trampas.size() ; i++)
         {
@@ -110,6 +126,8 @@ namespace Zenon {
         {
             if(m_enemys.at(i)->GetActualState() == ENEMY_STATE_DEAD)
             {
+                std::cout<<m_enemys[i]->GetRecuperacion();
+                *m_disponible += m_enemys[i]->GetRecuperacion();
                 delete m_enemys[i];
                 m_enemys.erase(m_enemys.begin()+i);
             }
@@ -128,12 +146,14 @@ namespace Zenon {
             m_hideCursor = false;
         
         m_mouseConstruct.setPosition((sf::Vector2f)m_data->input.GetMousePosition(m_data->window));
+        
+        std::cout<<"Tienes ahora: "<<*m_disponible<<std::endl;
 
     }
 
     void SplashState::Draw(float dt) {
         this->m_data->window.clear(sf::Color::Black);
-
+        this->m_data->window.draw(m_textoDinero);
         this->m_data->window.draw(this->_background);
         
         for(int i = 0; i<m_placer.size(); i++)

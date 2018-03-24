@@ -11,7 +11,7 @@ namespace Zenon
     class Ataque : public Trampa
     {
         public:
-            Ataque(GameDataRef l_data, sf::Vector2f l_posicion, sf::Texture &l_textura, const std::vector<Enemigo*> &l_enemigos);
+            Ataque(GameDataRef l_data, sf::Vector2f l_posicion, sf::Texture &l_textura, const std::vector<Enemigo*> &l_enemigos,int l_precio, int l_porcentaje, int l_rango, int l_potencia, float l_cadencia, int l_refresco);
             void Draw();
             void Update(float dt);
             void AnimateApparition();
@@ -19,6 +19,7 @@ namespace Zenon
             void Attack();
             bool CheckColision();
             void ResetTarget();
+            
         private:
             const std::vector<Enemigo*> &m_enemy;
             bool m_is_attacking;
@@ -26,5 +27,9 @@ namespace Zenon
             std::vector<Bala*> m_bala;
             int m_target;
             
+            float m_cadencia;
+            int m_potencia;
+            int m_rango;
+            int m_refresco;
     };
 }

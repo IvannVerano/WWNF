@@ -22,5 +22,6 @@ namespace Zenon {
         std::vector<FichaTrampa *> m_trampasdisp;
         std::vector<FichaTrampa *> m_trampasSel;
         sf::Sprite m_boton;
+        int m_dineroJugador;
     };
 }

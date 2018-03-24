@@ -7,7 +7,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/cesar/NetBeansProjects/WWNF/Game.cpp</file>
+            <file>file:/home/cesar/NetBeansProjects/WWNF/FichaTrampa.cpp</file>
+            <file>file:/home/cesar/NetBeansProjects/WWNF/SplashState.cpp</file>
+            <file>file:/home/cesar/NetBeansProjects/WWNF/SplashState.hpp</file>
+            <file>file:/home/cesar/NetBeansProjects/WWNF/Ataque.hpp</file>
+            <file>file:/home/cesar/NetBeansProjects/WWNF/FaseSeleccionState.hpp</file>
+            <file>file:/home/cesar/NetBeansProjects/WWNF/DEFINITIONS.hpp</file>
+            <file>file:/home/cesar/NetBeansProjects/WWNF/FichaTrampa.hpp</file>
+            <file>file:/home/cesar/NetBeansProjects/WWNF/FaseSeleccionState.cpp</file>
         </group>
     </open-files>
 </project-private>

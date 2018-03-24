@@ -26,6 +26,10 @@ namespace Zenon {
         m_data->assets.LoadTexture("CURSOR_BUILD", CURSOR_BUILD);
         m_data->assets.LoadTexture("enemigo", ENEMY_SPRITE);
         m_data->assets.LoadTexture("bullet", LASER_SPRITE);
+        m_data->assets.LoadTexture("ametralladora", AMETRALLADORA_SPRITE);
+        m_data->assets.LoadTexture("GUI_AMETRALLADORA", GUI_AMETRALLADORA);
+        m_data->assets.LoadTexture("GUI_AMETRALLADORA_SEL", GUI_AMETRALLADORA_SEL);
+
 
 
         
@@ -33,11 +37,15 @@ namespace Zenon {
         m_boton.setOrigin(m_boton.getGlobalBounds().width/2, m_boton.getGlobalBounds().height/2);
         m_boton.setPosition(600,400);
         
-        FichaTrampa * metralleta = new FichaTrampa(m_data, m_data->assets.GetTexture("Metralleta"), m_data->assets.GetTexture("GUI_METRALLETA"),m_data->assets.GetTexture("GUI_METRALLETA_SEL"), 1, sf::Vector2f(150,150));
-        FichaTrampa * defensa = new FichaTrampa(m_data, m_data->assets.GetTexture("Defensa"), m_data->assets.GetTexture("GUI_DEFENSA"),m_data->assets.GetTexture("GUI_DEFENSA_SEL"), 2, sf::Vector2f(400,150));
+        FichaTrampa * metralleta = new FichaTrampa(m_data, m_data->assets.GetTexture("Metralleta"), m_data->assets.GetTexture("GUI_METRALLETA"),m_data->assets.GetTexture("GUI_METRALLETA_SEL"), 1, sf::Vector2f(150,150),PRECIO_TORRETA,PORCENTAJE_TORRETA, CADENCIA_TORRETA, RANGO_TORRETA, 0, POTENCIA_TORRETA);
+        FichaTrampa * ametralladora = new FichaTrampa(m_data, m_data->assets.GetTexture("ametralladora"), m_data->assets.GetTexture("GUI_AMETRALLADORA"),m_data->assets.GetTexture("GUI_AMETRALLADORA_SEL"), 1, sf::Vector2f(600,150),PRECIO_AMETRALLADORA,PORCENTAJE_AMETRALLADORA, CADENCIA_AMETRALLADORA, RANGO_AMETRALLADORA, 0, POTENCIA_AMETRALLADORA);
+        FichaTrampa * defensa = new FichaTrampa(m_data, m_data->assets.GetTexture("Defensa"), m_data->assets.GetTexture("GUI_DEFENSA"),m_data->assets.GetTexture("GUI_DEFENSA_SEL"), 2, sf::Vector2f(400,150),200,0, 0, 200, 15, 0);
         
         m_trampasdisp.push_back(metralleta);
         m_trampasdisp.push_back(defensa);
+        m_trampasdisp.push_back(ametralladora);
+        
+        m_dineroJugador=500;
     }
 
     void FaseSeleccionState::HandleInput() {
@@ -93,7 +101,7 @@ namespace Zenon {
         
         if(m_trampasSel.size()>0)
         {
-            m_data->machine.AddState(StateRef(new SplashState(this->m_data, m_trampasSel)));
+            m_data->machine.AddState(StateRef(new SplashState(this->m_data, m_trampasSel, m_dineroJugador)));
         }    
     }
 }

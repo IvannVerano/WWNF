@@ -15,6 +15,7 @@ namespace Zenon{
         void TakeDamage(int l_damage);
         int GetActualState();
         const sf::Sprite &GetSprite() const;
+        int GetRecuperacion();
         ~Enemigo();
         int GetID();
         
@@ -26,6 +27,7 @@ namespace Zenon{
         int m_state;
         int m_life;
         int id;
+        int m_recuperacion;
     }; 
 }
 

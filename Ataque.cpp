@@ -5,7 +5,7 @@
 
 namespace Zenon
 {
-    Ataque::Ataque(GameDataRef l_data, sf::Vector2f l_posicion, sf::Texture &l_textura, const std::vector<Enemigo*> &l_enemigos):Trampa(l_data), m_enemy(l_enemigos)
+    Ataque::Ataque(GameDataRef l_data, sf::Vector2f l_posicion, sf::Texture &l_textura, const std::vector<Enemigo*> &l_enemigos,int l_precio,int l_porcentaje, int l_rango, int l_potencia, float l_cadencia, int l_refresco):Trampa(l_data), m_enemy(l_enemigos)
     {
         m_SpriteAnimation.setTexture(m_datos->assets.GetTexture("GUI_ELEMENTS"));
         m_SpriteAnimation.setTextureRect(sf::IntRect(321, 163, 24, 30));
@@ -32,6 +32,14 @@ namespace Zenon
         
         m_is_attacking = false;
         m_target = -1;
+        m_porcentaje=l_porcentaje;
+        
+        m_cadencia = l_cadencia;
+        m_potencia = l_potencia;
+        m_rango= l_rango;
+        m_refresco = l_refresco;
+        
+   
     }
     void Ataque::Update(float dt)
     {
@@ -109,10 +117,10 @@ namespace Zenon
         {
             if(!m_is_attacking && m_target == -1)
             {
-                if(m_mainSprite.getPosition().x-m_enemy.at(i)->GetPosition().x < RANGO_TORRETA && m_mainSprite.getPosition().y-m_enemy.at(i)->GetPosition().y < RANGO_TORRETA && 
-                    m_enemy.at(i)->GetPosition().x - m_mainSprite.getPosition().x < RANGO_TORRETA && m_enemy.at(i)->GetPosition().y-m_mainSprite.getPosition().y < RANGO_TORRETA ||
-                        m_mainSprite.getPosition().x-m_enemy.at(i)->GetPosition().x < RANGO_TORRETA && m_mainSprite.getPosition().y-m_enemy.at(i)->GetPosition().y < -RANGO_TORRETA && 
-                            m_enemy.at(i)->GetPosition().x - m_mainSprite.getPosition().x < -RANGO_TORRETA && m_enemy.at(i)->GetPosition().y-m_mainSprite.getPosition().y < -RANGO_TORRETA    )
+                if(m_mainSprite.getPosition().x-m_enemy.at(i)->GetPosition().x < m_rango && m_mainSprite.getPosition().y-m_enemy.at(i)->GetPosition().y < m_rango && 
+                    m_enemy.at(i)->GetPosition().x - m_mainSprite.getPosition().x < m_rango && m_enemy.at(i)->GetPosition().y-m_mainSprite.getPosition().y < m_rango ||
+                        m_mainSprite.getPosition().x-m_enemy.at(i)->GetPosition().x < m_rango && m_mainSprite.getPosition().y-m_enemy.at(i)->GetPosition().y < -m_rango && 
+                            m_enemy.at(i)->GetPosition().x - m_mainSprite.getPosition().x < -m_rango && m_enemy.at(i)->GetPosition().y-m_mainSprite.getPosition().y < -m_rango    )
                 {
                     if(m_enemy[i]->GetActualState() == ENEMY_STATE_ALIVE)
                     {
@@ -131,8 +139,8 @@ namespace Zenon
     {
         if(m_is_attacking)
         {
-            if(m_mainSprite.getPosition().x-m_enemy[m_target]->GetPosition().x < RANGO_TORRETA && m_mainSprite.getPosition().y-m_enemy[m_target]->GetPosition().y < RANGO_TORRETA && 
-                   m_enemy[m_target]->GetPosition().x - m_mainSprite.getPosition().x < RANGO_TORRETA && m_enemy[m_target]->GetPosition().y-m_mainSprite.getPosition().y < RANGO_TORRETA)
+            if(m_mainSprite.getPosition().x-m_enemy[m_target]->GetPosition().x < m_rango && m_mainSprite.getPosition().y-m_enemy[m_target]->GetPosition().y < m_rango && 
+                   m_enemy[m_target]->GetPosition().x - m_mainSprite.getPosition().x < m_rango && m_enemy[m_target]->GetPosition().y-m_mainSprite.getPosition().y < m_rango)
             {
                 float angle=0;
                 float hipotenusa;
@@ -173,7 +181,7 @@ namespace Zenon
                 m_mainSprite.setRotation(angle);
            //     m_bullet->Shoot(angle,incremento_x,incremento_y);
                 
-                if(shoot_time.getElapsedTime().asSeconds() > CLOCK_CADENCIA_TORRETA)
+                if(shoot_time.getElapsedTime().asSeconds() > m_cadencia)
                 {
                     Bala * c_bala= new Bala(m_datos,m_mainSprite.getPosition(),m_direccion_sentido,angle);
                     m_bala.push_back(c_bala);
@@ -207,7 +215,7 @@ namespace Zenon
                 {
                     delete m_bala[i];
                     m_bala.erase(m_bala.begin() + i);
-                    m_enemy.at(j)->TakeDamage(15);
+                    m_enemy.at(j)->TakeDamage(m_potencia);
                     if(m_enemy[j]->GetActualState() == ENEMY_STATE_DEAD )
                     {
                         std::cout<<"Enemigo muerto, su id es "<< m_enemy[j]->GetID() << std::endl;

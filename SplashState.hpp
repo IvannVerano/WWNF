@@ -14,7 +14,7 @@ namespace Zenon {
 
     class SplashState : public State {
     public:
-        SplashState(GameDataRef l_data, std::vector<FichaTrampa*> l_fichaTrampa);
+        SplashState(GameDataRef l_data, std::vector<FichaTrampa*> l_fichaTrampa,int l_dinero);
 
         void Init();
 
@@ -36,5 +36,7 @@ namespace Zenon {
         bool m_hideCursor;
         std::vector<Enemigo*> m_enemys;
         sf::Clock m_enemy_dead;
+        int * m_disponible;
+        sf::Text m_textoDinero;
     };
 }
