@@ -30,17 +30,19 @@ namespace Zenon {
         m_data->assets.LoadTexture("GUI_AMETRALLADORA", GUI_AMETRALLADORA);
         m_data->assets.LoadTexture("GUI_AMETRALLADORA_SEL", GUI_AMETRALLADORA_SEL);
         m_data->assets.LoadFont("FUENTE_DINERO", FONT_DINERO);
-
+        m_data->assets.LoadTexture("DESCRIPTIVE_TURRET", DESCRIPTIVE_TURRET);
+        m_data->assets.LoadTexture("DESCRIPTIVE_DEFENSE", DESCRIPTIVE_DEFENSE);
+        m_data->assets.LoadTexture("DESCRIPTIVE_AMETRALLADORA", DESCRIPTIVE_AMETRALLADORA);
 
 
         
         m_boton.setTexture(m_data->assets.GetTexture("Metralleta"));
         m_boton.setOrigin(m_boton.getGlobalBounds().width/2, m_boton.getGlobalBounds().height/2);
-        m_boton.setPosition(600,400);
+        m_boton.setPosition(800,400);
         
-        FichaTrampa * metralleta = new FichaTrampa(m_data, m_data->assets.GetTexture("Metralleta"), m_data->assets.GetTexture("GUI_METRALLETA"),m_data->assets.GetTexture("GUI_METRALLETA_SEL"), 1, sf::Vector2f(150,150),PRECIO_TORRETA,PORCENTAJE_TORRETA, CADENCIA_TORRETA, RANGO_TORRETA, 0, POTENCIA_TORRETA);
-        FichaTrampa * ametralladora = new FichaTrampa(m_data, m_data->assets.GetTexture("ametralladora"), m_data->assets.GetTexture("GUI_AMETRALLADORA"),m_data->assets.GetTexture("GUI_AMETRALLADORA_SEL"), 1, sf::Vector2f(600,150),PRECIO_AMETRALLADORA,PORCENTAJE_AMETRALLADORA, CADENCIA_AMETRALLADORA, RANGO_AMETRALLADORA, 0, POTENCIA_AMETRALLADORA);
-        FichaTrampa * defensa = new FichaTrampa(m_data, m_data->assets.GetTexture("Defensa"), m_data->assets.GetTexture("GUI_DEFENSA"),m_data->assets.GetTexture("GUI_DEFENSA_SEL"), 2, sf::Vector2f(400,150),200,0, 0, 200, 15, 0);
+        FichaTrampa * metralleta = new FichaTrampa(m_data, m_data->assets.GetTexture("Metralleta"), m_data->assets.GetTexture("GUI_METRALLETA"),m_data->assets.GetTexture("GUI_METRALLETA_SEL"), 1, sf::Vector2f(150,150),PRECIO_TORRETA,PORCENTAJE_TORRETA, CADENCIA_TORRETA, RANGO_TORRETA, 0, POTENCIA_TORRETA, ATRAP_APPEARING_TIME, m_data->assets.GetTexture("DESCRIPTIVE_TURRET"));
+        FichaTrampa * ametralladora = new FichaTrampa(m_data, m_data->assets.GetTexture("ametralladora"), m_data->assets.GetTexture("GUI_AMETRALLADORA"),m_data->assets.GetTexture("GUI_AMETRALLADORA_SEL"), 1, sf::Vector2f(550,150),PRECIO_AMETRALLADORA,PORCENTAJE_AMETRALLADORA, CADENCIA_AMETRALLADORA, RANGO_AMETRALLADORA, 0, POTENCIA_AMETRALLADORA, ATRAP_MACHINEGUN_APPEARING_TIME, m_data->assets.GetTexture("DESCRIPTIVE_AMETRALLADORA"));
+        FichaTrampa * defensa = new FichaTrampa(m_data, m_data->assets.GetTexture("Defensa"), m_data->assets.GetTexture("GUI_DEFENSA"),m_data->assets.GetTexture("GUI_DEFENSA_SEL"), 2, sf::Vector2f(350,150),200,0, 0, 200, 15, 0, DTRAP_APPEARING_TIME, m_data->assets.GetTexture("DESCRIPTIVE_DEFENSE"));
         
         m_trampasdisp.push_back(metralleta);
         m_trampasdisp.push_back(defensa);

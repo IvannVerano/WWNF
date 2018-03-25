@@ -5,7 +5,7 @@
 
 namespace Zenon
 {
-    Ataque::Ataque(GameDataRef l_data, sf::Vector2f l_posicion, sf::Texture &l_textura, const std::vector<Enemigo*> &l_enemigos,int l_precio,int l_porcentaje, int l_rango, int l_potencia, float l_cadencia, int l_refresco, int l_id):Trampa(l_data), m_enemy(l_enemigos)
+    Ataque::Ataque(GameDataRef l_data, sf::Vector2f l_posicion, sf::Texture &l_textura, const std::vector<Enemigo*> &l_enemigos,int l_precio,int l_porcentaje, int l_rango, int l_potencia, float l_cadencia, int l_refresco, int l_id, float l_appearing):Trampa(l_data), m_enemy(l_enemigos)
     {
         m_SpriteAnimation.setTexture(m_datos->assets.GetTexture("GUI_ELEMENTS"));
         m_SpriteAnimation.setTextureRect(sf::IntRect(321, 163, 24, 30));
@@ -26,6 +26,7 @@ namespace Zenon
         //inicializamos variables
         m_aniAppearClock.restart();
         m_timeAppear.restart();
+        m_timeAparicion = l_appearing;
         m_animationAppearCounter = 1;
         
         m_state = TRAP_STATE_APPEARING;
@@ -50,7 +51,7 @@ namespace Zenon
         if(m_state == TRAP_STATE_APPEARING)
         {
             this->AnimateApparition();
-            if(m_timeAppear.getElapsedTime().asSeconds() > ATRAP_APPEARING_TIME)
+            if(m_timeAppear.getElapsedTime().asSeconds() > m_timeAparicion)
             {
                 m_state = TRAP_STATE_PLACED;
             }

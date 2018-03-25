@@ -15,16 +15,24 @@
 #include <iostream>
 namespace Zenon
 {
-    FichaTrampa::FichaTrampa(GameDataRef l_data, sf::Texture l_posicion, sf::Texture l_gui_defecto, sf::Texture l_gui_sel, int l_tipo, sf::Vector2f l_posicion_gui,int l_precio,int l_porcentaje, float l_cadencia, int l_rango, int l_refresco, int l_potencia):m_datos(l_data)
+    FichaTrampa::FichaTrampa(GameDataRef l_data, sf::Texture l_posicion, sf::Texture l_gui_defecto, sf::Texture l_gui_sel, int l_tipo, sf::Vector2f l_posicion_gui,int l_precio,int l_porcentaje, float l_cadencia, int l_rango, int l_refresco, int l_potencia, float l_aparicion, sf::Texture l_descriptive):m_datos(l_data)
     {
         m_texturaPosicion = l_posicion;
         m_textura_gui_defecto = l_gui_defecto;
         m_textura_gui_seleccionado = l_gui_sel;
         m_tipo = l_tipo;
+       
         m_mainSprite.setTexture(m_textura_gui_defecto);
         m_mainSprite.setOrigin(m_mainSprite.getGlobalBounds().width/2, m_mainSprite.getGlobalBounds().height/2);
         m_mainSprite.scale(0.5,0.5);
         m_mainSprite.setPosition(l_posicion_gui);
+        
+        m_descriptivetex = l_descriptive;
+        m_descriptive.setTexture(m_descriptivetex);
+        m_descriptive.setOrigin(m_descriptive.getGlobalBounds().height/2,m_descriptive.getGlobalBounds().height/2);
+        m_descriptive.scale(0.8,0.8);
+        m_descriptive.setPosition(200, 500);
+        
         m_gui_seleccionado = false;
         m_precio=l_precio;
         
@@ -33,6 +41,7 @@ namespace Zenon
         m_refresco = l_refresco;  
         m_potencia = l_potencia;
         m_rango = l_rango;
+        m_tiempoAparicion = l_aparicion;
         
     }
     
@@ -69,6 +78,10 @@ namespace Zenon
     void FichaTrampa::Draw()
     {
         m_datos->window.draw(m_mainSprite);
+        if(m_datos->input.IsSpriteHovered(m_mainSprite, sf::Mouse::Left, m_datos->window))
+        {
+            m_datos->window.draw(m_descriptive);
+        }
     }
     
     
@@ -127,6 +140,11 @@ namespace Zenon
      int FichaTrampa::GetRango()
      {
          return m_rango;
+     }
+     
+     float FichaTrampa::GetAparicion()
+     {
+         return m_tiempoAparicion;
      }
     
 }

@@ -19,6 +19,9 @@
 #define CURSOR_BUILD "resources/CursorBuild.png"
 #define ENEMY_SPRITE "resources/enemy.png"
 #define LASER_SPRITE "resources/laser.png"
+#define DESCRIPTIVE_TURRET "resources/descriptor_torreta.png"
+#define DESCRIPTIVE_DEFENSE "resources/descriptor_defensa.png"
+#define DESCRIPTIVE_AMETRALLADORA "resources/descriptor_ametralladora.png"
 
 
 #define FONT_DINERO "resources/emulogic.ttf"
@@ -30,6 +33,7 @@
 #define TRAP_STATE_APPEARING 0
 #define TRAP_STATE_PLACED 1
 #define ATRAP_APPEARING_TIME 1.0f
+#define ATRAP_MACHINEGUN_APPEARING_TIME 3.0f
 #define DTRAP_APPEARING_TIME 2.0f
 
 

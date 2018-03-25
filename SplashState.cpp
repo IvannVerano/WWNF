@@ -38,11 +38,11 @@ namespace Zenon {
        m_mouseConstruct.scale(0.7,0.7);
        
       
-       m_enemys.push_back(new Enemigo(m_data, sf::Vector2f(200,200), 1));
+       m_enemys.push_back(new Enemigo(m_data, sf::Vector2f(200,200), 1, 35.0));
        
-       m_enemys.push_back(new Enemigo(m_data, sf::Vector2f(100,50), 2));
+       m_enemys.push_back(new Enemigo(m_data, sf::Vector2f(100,50), 2, 35.0));
        
-       m_enemys.push_back(new Enemigo(m_data, sf::Vector2f(400,400), 3));
+       m_enemys.push_back(new Enemigo(m_data, sf::Vector2f(400,400), 3, 35.0));
        
        std::cout<<"Hay: "<<m_enemys.size()<<std::endl;
        std::cout<<"tienes: "<<m_disponible<<std::endl;
@@ -82,7 +82,7 @@ namespace Zenon {
                                     std::cout<<m_trampa<<std::endl;
                                     const std::vector<Enemigo *> &enes = m_enemys;
                                     std::cout<<m_trampasSel.at(m_trampa)->GetPotencia()<<std::endl;
-                                    Trampa* tramp = new Ataque(m_data, m_placer.at(i)->GetPosicion(), m_trampasSel.at(m_trampa)->GetTexturaPosicion(), enes,  m_trampasSel.at(m_trampa)->GetPrecio(), m_trampasSel.at(m_trampa)->GetPorcentaje(), m_trampasSel.at(m_trampa)->GetRango(), m_trampasSel.at(m_trampa)->GetPotencia(), m_trampasSel.at(m_trampa)->GetCadencia(), m_trampasSel.at(m_trampa)->GetRefresco(), m_trampas.size());
+                                    Trampa* tramp = new Ataque(m_data, m_placer.at(i)->GetPosicion(), m_trampasSel.at(m_trampa)->GetTexturaPosicion(), enes,  m_trampasSel.at(m_trampa)->GetPrecio(), m_trampasSel.at(m_trampa)->GetPorcentaje(), m_trampasSel.at(m_trampa)->GetRango(), m_trampasSel.at(m_trampa)->GetPotencia(), m_trampasSel.at(m_trampa)->GetCadencia(), m_trampasSel.at(m_trampa)->GetRefresco(), m_trampas.size(), m_trampasSel[m_trampa]->GetAparicion());
                                     m_trampas.push_back(tramp);
                                     m_disponible-=m_trampasSel.at(m_trampa)->GetPrecio();
                                     std::cout<<"ahora te queda: "<<m_disponible<<std::endl;
@@ -90,9 +90,14 @@ namespace Zenon {
                             }
                             else if(m_trampasSel.at(m_trampa)->GetTipo() == 2)
                             {
-                                std::cout<<m_trampa<<std::endl;
-                                Trampa* tramp = new Defensa(m_data, m_placer.at(i)->GetPosicion(), m_trampasSel.at(m_trampa)->GetTexturaPosicion());
-                                m_trampas.push_back(tramp);
+                                if(m_trampasSel.at(m_trampa)->Afordable(m_disponible))
+                                {
+                                    std::cout<<m_trampa<<std::endl;
+                                    Trampa* tramp = new Defensa(m_data, m_placer.at(i)->GetPosicion(), m_trampasSel.at(m_trampa)->GetTexturaPosicion());
+                                    m_trampas.push_back(tramp);
+                                    m_disponible-=m_trampasSel.at(m_trampa)->GetPrecio();
+                                    std::cout<<"ahora te queda: "<<m_disponible<<std::endl;
+                                }
                             }
                         }
                     }
