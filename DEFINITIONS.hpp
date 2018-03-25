@@ -11,6 +11,6 @@
 #define SPAWN_TEXTURE "Resources/Sprites/effect.png"
 #define ENEMY_TEXTURE "Resources/Sprites/enemy.png"
 
-#define ENEMY_SPEED 100.0f
+#define ENEMY_SPEED 90.0f
 #define MINIMUM_WAYPOINT_DISTANCE 50.0f
 #define MINIMUM_NEIGHBOR_DISTANCE 90.0f

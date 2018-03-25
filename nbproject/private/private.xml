@@ -7,13 +7,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/edward/NetBeansProjects/WW/main.cpp</file>
-            <file>file:/home/edward/NetBeansProjects/WW/Enemy.hpp</file>
-            <file>file:/home/edward/NetBeansProjects/WW/SplashState.hpp</file>
-            <file>file:/home/edward/NetBeansProjects/WW/MathHelper.hpp</file>
-            <file>file:/home/edward/NetBeansProjects/WW/Enemy.cpp</file>
             <file>file:/home/edward/NetBeansProjects/WW/SplashState.cpp</file>
+            <file>file:/home/edward/NetBeansProjects/WW/Enemy.cpp</file>
+            <file>file:/home/edward/NetBeansProjects/WW/Enemy.hpp</file>
             <file>file:/home/edward/NetBeansProjects/WW/DEFINITIONS.hpp</file>
+            <file>file:/home/edward/NetBeansProjects/WW/MathHelper.hpp</file>
         </group>
     </open-files>
 </project-private>
