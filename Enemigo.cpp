@@ -11,7 +11,7 @@ namespace Zenon{
         m_mainSprite.setPosition(l_position);
         m_position = l_position;
         m_state = ENEMY_STATE_ALIVE;
-        m_life = 50;
+        m_life = ENEMY_LIFE;
         this->id = id;
         m_killer = -1;
         m_speed = l_speed;
@@ -85,14 +85,19 @@ namespace Zenon{
     
     void Enemigo::SlowDown(float l_factor)
     {
-        m_speed -= l_factor;
+        m_speed *= l_factor;
         m_slowed = true;
     }
     
     void Enemigo::NoEffect(float l_factor)
     {
-        m_speed += l_factor;
+        m_speed = m_speed/l_factor;
         m_slowed = false;
+    }
+    
+    bool Enemigo::GetSlowed()
+    {
+        return m_slowed;
     }
     
 }

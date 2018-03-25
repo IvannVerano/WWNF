@@ -93,7 +93,8 @@ namespace Zenon {
                                 if(m_trampasSel.at(m_trampa)->Afordable(m_disponible))
                                 {
                                     std::cout<<m_trampa<<std::endl;
-                                    Trampa* tramp = new Defensa(m_data, m_placer.at(i)->GetPosicion(), m_trampasSel.at(m_trampa)->GetTexturaPosicion());
+                                    const std::vector<Enemigo *> &enes = m_enemys;
+                                    Trampa* tramp = new Defensa(m_data, m_placer.at(i)->GetPosicion(), m_trampasSel.at(m_trampa)->GetTexturaPosicion(), enes, RANGO_TORRE_DEFENSA);
                                     m_trampas.push_back(tramp);
                                     m_disponible-=m_trampasSel.at(m_trampa)->GetPrecio();
                                     std::cout<<"ahora te queda: "<<m_disponible<<std::endl;

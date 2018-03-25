@@ -13,6 +13,7 @@
 
 #pragma once
 #include "Trampa.hpp"
+#include "Enemigo.hpp"
 #include <SFML/Graphics.hpp>
 
 namespace Zenon
@@ -20,12 +21,16 @@ namespace Zenon
     class Defensa : public Trampa
     {
         public:
-            Defensa(GameDataRef l_data, sf::Vector2f l_posicion, sf::Texture &l_textura);
+            Defensa(GameDataRef l_data, sf::Vector2f l_posicion, sf::Texture &l_textura, const std::vector<Enemigo*> &l_enemigos,int l_rango);
             void Draw();
             void Update(float dt);
             void AnimateApparition();
             int CalculateRec(int l_sum);
+            void Act();
         private:
+            const std::vector<Enemigo*> &m_enemy;
+            int m_rango;
+
             
     };
 }

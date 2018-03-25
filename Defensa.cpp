@@ -13,10 +13,11 @@
 
 #include "Defensa.hpp"
 #include "DEFINITIONS.hpp"
+#include <iostream>
 
 namespace Zenon
 {
-    Defensa::Defensa(GameDataRef l_data, sf::Vector2f l_posicion, sf::Texture &l_textura):Trampa(l_data)
+    Defensa::Defensa(GameDataRef l_data, sf::Vector2f l_posicion, sf::Texture &l_textura, const std::vector<Enemigo*> &l_enemigos, int l_rango):Trampa(l_data),m_enemy(l_enemigos)
     {
         m_SpriteAnimation.setTexture(m_datos->assets.GetTexture("GUI_ELEMENTS"));
         m_SpriteAnimation.setTextureRect(sf::IntRect(321, 163, 24, 30));
@@ -40,6 +41,9 @@ namespace Zenon
         m_timeAppear.restart();
         m_animationAppearCounter = 1;
         
+        m_rango= l_rango;
+
+        
         m_state = TRAP_STATE_APPEARING;
     }
     void Defensa::Update(float dt)
@@ -52,6 +56,8 @@ namespace Zenon
                 m_state = TRAP_STATE_PLACED;
             }
         }
+         else
+             this->Act();
     }
     void Defensa::Draw()
     {
@@ -84,5 +90,40 @@ namespace Zenon
     {
         return 1;
     }
+    
+    void Defensa::Act()
+    {
+                
+                for(int i = 0; i<m_enemy.size(); i++)
+        {
+
+                if(m_mainSprite.getPosition().x-m_enemy.at(i)->GetPosition().x < m_rango && m_mainSprite.getPosition().y-m_enemy.at(i)->GetPosition().y < m_rango && 
+                    m_enemy.at(i)->GetPosition().x - m_mainSprite.getPosition().x < m_rango && m_enemy.at(i)->GetPosition().y-m_mainSprite.getPosition().y < m_rango ||
+                        m_mainSprite.getPosition().x-m_enemy.at(i)->GetPosition().x < m_rango && m_mainSprite.getPosition().y-m_enemy.at(i)->GetPosition().y < -m_rango && 
+                            m_enemy.at(i)->GetPosition().x - m_mainSprite.getPosition().x < -m_rango && m_enemy.at(i)->GetPosition().y-m_mainSprite.getPosition().y < -m_rango    )
+                {
+                    if(!m_enemy[i]->GetSlowed())
+                    {
+                        m_enemy[i]->SlowDown(1-REALENTIZA_TORRE_DEFENSA);
+                        std::cout<<"Realentizo a: "<<m_enemy[i]->GetID()<<std::endl;
+                    
+                    }
+                }else
+                {
+                     if(m_enemy[i]->GetSlowed())
+                    {
+                        m_enemy[i]->NoEffect(1-REALENTIZA_TORRE_DEFENSA);
+                        std::cout<<"Vuelve a su velocidad: "<<m_enemy[i]->GetID()<<std::endl;
+                    
+                    }
+                }
+            
+        
+        }     
+                
+       
+    }
+        
 }
+
 

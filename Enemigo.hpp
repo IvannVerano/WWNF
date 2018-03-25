@@ -21,6 +21,7 @@ namespace Zenon{
         int GetKiller();
         void SlowDown(float l_factor);
         void NoEffect(float l_factor);
+        bool GetSlowed();
         
     
     private:

@@ -186,12 +186,41 @@ namespace Zenon
                 m_mainSprite.setRotation(angle);
            //     m_bullet->Shoot(angle,incremento_x,incremento_y);
                 
-                if(shoot_time.getElapsedTime().asSeconds() > m_cadencia)
-                {
-                    Bala * c_bala= new Bala(m_datos,m_mainSprite.getPosition(),m_direccion_sentido,angle);
-                    m_bala.push_back(c_bala);
-                    shoot_time.restart();
+                if(m_refresco==0)
+                {                
+                    if(shoot_time.getElapsedTime().asSeconds() > m_cadencia )
+                    {
+                        Bala * c_bala= new Bala(m_datos,m_mainSprite.getPosition(),m_direccion_sentido,angle);
+                        m_bala.push_back(c_bala);
+                        shoot_time.restart();
+                    }
                 }
+                else
+                {
+                    if(refresh_time.getElapsedTime().asSeconds() < m_refresco)
+                    {
+                        if(shoot_time.getElapsedTime().asSeconds() > m_cadencia )
+                        {
+                            Bala * c_bala= new Bala(m_datos,m_mainSprite.getPosition(),m_direccion_sentido,angle);
+                            m_bala.push_back(c_bala);
+                            shoot_time.restart();
+                            wait_time.restart();
+                        }
+                    }
+                    else
+                    {
+                        if(wait_time.getElapsedTime().asSeconds() < TIEMPO_ESPERA)
+                        {
+                            std::cout<<"ESTOY RECARGANDO!!"<<std::endl;
+                            
+                        }
+                        else
+                            refresh_time.restart();
+                        
+                    }
+                
+                }
+                
 
             }
             else

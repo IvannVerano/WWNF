@@ -24,6 +24,8 @@ namespace Zenon
             const std::vector<Enemigo*> &m_enemy;
             bool m_is_attacking;
             sf::Clock shoot_time;
+            sf::Clock refresh_time;
+            sf::Clock wait_time;
             std::vector<Bala*> m_bala;
             int m_target;
             int m_id;
@@ -32,5 +34,6 @@ namespace Zenon
             int m_potencia;
             int m_rango;
             int m_refresco;
+            int m_espera;
     };
 }
