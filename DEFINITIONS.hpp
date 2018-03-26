@@ -5,4 +5,4 @@
 
 #define SPLASH_STATE_SHOW_TIME 3.0
 
-#define SPLASH_SCENE_BACKGROUND_FILEPATH "Resources/res/Splash Background.png"
+#define TILESET_FILEPATH "resources/BG_Laboratory.png"

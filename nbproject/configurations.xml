@@ -8,13 +8,16 @@
       <itemPath>DEFINITIONS.hpp</itemPath>
       <itemPath>Game.hpp</itemPath>
       <itemPath>InputManager.hpp</itemPath>
+      <itemPath>Maps.hpp</itemPath>
       <itemPath>SplashState.hpp</itemPath>
       <itemPath>State.hpp</itemPath>
       <itemPath>StateMachine.hpp</itemPath>
+      <itemPath>tinyxml2.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
+      <itemPath>resources/BG_Laboratory.png</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
@@ -22,9 +25,11 @@
       <itemPath>AssetManager.cpp</itemPath>
       <itemPath>Game.cpp</itemPath>
       <itemPath>InputManager.cpp</itemPath>
+      <itemPath>Maps.cpp</itemPath>
       <itemPath>SplashState.cpp</itemPath>
       <itemPath>StateMachine.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
+      <itemPath>tinyxml2.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -80,6 +85,10 @@
       </item>
       <item path="InputManager.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Maps.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Maps.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="SplashState.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="SplashState.hpp" ex="false" tool="3" flavor2="0">
@@ -91,6 +100,12 @@
       <item path="StateMachine.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="resources/BG_Laboratory.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tinyxml2.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tinyxml2.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -127,6 +142,10 @@
       </item>
       <item path="InputManager.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Maps.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Maps.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="SplashState.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="SplashState.hpp" ex="false" tool="3" flavor2="0">
@@ -138,6 +157,12 @@
       <item path="StateMachine.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="resources/BG_Laboratory.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tinyxml2.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tinyxml2.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>
