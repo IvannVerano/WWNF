@@ -26,6 +26,7 @@ namespace Zenon
             void Draw();
             bool GetOccuped();
             bool Hovered();
+            void SetOcupadoFalse();
         private:
             GameDataRef datos;
             sf::Sprite mainSprite;

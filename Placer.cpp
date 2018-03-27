@@ -59,4 +59,9 @@ namespace Zenon
         else
             return false;
     }
+    
+    void Placer::SetOcupadoFalse()
+    {
+        ocupado = false;
+    }
 }

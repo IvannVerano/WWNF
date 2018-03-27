@@ -40,15 +40,18 @@ OBJECTFILES= \
 	${OBJECTDIR}/Bala.o \
 	${OBJECTDIR}/Defensa.o \
 	${OBJECTDIR}/Enemigo.o \
+	${OBJECTDIR}/Enemy.o \
 	${OBJECTDIR}/FaseSeleccionState.o \
 	${OBJECTDIR}/FichaTrampa.o \
 	${OBJECTDIR}/Game.o \
 	${OBJECTDIR}/HUD.o \
 	${OBJECTDIR}/InputManager.o \
+	${OBJECTDIR}/Maps.o \
 	${OBJECTDIR}/Placer.o \
 	${OBJECTDIR}/SplashState.o \
 	${OBJECTDIR}/StateMachine.o \
-	${OBJECTDIR}/main.o
+	${OBJECTDIR}/main.o \
+	${OBJECTDIR}/tinyxml2.o
 
 
 # C Compiler Flags
@@ -100,6 +103,11 @@ ${OBJECTDIR}/Enemigo.o: Enemigo.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Enemigo.o Enemigo.cpp
 
+${OBJECTDIR}/Enemy.o: Enemy.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Enemy.o Enemy.cpp
+
 ${OBJECTDIR}/FaseSeleccionState.o: FaseSeleccionState.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -125,6 +133,11 @@ ${OBJECTDIR}/InputManager.o: InputManager.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/InputManager.o InputManager.cpp
 
+${OBJECTDIR}/Maps.o: Maps.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Maps.o Maps.cpp
+
 ${OBJECTDIR}/Placer.o: Placer.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -144,6 +157,11 @@ ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+
+${OBJECTDIR}/tinyxml2.o: tinyxml2.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/tinyxml2.o tinyxml2.cpp
 
 # Subprojects
 .build-subprojects:

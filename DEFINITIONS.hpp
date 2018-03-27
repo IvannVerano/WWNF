@@ -10,6 +10,9 @@
 #define CURSOR_BUILD "resources/CursorBuild.png"
 #define LASER_SPRITE "resources/laser.png"
 #define FONT_DINERO "resources/emulogic.ttf"
+#ifndef TILESET_FILEPATH
+#define TILESET_FILEPATH "resources/BG_Laboratory.png"
+#endif
 
 
 
@@ -32,9 +35,12 @@
 #define SPEED_ANIMATION 0.5f
 #define ENEMY_STATE_ALIVE 1
 #define ENEMY_STATE_DEAD 0
+#define ENEMY_SPEED 100.0f
+#define MINIMUM_WAYPOINT_DISTANCE 50.0f
+#define MINIMUM_NEIGHBOR_DISTANCE 90.0f
 
 
-//variables de la TORRETA 
+//variables de la TORRETA
 #define METRALLETA_SPRITE "resources/seleccion1.png"
 #define GUI_METRALLETA "resources/gui_torreta.png"
 #define GUI_METRALLETA_SEL "resources/gui_torreta_sel.png"
@@ -47,7 +53,7 @@
 #define REFRESCO_TORRETA 0
 
 
-//variable de la TORRE DEFENSIVA 
+//variable de la TORRE DEFENSIVA
 #define DEFENSA_SPRITE "resources/seleccion3.png"
 #define GUI_DEFENSA "resources/gui_defensa.png"
 #define GUI_DEFENSA_SEL "resources/gui_defensa_sel.png"
@@ -72,3 +78,8 @@
 #define PRECIO_AMETRALLADORA 200
 #define PORCENTAJE_AMETRALLADORA 20
 #define REFRESCO_AMETRALLADORA 6
+
+
+#define POINT1 "resources/generador.png"
+#define TIENDA "resources/tienda.png"
+#define SPAWN "resources/effect.png"

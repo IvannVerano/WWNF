@@ -1,39 +1,43 @@
-#include "Enemigo.hpp"
-#include "DEFINITIONS.hpp"
-#include <iostream>
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/*
+ * File:   Enemy.cpp
+ * Author: edward
+ *
+ * Created on 20 de marzo de 2018, 18:29
+ */
+
+#include "Enemy.hpp"
 
 namespace Zenon {
 
-    Enemigo::Enemigo(GameDataRef l_data, sf::Vector2f l_position,
-            const std::vector<Enemigo*>& l_neighbors, const std::vector<Bezier>& l_routes, int l_path) : m_data(l_data),
-    m_neighbors(l_neighbors), m_routes(l_routes), m_id(ID()) {
-
-        m_mainSprite.setTexture(m_data->assets.GetTexture("enemigo"));
-        m_mainSprite.setOrigin(m_mainSprite.getGlobalBounds().width / 2, m_mainSprite.getGlobalBounds().height / 2);
-        m_mainSprite.scale(0.5, 0.5);
-        m_mainSprite.setPosition(l_position);
-        m_position = l_position;
+    Enemy::Enemy(GameDataRef l_data, sf::Vector2f l_position, const std::vector<Enemy*>& l_neighbors, const std::vector<Bezier>& l_routes, int l_path) : m_data(l_data), m_neighbors(l_neighbors), m_routes(l_routes), m_enemyId(ID()) {
 
         m_path = m_routes[l_path];
-        m_state = ENEMY_STATE_ALIVE;
-        m_life = ENEMY_LIFE;
-        m_killer = -1;
-        m_speed = 90;
-        m_slowed = false;
+        m_enemySprite.setTexture(m_data->assets.GetTexture("enemigo"));
+        m_enemySprite.setOrigin(m_enemySprite.getGlobalBounds().width / 2, m_enemySprite.getGlobalBounds().height / 2);
+        m_enemySprite.scale(0.5, 0.5);
+        m_enemySprite.setPosition(l_position);
+        m_pathCompleted = false;
         srand(time(NULL));
-
-        LoadLives();
+        m_killer = -1;
+        m_life = 50;
+        m_state = ENEMY_STATE_ALIVE;
 
 
     }
 
-    void Enemigo::Update(float dt) {
+    void Enemy::Update(float dt) {
 
         if (!m_pathCompleted) {
-            std::cout << m_currentWP << std::endl;
+
             if (m_neighbors.size() > 1) {
                 for (int i = 0; i < m_neighbors.size(); i++) {
-                    if (m_id != m_neighbors[i]->GetID()) {
+                    if (m_enemyId != m_neighbors[i]->GetId()) {
 
                         //CALCULO LA DISTANCIA ENTRE LOS VECINOS
                         sf::Vector2f l_neighborVec = m_neighbors[i]->GetPosition() - this->GetPosition();
@@ -60,7 +64,7 @@ namespace Zenon {
                             //COMPRUEBO LAS BIFURCACIONES
                             if (m_path.m_bPoints.count(m_currentWP) == 1) {
                                 if (l_resultantDistance < MINIMUM_WAYPOINT_DISTANCE) {
-                                    CheckRoutes();
+                                    checkRoutes();
                                 }
                             }
 
@@ -73,9 +77,9 @@ namespace Zenon {
                             }
 
                             if (l_resultantDistance > MINIMUM_WAYPOINT_DISTANCE) {
-                                float x = LimitV(m_speed * l_resultantNormalized.x * dt);
-                                float y = LimitV(m_speed * l_resultantNormalized.y * dt);
-                                m_mainSprite.move(x, y);
+                                float x = LimitV(ENEMY_SPEED * l_resultantNormalized.x * dt);
+                                float y = LimitV(ENEMY_SPEED * l_resultantNormalized.y * dt);
+                                m_enemySprite.move(x, y);
                             }
 
                         }
@@ -87,7 +91,7 @@ namespace Zenon {
                             float l_waypointDistance = Module(l_waypointVec);
 
                             if (l_waypointDistance < MINIMUM_WAYPOINT_DISTANCE) {
-                                CheckRoutes();
+                                checkRoutes();
                             }
                         }
 
@@ -103,26 +107,24 @@ namespace Zenon {
                             if (m_currentWP == m_path.m_bezierBody.size() - 1) {
                                 m_pathCompleted = true;
                             } else {
-                                std::cout << "Aumento WP: \n";
                                 m_currentWP++;
                             }
                         }
 
                         if (l_waypointDistance > MINIMUM_WAYPOINT_DISTANCE) {
 
-                            m_mainSprite.move(m_speed * l_normalizedDirection.x * dt, m_speed * l_normalizedDirection.y * dt);
+                            m_enemySprite.move(ENEMY_SPEED * l_normalizedDirection.x * dt, ENEMY_SPEED * l_normalizedDirection.y * dt);
                         }
                     }
                 }
             } else {
-                std::cout << "Solo hay uno\n";
                 if (m_path.m_bPoints.count(m_currentWP) == 1) {
-                    std::cout << "He llegado a un waypoint\n";
+
                     sf::Vector2f l_waypointVec = m_path.m_bPoints[m_currentWP] - this->GetPosition();
                     float l_waypointDistance = Module(l_waypointVec);
 
                     if (l_waypointDistance < MINIMUM_WAYPOINT_DISTANCE) {
-                        CheckRoutes();
+                        checkRoutes();
                     }
                 }
 
@@ -134,6 +136,7 @@ namespace Zenon {
                 sf::Vector2f l_normalizedDirection = NormalizeDir(m_path.m_bezierBody[m_currentWP], this->GetPosition());
 
                 if (l_waypointDistance < MINIMUM_WAYPOINT_DISTANCE) {
+
                     if (m_currentWP == m_path.m_bezierBody.size() - 1) {
                         m_pathCompleted = true;
                     } else {
@@ -142,60 +145,62 @@ namespace Zenon {
                 }
 
                 if (l_waypointDistance > MINIMUM_WAYPOINT_DISTANCE) {
-                    m_mainSprite.move(m_speed * l_normalizedDirection.x * dt, m_speed * l_normalizedDirection.y * dt);
+
+                    m_enemySprite.move(ENEMY_SPEED * l_normalizedDirection.x * dt, ENEMY_SPEED * l_normalizedDirection.y * dt);
                 }
             }
         }
     }
 
-    void Enemigo::CheckRoutes() {
-        m_randNumber = 0;
+    void Enemy::checkRoutes() {
+        l_rNumber = 0;
         for (int i = 0; i < m_path.m_bRoutes.size(); i++) {
             if (m_path.m_bRoutes[i].m_startPoint.x == m_path.m_bPoints[m_currentWP].x &&
                     m_path.m_bRoutes[i].m_startPoint.y == m_path.m_bPoints[m_currentWP].y) {
-                m_randNumber++;
+                l_rNumber++;
             }
         }
 
-        if (m_currentWP == m_path.m_bezierBody.size() - 1 && m_randNumber == 1) {
+        if (m_currentWP == m_path.m_bezierBody.size() - 1 && l_rNumber == 1) {
             //std::cout << "He entrao\n";
             m_path = m_path.m_bRoutes[m_path.m_bRoutes.size() - 1];
-            m_randNumber = 0;
+            l_rNumber = 0;
             m_currentWP = 2;
         }
 
-        if (m_randNumber == 1) {
+        if (l_rNumber == 1) {
             int ran = rand() % 100;
             if (ran <= m_path.m_bRoutes[0].probability) {
                 //std::cout << "1 bifurcacion: entro porque cumplo prob\n";
-                m_randNumber = 0;
+                l_rNumber = 0;
                 m_path = m_path.m_bRoutes[0];
                 m_currentWP = 2;
             }
         }
 
-        if (m_randNumber == 2) {
+        if (l_rNumber == 2) {
             int ran = rand() % 100;
             if (m_path.m_bRoutes[0].probability < m_path.m_bRoutes[1].probability) {
                 if (ran <= m_path.m_bRoutes[0].probability) {
-                    m_randNumber = 0;
+                    l_rNumber = 0;
                     m_path = m_path.m_bRoutes[0];
                     m_currentWP = 2;
                     //std::cout << "2 bifurcaciones, PRIMERA menor que la SEGUNDA: entro porque cumplo prob de la MENOR\n";
                 } else if (ran > m_path.m_bRoutes[0].probability && ran <= m_path.m_bRoutes[1].probability) {
-                    m_randNumber = 0;
+                    l_rNumber = 0;
                     m_path = m_path.m_bRoutes[1];
                     m_currentWP = 2;
                     //std::cout << "2 bifurcaciones, PRIMERA menor que la SEGUNDA: entro porque cumplo prob de la MAYOR\n";
                 }
             } else {
                 if (ran < m_path.m_bRoutes[1].probability) {
-                    m_randNumber = 0;
+                    l_rNumber = 0;
                     m_path = m_path.m_bRoutes[1];
                     m_currentWP = 2;
                     //std::cout << "2 bifurcaciones, SEGUNDA menor que la PRIMERA: entro porque cumplo prob de la MENOR\n";
                 } else if (ran > m_path.m_bRoutes[1].probability && ran <= m_path.m_bRoutes[0].probability) {
-                    m_randNumber = 0;
+
+                    l_rNumber = 0;
                     m_path = m_path.m_bRoutes[0];
                     m_currentWP = 2;
                     //std::cout << "2 bifurcaciones, SEGUNDA menor que la PRIMERA: entro porque cumplo prob de la MAYOR\n";
@@ -205,67 +210,65 @@ namespace Zenon {
         }
     }
 
-    void Enemigo::Draw() {
+    int Enemy::GetNumber() {
 
-        m_data->window.draw(m_mainSprite);
-        m_data->window.draw(m_vidaDraw);
+        return l_rNumber;
     }
 
-    void Enemigo::LoadLives() {
-        m_vidaDraw.setSize(sf::Vector2f(m_life, 10));
-        m_vidaDraw.setFillColor(sf::Color::Green);
-        m_vidaDraw.setOrigin(m_vidaDraw.getGlobalBounds().width / 2, m_vidaDraw.getGlobalBounds().height / 2);
-        m_vidaDraw.setPosition(m_mainSprite.getGlobalBounds().left + 20, m_mainSprite.getGlobalBounds().top);
+    sf::FloatRect Enemy::GetGB() {
+
+        return m_enemySprite.getGlobalBounds();
     }
 
-    sf::Vector2f Enemigo::GetPosition() {
-        return m_position;
+    Bezier Enemy::GetPath() {
+
+        return m_path;
     }
 
-    int Enemigo::GetActualState() {
-        return m_state;
+    const int Enemy::GetId() {
+
+        return m_enemyId;
     }
 
-    void Enemigo::TakeDamage(int l_damage) {
-        this->m_life -= l_damage;
-        m_vidaDraw.setSize(sf::Vector2f(m_life, 10));
+    sf::Vector2f Enemy::GetPosition() {
 
+        return m_enemySprite.getPosition();
+    }
+
+    int Enemy::GetCurrentWP() {
+
+        return m_currentWP;
+    }
+
+    void Enemy::Draw() {
+        m_data->window.draw(m_enemySprite);
+    }
+
+    void Enemy::TakeDamage(int l_factor) {
+        m_life -= l_factor;
         if (m_life < 0) {
+            std::cout << "He muerto" << std::endl;
             m_state = ENEMY_STATE_DEAD;
         }
     }
 
-    Enemigo::~Enemigo() {
-    }
-
-    const sf::Sprite &Enemigo::GetSprite() const {
-        return m_mainSprite;
-    }
-
-    int Enemigo::GetID() {
-        return m_id;
-    }
-
-    void Enemigo::SetKiller(int l_killer) {
+    void Enemy::SetKiller(int l_killer) {
         m_killer = l_killer;
     }
 
-    int Enemigo::GetKiller() {
+    int Enemy::GetKiller() {
         return m_killer;
     }
 
-    void Enemigo::SlowDown(float l_factor) {
-        m_speed *= l_factor;
-        m_slowed = true;
+    int Enemy::GetActualState() {
+        return m_state;
     }
 
-    void Enemigo::NoEffect(float l_factor) {
-        m_speed = m_speed / l_factor;
-        m_slowed = false;
+    const sf::Sprite &Enemy::GetSprite() const {
+        return m_enemySprite;
     }
 
-    bool Enemigo::GetSlowed() {
-        return m_slowed;
-    }
 
 }
+
+
