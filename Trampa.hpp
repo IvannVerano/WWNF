@@ -38,6 +38,8 @@ namespace Zenon {
 
         virtual void DeleteTarget(int l_position) {
         };
+        
+        virtual void SetAttributes(int l_id, float l_cadence, float l_apptime, int l_power, int l_range, int l_refresh, int l_wait, int l_percentaje, int l_price){};
     protected:
         GameDataRef m_datos;
         sf::Sprite m_mainSprite;

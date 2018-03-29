@@ -9,6 +9,7 @@
 #include "FichaTrampa.hpp"
 #include "Enemigo.hpp"
 #include "Enemy.hpp"
+#include "Bala.hpp"
 #include "MathHelper.hpp"
 #include "Maps.hpp"
 #include <vector>
@@ -28,6 +29,8 @@ namespace Zenon {
         void LoadPaths();
         void SpawnEnemy(sf::Vector2f l_position, int l_path);
         void SpawnEnemy2(sf::Vector2f l_position, int l_path);
+        
+        void CheckColision();
 
         sf::VertexArray ToVertex(std::vector<sf::Vector2f> l_points);
 
@@ -61,6 +64,7 @@ namespace Zenon {
         std::vector<Bezier> m_routes;
         std::vector<Enemigo*> m_enemys;
         std::vector<Enemy*> m_enemies;
+        std::vector<Bala*>m_bullets;
         std::vector<sf::CircleShape> m_wps;
         std::vector<sf::VertexArray> m_pathsVertex;
         std::vector<sf::Vector2f> m_loc_placers;

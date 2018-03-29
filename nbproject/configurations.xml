@@ -5,7 +5,7 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>AssetManager.hpp</itemPath>
-      <itemPath>Ataque.hpp</itemPath>
+      <itemPath>Attack.hpp</itemPath>
       <itemPath>Bala.hpp</itemPath>
       <itemPath>DEFINITIONS.hpp</itemPath>
       <itemPath>Defensa.hpp</itemPath>
@@ -33,7 +33,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>AssetManager.cpp</itemPath>
-      <itemPath>Ataque.cpp</itemPath>
+      <itemPath>Attack.cpp</itemPath>
       <itemPath>Bala.cpp</itemPath>
       <itemPath>Defensa.cpp</itemPath>
       <itemPath>Enemigo.cpp</itemPath>
@@ -94,9 +94,9 @@
       </item>
       <item path="AssetManager.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Ataque.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Attack.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Ataque.hpp" ex="false" tool="3" flavor2="0">
+      <item path="Attack.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Bala.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -189,9 +189,9 @@
       </item>
       <item path="AssetManager.hpp" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Ataque.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Attack.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Ataque.hpp" ex="false" tool="3" flavor2="0">
+      <item path="Attack.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Bala.cpp" ex="false" tool="1" flavor2="0">
       </item>

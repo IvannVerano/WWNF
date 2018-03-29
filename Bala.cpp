@@ -5,7 +5,8 @@
 
 namespace Zenon {
 
-    Bala::Bala(GameDataRef l_data, sf::Vector2f l_position, sf::Vector2f l_enemigo, float l_angulo) : m_data(l_data) {
+    Bala::Bala(GameDataRef l_data, sf::Vector2f l_position, sf::Vector2f l_enemigo, float l_angulo, int l_power, int l_id) : m_data(l_data) 
+    {
         m_mainSprite.setTexture(m_data->assets.GetTexture("bullet"));
         m_mainSprite.setOrigin(m_mainSprite.getGlobalBounds().width / 2, m_mainSprite.getGlobalBounds().height / 2);
         m_mainSprite.setPosition(l_position);
@@ -14,7 +15,8 @@ namespace Zenon {
         m_direccion = l_enemigo;
         m_angulo = l_angulo;
         m_shoot = false;
-
+        m_power = l_power;
+        m_who = l_id;
     }
 
     void Bala::Update(float dt) {
@@ -48,6 +50,14 @@ namespace Zenon {
     bool Bala::getOcupada() {
         return m_ocupada;
     }
-
-
+    
+    int Bala::GetPower()
+    {
+        return m_power;
+    }
+    
+    int Bala::WhoShooted()
+    {
+        return m_who;
+    }
 }

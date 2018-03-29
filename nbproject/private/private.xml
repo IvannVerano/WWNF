@@ -7,12 +7,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/antonio/NetBeansProjects/Alpha/SplashState.cpp</file>
-            <file>file:/home/antonio/NetBeansProjects/Alpha/Placer.hpp</file>
-            <file>file:/home/antonio/NetBeansProjects/Alpha/Ataque.cpp</file>
-            <file>file:/home/antonio/NetBeansProjects/Alpha/main.cpp</file>
-            <file>file:/home/antonio/NetBeansProjects/Alpha/Placer.cpp</file>
-            <file>file:/home/antonio/NetBeansProjects/Alpha/HUD.cpp</file>
+            <file>file:/home/user/NetBeansProjects/WWNF/Attack.cpp</file>
+            <file>file:/home/user/NetBeansProjects/WWNF/main.cpp</file>
+            <file>file:/home/user/NetBeansProjects/WWNF/Attack.hpp</file>
+            <file>file:/home/user/NetBeansProjects/WWNF/Bala.hpp</file>
+            <file>file:/home/user/NetBeansProjects/WWNF/SplashState.hpp</file>
+            <file>file:/home/user/NetBeansProjects/WWNF/Bala.cpp</file>
+            <file>file:/home/user/NetBeansProjects/WWNF/SplashState.cpp</file>
+            <file>file:/home/user/NetBeansProjects/WWNF/Trampa.hpp</file>
         </group>
     </open-files>
 </project-private>
