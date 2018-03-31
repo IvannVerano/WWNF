@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "State.hpp"
 #include "Game.hpp"
+#include "Hero.hpp"
 #include <vector>
 
 namespace Zenon {
@@ -25,6 +26,8 @@ namespace Zenon {
         sf::Texture _backgroundTexture;
         sf::Sprite _background;
         std::vector<SplashState*> states;
+        
+        Hero * m_hero;
 
     };
 }

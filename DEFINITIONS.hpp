@@ -5,4 +5,7 @@
 
 #define SPLASH_STATE_SHOW_TIME 3.0
 
-#define SPLASH_SCENE_BACKGROUND_FILEPATH "Resources/res/Splash Background.png"
+#define SPRITESHEET_HEROE "resources/spritesheetHeroe1.png"
+
+#define HERO_IDLE_STATE 0
+#define HERO_MOVING_STATE 1
