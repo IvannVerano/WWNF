@@ -13,7 +13,10 @@ namespace Zenon
         m_mainSprite.setPosition(300,300);
         m_mainSprite.scale(2.0,2.0);
         m_direction = sf::Vector2f(-1,-1);
-        m_destiny = sf::Vector2f(-1,-1);
+        
+        m_destinyPointer.setTexture(m_data->assets.GetTexture("GUI"));
+        m_destinyPointer.setTextureRect(sf::IntRect(61,76,21,21));
+        m_destinyPointer.setOrigin(m_destinyPointer.getGlobalBounds().width/2, m_destinyPointer.getGlobalBounds().height/2);
         m_isSelected = false;
     }
     
@@ -21,7 +24,7 @@ namespace Zenon
     {
         if(m_state == HERO_MOVING_STATE)
         {
-            if(m_mainSprite.getPosition().x > m_destiny.x)
+            if(m_mainSprite.getGlobalBounds().contains(m_destinyPointer.getPosition()))
                 m_state = HERO_IDLE_STATE;
             else
                 this->Move(dt);
@@ -30,9 +33,10 @@ namespace Zenon
     
     void Hero::OrderMovement(sf::Vector2f l_destiny)
     {
-        m_destiny = l_destiny;
+        m_destinyPointer.setPosition(l_destiny);
         m_direction = l_destiny - m_mainSprite.getPosition();
         m_state = HERO_MOVING_STATE;
+        m_isSelected = false;
     }
     
     void Hero::Move(float dt)
@@ -42,6 +46,10 @@ namespace Zenon
     
     void Hero::Draw()
     {
+        if(m_state == HERO_MOVING_STATE)
+        {
+            m_data->window.draw(m_destinyPointer);
+        }
         m_data->window.draw(m_mainSprite);
     }
     

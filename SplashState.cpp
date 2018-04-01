@@ -14,6 +14,7 @@ namespace Zenon {
     void SplashState::Init() 
     {
         _data->assets.LoadTexture("Heroe", SPRITESHEET_HEROE);
+        _data->assets.LoadTexture("GUI", SPRITESHEET_GUI);
         m_hero = new Hero(_data);
     }
 

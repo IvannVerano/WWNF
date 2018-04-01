@@ -21,7 +21,7 @@ namespace Zenon
             sf::Sprite m_mainSprite;
             bool m_isSelected;
             sf::Vector2f m_direction;
-            sf::Vector2f m_destiny;
+            sf::Sprite m_destinyPointer;
             int m_state;
     };
 }
