@@ -24,11 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-<<<<<<< HEAD
 PROJECTNAME=BezierR
-=======
-PROJECTNAME=WWNF
->>>>>>> eb2f958d50a72c57f68e71ec1fe5e69ae78d0e7c
 
 # Active Configuration
 DEFAULTCONF=Debug

@@ -34,89 +34,50 @@ namespace Zenon {
     void Enemy::Update(float dt) {
 
         if (!m_pathCompleted) {
-
             if (m_neighbors.size() > 1) {
                 for (int i = 0; i < m_neighbors.size(); i++) {
                     if (m_enemyId != m_neighbors[i]->GetId()) {
 
-                        //CALCULO LA DISTANCIA ENTRE LOS VECINOS
                         sf::Vector2f l_neighborVec = m_neighbors[i]->GetPosition() - this->GetPosition();
+                        float l_neighborModule = Module(l_neighborVec);
 
-                        //SACO EL MODULO
-                        float l_neighborDistance = Module(l_neighborVec);
-
-                        if (l_neighborDistance <= MINIMUM_NEIGHBOR_DISTANCE) {
-
-                            //INVIERTO EL VECTOR RESULTANTE NEIGHBOR -> ENEMY
-                            sf::Vector2f l_inverseEnemyDir = InverseDir(l_neighborVec);
-
-                            //CALCULO EL VECTOR WP -> ENEMY
-                            sf::Vector2f l_waypointVec = m_path.m_bezierBody[m_currentWP] - this->GetPosition();
-
-                            //CALCULO EL VECTOR RESULTANTE
-                            sf::Vector2f l_resultant = l_inverseEnemyDir + l_waypointVec;
-
-                            //CALCULO EL MODULO DE LA RESULTANTE
-                            float l_resultantDistance = Module(l_resultant);
-
-                            sf::Vector2f l_resultantNormalized = Normalize(l_resultant, l_resultantDistance);
-
-                            //COMPRUEBO LAS BIFURCACIONES
-                            if (m_path.m_bPoints.count(m_currentWP) == 1) {
-                                if (l_resultantDistance < MINIMUM_WAYPOINT_DISTANCE) {
-                                    checkRoutes();
-                                }
-                            }
-
-                            if (l_resultantDistance < MINIMUM_WAYPOINT_DISTANCE) {
-                                if (m_currentWP == m_path.m_bezierBody.size() - 1) {
-                                    m_pathCompleted = true;
-                                } else {
-                                    m_currentWP++;
-                                }
-                            }
-
-                            if (l_resultantDistance > MINIMUM_WAYPOINT_DISTANCE) {
-                                float x = LimitV(ENEMY_SPEED * l_resultantNormalized.x * dt);
-                                float y = LimitV(ENEMY_SPEED * l_resultantNormalized.y * dt);
-                                m_enemySprite.move(x, y);
-                            }
-
-                        }
-                    } else {
-
-                        if (m_path.m_bPoints.count(m_currentWP) == 1) {
-
-                            sf::Vector2f l_waypointVec = m_path.m_bPoints[m_currentWP] - this->GetPosition();
-                            float l_waypointDistance = Module(l_waypointVec);
-
-                            if (l_waypointDistance < MINIMUM_WAYPOINT_DISTANCE) {
-                                checkRoutes();
-                            }
-                        }
-
-                        sf::Vector2f l_waypointVec = m_path.m_bezierBody[m_currentWP] - this->GetPosition();
-
-                        float l_waypointDistance = Module(l_waypointVec);
-
-                        //NORMALIZO DICHO VECTOR RESULTANTE
-                        sf::Vector2f l_normalizedDirection = NormalizeDir(m_path.m_bezierBody[m_currentWP], this->GetPosition());
-
-                        if (l_waypointDistance < MINIMUM_WAYPOINT_DISTANCE) {
-
-                            if (m_currentWP == m_path.m_bezierBody.size() - 1) {
-                                m_pathCompleted = true;
-                            } else {
-                                m_currentWP++;
-                            }
-                        }
-
-                        if (l_waypointDistance > MINIMUM_WAYPOINT_DISTANCE) {
-
-                            m_enemySprite.move(ENEMY_SPEED * l_normalizedDirection.x * dt, ENEMY_SPEED * l_normalizedDirection.y * dt);
+                        if (l_neighborModule <= MINIMUM_NEIGHBOR_DISTANCE) {
+                            m_resultantAcc.push_back(l_neighborVec);
                         }
                     }
                 }
+
+                for (int i = 0; i < m_resultantAcc.size(); i++) {
+                    m_resultant = m_resultant + m_resultantAcc[i];
+                }
+
+
+                m_resultant = InverseDir(m_resultant);
+                sf::Vector2f l_waypointVec = m_path.m_bezierBody[m_currentWP] - this->GetPosition();
+                sf::Vector2f l_resultantPosition = Resultant(m_resultant, l_waypointVec);
+                float l_resultantPositionModule = Module(l_resultantPosition);
+
+                if (m_path.m_bPoints.count(m_currentWP) == 1) {
+                    if (l_resultantPositionModule < MINIMUM_WAYPOINT_DISTANCE) {
+                        checkRoutes();
+                    }
+                }
+
+                if (l_resultantPositionModule < MINIMUM_WAYPOINT_DISTANCE) {
+                    if (m_currentWP == m_path.m_bezierBody.size() - 1) {
+                        m_pathCompleted = true;
+                    } else {
+                        m_currentWP++;
+                    }
+                }
+
+                if (l_resultantPositionModule > MINIMUM_WAYPOINT_DISTANCE) {
+                    l_resultantPosition = Normalize(l_resultantPosition, l_resultantPositionModule);
+                    m_enemySprite.move(ENEMY_SPEED * l_resultantPosition.x * dt, ENEMY_SPEED * l_resultantPosition.y * dt);
+                }
+                m_resultantAcc.clear();
+
+
             } else {
                 if (m_path.m_bPoints.count(m_currentWP) == 1) {
 
@@ -145,7 +106,6 @@ namespace Zenon {
                 }
 
                 if (l_waypointDistance > MINIMUM_WAYPOINT_DISTANCE) {
-
                     m_enemySprite.move(ENEMY_SPEED * l_normalizedDirection.x * dt, ENEMY_SPEED * l_normalizedDirection.y * dt);
                 }
             }

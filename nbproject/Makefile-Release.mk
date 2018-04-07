@@ -72,19 +72,11 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-<<<<<<< HEAD
 	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bezierr
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bezierr: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bezierr ${OBJECTFILES} ${LDLIBSOPTIONS}
-=======
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf: ${OBJECTFILES}
-	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf ${OBJECTFILES} ${LDLIBSOPTIONS}
->>>>>>> eb2f958d50a72c57f68e71ec1fe5e69ae78d0e7c
 
 ${OBJECTDIR}/AssetManager.o: AssetManager.cpp
 	${MKDIR} -p ${OBJECTDIR}

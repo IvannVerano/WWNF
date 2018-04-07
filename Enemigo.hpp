@@ -37,6 +37,8 @@ namespace Zenon {
         sf::Sprite m_mainSprite;
         sf::Vector2f m_position;
         sf::RectangleShape m_vidaDraw;
+        sf::Vector2f m_resultant;
+        std::vector<sf::Vector2f> m_resultantAcc;
 
         const int m_id;
         int m_state;

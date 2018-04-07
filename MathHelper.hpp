@@ -7,6 +7,7 @@
 #include <map>
 #include <iostream>
 #include <complex>
+#include "DEFINITIONS.hpp"
 
 namespace Zenon {
 
@@ -30,6 +31,10 @@ namespace Zenon {
 
     inline sf::Vector2f operator+(sf::Vector2f& vec1, sf::Vector2f& vec2) {
         return sf::Vector2f(vec1.x + vec2.x, vec1.y + vec2.y);
+    }
+
+    inline sf::Vector2f Resultant(sf::Vector2f& vec1, sf::Vector2f& vec2) {
+        return sf::Vector2f(vec1.x * NEIGHBOR_FACTOR + vec2.x * WP_FACTOR, vec1.y * NEIGHBOR_FACTOR + vec2.y * WP_FACTOR);
     }
 
     inline sf::Vector2f operator-(sf::Vector2f& vec1, sf::Vector2f& vec2) {

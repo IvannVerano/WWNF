@@ -72,7 +72,6 @@ LDLIBSOPTIONS=-L/usr/lib/86x_64-linux-GNU /usr/lib/x86_64-linux-gnu/libsfml-audi
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-<<<<<<< HEAD
 	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bezierr
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bezierr: /usr/lib/x86_64-linux-gnu/libsfml-audio.so
@@ -88,23 +87,6 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bezierr: /usr/lib/x86_64-linux-gnu/li
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bezierr: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bezierr ${OBJECTFILES} ${LDLIBSOPTIONS}
-=======
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf: /usr/lib/x86_64-linux-gnu/libsfml-audio.so
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf: /usr/lib/x86_64-linux-gnu/libsfml-graphics.so
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf: /usr/lib/x86_64-linux-gnu/libsfml-network.so
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf: /usr/lib/x86_64-linux-gnu/libsfml-system.so
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf: /usr/lib/x86_64-linux-gnu/libsfml-window.so
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf: ${OBJECTFILES}
-	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf ${OBJECTFILES} ${LDLIBSOPTIONS}
->>>>>>> eb2f958d50a72c57f68e71ec1fe5e69ae78d0e7c
 
 ${OBJECTDIR}/AssetManager.o: AssetManager.cpp
 	${MKDIR} -p ${OBJECTDIR}
@@ -198,11 +180,7 @@ ${OBJECTDIR}/tinyxml2.o: tinyxml2.cpp
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
 	${RM} -r ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libsfml-audio.so ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libsfml-graphics.so ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libsfml-network.so ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libsfml-system.so ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libsfml-window.so
-<<<<<<< HEAD
 	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bezierr
-=======
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wwnf
->>>>>>> eb2f958d50a72c57f68e71ec1fe5e69ae78d0e7c
 
 # Subprojects
 .clean-subprojects:

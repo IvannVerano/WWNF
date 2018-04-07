@@ -57,6 +57,8 @@ namespace Zenon {
         GameDataRef m_data;
 
         sf::Sprite m_enemySprite;
+        sf::Vector2f m_resultant;
+        std::vector<sf::Vector2f> m_resultantAcc;
         TYPE m_type;
 
         int m_currentWP = 0 + 1;
