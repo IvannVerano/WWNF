@@ -12,6 +12,7 @@
 #include "Bala.hpp"
 #include "MathHelper.hpp"
 #include "Maps.hpp"
+#include "Hero.hpp"
 #include <vector>
 
 namespace Zenon {
@@ -71,6 +72,8 @@ namespace Zenon {
 
         bool m_wantsNew = false;
         Maps* map;
+        
+        Hero* m_hero;
 
 
 

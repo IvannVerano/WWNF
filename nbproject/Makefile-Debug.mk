@@ -45,8 +45,10 @@ OBJECTFILES= \
 	${OBJECTDIR}/FichaTrampa.o \
 	${OBJECTDIR}/Game.o \
 	${OBJECTDIR}/HUD.o \
+	${OBJECTDIR}/Hero.o \
 	${OBJECTDIR}/InputManager.o \
 	${OBJECTDIR}/Maps.o \
+	${OBJECTDIR}/Node.o \
 	${OBJECTDIR}/Placer.o \
 	${OBJECTDIR}/SplashState.o \
 	${OBJECTDIR}/StateMachine.o \
@@ -138,6 +140,11 @@ ${OBJECTDIR}/HUD.o: HUD.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/HUD.o HUD.cpp
 
+${OBJECTDIR}/Hero.o: Hero.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Hero.o Hero.cpp
+
 ${OBJECTDIR}/InputManager.o: InputManager.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -147,6 +154,11 @@ ${OBJECTDIR}/Maps.o: Maps.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Maps.o Maps.cpp
+
+${OBJECTDIR}/Node.o: Node.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Node.o Node.cpp
 
 ${OBJECTDIR}/Placer.o: Placer.cpp
 	${MKDIR} -p ${OBJECTDIR}

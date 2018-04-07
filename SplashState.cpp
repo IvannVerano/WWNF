@@ -7,6 +7,7 @@
 #include "Attack.hpp"
 #include "Defensa.hpp"
 #include "HUD.hpp"
+#include "Hero.hpp"
 #include <string>
 #include <iostream>
 
@@ -31,6 +32,9 @@ namespace Zenon {
         }
 
         m_trampa = -1;
+        
+        Maps &mapref = *map;
+        m_hero = new Hero(m_data, mapref);
 
         m_hud = new HUD(m_data, m_trampasSel);
         m_noCompruebes = false;
@@ -111,6 +115,19 @@ namespace Zenon {
                         }
                     }
                 }
+                if(m_hero->IsClicked())
+                {
+                   m_hero->Select();
+                   std::cout<<"Me seleccionas"<<std::endl;
+                }
+                else
+                {
+                   if(m_hero->IsSelected())
+                   {
+                      m_hero->OrderMovement((sf::Vector2f)m_data->input.GetMousePosition(m_data->window));
+                      std::cout<<"Me ordenas moverme"<<std::endl;
+                   }
+                }
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)) {
                 m_trampa = 1;
@@ -133,6 +150,8 @@ namespace Zenon {
             SpawnEnemy2(sf::Vector2f(m_routes[0].m_startPoint.x, m_routes[0].m_startPoint.y), 0);
             m_wantsNew = false;
         }
+        
+        m_hero->Update(dt);
 
         m_textoDinero.setString(std::to_string(m_disponible));
         int counter = 0;
@@ -324,6 +343,7 @@ namespace Zenon {
         }
 
         m_hud->Draw();
+        m_hero->Draw();
 
         if (m_hideCursor) {
             this->m_data->window.setMouseCursorVisible(false);

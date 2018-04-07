@@ -115,8 +115,8 @@ namespace Zenon
                 float PI = 3.14159265;
                 float incremento_x, incremento_y;
                 sf::Vector2f m_direccion_sentido;
-                hipotenusa = sqrt(pow(m_mainSprite.getPosition().x - m_enemies[m_target]->GetPosition().x, 2) + pow(m_mainSprite.getPosition().y - m_enemies[m_target]->GetPosition().y, 2));
-                angle = asin(abs(m_mainSprite.getPosition().y - m_enemies[m_target]->GetPosition().y) / hipotenusa) * 180.0 / PI;
+                hipotenusa = std::sqrt(std::pow(m_mainSprite.getPosition().x - m_enemies[m_target]->GetPosition().x, 2) + std::pow(m_mainSprite.getPosition().y - m_enemies[m_target]->GetPosition().y, 2));
+                angle = std::asin(abs(m_mainSprite.getPosition().y - m_enemies[m_target]->GetPosition().y) / hipotenusa) * 180.0 / PI;
                 angle = angle - 90;
                 
                 if (m_mainSprite.getPosition().x - m_enemies[m_target]->GetPosition().x < 0 && m_mainSprite.getPosition().y - m_enemies[m_target]->GetPosition().y > 0) {//primer cuadrante

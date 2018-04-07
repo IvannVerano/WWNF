@@ -7,10 +7,12 @@
 #include <map>
 #include <iostream>
 #include <complex>
+#include "DEFINITIONS.hpp"
 
 namespace Zenon {
 
-    inline float Module(sf::Vector2f& vec) {
+    inline float Module(sf::Vector2f& vec) 
+    {
         return std::sqrt(vec.x * vec.x + vec.y * vec.y);
     }
 
