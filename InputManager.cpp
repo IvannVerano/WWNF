@@ -4,12 +4,23 @@ namespace Zenon {
 
     bool InputManager::IsSpriteClicked(sf::Sprite object, sf::Mouse::Button button, sf::RenderWindow &window) {
         if (sf::Mouse::isButtonPressed(button)) {
-            sf::IntRect playButtonRect(object.getPosition().x, object.getPosition().y, object.getGlobalBounds().width, object.getGlobalBounds().height);
+            sf::IntRect playButtonRect(object.getGlobalBounds());
 
             if (playButtonRect.contains(sf::Mouse::getPosition(window))) {
                 return true;
             }
         }
+
+        return false;
+    }
+    
+     bool InputManager::IsSpriteHovered(sf::Sprite object, sf::Mouse::Button button, sf::RenderWindow &window) {
+            
+         sf::IntRect playButtonRect(object.getGlobalBounds());
+
+         if (playButtonRect.contains(sf::Mouse::getPosition(window))) {
+                return true;
+            }
 
         return false;
     }
