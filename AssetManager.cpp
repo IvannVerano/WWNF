@@ -26,4 +26,16 @@ namespace Zenon {
     sf::Font &AssetManager::GetFont(std::string name) {
         return this->_fonts.at(name);
     }
+
+    void AssetManager::LoadBuffer(std::string name, std::string fileName) {
+        sf::SoundBuffer buffer;
+
+        if (buffer.loadFromFile(fileName)) {
+            this->m_buffers[name] = buffer;
+        }
+    }
+
+    sf::SoundBuffer& AssetManager::GetBuffer(std::string name) {
+        return this->m_buffers.at(name);
+    }
 }
