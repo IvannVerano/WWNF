@@ -4,22 +4,4 @@
         <activeConfTypeElem>1</activeConfTypeElem>
         <activeConfIndexElem>0</activeConfIndexElem>
     </data>
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
-    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-<<<<<<< HEAD
-            <file>file:/home/edward/NetBeansProjects/BezierR/Enemy.cpp</file>
-            <file>file:/home/edward/NetBeansProjects/BezierR/SplashState.cpp</file>
-=======
-            <file>file:/home/user/NetBeansProjects/WWNF/Attack.cpp</file>
-            <file>file:/home/user/NetBeansProjects/WWNF/main.cpp</file>
-            <file>file:/home/user/NetBeansProjects/WWNF/Attack.hpp</file>
-            <file>file:/home/user/NetBeansProjects/WWNF/Bala.hpp</file>
-            <file>file:/home/user/NetBeansProjects/WWNF/SplashState.hpp</file>
-            <file>file:/home/user/NetBeansProjects/WWNF/Bala.cpp</file>
-            <file>file:/home/user/NetBeansProjects/WWNF/SplashState.cpp</file>
-            <file>file:/home/user/NetBeansProjects/WWNF/Trampa.hpp</file>
->>>>>>> eb2f958d50a72c57f68e71ec1fe5e69ae78d0e7c
-        </group>
-    </open-files>
 </project-private>
