@@ -34,11 +34,17 @@ namespace Zenon {
     }
 
     inline sf::Vector2f Resultant(sf::Vector2f& vec1, sf::Vector2f& vec2) {
-        return sf::Vector2f(vec1.x * NEIGHBOR_FACTOR + vec2.x * WP_FACTOR, vec1.y * NEIGHBOR_FACTOR + vec2.y * WP_FACTOR);
+
+        return sf::Vector2f(vec1.x * ENEMY_FACTOR + vec2.x * WP_FACTOR, vec1.y * ENEMY_FACTOR + vec2.y * WP_FACTOR);
     }
 
     inline sf::Vector2f operator-(sf::Vector2f& vec1, sf::Vector2f& vec2) {
+
         return sf::Vector2f(vec1.x - vec2.x, vec1.y - vec2.y);
+    }
+
+    inline sf::Vector2f Scale(sf::Vector2f& vec, float n) {
+        return sf::Vector2f(vec.x * n, vec.y * n);
     }
 
     inline float LimitV(float number) {
@@ -48,6 +54,7 @@ namespace Zenon {
             }
         } else if (number < 0) {
             if (number < -0.3) {
+
                 number = -0.3;
             }
         }

@@ -7,8 +7,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/edward/NetBeansProjects/BezierR/DEFINITIONS.hpp</file>
             <file>file:/home/edward/NetBeansProjects/BezierR/Enemy.cpp</file>
-            <file>file:/home/edward/NetBeansProjects/BezierR/SplashState.cpp</file>
+            <file>file:/home/edward/NetBeansProjects/BezierR/Game.cpp</file>
+            <file>file:/home/edward/NetBeansProjects/BezierR/main.cpp</file>
+            <file>file:/home/edward/NetBeansProjects/BezierR/MathHelper.hpp</file>
         </group>
     </open-files>
 </project-private>
