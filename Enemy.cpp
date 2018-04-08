@@ -60,17 +60,26 @@ namespace Zenon {
                     m_resultant = m_resultant + m_resultantAcc[i];
                 }
 
+                //INVIERTO EL SENTIDO DE LA RESULTANTE DE TODA LA REPULSION CALCULADA
                 m_resultant = InverseDir(m_resultant);
+
+                //VECTOR POSICION - WP
                 sf::Vector2f l_waypointVec = m_path.m_bezierBody[m_currentWP] - this->GetPosition();
+
+                //RESULTANTE WP - VECINOS
                 sf::Vector2f l_resultantPosition = Resultant(m_resultant, l_waypointVec);
+
+                //MODULO DE ESTA RESULTANTE
                 float l_resultantPositionModule = Module(l_resultantPosition);
 
+                //COMPRUEBO LAS BIFURCACIONES
                 if (m_path.m_bPoints.count(m_currentWP) == 1) {
                     if (l_resultantPositionModule < MINIMUM_WAYPOINT_DISTANCE) {
                         checkRoutes();
                     }
                 }
 
+                //SI ESTAMOS CERCA DE UN WP VEMOS SI TERMINAMOS EL PATH O SI DEBEMOS SEGUIR
                 if (l_resultantPositionModule < MINIMUM_WAYPOINT_DISTANCE) {
                     if (m_currentWP == m_path.m_bezierBody.size() - 1) {
                         m_pathCompleted = true;
@@ -79,13 +88,17 @@ namespace Zenon {
                     }
                 }
 
+                //SI NO ESTAMOS CERCA, NOS SEGUIMOS MOVIENDO
                 if (l_resultantPositionModule > MINIMUM_WAYPOINT_DISTANCE) {
                     l_resultantPosition = Normalize(l_resultantPosition, l_resultantPositionModule);
                     m_enemySprite.move(ENEMY_SPEED * l_resultantPosition.x * dt, ENEMY_SPEED * l_resultantPosition.y * dt);
                 }
+
+                //RESETEAMOS LAS VARIABLES USADAS PARA CALCULAR LA RESULTANTE DE LA REPULSION
                 m_resultant = sf::Vector2f(0, 0);
                 m_resultantAcc.clear();
 
+                //SI NO HAY ENEMIGOS CERCA, NOS MOVEMOS DE FORMA NORMAL
             } else {
                 if (m_path.m_bPoints.count(m_currentWP) == 1) {
 
