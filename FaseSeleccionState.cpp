@@ -37,6 +37,7 @@ namespace Zenon {
         m_data->assets.LoadTexture("tienda", TIENDA);
         m_data->assets.LoadTexture("spawn", SPAWN);
         m_data->assets.LoadTexture("Hero", SPRITESHEET_HEROE);
+        m_data->assets.LoadTexture("Hero_GUI", HERO_GUI_POS);
 
 
 

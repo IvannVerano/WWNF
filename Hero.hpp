@@ -24,10 +24,13 @@ namespace Zenon
             sf::Vector2f m_direction;
             sf::Vector2f m_destiny;
             sf::Sprite m_destinyPointer;
+            sf::Sprite m_heroPlace;
+            sf::Sprite m_heroArrow;
             int m_state;
             std::vector<sf::Vector2f> m_path;
             Maps &m_map;
             int m_waypoint;
             bool m_pathComplete;
+            
     };
 }

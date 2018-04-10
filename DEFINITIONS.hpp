@@ -13,6 +13,7 @@
 #ifndef TILESET_FILEPATH
 #define TILESET_FILEPATH "resources/BG_Laboratory.png"
 #endif
+#define HERO_GUI_POS "resources/circles.png"
 
 
 

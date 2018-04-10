@@ -76,7 +76,7 @@ namespace Zenon {
         sf::Event event;
 
         while (this->m_data->window.pollEvent(event)) {
-            if (sf::Event::Closed == event.type) {
+            if (sf::Event::Closed == event.type || sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
                 this->m_data->window.close();
             }
             if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {

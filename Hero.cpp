@@ -16,9 +16,22 @@ namespace Zenon
         m_mainSprite.scale(2.0,2.0);
         m_direction = sf::Vector2f(-1,-1);
         
-        m_destinyPointer.setTexture(m_data->assets.GetTexture("GUI_ELEMENTS"));
-        m_destinyPointer.setTextureRect(sf::IntRect(61,76,21,21));
+        m_destinyPointer.setTexture(m_data->assets.GetTexture("Hero_GUI"));
+        m_destinyPointer.setTextureRect(sf::IntRect(0,0,65,64));
+        m_destinyPointer.scale(0.5,0.5);
         m_destinyPointer.setOrigin(m_destinyPointer.getGlobalBounds().width/2, m_destinyPointer.getGlobalBounds().height/2);
+        
+        
+        m_heroArrow.setTexture(m_data->assets.GetTexture("Hero_GUI"));
+        m_heroArrow.setTextureRect(sf::IntRect(68,44,24,20));
+        m_heroArrow.setOrigin(m_heroArrow.getGlobalBounds().width/2, m_heroArrow.getGlobalBounds().height/2);
+        m_heroArrow.setPosition(m_mainSprite.getPosition().x, m_mainSprite.getPosition().y-60);
+        
+        m_heroPlace.setTexture(m_data->assets.GetTexture("Hero_GUI"));
+        m_heroPlace.setTextureRect(sf::IntRect(122,0,68,64));
+        m_heroPlace.setOrigin(m_heroPlace.getGlobalBounds().width/2, m_heroPlace.getGlobalBounds().height/2);
+        m_heroPlace.setPosition(m_mainSprite.getPosition().x, m_mainSprite.getPosition().y+30);
+        
         m_isSelected = false;
         m_waypoint = 1;
         m_pathComplete = false;
@@ -26,6 +39,8 @@ namespace Zenon
     
     void Hero::Update(float dt)
     {
+        m_heroArrow.setPosition(m_mainSprite.getPosition().x, m_mainSprite.getPosition().y-60);
+        m_heroPlace.setPosition(m_mainSprite.getPosition().x, m_mainSprite.getPosition().y+30);
         if(m_mainSprite.getGlobalBounds().contains(m_destinyPointer.getPosition()))
                 m_state = HERO_IDLE_STATE;
         if(m_state == HERO_MOVING_STATE)
@@ -89,6 +104,11 @@ namespace Zenon
         if(m_state == HERO_MOVING_STATE)
         {
             m_data->window.draw(m_destinyPointer);
+        }
+        if(m_isSelected)
+        {
+            m_data->window.draw(m_heroPlace);
+            m_data->window.draw(m_heroArrow);
         }
         m_data->window.draw(m_mainSprite);
     }
