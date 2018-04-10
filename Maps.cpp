@@ -140,57 +140,45 @@ namespace Zenon {
                 {
                     m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i][j+1], 1);
                     m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i+1][j], 1);
-                    m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i+1][j+1], 1);
                 }
                 else if(i==0 && j==(_width-1)) //Esquina superior derecha
                 {
                     m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i][j-1], 1);
-                    m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i+1][j], 1);
-                    m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i+1][j-1], 1);  
+                    m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i+1][j], 1);  
                 }
                 else if(i==(_height-1) && j==0)//Esquina inferior izquierda
                 {
                     m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i-1][j], 1);
                     m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i][j+1], 1);
-                    m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i-1][j+1], 1);
                 }
                 else if(i==(_height-1)&&j==(_width-1))//Esquina inferior derecha
                 {
                     m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i][j-1], 1);
                     m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i-1][j], 1);
-                    m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i-1][j-1], 1);
                 }
                 else if(i==0 && j>0 && j<_width-1) //Estoy en la primera linea
                 {
                     m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i][j-1], 1);
                     m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i][j+1], 1);
                     m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i+1][j], 1);
-                    m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i+1][j+1], 1);
-                    m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i+1][j-1], 1);
                 }
                 else if(i==(_height-1) && j>0 && j<_width-1) //Estoy en la ultima linea
                 {
                     m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i][j-1], 1);
                     m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i][j+1], 1);
                     m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i-1][j], 1);
-                    m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i-1][j+1], 1);
-                    m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i-1][j-1], 1);
                 }
                 else if(j==0 && i>0 && i<_height-1) //Estoy en la primera columna
                 {
                     m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i+1][j], 1);
                     m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i-1][j], 1);
                     m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i][j+1], 1);
-                    m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i+1][j+1], 1);
-                    m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i-1][j+1], 1);
                 }
                 else if(j==(_width-1) && i>0 && i<_height-1) //Estoy en la ultima columna
                 {
                     m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i+1][j], 1);
                     m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i-1][j], 1);
                     m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i][j-1], 1);
-                    m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i+1][j-1], 1);
-                    m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i-1][j-1], 1);
                 }
                 else
                 {
@@ -198,10 +186,6 @@ namespace Zenon {
                     m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i-1][j], 1);
                     m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i][j+1], 1);
                     m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i][j-1], 1);
-                    m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i+1][j-1], 1);
-                    m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i+1][j+1], 1);
-                    m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i-1][j+1], 1);
-                    m_nodeMap[i][j]->AddNeighbor(m_nodeMap[i-1][j-1], 1);
                 }
                 
             }
@@ -215,7 +199,6 @@ namespace Zenon {
             for(int j=0; j<_width; j++)
                 m_nodeMap[i][j]->ResetNode();
         }
-        
         m_openNodes.clear();
         m_closedNodes.clear();
     }
@@ -300,6 +283,9 @@ namespace Zenon {
             }
         }
         
+        if(endNode->IsObstacle())
+            return false;
+        
         
         //Ya tenemos los nodos puestos, ahora ya podemos realizar el algoritmo de A*
         
@@ -315,15 +301,32 @@ namespace Zenon {
         while(!m_openNodes.empty())
         {
             std::sort(m_openNodes.begin(), m_openNodes.end(), CompareNodes());
+            
+            for(int i=0; i<m_openNodes.size(); i++)
+            {
+                std::cout<<m_openNodes.at(i)->GetGlobalValue()<<"--";
+            }
+            std::cout<<std::endl;
+            
             currentNode = m_openNodes.front();
             popOpenNode(currentNode);
+            
             currentNode->SetClosed(true);
+            currentNode->SetOpen(false);
             m_closedNodes.push_back(currentNode);
             
             if(currentNode == endNode)
             {
                 std::cout<<"El path es: "<<std::endl;
                 this->ReconstructPath(currentNode, path);
+                for(int i= 0; i<_height; i++)
+                {
+                    for(int j=0; j<_width; j++)
+                    {
+                        std::cout<<m_nodeMap[i][j]->GetGlobalValue()<<"-";
+                    }
+                    std::cout<<std::endl;
+                }
                 return true;
             }
             
@@ -331,8 +334,11 @@ namespace Zenon {
             {
                 neighborNode = static_cast<Node*> (neighbor.first);
                 local_Value = currentNode->GetLocalValue() + neighbor.second;
-                if ((neighborNode->IsOpen() || neighborNode->IsClosed()) && neighborNode->GetLocalValue() < local_Value)
+                
+                if ((neighborNode->IsOpen() || neighborNode->IsClosed()) && neighborNode->GetLocalValue() <= local_Value)
+                {
                     continue;
+                }
                 
                 if(neighborNode->IsObstacle())
                 {
@@ -340,8 +346,9 @@ namespace Zenon {
                     continue;
                 }
                 
-                heuristic = this->distance_heuristic(neighborNode->GetCoordinates(), l_endPoint);
-                global_Value = heuristic + local_Value;
+                heuristic = this->distance_heuristic(neighborNode->GetCoordinates(), endNode->GetCoordinates());
+                
+                global_Value =  heuristic + local_Value;
                 neighborNode->Setvalues(global_Value, local_Value);
                 neighborNode->SetParent(currentNode);
 
@@ -349,6 +356,7 @@ namespace Zenon {
                     neighborNode->SetClosed(false);
                 if (!neighborNode->IsOpen())
                     pushOpenNode(neighborNode);  
+                
             }
             
         }
@@ -360,29 +368,27 @@ namespace Zenon {
     {
         Node* parent = static_cast<Node*> (l_lastChild->GetParent());
         /*
+        m_path.clear();
         sf::CircleShape shape(10);
         shape.setFillColor(sf::Color(100, 250, 50));
         shape.setPosition(parent->GetCoordinates());
+         
         m_path.push_back(shape);
         */
+        
         path.push_back(parent->GetCoordinates());
         while (parent != nullptr) {
-            
             /*
             sf::CircleShape shape(10);
             shape.setFillColor(sf::Color(100, 250, 50));
-            shape.setPosition(parent->GetCoordinates());
+            shape.setPosition(parent->GetCoordinates()); 
             m_path.push_back(shape);
-             * */
+            * */
             path.push_back(parent->GetCoordinates());
             parent = static_cast<Node*> (parent->GetParent());
         }
-        
-        for(int i=0; i<path.size(); i++)
-        {
-            std::cout<<path[i].x<<","<<path[i].y<<std::endl;
-        }
         std::cout<<"Termino"<<std::endl;
+        
     }
     
     bool Maps::isMyCoordinate(sf::Vector2f l_myCoordinate, sf::Vector2f l_mapNodeCoordinate)

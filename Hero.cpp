@@ -19,7 +19,7 @@ namespace Zenon
         m_destinyPointer.setTexture(m_data->assets.GetTexture("Hero_GUI"));
         m_destinyPointer.setTextureRect(sf::IntRect(0,0,65,64));
         m_destinyPointer.scale(0.5,0.5);
-        m_destinyPointer.setOrigin(m_destinyPointer.getGlobalBounds().width/2, m_destinyPointer.getGlobalBounds().height/2);
+        m_destinyPointer.setOrigin(m_destinyPointer.getLocalBounds().width/2, m_destinyPointer.getLocalBounds().height/2);
         
         
         m_heroArrow.setTexture(m_data->assets.GetTexture("Hero_GUI"));
@@ -41,6 +41,7 @@ namespace Zenon
     {
         m_heroArrow.setPosition(m_mainSprite.getPosition().x, m_mainSprite.getPosition().y-60);
         m_heroPlace.setPosition(m_mainSprite.getPosition().x, m_mainSprite.getPosition().y+30);
+        m_destinyPointer.rotate(2);
         if(m_mainSprite.getGlobalBounds().contains(m_destinyPointer.getPosition()))
                 m_state = HERO_IDLE_STATE;
         if(m_state == HERO_MOVING_STATE)
@@ -76,28 +77,37 @@ namespace Zenon
     {
         m_waypoint = 1;
         m_pathComplete = false;
+        std::vector<sf::Vector2f> backupPath = m_path;
         m_path.clear();
-        m_map.GetPath(m_mainSprite.getPosition(), l_destiny, m_path);
-        std::reverse(std::begin(m_path), std::end(m_path));
-        for(int i=0; i<m_path.size(); i++)
+        if(m_map.GetPath(m_mainSprite.getPosition(), l_destiny, m_path))
         {
-            std::cout<<m_path[i].x<<","<<m_path[i].y<<std::endl;
+            this->CheckPath();
+            std::reverse(std::begin(m_path), std::end(m_path));
+            for(int i=0; i<m_path.size(); i++)
+            {
+                std::cout<<m_path[i].x<<","<<m_path[i].y<<std::endl;
+            }
+            std::cout<<m_path.front().x<<","<<m_path.front().y<<std::endl;
+            std::cout<<m_mainSprite.getPosition().x<<","<<m_mainSprite.getPosition().y<<std::endl;
+            m_destiny = l_destiny;
+            m_destinyPointer.setPosition(l_destiny);
+            m_direction = m_path[m_waypoint] - m_mainSprite.getPosition();
+            m_direction = Normalize(m_direction, Module(m_direction));
+            m_state = HERO_MOVING_STATE;
+            m_isSelected = false;
         }
-        std::cout<<m_path.front().x<<","<<m_path.front().y<<std::endl;
-        std::cout<<m_mainSprite.getPosition().x<<","<<m_mainSprite.getPosition().y<<std::endl;
-        m_destiny = l_destiny;
-        m_destinyPointer.setPosition(l_destiny);
-        m_direction = m_path[m_waypoint] - m_mainSprite.getPosition();
-        m_direction = Normalize(m_direction, Module(m_direction));
-        m_state = HERO_MOVING_STATE;
-        m_isSelected = false;
+        else
+        {
+            m_path = backupPath;
+            m_isSelected = false;
+        }
     }
     
     void Hero::Move(float dt)
     {
         //std::cout<<"Mi direccion es: "<<m_direction.x<<","<<m_direction.y<<std::endl;
         m_mainSprite.move(dt*m_direction.x*HERO_SPEED, dt*m_direction.y*HERO_SPEED);
-    }
+    };
     
     void Hero::Draw()
     {
@@ -126,6 +136,28 @@ namespace Zenon
     void Hero::Select()
     {
         m_isSelected = true;
+    }
+    
+    void Hero::CheckPath()
+    {
+        std::cout<<"A checkear el path"<<std::endl;
+        int contador = 0;
+        while(contador< m_path.size())
+        {
+            std::cout<<contador<<std::endl;
+            if(contador+1 >= m_path.size() || contador-1 == 0)
+                contador++;
+            else
+            {
+                if((m_path[contador-1].y==m_path[contador].y) && (m_path[contador+1].x==m_path[contador].x))
+                {
+                    std::cout<<"Entro"<<std::endl;
+                    m_path.erase(m_path.begin() + contador);
+                }
+                else
+                    contador++;
+            }
+        }
     }
     
 }

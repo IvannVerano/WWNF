@@ -15,6 +15,7 @@ namespace Zenon
             void OrderMovement(sf::Vector2f l_destiny);
             void Move(float dt);
             void Select();
+            void CheckPath();
             bool IsSelected();
             bool IsClicked();
         private:

@@ -8,10 +8,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/user/NetBeansProjects/WWNF/Hero.hpp</file>
+            <file>file:/home/user/NetBeansProjects/WWNF/Node.cpp</file>
             <file>file:/home/user/NetBeansProjects/WWNF/FaseSeleccionState.cpp</file>
+            <file>file:/home/user/NetBeansProjects/WWNF/Maps.hpp</file>
             <file>file:/home/user/NetBeansProjects/WWNF/AssetManager.hpp</file>
+            <file>file:/home/user/NetBeansProjects/WWNF/Maps.cpp</file>
             <file>file:/home/user/NetBeansProjects/WWNF/AssetManager.cpp</file>
+            <file>file:/home/user/NetBeansProjects/WWNF/Placer.hpp</file>
             <file>file:/home/user/NetBeansProjects/WWNF/Hero.cpp</file>
+            <file>file:/home/user/NetBeansProjects/WWNF/Node.hpp</file>
             <file>file:/home/user/NetBeansProjects/WWNF/SplashState.cpp</file>
             <file>file:/home/user/NetBeansProjects/WWNF/DEFINITIONS.hpp</file>
         </group>
