@@ -1,11 +1,11 @@
 #include "Game.hpp"
-#include "SplashState.hpp"
+#include "FaseSeleccionState.hpp"
 
 namespace Zenon {
 
     Game::Game(int width, int height, std::string title) {
-        _data->window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
-        _data->machine.AddState(StateRef(new SplashState(this->_data)));
+        _data->window.create(sf::VideoMode(width, height), title, sf::Style::Fullscreen);
+        _data->machine.AddState(StateRef(new FaseSeleccionState(this->_data)));
 
         this->Run();
     }
