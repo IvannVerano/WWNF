@@ -34,7 +34,15 @@ namespace Zenon {
         m_trampa = -1;
         
         Maps &mapref = *map;
-        m_hero = new Hero(m_data, mapref);
+        for(int i = 0; i<m_data->data.NumberOfHeroes(); i++)
+        {
+            if(m_data->data.IsHeroeAlive(i))
+            {
+                Hero * c_hero = new Hero(m_data, mapref, i);
+                m_heroes.push_back(c_hero);
+            }
+            
+        }
 
         m_hud = new HUD(m_data, m_trampasSel);
         m_noCompruebes = false;
@@ -77,6 +85,7 @@ namespace Zenon {
 
         while (this->m_data->window.pollEvent(event)) {
             if (sf::Event::Closed == event.type || sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
+                this->m_data->data.SaveChanges();
                 this->m_data->window.close();
             }
             if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
@@ -115,23 +124,41 @@ namespace Zenon {
                         }
                     }
                 }
-                if(m_hero->IsClicked())
+                for(int i=0; i<m_heroes.size(); i++)
                 {
-                   m_hero->Select();
-                   std::cout<<"Me seleccionas"<<std::endl;
+                    if(m_heroes[i]->IsClicked())
+                    {
+                        m_heroes[i]->Select();
+                        std::cout<<"Me seleccionas"<<std::endl;
+                    }
+                    else
+                    {
+                        if(m_heroes[i]->IsSelected())
+                        {
+                            m_heroes[i]->OrderMovement((sf::Vector2f)m_data->input.GetMousePosition(m_data->window));
+                            std::cout<<"Me ordenas moverme"<<std::endl;
+                        }
+                    }
                 }
-                else
-                {
-                   if(m_hero->IsSelected())
-                   {
-                      m_hero->OrderMovement((sf::Vector2f)m_data->input.GetMousePosition(m_data->window));
-                      std::cout<<"Me ordenas moverme"<<std::endl;
-                   }
-                }
+                
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)) {
                 m_trampa = 1;
                 std::cout << "Cambio a metralletas" << std::endl;
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::K)) {
+                for(int i=0; i<m_heroes.size(); i++)
+                {
+                    if(m_heroes[i]->IsSelected())
+                    {
+                        m_data->data.UpdateData(m_heroes[i]->GetId(),false);
+                        delete m_heroes[i];
+                        m_heroes.erase(m_heroes.begin() + i);
+                    }
+                }
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
+                m_data->data.Reset();
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)) {
                 m_trampa = 2;
@@ -151,7 +178,11 @@ namespace Zenon {
             m_wantsNew = false;
         }
         
-        m_hero->Update(dt);
+        for(int i=0; i<m_heroes.size(); i++)
+        {
+            m_heroes[i]->Update(dt);
+        }
+        
 
         m_textoDinero.setString(std::to_string(m_disponible));
         int counter = 0;
@@ -343,7 +374,10 @@ namespace Zenon {
         }
 
         m_hud->Draw();
-        m_hero->Draw();
+        for(int i=0; i<m_heroes.size(); i++)
+        {
+            m_heroes[i]->Draw();
+        }
 
         if (m_hideCursor) {
             this->m_data->window.setMouseCursorVisible(false);

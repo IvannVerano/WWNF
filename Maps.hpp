@@ -25,6 +25,10 @@ namespace Zenon {
         Maps(GameDataRef l_data, const char *name);
         ~Maps();
         void Draw();
+        void OpenMap(const char *name);
+        void NumLayer();
+        void GetGid();
+        void GetLayers();
         std::vector<sf::Vector2f> GetPlacerLocation();
         bool IsDrawed();
         
@@ -63,6 +67,7 @@ namespace Zenon {
         sf::Sprite **_tilesetParedes;
         bool isDrawed;
         
+        //Variables A*
         std::vector<Node*>m_openNodes;
         std::vector<Node*>m_closedNodes;
         

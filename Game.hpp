@@ -6,6 +6,7 @@
 #include "StateMachine.hpp"
 #include "AssetManager.hpp"
 #include "InputManager.hpp"
+#include "SaveData.hpp"
 
 namespace Zenon {
 
@@ -14,6 +15,7 @@ namespace Zenon {
         sf::RenderWindow window;
         AssetManager assets;
         InputManager input;
+        SaveData data;
     };
 
     typedef std::shared_ptr<GameData> GameDataRef;

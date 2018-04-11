@@ -50,6 +50,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Maps.o \
 	${OBJECTDIR}/Node.o \
 	${OBJECTDIR}/Placer.o \
+	${OBJECTDIR}/SaveData.o \
 	${OBJECTDIR}/SplashState.o \
 	${OBJECTDIR}/StateMachine.o \
 	${OBJECTDIR}/main.o \
@@ -154,6 +155,11 @@ ${OBJECTDIR}/Placer.o: Placer.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Placer.o Placer.cpp
+
+${OBJECTDIR}/SaveData.o: SaveData.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SaveData.o SaveData.cpp
 
 ${OBJECTDIR}/SplashState.o: SplashState.cpp
 	${MKDIR} -p ${OBJECTDIR}

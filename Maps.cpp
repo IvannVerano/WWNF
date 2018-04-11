@@ -8,91 +8,19 @@
 namespace Zenon {
 
     Maps::Maps(GameDataRef l_data, const char *name) : m_data(l_data) {
-        std::cout << "Se crea un mapa " << std::endl;
-        doc.LoadFile(name);
-        map = doc.FirstChildElement("map");
-
-        //Alturas y anchuras del mapa y del tile
-        map->QueryIntAttribute("width", &_width);
-        map->QueryIntAttribute("height", &_height);
-        map->QueryIntAttribute("tilewidth", &_tilewidth);
-        map->QueryIntAttribute("tileheight", &_tileheigth);
-
-        //Directorio de la imagen
-        img = map->FirstChildElement("tileset")->FirstChildElement("image");
-        _filename = img->Attribute("source");
-        std::cout << _filename << std::endl;
-
-        layer = map->FirstChildElement("layer");
-
-        //Contar el numero de capas
-
-        while (layer) {
-            _numLayers++;
-            layer = layer->NextSiblingElement("layer");
-            std::cout << "Capas: " << _numLayers << std::endl;
-        }
-
-        data[0] = map->FirstChildElement("layer")->FirstChildElement("data")->FirstChildElement("tile");
-        layer2 = map->FirstChildElement("layer");
-        _tilemap = new int** [_numLayers];
-        //
-
-
-        for (int l = 0; l < _numLayers; l++) {
-            std::cout << _height << ",";
-            std::cout << _width << "\n";
-            _tilemap[l] = new int* [_height];
-            if (l >= 1)//Para que en la primera capa no lo haga
-            {
-                layer2 = layer2->NextSiblingElement("layer");
-                std::cout << "l:" << layer2 << "\n";
-                std::cout << l << "\n";
-                data[l] = layer2->FirstChildElement("data")->FirstChildElement("tile");
-            }
-            for (int h = 0; h < _height; h++) {
-                _tilemap[l][h] = new int [_width];
-                for (int w = 0; w < _width; w++) {
-                    _tilemap[l][h][w] = 0;
-                    if (data[l] != NULL) {
-                        data[l]->QueryIntAttribute("gid", &_tilemap[l][h][w]);
-                        data[l] = data[l]->NextSiblingElement("tile");
-                    }
-                }
-            }
-        }
         
-        _tilemapSprite = new sf::Sprite*** [_numLayers]; //Reservamos primera dimension _tilemapSprite[layer]
-        _tilesetSprite = new sf::Sprite* [_height];
-        _tilesetParedes = new sf::Sprite* [_height];
-        for (int i = 0; i < _height; i++) {
-            _tilesetSprite[i] = new sf::Sprite [_width];
-            for (int j = 0; j < _width; j++) {
-                int gid = _tilemap[0][i][j];
-                if (gid > 0) {
-                    std::cout << gid << std::endl;
-                    _tilesetSprite[i][j].setTexture(m_data->assets.GetTexture("TILESET"));
-                    std::cout << "Estoy pintando en: " << gid / 16 << " y " << gid % 16 << std::endl;
-                    _tilesetSprite[i][j].setTextureRect(sf::IntRect(((gid % 16) - 1)*32, (gid / 16)*32, 32, 32));
-                    _tilesetSprite[i][j].setPosition(sf::Vector2f(j * 32, i * 32));
-                }
-            }
-        }
+        //Abrimos el mapa e inicializamos las variables que necesitamos
+        this->OpenMap(name);
 
-        for (int i = 0; i < _height; i++) {
-            _tilesetParedes[i] = new sf::Sprite [_width];
-            for (int j = 0; j < _width; j++) {
-                int gid = _tilemap[1][i][j];
-                if (gid != 0) {
-                    std::cout << gid << std::endl;
-                    _tilesetParedes[i][j].setTexture(m_data->assets.GetTexture("TILESET"));
-                    std::cout << "Estoy pintando en: " << gid / 16 << " y " << gid % 16 << std::endl;
-                    _tilesetParedes[i][j].setTextureRect(sf::IntRect(((gid % 16) - 1)*32, (gid / 16)*32, 32, 32));
-                    _tilesetParedes[i][j].setPosition(sf::Vector2f(j * 32, i * 32));
-                }
-            }
-        }
-
+        //Obtemos el numero de capas
+        this->NumLayer();
+        
+        //Obtenemos GIDs
+        this->GetGid();
+        
+        //Obtemos las distintas capas mediente los GIDs
+        this->GetLayers();
+        
         isDrawed = false;
         
         this->InitNodeMap();
@@ -426,5 +354,101 @@ namespace Zenon {
         return c_result;
     }
     
+    void Maps::OpenMap(const char* name)
+    {
+        std::cout << "Se crea un mapa " << std::endl;
+        doc.LoadFile(name);
+        map = doc.FirstChildElement("map");
+
+        //Alturas y anchuras del mapa y del tile
+        map->QueryIntAttribute("width", &_width);
+        map->QueryIntAttribute("height", &_height);
+        map->QueryIntAttribute("tilewidth", &_tilewidth);
+        map->QueryIntAttribute("tileheight", &_tileheigth);
+
+        //Directorio de la imagen
+        img = map->FirstChildElement("tileset")->FirstChildElement("image");
+        _filename = img->Attribute("source");
+        std::cout << _filename << std::endl;
+
+        layer = map->FirstChildElement("layer"); 
+        data[0] = map->FirstChildElement("layer")->FirstChildElement("data")->FirstChildElement("tile");
+        layer2 = map->FirstChildElement("layer");
+    }
+    
+    void Maps::NumLayer()
+    {
+        //Contar el numero de capas
+        while (layer) {
+            _numLayers++;
+            layer = layer->NextSiblingElement("layer");
+            std::cout << "Capas: " << _numLayers << std::endl;
+        }
+    }
+    
+    void Maps::GetGid()
+    {
+        _tilemap = new int** [_numLayers];
+        
+        for (int l = 0; l < _numLayers; l++) {
+            std::cout << _height << ",";
+            std::cout << _width << "\n";
+            _tilemap[l] = new int* [_height];
+            if (l >= 1)//Para que en la primera capa no lo haga
+            {
+                layer2 = layer2->NextSiblingElement("layer");
+                std::cout << "l:" << layer2 << "\n";
+                std::cout << l << "\n";
+                data[l] = layer2->FirstChildElement("data")->FirstChildElement("tile");
+            }
+            for (int h = 0; h < _height; h++) {
+                _tilemap[l][h] = new int [_width];
+                for (int w = 0; w < _width; w++) {
+                    _tilemap[l][h][w] = 0;
+                    if (data[l] != NULL) {
+                        data[l]->QueryIntAttribute("gid", &_tilemap[l][h][w]);
+                        data[l] = data[l]->NextSiblingElement("tile");
+                    }
+                }
+            }
+        }
+    }
+    
+    void Maps::GetLayers()
+    {
+        _tilemapSprite = new sf::Sprite*** [_numLayers]; //Reservamos primera dimension _tilemapSprite[layer]
+        _tilesetSprite = new sf::Sprite* [_height];
+        _tilesetParedes = new sf::Sprite* [_height];
+        
+        
+        for (int i = 0; i < _height; i++) {
+            _tilesetSprite[i] = new sf::Sprite [_width];
+            for (int j = 0; j < _width; j++) {
+                int gid = _tilemap[0][i][j];
+                if (gid > 0) {
+                    std::cout << gid << std::endl;
+                    _tilesetSprite[i][j].setTexture(m_data->assets.GetTexture("TILESET"));
+                    std::cout << "Estoy pintando en: " << gid / 16 << " y " << gid % 16 << std::endl;
+                    _tilesetSprite[i][j].setTextureRect(sf::IntRect(((gid % 16) - 1)*32, (gid / 16)*32, 32, 32));
+                    _tilesetSprite[i][j].setPosition(sf::Vector2f(j * 32, i * 32));
+                   
+                }
+            }
+        } 
+        
+        for (int i = 0; i < _height; i++) {
+            _tilesetParedes[i] = new sf::Sprite [_width];
+            for (int j = 0; j < _width; j++) {
+                int gid = _tilemap[1][i][j];
+                if (gid > 0) {
+                    _tilesetParedes[i][j].setTexture(m_data->assets.GetTexture("TILESET"));
+                    std::cout << "Estoy pintando en: " << gid / 16 << " y " << gid % 16 << std::endl;
+                    _tilesetParedes[i][j].setTextureRect(sf::IntRect(((gid % 16) - 1)*32, (gid / 16)*32, 32, 32));
+                    _tilesetParedes[i][j].setPosition(sf::Vector2f(j * 32, i * 32));
+                }
+            }
+        } 
+        
+    }
 
 }

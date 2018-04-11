@@ -9,7 +9,7 @@ namespace Zenon
     class Hero
     {
         public:
-            Hero(GameDataRef l_data, Maps &l_map);
+            Hero(GameDataRef l_data, Maps &l_map, int l_id);
             void Update(float dt);
             void Draw();
             void OrderMovement(sf::Vector2f l_destiny);
@@ -18,6 +18,7 @@ namespace Zenon
             void CheckPath();
             bool IsSelected();
             bool IsClicked();
+            int  GetId();
         private:
             GameDataRef m_data;
             sf::Sprite m_mainSprite;
@@ -32,6 +33,7 @@ namespace Zenon
             Maps &m_map;
             int m_waypoint;
             bool m_pathComplete;
+            int m_Id;
             
     };
 }

@@ -3,6 +3,7 @@
 #include "FichaTrampa.hpp"
 #include "DEFINITIONS.hpp"
 #include "SplashState.hpp"
+#include "SaveData.hpp"
 #include <iostream>
 
 namespace Zenon {
@@ -54,6 +55,7 @@ namespace Zenon {
         m_trampasdisp.push_back(ametralladora);
 
         m_dineroJugador = 500;
+        
     }
 
     void FaseSeleccionState::HandleInput() {

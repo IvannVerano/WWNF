@@ -73,7 +73,7 @@ namespace Zenon {
         bool m_wantsNew = false;
         Maps* map;
         
-        Hero* m_hero;
+        std::vector<Hero*> m_heroes;
 
 
 

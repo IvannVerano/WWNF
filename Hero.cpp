@@ -6,8 +6,9 @@
 
 namespace Zenon
 {
-    Hero::Hero(GameDataRef l_data, Maps &l_map):m_data(l_data), m_map(l_map)
+    Hero::Hero(GameDataRef l_data, Maps &l_map, int l_id):m_data(l_data), m_map(l_map)
     {
+        m_Id = l_id;
         m_state = HERO_IDLE_STATE;
         m_mainSprite.setTexture(m_data->assets.GetTexture("Hero"));
         m_mainSprite.setTextureRect(sf::IntRect(105,284,14,42));
@@ -158,6 +159,11 @@ namespace Zenon
                     contador++;
             }
         }
+    }
+    
+    int Hero::GetId()
+    {
+        return m_Id;
     }
     
 }
