@@ -73,9 +73,9 @@ namespace Zenon {
                             }
 
                             if (l_resultantDistance > MINIMUM_WAYPOINT_DISTANCE) {
-                                float x = LimitV(m_speed * l_resultantNormalized.x * dt);
-                                float y = LimitV(m_speed * l_resultantNormalized.y * dt);
-                                m_mainSprite.move(x, y);
+                                //float x = LimitV(m_speed * l_resultantNormalized.x * dt);
+                                //float y = LimitV(m_speed * l_resultantNormalized.y * dt);
+                                m_mainSprite.move(m_speed * l_resultantNormalized.x * dt, m_speed * l_resultantNormalized.y * dt);
                             }
 
                         }

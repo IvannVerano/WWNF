@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux
-CND_ARTIFACT_NAME_Debug=alphaheroes
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/alphaheroes
+CND_ARTIFACT_NAME_Debug=alphabatalla
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/alphabatalla
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux/package
-CND_PACKAGE_NAME_Debug=alphaheroes.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/alphaheroes.tar
+CND_PACKAGE_NAME_Debug=alphabatalla.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/alphabatalla.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux
-CND_ARTIFACT_NAME_Release=alphaheroes
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/alphaheroes
+CND_ARTIFACT_NAME_Release=alphabatalla
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/alphabatalla
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux/package
-CND_PACKAGE_NAME_Release=alphaheroes.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/alphaheroes.tar
+CND_PACKAGE_NAME_Release=alphabatalla.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/alphabatalla.tar
 #
 # include compiler specific variables
 #

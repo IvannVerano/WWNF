@@ -4,7 +4,7 @@
 namespace Zenon {
 
     Game::Game(int width, int height, std::string title) {
-        _data->window.create(sf::VideoMode(width, height), title, sf::Style::Fullscreen);
+        _data->window.create(sf::VideoMode(width, height), title, sf::Style::Titlebar | sf::Style::Close);
         _data->machine.AddState(StateRef(new FaseSeleccionState(this->_data)));
 
         this->Run();

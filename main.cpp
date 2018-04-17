@@ -2,5 +2,5 @@
 #include "Game.hpp"
 
 int main() {
-    Zenon::Game(1088, 870, "SFML Starter");
+    Zenon::Game(1920, 1080, "SFML Starter");
 }
