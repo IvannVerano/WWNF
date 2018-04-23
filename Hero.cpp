@@ -32,6 +32,20 @@ namespace Zenon {
         m_heroPlace.setOrigin(m_heroPlace.getGlobalBounds().width / 2, m_heroPlace.getGlobalBounds().height / 2);
         m_heroPlace.setPosition(m_mainSprite.getPosition().x, m_mainSprite.getPosition().y + 30);
 
+        m_heroHUD.setTexture(m_data->assets.GetTexture("Hero_Face1"));
+        m_heroHUD.setOrigin(m_heroHUD.getLocalBounds().width / 2, m_heroHUD.getLocalBounds().height / 2);
+        m_heroHUD.setPosition(885,900);
+        m_heroHUD.scale(0.92,0.92);
+        
+        m_heroHUDred.setSize(sf::Vector2f(100,15));
+        m_heroHUDred.setPosition(m_heroHUD.getPosition().x - m_heroHUD.getGlobalBounds().width/2, m_heroHUD.getPosition().y+m_heroHUD.getGlobalBounds().height/2);
+        m_heroHUDred.setFillColor(sf::Color::Red);
+        
+        m_heroHUDLife.setSize(sf::Vector2f(100,15));
+        m_heroHUDLife.setPosition(m_heroHUD.getPosition().x - m_heroHUD.getGlobalBounds().width/2, m_heroHUD.getPosition().y+m_heroHUD.getGlobalBounds().height/2);
+        m_heroHUDLife.setFillColor(sf::Color::Green);
+        
+        
         m_isSelected = false;
         m_waypoint = 1;
         m_pathComplete = false;
@@ -70,13 +84,22 @@ namespace Zenon {
             }
         }
     }
+    
+    void Hero::ResizeLife()
+    {
+        float result;
+        result = (m_live*100)/m_initlive;
+        m_heroHUDLife.setSize(sf::Vector2f(result,15));
+    }
 
     void Hero::OrderMovement(sf::Vector2f l_destiny) {
         m_waypoint = 1;
         m_pathComplete = false;
-        std::vector<sf::Vector2f> backupPath = m_path;
-        m_path.clear();
-        if (m_map.GetPath(m_mainSprite.getPosition(), l_destiny, m_path)) {
+        std::vector<sf::Vector2f> backupPath;    
+        
+        if (m_map.GetPath(m_mainSprite.getPosition(), l_destiny, backupPath)) {
+            m_path.clear();
+            m_path = backupPath;
             this->CheckPath();
             std::reverse(std::begin(m_path), std::end(m_path));
             m_destiny = l_destiny;
@@ -84,10 +107,10 @@ namespace Zenon {
             m_direction = m_path[m_waypoint] - m_mainSprite.getPosition();
             m_direction = Normalize(m_direction, Module(m_direction));
             m_state = HERO_MOVING_STATE;
-            m_isSelected = false;
-        } else {
-            m_path = backupPath;
-            m_isSelected = false;
+        } 
+        else 
+        {
+            m_state = HERO_IDLE_STATE;
         }
     }
 
@@ -97,6 +120,7 @@ namespace Zenon {
 
     void Hero::TakeDamage(float l_damage) {
         m_live -= l_damage;
+        this->ResizeLife();
         if (m_live <= 0.0f) {
             m_state = HERO_DEAD_STATE;
         }
@@ -106,10 +130,15 @@ namespace Zenon {
         if (m_state == HERO_MOVING_STATE) {
             m_data->window.draw(m_destinyPointer);
         }
-        if (m_isSelected) {
+        if (m_isSelected) 
+        {
             m_data->window.draw(m_heroPlace);
             m_data->window.draw(m_heroArrow);
         }
+        
+        m_data->window.draw(m_heroHUD);
+        m_data->window.draw(m_heroHUDred);
+        m_data->window.draw(m_heroHUDLife);
         m_data->window.draw(m_mainSprite);
     }
 
@@ -157,6 +186,11 @@ namespace Zenon {
 
     int Hero::GetState() {
         return m_state;
+    }
+    
+    void Hero::Deselect()
+    {
+        m_isSelected = false;
     }
 
 }

@@ -151,7 +151,14 @@ namespace Zenon {
     bool Maps::GetPath(sf::Vector2f l_initPoint, sf::Vector2f l_endPoint, std::vector<sf::Vector2f>& path) {
         this->ResetNodeMap();
         //Ahora toca averiguar en que nodo caen nuestras coordenadas
-
+        
+        
+        if(l_endPoint.x<0 || l_endPoint.x>=_width*32 || l_endPoint.y<0 || l_endPoint.y>=_height*32)
+        {
+            std::cout<<"Mesalgoooo"<<std::endl;
+            return false;
+        }
+        
         Node* startNode = nullptr;
         Node* endNode = nullptr;
         bool validator = false;

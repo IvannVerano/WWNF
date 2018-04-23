@@ -10,9 +10,7 @@
 #define CURSOR_BUILD "resources/CursorBuild.png"
 #define LASER_SPRITE "resources/laser.png"
 #define FONT_DINERO "resources/emulogic.ttf"
-#ifndef TILESET_FILEPATH
 #define TILESET_FILEPATH "resources/BG_Laboratory.png"
-#endif
 #define HERO_GUI_POS "resources/circles.png"
 
 
@@ -90,11 +88,12 @@
 
 //variables de Hero
 #define SPRITESHEET_HEROE "resources/spritesheetHeroe1.png"
+#define SPRITE_HEROE_FACE1 "resources/HeroHud1.png"
 #define HERO_IDLE_STATE 0
 #define HERO_MOVING_STATE 1
 #define HERO_DEAD_STATE 3
 #define HERO_DETECT_WAYPOINT 20.0f
-#define HERO_SPEED 90.0f
+#define HERO_SPEED 150.0f
 
 
 //Variables de Berseker

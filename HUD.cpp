@@ -47,7 +47,14 @@ namespace Zenon
                 }
             }
 
-            //Reseteo todas las opciones del menú
+        this->ProccessSelection(l_clicked);
+        
+        return l_yes;
+    }
+    
+    void HUD::ProccessSelection(int l_clicked)
+    {
+        //Reseteo todas las opciones del menú
             if(l_clicked!= -1)
             {
                m_clicked = l_clicked;
@@ -57,8 +64,6 @@ namespace Zenon
                 }
                m_options.at(l_clicked).setTexture(m_texturas_highlight.at(l_clicked));
             }
-        
-        return l_yes;
     }
     
     int HUD::GetClick()

@@ -60,7 +60,7 @@ namespace Zenon {
 
             if (m_state == BERSEKER_FOLLOWING_HERO_STATE) {
                 if (!m_pathComplete) {
-                    sf::Vector2f l_direction = m_pathHero[m_currentWP] - m_enemySprite.getPosition();
+                    sf::Vector2f l_direction = m_pathObj[m_currentWP] - m_enemySprite.getPosition();
                     float l_module = Module(l_direction);
 
                     if (l_module < BERSEKER_MINIMUM_WP_D) {
@@ -160,10 +160,10 @@ namespace Zenon {
     }
 
     void Berseker::FindHero() {
-        m_pathHero.clear();
-        if (m_map.GetPath(m_enemySprite.getPosition(), m_heroes[m_heroTarget]->GetCurrentPosition(), m_pathHero)) {
+        m_pathObj.clear();
+        if (m_map.GetPath(m_enemySprite.getPosition(), m_heroes[m_heroTarget]->GetCurrentPosition(), m_pathObj)) {
             CheckPathHero();
-            std::reverse(m_pathHero.begin(), m_pathHero.end());
+            std::reverse(m_pathObj.begin(), m_pathObj.end());
         } else {
             m_state = BERSEKER_HITING_HERO_STATE;
         }
@@ -196,12 +196,12 @@ namespace Zenon {
 
     void Berseker::CheckPathHero() {
         int contador = 0;
-        while (contador < m_pathHero.size()) {
-            if (contador + 1 >= m_pathHero.size() || contador - 1 == 0)
+        while (contador < m_pathObj.size()) {
+            if (contador + 1 >= m_pathObj.size() || contador - 1 == 0)
                 contador++;
             else {
-                if ((m_pathHero[contador - 1].y == m_pathHero[contador].y) && (m_pathHero[contador + 1].x == m_pathHero[contador].x)) {
-                    m_pathHero.erase(m_pathHero.begin() + contador);
+                if ((m_pathObj[contador - 1].y == m_pathObj[contador].y) && (m_pathObj[contador + 1].x == m_pathObj[contador].x)) {
+                    m_pathObj.erase(m_pathObj.begin() + contador);
                 } else
                     contador++;
             }

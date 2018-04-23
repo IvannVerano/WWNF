@@ -99,17 +99,23 @@ namespace Zenon {
                 for (int i = 0; i < m_heroes.size(); i++) {
                     if (m_heroes[i]->IsClicked()) {
                         m_heroes[i]->Select();
-                    } else {
-                        if (m_heroes[i]->IsSelected()) {
-                            m_heroes[i]->OrderMovement((sf::Vector2f)m_data->input.GetMousePosition(m_data->window));
-                        }
+                    }
+                    else if(m_heroes[i]->IsSelected())
+                        m_heroes[i]->Deselect();
                     }
                 }
 
             }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)) {
-                m_trampa = 1;
-                std::cout << "Cambio a metralletas" << std::endl;
+            if(sf::Mouse::isButtonPressed(sf::Mouse::Right))
+            {
+                for(int i=0; i<m_heroes.size(); i++)
+                {
+                    if (m_heroes[i]->IsSelected()) 
+                    {
+                        m_heroes[i]->OrderMovement((sf::Vector2f)m_data->input.GetMousePosition(m_data->window));
+                    }
+                }
+                
             }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::K)) {
@@ -125,10 +131,37 @@ namespace Zenon {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
                 m_data->data.Reset();
             }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)) {
-                m_trampa = 2;
-                std::cout << "Cambio a Defensa" << std::endl;
+            
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)) {
+                m_trampa = 0;
+                m_hud->ProccessSelection(0);
             }
+            
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)) {
+                if(m_trampasSel.size() >= 1)
+                {
+                    m_trampa = 1;
+                    m_hud->ProccessSelection(1);
+                }
+            }
+        
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)) {
+                if(m_trampasSel.size() >= 2)
+                {
+                    m_trampa = 2;
+                    m_hud->ProccessSelection(2);
+                }
+            }
+            
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4)) {
+                if(m_trampasSel.size() >= 3)
+                {
+                    m_trampa = 3;
+                    m_hud->ProccessSelection(3);
+                }
+            }
+            
+       
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::X)) {
                 m_wantsDoxy = true;
@@ -138,7 +171,6 @@ namespace Zenon {
                 m_wantsBerseker = true;
             }
         }
-    }
 
     void SplashState::Update(float dt) {
 

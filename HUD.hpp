@@ -26,6 +26,7 @@ namespace Zenon
             bool CheckClick();
             void Update(float dt);
             void Draw();
+            void ProccessSelection(int l_clicked);
             int GetClick();
         
         private:
