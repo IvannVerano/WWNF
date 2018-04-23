@@ -38,7 +38,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/AssetManager.o \
 	${OBJECTDIR}/Attack.o \
 	${OBJECTDIR}/Bala.o \
+	${OBJECTDIR}/Berseker.o \
 	${OBJECTDIR}/Defensa.o \
+	${OBJECTDIR}/Doxy.o \
 	${OBJECTDIR}/Enemigo.o \
 	${OBJECTDIR}/Enemy.o \
 	${OBJECTDIR}/FaseSeleccionState.o \
@@ -106,10 +108,20 @@ ${OBJECTDIR}/Bala.o: Bala.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Bala.o Bala.cpp
 
+${OBJECTDIR}/Berseker.o: Berseker.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Berseker.o Berseker.cpp
+
 ${OBJECTDIR}/Defensa.o: Defensa.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Defensa.o Defensa.cpp
+
+${OBJECTDIR}/Doxy.o: Doxy.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Doxy.o Doxy.cpp
 
 ${OBJECTDIR}/Enemigo.o: Enemigo.cpp
 	${MKDIR} -p ${OBJECTDIR}

@@ -12,42 +12,34 @@ namespace Zenon {
     public:
 
         enum TYPE {
-            bee = 0, butterfly = 1, boss = 2
+            base = 0, doxy = 1, berseker = 2
         };
 
-        Enemy(GameDataRef l_data, sf::Vector2f l_position,
-                const std::vector<Enemy*>& l_neighbors, const std::vector<Bezier>& l_routes, int l_path);
+        Enemy(GameDataRef l_data, Enemy::TYPE l_type, sf::Vector2f l_position, const std::vector<Enemy*>& l_neighbors);
 
         ~Enemy() {
         }
 
-        void Update(float dt);
-        void Draw();
+        virtual void Update(float dt);
+        virtual void Draw();
         void SetPosition();
-        void PutDiving();
-        void SetCambio();
-        void SetPath(std::vector<sf::Vector2f> l_path);
-        void SetAlternative(std::vector<sf::Vector2f> l_path);
-
-        void checkRoutes();
-
-        const int GetId();
-        sf::FloatRect GetGB();
-        TYPE GetType();
-        int GetCurrentWP();
-        Bezier GetPath();
-        bool isDiving();
-        sf::Vector2f GetPosition();
-        int GetNumber();
         void TakeDamage(int l_factor);
         void SetKiller(int l_killer);
+
+        const int GetId();
+        Enemy::TYPE GetType();
+        const sf::Sprite &GetSprite() const;
+        sf::FloatRect GetGB();
+        sf::Vector2f GetPosition();
+
         int GetKiller();
         int GetActualState();
-        const sf::Sprite &GetSprite() const;
 
-    private:
+
+    protected:
 
         const int m_enemyId;
+        Enemy::TYPE m_type;
 
         static int ID() {
             static int ID = 0;
@@ -55,19 +47,8 @@ namespace Zenon {
         }
 
         GameDataRef m_data;
-
         sf::Sprite m_enemySprite;
-        sf::Vector2f m_resultant;
-        std::vector<sf::Vector2f> m_resultantAcc;
-        TYPE m_type;
-
-        int m_currentWP = 0 + 1;
-        Bezier m_path;
-        std::vector<Bezier> m_routes;
         const std::vector<Enemy*>& m_neighbors;
-        int l_rNumber = 0;
-        bool m_pathCompleted = false;
-
         int m_life;
         int m_state;
         int m_killer;

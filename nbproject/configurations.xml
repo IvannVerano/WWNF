@@ -7,8 +7,10 @@
       <itemPath>AssetManager.hpp</itemPath>
       <itemPath>Attack.hpp</itemPath>
       <itemPath>Bala.hpp</itemPath>
+      <itemPath>Berseker.hpp</itemPath>
       <itemPath>DEFINITIONS.hpp</itemPath>
       <itemPath>Defensa.hpp</itemPath>
+      <itemPath>Doxy.hpp</itemPath>
       <itemPath>Enemigo.hpp</itemPath>
       <itemPath>Enemy.hpp</itemPath>
       <itemPath>FaseSeleccionState.hpp</itemPath>
@@ -38,7 +40,9 @@
       <itemPath>AssetManager.cpp</itemPath>
       <itemPath>Attack.cpp</itemPath>
       <itemPath>Bala.cpp</itemPath>
+      <itemPath>Berseker.cpp</itemPath>
       <itemPath>Defensa.cpp</itemPath>
+      <itemPath>Doxy.cpp</itemPath>
       <itemPath>Enemigo.cpp</itemPath>
       <itemPath>Enemy.cpp</itemPath>
       <itemPath>FaseSeleccionState.cpp</itemPath>
@@ -108,11 +112,19 @@
       </item>
       <item path="Bala.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Berseker.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Berseker.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DEFINITIONS.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Defensa.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Defensa.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Doxy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Doxy.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Enemigo.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -215,11 +227,19 @@
       </item>
       <item path="Bala.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Berseker.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Berseker.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DEFINITIONS.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Defensa.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Defensa.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Doxy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Doxy.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Enemigo.cpp" ex="false" tool="1" flavor2="0">
       </item>

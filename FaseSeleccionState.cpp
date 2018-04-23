@@ -26,6 +26,7 @@ namespace Zenon {
         m_data->assets.LoadTexture("WHITE_GUI_ELEMENTS", WHITE_GUI_ELEMENTS);
         m_data->assets.LoadTexture("CURSOR_BUILD", CURSOR_BUILD);
         m_data->assets.LoadTexture("enemigo", ENEMY_SPRITE);
+        m_data->assets.LoadTexture("berseker", BERSEKER_SPRITE);
         m_data->assets.LoadTexture("bullet", LASER_SPRITE);
         m_data->assets.LoadTexture("ametralladora", AMETRALLADORA_SPRITE);
         m_data->assets.LoadTexture("GUI_AMETRALLADORA", GUI_AMETRALLADORA);
@@ -55,7 +56,7 @@ namespace Zenon {
         m_trampasdisp.push_back(ametralladora);
 
         m_dineroJugador = 500;
-        
+
     }
 
     void FaseSeleccionState::HandleInput() {

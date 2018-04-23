@@ -88,8 +88,25 @@
 #define TIENDA "resources/tienda.png"
 #define SPAWN "resources/effect.png"
 
+//variables de Hero
 #define SPRITESHEET_HEROE "resources/spritesheetHeroe1.png"
 #define HERO_IDLE_STATE 0
 #define HERO_MOVING_STATE 1
+#define HERO_DEAD_STATE 3
 #define HERO_DETECT_WAYPOINT 20.0f
 #define HERO_SPEED 90.0f
+
+
+//Variables de Berseker
+#define BERSEKER_SPRITE "resources/berseker.png"
+#define BERSEKER_MINIMUM_WP_D 10.0f
+#define BERSEKER_SPEED 100.0f
+#define BERSEKER_IDLE_STATE 2
+#define BERSEKER_MOVING_TO_OBJ_STATE 3
+#define BERSEKER_HERO_DETECTION 150.0f
+#define BERSEKER_HITING_D 120.0f
+#define BERSEKER_HITING_OBJ 4
+#define BERSEKER_FOLLOWING_HERO_STATE 5
+#define BERSEKER_HITING_HERO_STATE 6
+#define BERSEKER_CHECKING_HERO_TIME 0.8f
+#define BERSEKER_HIT_HERO_TIME 1.0f

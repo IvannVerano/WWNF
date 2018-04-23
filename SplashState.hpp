@@ -9,6 +9,8 @@
 #include "FichaTrampa.hpp"
 #include "Enemigo.hpp"
 #include "Enemy.hpp"
+#include "Doxy.hpp"
+#include "Berseker.hpp"
 #include "Bala.hpp"
 #include "MathHelper.hpp"
 #include "Maps.hpp"
@@ -28,9 +30,11 @@ namespace Zenon {
         void Draw(float dt);
 
         void LoadPaths();
+        void LoadAssets();
         void SpawnEnemy(sf::Vector2f l_position, int l_path);
-        void SpawnEnemy2(sf::Vector2f l_position, int l_path);
-        
+        void SpawnDoxy(sf::Vector2f l_position, int l_path);
+        void SpawnBerseker(sf::Vector2f l_position, int l_obj);
+
         void CheckColision();
 
         sf::VertexArray ToVertex(std::vector<sf::Vector2f> l_points);
@@ -51,16 +55,11 @@ namespace Zenon {
         bool m_noCompruebes;
         bool m_hideCursor;
 
-        Enemigo* m_enemy;
-        Enemy* m_ENEMY;
-
-        sf::Sprite m_point1;
-        sf::Sprite m_point2;
-        sf::Sprite m_point3;
-        sf::Sprite m_spawn;
+        Enemy* m_enemy;
 
         std::vector<Trampa*> m_trampas;
         std::vector<Placer*> m_placer;
+        std::vector<sf::Sprite> m_objectives;
         std::vector<FichaTrampa*> m_trampasSel;
         std::vector<Bezier> m_routes;
         std::vector<Enemigo*> m_enemys;
@@ -70,9 +69,10 @@ namespace Zenon {
         std::vector<sf::VertexArray> m_pathsVertex;
         std::vector<sf::Vector2f> m_loc_placers;
 
-        bool m_wantsNew = false;
+        bool m_wantsDoxy = false;
+        bool m_wantsBerseker = false;
         Maps* map;
-        
+
         std::vector<Hero*> m_heroes;
 
 
