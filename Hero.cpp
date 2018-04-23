@@ -93,13 +93,13 @@ namespace Zenon {
     }
 
     void Hero::OrderMovement(sf::Vector2f l_destiny) {
-        m_waypoint = 1;
-        m_pathComplete = false;
-        std::vector<sf::Vector2f> backupPath;    
-        
-        if (m_map.GetPath(m_mainSprite.getPosition(), l_destiny, backupPath)) {
-            m_path.clear();
-            m_path = backupPath;
+        m_backupPath = m_path;
+        m_path.clear();
+        if (m_map.GetPath(m_mainSprite.getPosition(), l_destiny, m_path)) 
+        { 
+            m_waypoint = 1;
+            m_pathComplete = false;
+            std::cout<<"Entro"<<std::endl;
             this->CheckPath();
             std::reverse(std::begin(m_path), std::end(m_path));
             m_destiny = l_destiny;
@@ -110,7 +110,7 @@ namespace Zenon {
         } 
         else 
         {
-            m_state = HERO_IDLE_STATE;
+            m_path = m_backupPath;
         }
     }
 

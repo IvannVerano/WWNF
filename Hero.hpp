@@ -43,6 +43,7 @@ namespace Zenon {
         sf::RectangleShape m_heroHUDLife;
         sf::RectangleShape m_heroHUDred;
         std::vector<sf::Vector2f> m_path;
+        std::vector<sf::Vector2f> m_backupPath;
         Maps &m_map;
         bool m_isSelected;
         bool m_pathComplete;
