@@ -167,6 +167,15 @@ namespace Zenon {
             }
         }
     }
+    
+    void Hero::Heal(float l_heal)
+    {
+            if(m_live < m_initlive)
+            {
+                m_live+=l_heal;
+                this->ResizeLife();
+            }
+    }
 
     int Hero::GetId() {
         return m_Id;
@@ -192,5 +201,7 @@ namespace Zenon {
     {
         m_isSelected = false;
     }
+    
+    
 
 }

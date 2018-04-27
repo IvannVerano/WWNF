@@ -7,6 +7,7 @@
 #include "AssetManager.hpp"
 #include "InputManager.hpp"
 #include "SaveData.hpp"
+#include "Reward.hpp"
 
 namespace Zenon {
 
@@ -16,6 +17,7 @@ namespace Zenon {
         AssetManager assets;
         InputManager input;
         SaveData data;
+        Reward reward;
     };
 
     typedef std::shared_ptr<GameData> GameDataRef;

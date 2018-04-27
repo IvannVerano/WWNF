@@ -1,10 +1,12 @@
-#include "Attack.hpp"
+#include "Flamethrower.hpp"
 #include "DEFINITIONS.hpp"
 #include <iostream>
+#include <math.h>
+
 
 namespace Zenon
 {
-    Attack::Attack(GameDataRef l_data, sf::Vector2f l_posicion, sf::Texture& l_texture, const std::vector<Enemy*>& l_enemies, std::vector<Bala*> &l_bullets):Trampa(l_data), m_enemies(l_enemies), m_bullets(l_bullets)
+    Flamethrower::Flamethrower(GameDataRef l_data, sf::Vector2f l_posicion, sf::Texture& l_texture, const std::vector<Enemy*>& l_enemies, std::vector<Bala*> &l_bullets):Trampa(l_data), m_enemies(l_enemies), m_bullets(l_bullets)
     {
         //Seteamos todo el tema de la animacion
         m_SpriteAnimation.setTexture(m_datos->assets.GetTexture("GUI_ELEMENTS"));
@@ -22,6 +24,7 @@ namespace Zenon
         m_mainSprite.setTexture(l_texture);
         m_mainSprite.setOrigin(m_mainSprite.getGlobalBounds().width / 2, m_mainSprite.getGlobalBounds().height / 2);
         m_mainSprite.setPosition(l_posicion);
+        m_mainSprite.scale(0.35,0.35);
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         
         m_animationAppearCounter = 1;
@@ -29,13 +32,10 @@ namespace Zenon
         m_timeAppear.restart();
         m_state = TRAP_STATE_APPEARING;
         m_target = -1;
-        m_charge = 0;
         m_ShootCadence.restart();
-        m_timeRefresh.restart();
-        m_reload=false;
     }
     
-    void Attack::SetAttributes(int l_id, float l_cadence, float l_apptime, int l_power, int l_range, int l_refresh, int l_wait, int l_percentaje, int l_price)
+    void Flamethrower::SetAttributes(int l_id, float l_cadence, float l_apptime, int l_power, int l_range, int l_refresh, int l_wait, int l_percentaje, int l_price)
     {
         m_id = l_id;
         m_cadencia = l_cadence;
@@ -48,7 +48,7 @@ namespace Zenon
         m_price = l_price;
     }
     
-    void Attack::AnimateApparition()
+    void Flamethrower::AnimateApparition()
     {
         if (m_aniAppearClock.getElapsedTime().asSeconds() > SPEED_ANIMATION / m_AnimationFramesAppear.size()) {
             
@@ -67,7 +67,7 @@ namespace Zenon
         }
     }
     
-    void Attack::Update(float dt)
+    void Flamethrower::Update(float dt)
     {
         switch(m_state)
         {
@@ -89,7 +89,7 @@ namespace Zenon
         }    
     }
     
-    void Attack::FindTarget()
+    void Flamethrower::FindTarget()
     {
         for (int i = 0; i < m_enemies.size(); i++) 
         {
@@ -102,109 +102,75 @@ namespace Zenon
                 {
                    m_target = i; 
                    m_realID = m_enemies.at(i)->GetId();
+
                 }
             }
         }
     }
     
-    void Attack::Shoot()
+    void Flamethrower::Shoot()
     {
         if(m_target != -1)
         {
             if (m_mainSprite.getPosition().x - m_enemies[m_target]->GetPosition().x < m_rango && m_mainSprite.getPosition().y - m_enemies[m_target]->GetPosition().y < m_rango &&
                     m_enemies[m_target]->GetPosition().x - m_mainSprite.getPosition().x < m_rango && m_enemies[m_target]->GetPosition().y - m_mainSprite.getPosition().y < m_rango) 
             {
-                float angle = 0;
-                float hipotenusa;
-                float incremento_x, incremento_y;
-                sf::Vector2f m_direccion_sentido;
-                hipotenusa = std::sqrt(std::pow(m_mainSprite.getPosition().x - m_enemies[m_target]->GetPosition().x, 2) + std::pow(m_mainSprite.getPosition().y - m_enemies[m_target]->GetPosition().y, 2));
-                angle = std::asin(abs(m_mainSprite.getPosition().y - m_enemies[m_target]->GetPosition().y) / hipotenusa) * 180.0 / PI;
-                angle = angle - 90;
+
+                m_mainSprite.rotate(ANGULO_LANZALLAMAS);
+
                 
-                if (m_mainSprite.getPosition().x - m_enemies[m_target]->GetPosition().x < 0 && m_mainSprite.getPosition().y - m_enemies[m_target]->GetPosition().y > 0) {//primer cuadrante
-
-                    angle = angle*-1;
-
-                    m_direccion_sentido.x = (m_enemies[m_target]->GetPosition().x - m_mainSprite.getPosition().x)*-1;
-                    m_direccion_sentido.y = m_enemies[m_target]->GetPosition().y - m_mainSprite.getPosition().y;
-
-                }
-                if (m_mainSprite.getPosition().x - m_enemies[m_target]->GetPosition().x > 0 && m_mainSprite.getPosition().y - m_enemies[m_target]->GetPosition().y < 0) {// tercer cuadrante
-
-                    angle = 180 - angle;
-                    m_direccion_sentido.x = (m_enemies[m_target]->GetPosition().x - m_mainSprite.getPosition().x)*-1;
-                    m_direccion_sentido.y = m_enemies[m_target]->GetPosition().y - m_mainSprite.getPosition().y;
-                }
-
-                if (m_mainSprite.getPosition().x - m_enemies[m_target]->GetPosition().x <= 0 && m_mainSprite.getPosition().y - m_enemies[m_target]->GetPosition().y <= 0) { //cuarto cuadrante
-
-                    angle = angle - 180;
-                    m_direccion_sentido.x = (m_enemies[m_target]->GetPosition().x - m_mainSprite.getPosition().x)*-1;
-                    m_direccion_sentido.y = m_enemies[m_target]->GetPosition().y - m_mainSprite.getPosition().y;
-                }
-
-                if (m_mainSprite.getPosition().x - m_enemies[m_target]->GetPosition().x > 0 && m_mainSprite.getPosition().y - m_enemies[m_target]->GetPosition().y > 0) { //cuarto cuadrante
-
-                    m_direccion_sentido.x = (m_enemies[m_target]->GetPosition().x - m_mainSprite.getPosition().x)*-1;
-                    m_direccion_sentido.y = (m_enemies[m_target]->GetPosition().y - m_mainSprite.getPosition().y);
-                }
-                m_mainSprite.setRotation(angle);
-                
-                if(m_reload==false && m_ShootCadence.getElapsedTime().asSeconds() > m_cadencia)
+                if(m_ShootCadence.getElapsedTime().asSeconds() > m_cadencia)
                 {
-                    m_charge=m_charge+5;
-                 //   std::cout<<"sobrecargando"<<m_charge<<std::endl;
-                    this->CreateBullet(m_direccion_sentido, angle);
+
+                    
+
+                    this->CreateBullet( m_mainSprite.getRotation());
+                    this->CreateBullet( m_mainSprite.getRotation()+90);
+                    this->CreateBullet( m_mainSprite.getRotation()+180);
+                    this->CreateBullet( m_mainSprite.getRotation()+270);
+                    
                     m_ShootCadence.restart();
-                    
-                    
-                }
-                
-                if(m_charge>=100){
-                            
-                    if(m_timeRefresh.getElapsedTime().asSeconds()>6.0f)
-                    {
-                       // std::cout<<"descarga total "<<m_charge<<std::endl;
-                        m_charge=0;
-                        m_reload=false;
-
-                        m_timeRefresh.restart();
-
-                    }
-                    else{
-                        
-                        m_reload=true;
-
-                    }
                 }
             }
-                
-        }else
+            else
             {
-                if(m_charge>0){
-                    
-                    m_charge=m_charge-10;
-                    if(m_charge<=0){
-                        m_charge=0;
-                    }
-                //    std::cout<<"descargando "<<m_charge<<std::endl;
-
-                    
-                }
-                
                 m_target = -1;
                 m_mainSprite.setRotation(0);
-            }
+            }    
+        }
     }
     
-    void Attack::CreateBullet(sf::Vector2f l_direccionSentido, float angle)
+    void Flamethrower::CreateBullet( float angle)
     {
-       Bala * c_bala = new Bala(m_datos, m_mainSprite.getPosition(), l_direccionSentido, angle, m_potencia, m_id,0);
+        sf::Vector2f m_direccion_sentido;
+
+                    if(0<= m_mainSprite.getRotation()<=90){
+                    
+                        m_direccion_sentido.x = (std::cos(angle*PI/180))*-45;
+                        m_direccion_sentido.y = (std::sin(angle*PI/180))*55;
+                    
+                    }else if(90< m_mainSprite.getRotation()<=180){
+                        
+                        m_direccion_sentido.x = (std::cos(angle*PI/180))*-45;
+                        m_direccion_sentido.y = (std::sin(angle*PI/180))*55;
+                    }else if(180< m_mainSprite.getRotation()<=270){
+ 
+                        m_direccion_sentido.x = (std::cos(angle*PI/180))*-45;
+                        m_direccion_sentido.y = (std::sin(angle*PI/180))*55;                       
+                    }else if(270< m_mainSprite.getRotation()<360){
+                        
+                        m_direccion_sentido.x = (std::cos(angle*PI/180))*-45;
+                        m_direccion_sentido.y = (std::sin(angle*PI/180))*55;                        
+                    }
+        
+        
+       Bala * c_bala = new Bala(m_datos, m_mainSprite.getPosition(), m_direccion_sentido, angle-90, m_potencia, m_id,1);
        m_bullets.push_back(c_bala);
     }
+        
+
     
-    void Attack::Draw()
+    void Flamethrower::Draw()
     {
         if (m_state == TRAP_STATE_APPEARING)
         {
@@ -216,7 +182,7 @@ namespace Zenon
                  
     }
     
-    void Attack::DeleteTarget(int l_posicion)
+    void Flamethrower::DeleteTarget(int l_posicion)
     {
         if(m_realID == l_posicion)
         {
@@ -226,7 +192,7 @@ namespace Zenon
         }
     }
     
-    int Attack::CalculateRec(int l_sum)
+    int Flamethrower::CalculateRec(int l_sum)
     {
         int c_res = l_sum + (m_price * (m_percentaje/100.0));
         return c_res;

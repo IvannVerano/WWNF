@@ -75,9 +75,17 @@ namespace Zenon
         return false;
     }
     
+    void FichaTrampa::SetLocked(bool l_value)
+    {
+        m_locked = l_value;
+    }
+    
     void FichaTrampa::Draw()
     {
-        m_datos->window.draw(m_mainSprite);
+        if(!m_locked)
+        {
+            m_datos->window.draw(m_mainSprite);
+        }
         if(m_datos->input.IsSpriteHovered(m_mainSprite, sf::Mouse::Left, m_datos->window))
         {
             m_datos->window.draw(m_descriptive);

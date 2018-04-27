@@ -25,10 +25,24 @@ namespace Zenon
             m_heroes = m_heroes->NextSiblingElement("hero");
         }
         
+        m_traps = m_data->FirstChildElement("trap");
+        
+        while(m_traps)
+        {
+            m_traps->QueryIntAttribute("unlocked", &m_unlocked);
+            m_trapsUnlocked.push_back(m_unlocked);
+            m_traps = m_traps->NextSiblingElement("trap");
+        }
+        
         
         for(int i= 0; i<m_heroesState.size(); i++)
         {
             std::cout<<this->IsHeroeAlive(i)<<std::endl;
+        }
+        
+        for(int i= 0; i<m_trapsUnlocked.size(); i++)
+        {
+            std::cout<<this->IsTrapUnlocked(i)<<std::endl;
         }
     }
     
@@ -37,6 +51,13 @@ namespace Zenon
         for(int i = 0; i<m_heroesState.size(); i++)
         {
             m_heroesState[i] = true;
+        }
+        for(int i=0; i<m_trapsUnlocked.size(); i++)
+        {
+            if(i<2)
+                m_trapsUnlocked[i] = true;
+            else
+                m_trapsUnlocked[i] = false;
         }
         this->SaveChanges();
     }
@@ -59,6 +80,13 @@ namespace Zenon
             pData->InsertEndChild(pElement);
         }
         
+        for(int i = 0;i<m_trapsUnlocked.size();i++)
+        {
+            tinyxml2::XMLElement * pElement = xmlDoc.NewElement("trap");
+            pElement->SetAttribute("unlocked", (int)m_trapsUnlocked[i]);
+            pData->InsertEndChild(pElement);
+        }
+        
         tinyxml2::XMLError eResult = xmlDoc.SaveFile("SaveData.xml");
         
     }
@@ -72,4 +100,56 @@ namespace Zenon
     {
         return m_heroesState[l_hero];
     }
+    
+    void SaveData::SetUnlockTrap(bool l_value, int l_position)
+    {
+        std::cout<<"Pongo la trampa con ID: "<<l_position<<" a "<<l_value<<std::endl;
+        m_trapsUnlocked[l_position] = l_value;
+        for(int i=0; i<m_trapsUnlocked.size(); i++)
+        {
+            std::cout<<"La trampa con ID: "<<i<<" esta unlocked a "<<m_trapsUnlocked[i]<<std::endl;
+        }
+    }
+    
+    bool SaveData::IsTrapUnlocked(int l_trap)
+    {
+        return m_trapsUnlocked[l_trap];
+    }
+    
+    void SaveData::AddMoney(int l_quantity)
+    {
+        m_money += l_quantity;
+    }
+    
+    int SaveData::GetMoney()
+    {
+        return m_money;
+    }
+    
+    void SaveData::SetMoney(int l_quanity)
+    {
+        m_money = l_quanity;
+    }
+    
+    void SaveData::SetGeneralPunctuation(int l_increment)
+    {
+        m_generalPunctuation += l_increment;
+    }
+    
+    void SaveData::SetConfidenceLevel(int increment)
+    {
+        if(m_confidenceLevel < 6)
+            m_confidenceLevel+=increment;
+    }
+    
+    int SaveData::GetConfidenceLevel()
+    {
+        return m_confidenceLevel;
+    }
+    
+    int SaveData::GetGeneralPunctuation()
+    {
+        return m_generalPunctuation;
+    }
+    
 }

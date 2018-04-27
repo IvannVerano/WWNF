@@ -23,6 +23,7 @@ namespace Zenon {
         void TakeDamage(float l_damage);
         void Deselect();
         void ResizeLife();
+        void Heal(float l_heal);
         sf::FloatRect GetGB();
         sf::Vector2f GetCurrentPosition();
 

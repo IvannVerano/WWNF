@@ -10,7 +10,7 @@
  *
  * Created on 18 de abril de 2018, 19:14
  */
-
+#pragma once
 
 #include "Enemy.hpp"
 #include "MathHelper.hpp"

@@ -9,9 +9,11 @@
 #define WHITE_GUI_ELEMENTS "resources/elementosGUImej.png"
 #define CURSOR_BUILD "resources/CursorBuild.png"
 #define LASER_SPRITE "resources/laser.png"
-#define FONT_DINERO "resources/emulogic.ttf"
+#define FONT_DINERO "resources/Autobus-Bold.ttf"
 #define TILESET_FILEPATH "resources/BG_Laboratory.png"
 #define HERO_GUI_POS "resources/circles.png"
+#define WORLD_MAP "resources/WorldMap.jpg"
+#define MARKER "resources/marcadormapa.png"
 
 
 
@@ -109,3 +111,48 @@
 #define BERSEKER_HITING_HERO_STATE 6
 #define BERSEKER_CHECKING_HERO_TIME 0.8f
 #define BERSEKER_HIT_HERO_TIME 1.0f
+
+
+//variables del LANZALLAMAS
+#define LANZALLAMAS_SPRITE "resources/lanzallamas.png"
+#define FIRE_SPRITE "resources/flame.png"
+#define GUI_LANZALLAMAS "resources/gui_lanzallamas.png"
+#define GUI_LANZALLAMAS_SEL "resources/gui_lanzallamas_sel.png"
+#define DESCRIPTIVE_LANZALLAMAS "resources/descriptor_ametralladora.png"
+#define RANGO_LANZALLAMAS 150
+#define CADENCIA_LANZALLAMAS 0.1f
+#define POTENCIA_LANZALLAMAS 10
+#define PRECIO_LANZALLAMAS 300
+#define PORCENTAJE_LANZALLAMAS 27
+#define REFRESCO_LANZALLAMAS 4
+#define ANGULO_LANZALLAMAS 3
+#define RANGO_FUEGO 150
+
+
+//Variables TORRE SANACION
+
+#define SANACION_SPRITE "resources/seleccion4.png"
+#define GUI_SANACION "resources/gui_support.png"
+#define GUI_SANACION_SEL "resources/gui_support_sel.png"
+#define DESCRIPTIVE_SANACION "resources/descriptor_ametralladora.png"
+#define RANGO_SANACION 150
+#define CADENCIA_SANACION 0
+#define POTENCIA_SANACION 15
+#define PRECIO_SANACION 500
+#define PORCENTAJE_SANACION 0
+#define REFRESCO_SANACION 0
+#define TIEMPO_CURA  2.0f
+
+
+//Variables HYDRA
+#define HYDRA_SPRITE_SHEET "resources/HydraSheet2.png"
+#define HYDRA_SPEED 150.0f
+#define HYDRA_SCALE_X 0.5f
+#define HYDRA_SCALE_Y 0.5f
+#define LAUNCH_TIME 0.12f
+#define HYDRA_ANIMATION_FPS 0.1f
+
+//Variables conexion a server
+#define SA      struct sockaddr
+#define MAXLINE 4096
+#define MAXSUB  200

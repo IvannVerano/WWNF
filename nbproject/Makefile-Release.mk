@@ -45,16 +45,24 @@ OBJECTFILES= \
 	${OBJECTDIR}/Enemy.o \
 	${OBJECTDIR}/FaseSeleccionState.o \
 	${OBJECTDIR}/FichaTrampa.o \
+	${OBJECTDIR}/Flamethrower.o \
 	${OBJECTDIR}/Game.o \
+	${OBJECTDIR}/GameOverState.o \
 	${OBJECTDIR}/HUD.o \
 	${OBJECTDIR}/Hero.o \
+	${OBJECTDIR}/Hydra.o \
+	${OBJECTDIR}/HydraSegment.o \
 	${OBJECTDIR}/InputManager.o \
+	${OBJECTDIR}/Level.o \
+	${OBJECTDIR}/LevelSelectorState.o \
 	${OBJECTDIR}/Maps.o \
 	${OBJECTDIR}/Node.o \
 	${OBJECTDIR}/Placer.o \
+	${OBJECTDIR}/Reward.o \
 	${OBJECTDIR}/SaveData.o \
 	${OBJECTDIR}/SplashState.o \
 	${OBJECTDIR}/StateMachine.o \
+	${OBJECTDIR}/Support.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/tinyxml2.o
 
@@ -133,10 +141,20 @@ ${OBJECTDIR}/FichaTrampa.o: FichaTrampa.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/FichaTrampa.o FichaTrampa.cpp
 
+${OBJECTDIR}/Flamethrower.o: Flamethrower.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Flamethrower.o Flamethrower.cpp
+
 ${OBJECTDIR}/Game.o: Game.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Game.o Game.cpp
+
+${OBJECTDIR}/GameOverState.o: GameOverState.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/GameOverState.o GameOverState.cpp
 
 ${OBJECTDIR}/HUD.o: HUD.cpp
 	${MKDIR} -p ${OBJECTDIR}
@@ -148,10 +166,30 @@ ${OBJECTDIR}/Hero.o: Hero.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Hero.o Hero.cpp
 
+${OBJECTDIR}/Hydra.o: Hydra.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Hydra.o Hydra.cpp
+
+${OBJECTDIR}/HydraSegment.o: HydraSegment.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/HydraSegment.o HydraSegment.cpp
+
 ${OBJECTDIR}/InputManager.o: InputManager.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/InputManager.o InputManager.cpp
+
+${OBJECTDIR}/Level.o: Level.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Level.o Level.cpp
+
+${OBJECTDIR}/LevelSelectorState.o: LevelSelectorState.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/LevelSelectorState.o LevelSelectorState.cpp
 
 ${OBJECTDIR}/Maps.o: Maps.cpp
 	${MKDIR} -p ${OBJECTDIR}
@@ -168,6 +206,11 @@ ${OBJECTDIR}/Placer.o: Placer.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Placer.o Placer.cpp
 
+${OBJECTDIR}/Reward.o: Reward.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Reward.o Reward.cpp
+
 ${OBJECTDIR}/SaveData.o: SaveData.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -182,6 +225,11 @@ ${OBJECTDIR}/StateMachine.o: StateMachine.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/StateMachine.o StateMachine.cpp
+
+${OBJECTDIR}/Support.o: Support.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Support.o Support.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}

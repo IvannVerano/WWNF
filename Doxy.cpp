@@ -23,7 +23,7 @@ namespace Zenon {
         m_enemySprite.scale(0.5, 0.5);
         m_enemySprite.setPosition(l_position);
         m_pathCompleted = false;
-        srand(time(NULL));
+        
     }
 
     void Doxy::Update(float dt) {

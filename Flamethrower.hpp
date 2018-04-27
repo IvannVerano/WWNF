@@ -4,13 +4,12 @@
 #include "Enemy.hpp"
 #include "Bala.hpp"
 
-
 namespace Zenon
 {
-    class Attack: public Trampa
+    class Flamethrower: public Trampa
     {
         public:
-            Attack(GameDataRef l_data, sf::Vector2f l_posicion, sf::Texture &l_texture, const std::vector<Enemy*> &l_enemies, std::vector<Bala*> &l_bullets);
+            Flamethrower(GameDataRef l_data, sf::Vector2f l_posicion, sf::Texture &l_texture, const std::vector<Enemy*> &l_enemies, std::vector<Bala*> &l_bullets);
             void SetAttributes(int l_id, float l_cadence, float l_apptime, int l_power, int l_range, int l_refresh, int l_wait, int l_percentaje, int l_price);
             void Update(float dt);
             void AnimateApparition();
@@ -18,7 +17,8 @@ namespace Zenon
             void Shoot();
             void DeleteTarget(int l_posicion);
             int CalculateRec(int l_sum);
-            void CreateBullet(sf::Vector2f l_direccionSentido, float angle);
+            void CreateBullet( float angle);
+            void BuscaCuadrado(sf::Vector2f l_direccionSentido);
             void Draw();
         
         private:
@@ -37,7 +37,6 @@ namespace Zenon
             float m_percentaje;
             int m_price;
             int m_realID;
-            bool m_reload;
             
     };
 }

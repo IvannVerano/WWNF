@@ -15,6 +15,9 @@
 #include "MathHelper.hpp"
 #include "Maps.hpp"
 #include "Hero.hpp"
+#include "Flamethrower.hpp"
+#include "Support.hpp"
+#include "Hydra.hpp"
 #include <vector>
 
 namespace Zenon {
@@ -34,9 +37,11 @@ namespace Zenon {
         void SpawnEnemy(sf::Vector2f l_position, int l_path);
         void SpawnDoxy(sf::Vector2f l_position, int l_path);
         void SpawnBerseker(sf::Vector2f l_position, int l_obj);
-
+        void SpawnHydra(sf::Vector2f l_position, Bezier& l_path);
         void CheckColision();
-
+        
+        void CheckFail();
+        
         sf::VertexArray ToVertex(std::vector<sf::Vector2f> l_points);
 
     private:
@@ -71,6 +76,7 @@ namespace Zenon {
 
         bool m_wantsDoxy = false;
         bool m_wantsBerseker = false;
+        bool m_wantsHydra = false;
         Maps* map;
 
         std::vector<Hero*> m_heroes;

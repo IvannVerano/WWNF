@@ -8,6 +8,8 @@
 #include "Defensa.hpp"
 #include "HUD.hpp"
 #include "Hero.hpp"
+#include "GameOverState.hpp"
+#include "LevelSelectorState.hpp"
 #include <string>
 #include <iostream>
 
@@ -15,7 +17,7 @@ namespace Zenon {
 
     SplashState::SplashState(GameDataRef data, std::vector<FichaTrampa*> l_fichaTrampa, int l_dinero) : m_data(data) {
         m_trampasSel = l_fichaTrampa;
-        m_disponible = l_dinero;
+        m_disponible = m_data->data.GetMoney();
     }
 
     void SplashState::Init() {
@@ -92,6 +94,30 @@ namespace Zenon {
                                     m_placer.at(i)->SetOcupadoFalse();
                                 }
                             }
+                            else if (m_trampasSel.at(m_trampa)->GetTipo() == 3) {
+                                if (m_trampasSel.at(m_trampa)->Afordable(m_disponible)) {
+                                    const std::vector<Enemy*> &enes = m_enemies;
+                                    const std::vector<Bala*> &bull = m_bullets;
+                                    Trampa* tramp = new Flamethrower(m_data, m_placer.at(i)->GetPosicion(), m_trampasSel.at(m_trampa)->GetTexturaPosicion(), enes, m_bullets);
+                                    tramp->SetAttributes(m_trampas.size(), m_trampasSel[m_trampa]->GetCadencia(), m_trampasSel[m_trampa]->GetAparicion(), m_trampasSel[m_trampa]->GetPotencia(), m_trampasSel[m_trampa]->GetRango(), m_trampasSel[m_trampa]->GetRefresco(), 0, m_trampasSel[m_trampa]->GetPorcentaje(), m_trampasSel[m_trampa]->GetPrecio());
+                                    m_trampas.push_back(tramp);
+                                    m_disponible -= m_trampasSel.at(m_trampa)->GetPrecio();
+                                }
+                                else
+                                {
+                                    m_placer.at(i)->SetOcupadoFalse();
+                                }
+                            }
+                            else if (m_trampasSel.at(m_trampa)->GetTipo() == 4) {
+                               if (m_trampasSel.at(m_trampa)->Afordable(m_disponible)) {
+                                    const std::vector<Hero*> &heros = m_heroes;
+                                    Trampa* tramp = new Support(m_data, m_placer.at(i)->GetPosicion(), m_trampasSel.at(m_trampa)->GetTexturaPosicion(), heros, RANGO_SANACION);
+                                    m_trampas.push_back(tramp);
+                                    m_disponible -= m_trampasSel.at(m_trampa)->GetPrecio();
+                                } else {
+                                    m_placer.at(i)->SetOcupadoFalse();
+                                }
+                            }
                         }
                     }
                 }
@@ -127,6 +153,10 @@ namespace Zenon {
                     }
                 }
             }
+            
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::H)) {
+                m_wantsHydra = true;
+            }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
                 m_data->data.Reset();
@@ -138,7 +168,7 @@ namespace Zenon {
             }
             
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)) {
-                if(m_trampasSel.size() >= 1)
+                if(m_trampasSel.size() >= 2)
                 {
                     m_trampa = 1;
                     m_hud->ProccessSelection(1);
@@ -146,7 +176,7 @@ namespace Zenon {
             }
         
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)) {
-                if(m_trampasSel.size() >= 2)
+                if(m_trampasSel.size() >= 3)
                 {
                     m_trampa = 2;
                     m_hud->ProccessSelection(2);
@@ -154,7 +184,7 @@ namespace Zenon {
             }
             
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4)) {
-                if(m_trampasSel.size() >= 3)
+                if(m_trampasSel.size() >= 4)
                 {
                     m_trampa = 3;
                     m_hud->ProccessSelection(3);
@@ -170,9 +200,20 @@ namespace Zenon {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)) {
                 m_wantsBerseker = true;
             }
+        
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::N))
+            {
+                m_data->data.SetMoney(m_disponible);
+                m_data->machine.AddState(StateRef(new LevelSelectorState(m_data, true)));
+            }
         }
 
     void SplashState::Update(float dt) {
+        
+        if (m_wantsHydra) {
+            SpawnHydra(m_routes[1].m_startPoint, m_routes[1]);
+            m_wantsHydra = false;
+        }
 
         if (m_wantsDoxy) {
             SpawnDoxy(sf::Vector2f(m_routes[0].m_startPoint.x, m_routes[0].m_startPoint.y), 0);
@@ -235,6 +276,8 @@ namespace Zenon {
             m_hideCursor = false;
 
         m_mouseConstruct.setPosition((sf::Vector2f)m_data->input.GetMousePosition(m_data->window));
+        
+        this->CheckFail();
 
     }
 
@@ -430,27 +473,72 @@ namespace Zenon {
         this->m_data->window.display();
     }
 
-    void SplashState::CheckColision() {
-        for (int i = 0; i < m_enemies.size(); i++) {
-            for (int j = 0; j < m_bullets.size(); j++) {
+    void SplashState::CheckColision()
+    {
+        for(int i=0; i<m_enemies.size(); i++)
+        {
+            for(int j=0; j<m_bullets.size(); j++)
+            {
+                if(m_bullets[j]->GetType()==1)
+                {
+                  if(abs(m_bullets[j]->GetOrigin().x- m_bullets[j]->GetSprite().getPosition().x)>RANGO_FUEGO
+                          ||abs(m_bullets[j]->GetOrigin().y- m_bullets[j]->GetSprite().getPosition().y)>RANGO_FUEGO){
+                      
+                    delete m_bullets[j];
+                    m_bullets.erase(m_bullets.begin()+j);                  }
+                }
 
-                if (m_enemies[i]->GetSprite().getGlobalBounds().intersects(m_bullets[j]->GetSprite().getGlobalBounds())) {
+                if(m_enemies[i]->GetSprite().getGlobalBounds().intersects(m_bullets[j]->GetSprite().getGlobalBounds()))
+                {
                     int killerCandidate = m_bullets[j]->WhoShooted();
                     delete m_bullets[j];
-                    m_bullets.erase(m_bullets.begin() + j);
+                    m_bullets.erase(m_bullets.begin()+j);
                     m_enemies[i]->TakeDamage(m_bullets[j]->GetPower());
-                    if (m_enemies[i]->GetActualState() == ENEMY_STATE_DEAD) {
-                        for (int w = 0; w < m_trampas.size(); w++) {
-                            m_trampas[w]->DeleteTarget(i);
+                    if(m_enemies[i]->GetActualState()==ENEMY_STATE_DEAD)
+                    {
+                        for(int w=0; w<m_trampas.size(); w++)
+                        {
+                            m_trampas[w]->DeleteTarget(m_enemies[i]->GetId());
                         }
                         m_disponible = m_trampas[killerCandidate]->CalculateRec(m_disponible);
                         delete m_enemies[i];
                         m_enemies.erase(m_enemies.begin() + i);
                     }
                 }
-
+      
             }
         }
+            for(int j=0; j<m_bullets.size(); j++)
+            {
+                if(m_bullets[j]->GetType()==1)
+                {
+                  if(abs(m_bullets[j]->GetOrigin().x- m_bullets[j]->GetSprite().getPosition().x)>RANGO_FUEGO
+                          ||abs(m_bullets[j]->GetOrigin().y- m_bullets[j]->GetSprite().getPosition().y)>RANGO_FUEGO){
+                      
+                    delete m_bullets[j];
+                    m_bullets.erase(m_bullets.begin()+j);                  }
+                }
+            }
+    }
+    
+    void SplashState::CheckFail()
+    {
+        if(m_heroes.size()==0)
+        {
+            m_data->machine.AddState(StateRef(new GameOverState(m_data, m_disponible)));
+        }
+    }
+    
+    void SplashState::SpawnHydra(sf::Vector2f l_position, Bezier& l_path) {
+
+        const std::vector<Enemy*>& l_neighbor = m_enemies;
+        Hydra * l_enemy = new Hydra(m_data, Enemy::hydra, l_position, l_neighbor, m_routes[1]);
+        m_enemies.push_back(l_enemy);
+
+        for (int i = 0; i < l_enemy->GetBodySize(); i++) {
+            m_enemies.push_back(l_enemy->GetPart(i));
+        }
+
     }
 }
 

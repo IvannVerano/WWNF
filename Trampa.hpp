@@ -13,6 +13,7 @@
 
 #pragma once
 #include "Game.hpp"
+#include "MathHelper.hpp"
 #include <SFML/Graphics.hpp>
 #include <vector>
 namespace Zenon {
@@ -51,5 +52,8 @@ namespace Zenon {
         sf::Clock m_aniAppearClock;
         int m_precio;
         int m_porcentaje;
+        int m_charge;
+        sf::Clock m_timeRefresh;
+
     };
 }

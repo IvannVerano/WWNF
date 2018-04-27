@@ -24,6 +24,7 @@ namespace Zenon
             int GetRefresco();
             float GetAparicion();
             float GetCadencia();
+            void SetLocked(bool l_value);
         protected:
             GameDataRef m_datos;
             sf::Sprite m_mainSprite;
@@ -35,7 +36,6 @@ namespace Zenon
             sf::Texture m_descriptivetex;
             int m_tipo;
             bool m_gui_seleccionado;
-            
             int m_precio;
             int m_porcentaje;
             int m_rango;
@@ -43,6 +43,7 @@ namespace Zenon
             int m_refresco;
             int m_potencia;
             float m_tiempoAparicion;
+            bool m_locked;
             
     };
 }

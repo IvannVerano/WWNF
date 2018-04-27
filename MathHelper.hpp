@@ -11,6 +11,10 @@
 
 namespace Zenon {
 
+    #define PI 3.14159265
+    #define DEG_TO_RAD PI / 180.0f
+    #define RAD_TO_DEG 180.0f / PI
+
     inline float Module(sf::Vector2f& vec) {
         return std::sqrt(vec.x * vec.x + vec.y * vec.y);
     }
