@@ -55,10 +55,13 @@ namespace Zenon
         for(int i=0; i<m_trapsUnlocked.size(); i++)
         {
             if(i<2)
-                m_trapsUnlocked[i] = true;
-            else
                 m_trapsUnlocked[i] = false;
+            else
+                m_trapsUnlocked[i] = true;
         }
+        m_money = 1000;
+        m_generalPunctuation = 0;
+        m_confidenceLevel = 3;
         this->SaveChanges();
     }
     

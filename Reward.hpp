@@ -15,6 +15,7 @@ namespace Zenon
             int GetCiviliansRescued();
             int GetPanicIncrease(int l_position);
             int GetConfidenceRestablish();
+            void ResetpanicLevels();
         private:
             int m_moneyReward=0;
             int m_idTrapReward = -1;

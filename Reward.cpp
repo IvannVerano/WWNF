@@ -5,8 +5,7 @@ namespace Zenon
 {
     Reward::Reward()
     {
-        for(int i=0; i<5; i++)
-            m_panicLevelIncrease.push_back(5);
+        this->ResetpanicLevels();
     }
     
     void Reward::SetReward(int l_money, int l_idTrap, int l_civRescued, int l_confidence, int l_positionSaved)
@@ -54,5 +53,12 @@ namespace Zenon
     int Reward::GetConfidenceRestablish()
     {
         return m_confidenceRestablished;
+    }
+    
+    void Reward::ResetpanicLevels()
+    {
+        m_panicLevelIncrease.clear();
+        for(int i=0; i<5; i++)
+            m_panicLevelIncrease.push_back(5);
     }
 }

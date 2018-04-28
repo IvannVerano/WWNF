@@ -15,6 +15,8 @@
 #define WORLD_MAP "resources/WorldMap.jpg"
 #define MARKER "resources/marcadormapa.png"
 
+#define MAXIMUM_CHAR 50
+
 
 
 //Relojes

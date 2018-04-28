@@ -1,6 +1,7 @@
 #pragma once
 #include "State.hpp"
 #include "Game.hpp"
+#include "LevelSelectorState.hpp"
 #include <arpa/inet.h>
 #include <assert.h>
 #include <errno.h>
@@ -32,6 +33,10 @@ namespace Zenon
             sf::Sprite m_getBackButton;
             sf::Sprite m_sendDataToServerButton;
             sf::Text m_failText;
+            std::string m_playerInput;
+            sf::Text m_playerText;
+            sf::Text m_yourPoints;
+            sf::Text m_yourNameInput;
             GameDataRef m_data;
             int m_punctuation;
             bool isSent = false;
