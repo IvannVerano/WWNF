@@ -92,19 +92,25 @@
 
 //variables de Hero
 #define SPRITESHEET_HEROE "resources/spritesheetHeroe1.png"
+#define SPRITESHEET_HEROE2 "resources/spritesheetHeroe2.png"
 #define SPRITE_HEROE_FACE1 "resources/HeroHud1.png"
 #define HERO_IDLE_STATE 0
 #define HERO_MOVING_STATE 1
 #define HERO_DEAD_STATE 3
 #define HERO_FOLLOWING_ENEMY 4
 #define HERO_ATTACKING_ENEMY 5
+#define HERO_FOLLOWING_HERO 6
+#define HERO_HEALING 7
 #define HERO_HITTINGRANGE 80.0f
 #define HERO_ATTACKINGTIME 1.0f
 #define HERO_LOOKTIME 2.0f
 #define HERO_HITTINGDISTANCE 120.0f
+#define HERO_HEALINGDISTANCE 70.0f
+#define HITSCAM_DISTANCE_HEALER 200.0f
 #define HERO_DETECT_WAYPOINT 20.0f
 #define HERO_SPEED 180.0f
 #define HERO_DETECT_ENEMY 200.0f
+#define HERO_DISTANCEFOLLOWINGHERO 140.0f
 
 
 //Variables de Berseker

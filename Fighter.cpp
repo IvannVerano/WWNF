@@ -30,7 +30,7 @@ namespace Zenon
         if (m_live <= 0) {
             m_state = HERO_DEAD_STATE;
         }
-        
+          
         if(m_state == HERO_IDLE_STATE)
         {
             for(int i = 0; i<m_enemies.size(); i++)

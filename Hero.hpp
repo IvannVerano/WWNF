@@ -26,7 +26,8 @@ namespace Zenon {
         void Heal(float l_heal);
         sf::FloatRect GetGB();
         sf::Vector2f GetCurrentPosition();
-
+        bool IsRecovered();
+        bool ImTargeted();
     protected:
         GameDataRef m_data;
         int m_state;

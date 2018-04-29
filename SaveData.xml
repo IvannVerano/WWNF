@@ -1,4 +1,5 @@
 <data>
+    <hero alive="0"/>
     <hero alive="1"/>
     <trap unlocked="0"/>
     <trap unlocked="0"/>

@@ -46,6 +46,7 @@ namespace Zenon
         m_data->assets.LoadTexture("Hydra Sheet", HYDRA_SPRITE_SHEET);
         m_data->assets.LoadTexture("WorldMap", WORLD_MAP);
         m_data->assets.LoadTexture("MapMarker", MARKER);
+        m_data->assets.LoadTexture("Herosprite2", SPRITESHEET_HEROE2);
         
         if(rewardisOn)
             this->ProcessRewards();

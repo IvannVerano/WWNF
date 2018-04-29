@@ -50,6 +50,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Game.o \
 	${OBJECTDIR}/GameOverState.o \
 	${OBJECTDIR}/HUD.o \
+	${OBJECTDIR}/Healer.o \
 	${OBJECTDIR}/Hero.o \
 	${OBJECTDIR}/Hydra.o \
 	${OBJECTDIR}/HydraSegment.o \
@@ -176,6 +177,11 @@ ${OBJECTDIR}/HUD.o: HUD.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/HUD.o HUD.cpp
+
+${OBJECTDIR}/Healer.o: Healer.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Healer.o Healer.cpp
 
 ${OBJECTDIR}/Hero.o: Hero.cpp
 	${MKDIR} -p ${OBJECTDIR}

@@ -183,6 +183,18 @@ namespace Zenon {
         m_isSelected = false;
     }
     
+    bool Hero::IsRecovered()
+    {
+        if(m_live == m_initlive)
+            return true;
+        return false;
+    }
+    
+    bool Hero::ImTargeted()
+    {
+        return m_data->input.IsSpriteClicked(m_mainSprite, sf::Mouse::Right, m_data->window);
+    }
+    
     
 
 }

@@ -8,6 +8,7 @@
 #include "Defensa.hpp"
 #include "HUD.hpp"
 #include "Hero.hpp"
+#include "Healer.hpp"
 #include "Fighter.hpp"
 #include "GameOverState.hpp"
 #include "LevelSelectorState.hpp"
@@ -38,10 +39,23 @@ namespace Zenon {
 
         Maps &mapref = *map;
         for (int i = 0; i < m_data->data.NumberOfHeroes(); i++) {
-            if (m_data->data.IsHeroeAlive(i)) {
+            if (m_data->data.IsHeroeAlive(i)) 
+            {
+                const std::vector<Hero*>& l_allies = m_heroes;
                 const std::vector<Enemy*>& l_enemies = m_enemies;
-                Hero * c_hero = new Fighter(m_data, mapref, i, l_enemies);
-                m_heroes.push_back(c_hero);
+                Hero * c_hero;
+                switch(i)
+                {
+                    case 0:
+                        c_hero = new Fighter(m_data, mapref, i, l_enemies);
+                        m_heroes.push_back(c_hero);
+                    break;
+                    case 1:
+                        c_hero = new Healer(m_data, mapref, i, l_allies, l_enemies);
+                        m_heroes.push_back(c_hero);
+                    break;
+                }
+                
             }
 
         }
