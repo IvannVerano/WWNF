@@ -9,11 +9,6 @@ namespace Zenon {
     Hero::Hero(GameDataRef l_data, Maps &l_map, int l_id) : m_data(l_data), m_map(l_map) {
         m_Id = l_id;
         m_state = HERO_IDLE_STATE;
-        m_mainSprite.setTexture(m_data->assets.GetTexture("Hero"));
-        m_mainSprite.setTextureRect(sf::IntRect(105, 284, 14, 42));
-        m_mainSprite.setOrigin(m_mainSprite.getGlobalBounds().width / 2, m_mainSprite.getGlobalBounds().height / 2);
-        m_mainSprite.setPosition(500, 500);
-        m_mainSprite.scale(2.0, 2.0);
         m_direction = sf::Vector2f(-1, -1);
 
         m_destinyPointer.setTexture(m_data->assets.GetTexture("Hero_GUI"));
@@ -31,20 +26,6 @@ namespace Zenon {
         m_heroPlace.setTextureRect(sf::IntRect(122, 0, 68, 64));
         m_heroPlace.setOrigin(m_heroPlace.getGlobalBounds().width / 2, m_heroPlace.getGlobalBounds().height / 2);
         m_heroPlace.setPosition(m_mainSprite.getPosition().x, m_mainSprite.getPosition().y + 30);
-
-        m_heroHUD.setTexture(m_data->assets.GetTexture("Hero_Face1"));
-        m_heroHUD.setOrigin(m_heroHUD.getLocalBounds().width / 2, m_heroHUD.getLocalBounds().height / 2);
-        m_heroHUD.setPosition(885,900);
-        m_heroHUD.scale(0.92,0.92);
-        
-        m_heroHUDred.setSize(sf::Vector2f(100,15));
-        m_heroHUDred.setPosition(m_heroHUD.getPosition().x - m_heroHUD.getGlobalBounds().width/2, m_heroHUD.getPosition().y+m_heroHUD.getGlobalBounds().height/2);
-        m_heroHUDred.setFillColor(sf::Color::Red);
-        
-        m_heroHUDLife.setSize(sf::Vector2f(100,15));
-        m_heroHUDLife.setPosition(m_heroHUD.getPosition().x - m_heroHUD.getGlobalBounds().width/2, m_heroHUD.getPosition().y+m_heroHUD.getGlobalBounds().height/2);
-        m_heroHUDLife.setFillColor(sf::Color::Green);
-        
         
         m_isSelected = false;
         m_waypoint = 1;

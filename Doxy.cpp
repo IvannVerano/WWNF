@@ -30,7 +30,6 @@ namespace Zenon {
         if (!m_pathCompleted) {
             //SI HAY MAS DE UN ENEMIGO EN PANTALLA
             if (m_neighbors.size() > 1) {
-                std::cout << "tiempo de repulsir\n";
                 for (int i = 0; i < m_neighbors.size(); i++) {
                     //NO ME EVALUO A MI
                     if (m_enemyId != m_neighbors[i]->GetId()) {

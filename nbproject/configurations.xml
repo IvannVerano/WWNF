@@ -15,6 +15,7 @@
       <itemPath>Enemy.hpp</itemPath>
       <itemPath>FaseSeleccionState.hpp</itemPath>
       <itemPath>FichaTrampa.hpp</itemPath>
+      <itemPath>Fighter.hpp</itemPath>
       <itemPath>Flamethrower.hpp</itemPath>
       <itemPath>Game.hpp</itemPath>
       <itemPath>GameOverState.hpp</itemPath>
@@ -55,6 +56,7 @@
       <itemPath>Enemy.cpp</itemPath>
       <itemPath>FaseSeleccionState.cpp</itemPath>
       <itemPath>FichaTrampa.cpp</itemPath>
+      <itemPath>Fighter.cpp</itemPath>
       <itemPath>Flamethrower.cpp</itemPath>
       <itemPath>Game.cpp</itemPath>
       <itemPath>GameOverState.cpp</itemPath>
@@ -157,6 +159,10 @@
       <item path="FichaTrampa.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="FichaTrampa.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Fighter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Fighter.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Flamethrower.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -304,6 +310,10 @@
       <item path="FichaTrampa.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="FichaTrampa.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Fighter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Fighter.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Flamethrower.cpp" ex="false" tool="1" flavor2="0">
       </item>

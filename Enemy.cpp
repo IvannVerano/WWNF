@@ -73,6 +73,7 @@ namespace Zenon {
     const sf::Sprite &Enemy::GetSprite() const {
         return m_enemySprite;
     }
+    
 
 
 }

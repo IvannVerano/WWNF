@@ -41,6 +41,7 @@ namespace Zenon {
         void CheckColision();
         
         void CheckFail();
+        void CheckDeadEnemies();
         
         sf::VertexArray ToVertex(std::vector<sf::Vector2f> l_points);
 

@@ -8,6 +8,7 @@
 #include "Defensa.hpp"
 #include "HUD.hpp"
 #include "Hero.hpp"
+#include "Fighter.hpp"
 #include "GameOverState.hpp"
 #include "LevelSelectorState.hpp"
 #include <string>
@@ -38,7 +39,8 @@ namespace Zenon {
         Maps &mapref = *map;
         for (int i = 0; i < m_data->data.NumberOfHeroes(); i++) {
             if (m_data->data.IsHeroeAlive(i)) {
-                Hero * c_hero = new Hero(m_data, mapref, i);
+                const std::vector<Enemy*>& l_enemies = m_enemies;
+                Hero * c_hero = new Fighter(m_data, mapref, i, l_enemies);
                 m_heroes.push_back(c_hero);
             }
 
@@ -278,6 +280,7 @@ namespace Zenon {
         m_mouseConstruct.setPosition((sf::Vector2f)m_data->input.GetMousePosition(m_data->window));
         
         this->CheckFail();
+        this->CheckDeadEnemies();
 
     }
 
@@ -539,6 +542,25 @@ namespace Zenon {
             m_enemies.push_back(l_enemy->GetPart(i));
         }
 
+    }
+    
+    void SplashState::CheckDeadEnemies()
+    {
+        for(int i=0; i<m_enemies.size(); i++)
+        {
+            if(m_enemies[i]->GetActualState() == ENEMY_STATE_DEAD)
+            {
+                if(m_enemies[i]->GetActualState()==ENEMY_STATE_DEAD)
+                    {
+                        for(int w=0; w<m_trampas.size(); w++)
+                        {
+                            m_trampas[w]->DeleteTarget(m_enemies[i]->GetId());
+                        }
+                        delete m_enemies[i];
+                        m_enemies.erase(m_enemies.begin() + i);
+                    }
+            }
+        }
     }
 }
 

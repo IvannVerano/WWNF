@@ -9,9 +9,9 @@ namespace Zenon {
     class Hero {
     public:
         Hero(GameDataRef l_data, Maps &l_map, int l_id);
-        void Update(float dt);
+        virtual void Update(float dt);
         void Draw();
-        void OrderMovement(sf::Vector2f l_destiny);
+        virtual void OrderMovement(sf::Vector2f l_destiny);
         void Move(float dt);
         void Select();
         void CheckPath();
@@ -27,7 +27,7 @@ namespace Zenon {
         sf::FloatRect GetGB();
         sf::Vector2f GetCurrentPosition();
 
-    private:
+    protected:
         GameDataRef m_data;
         int m_state;
         int m_waypoint;

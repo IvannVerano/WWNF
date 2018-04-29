@@ -45,6 +45,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Enemy.o \
 	${OBJECTDIR}/FaseSeleccionState.o \
 	${OBJECTDIR}/FichaTrampa.o \
+	${OBJECTDIR}/Fighter.o \
 	${OBJECTDIR}/Flamethrower.o \
 	${OBJECTDIR}/Game.o \
 	${OBJECTDIR}/GameOverState.o \
@@ -150,6 +151,11 @@ ${OBJECTDIR}/FichaTrampa.o: FichaTrampa.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/FichaTrampa.o FichaTrampa.cpp
+
+${OBJECTDIR}/Fighter.o: Fighter.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Fighter.o Fighter.cpp
 
 ${OBJECTDIR}/Flamethrower.o: Flamethrower.cpp
 	${MKDIR} -p ${OBJECTDIR}
