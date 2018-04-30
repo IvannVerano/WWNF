@@ -12,7 +12,7 @@ namespace Zenon {
     public:
 
         enum TYPE {
-            base = 0, doxy = 1, berseker = 2, hydra = 3, segmento = 4
+            base = 0, doxy = 1, berseker = 2, hydra = 3, segmento = 4, trapper = 5
         };
 
         Enemy(GameDataRef l_data, Enemy::TYPE l_type, sf::Vector2f l_position, const std::vector<Enemy*>& l_neighbors);

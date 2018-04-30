@@ -38,28 +38,26 @@ namespace Zenon {
         }
 
         m_trampa = -1;
-        m_posicion.x= m_data->window.getSize().x/2;
-        m_posicion.y= m_data->window.getSize().y/2;
+        m_posicion.x = m_data->window.getSize().x / 2;
+        m_posicion.y = m_data->window.getSize().y / 2;
 
         Maps &mapref = *map;
         for (int i = 0; i < m_data->data.NumberOfHeroes(); i++) {
-            if (m_data->data.IsHeroeAlive(i)) 
-            {
+            if (m_data->data.IsHeroeAlive(i)) {
                 const std::vector<Hero*>& l_allies = m_heroes;
                 const std::vector<Enemy*>& l_enemies = m_enemies;
                 Hero * c_hero;
-                switch(i)
-                {
+                switch (i) {
                     case 0:
                         c_hero = new Fighter(m_data, mapref, i, l_enemies);
                         m_heroes.push_back(c_hero);
-                    break;
+                        break;
                     case 1:
                         c_hero = new Healer(m_data, mapref, i, l_allies, l_enemies);
                         m_heroes.push_back(c_hero);
-                    break;
+                        break;
                 }
-                
+
             }
 
         }
@@ -90,37 +88,36 @@ namespace Zenon {
                 if (m_hud->CheckClick()) {
                     m_trampa = m_hud->GetClick();
                 }
-                
-                                if (m_trampa> -1 && m_trampasSel.at(m_trampa)->GetTipo() == 6) {
-                     
-                    std::cout<<"feo mierda"<<std::endl;
+
+                if (m_trampa> -1 && m_trampasSel.at(m_trampa)->GetTipo() == 6) {
+
+                    std::cout << "feo mierda" << std::endl;
                     const std::vector<Enemy*> &enes = m_enemies;
 
 
-                   
+
                     Trampa* tramp = new Ice(m_data, m_posicion, m_trampasSel.at(m_trampa)->GetTexturaPosicion(), enes);
                     m_trampas.push_back(tramp);
-                } 
-                
+                }
+
                 if (m_trampa> -1 && m_trampasSel.at(m_trampa)->GetTipo() == 7) {
 
                     sf::Vector2f m_posicion;
                     const std::vector<Enemy*> &enes = m_enemies;
 
-                    
-                    if(m_trampasSel.at(m_trampa)->IsClicked())
-                    {
-                        std::cout<<"feo mierda2"<<std::endl;
 
-                        m_posicion=(sf::Vector2f)m_data->input.GetMousePosition(m_data->window );
+                    if (m_trampasSel.at(m_trampa)->IsClicked()) {
+                        std::cout << "feo mierda2" << std::endl;
+
+                        m_posicion = (sf::Vector2f)m_data->input.GetMousePosition(m_data->window);
 
                         Trampa* tramp1 = new Nuke(m_data, m_posicion, m_trampasSel.at(m_trampa)->GetTexturaPosicion(), enes);
-                        m_trampas.push_back(tramp1);                        
+                        m_trampas.push_back(tramp1);
                         //crear aqui la mininuke con las posiciones pilladas arriba
-                    }    
-                }  
-                
-                
+                    }
+                }
+
+
                 for (int i = 0; i < m_placer.size(); i++) {
                     if (m_placer.at(i)->Clicked(m_trampa)) {
                         if (m_trampa> -1) {
@@ -143,14 +140,11 @@ namespace Zenon {
                                     tramp->SetAttributes(m_trampas.size(), m_trampasSel[m_trampa]->GetCadencia(), m_trampasSel[m_trampa]->GetAparicion(), m_trampasSel[m_trampa]->GetPotencia(), m_trampasSel[m_trampa]->GetRango(), m_trampasSel[m_trampa]->GetRefresco(), 0, m_trampasSel[m_trampa]->GetPorcentaje(), m_trampasSel[m_trampa]->GetPrecio());
                                     m_trampas.push_back(tramp);
                                     m_disponible -= m_trampasSel.at(m_trampa)->GetPrecio();
-                                }
-                                else
-                                {
+                                } else {
                                     m_placer.at(i)->SetOcupadoFalse();
                                 }
-                            }
-                            else if (m_trampasSel.at(m_trampa)->GetTipo() == 4) {
-                               if (m_trampasSel.at(m_trampa)->Afordable(m_disponible)) {
+                            } else if (m_trampasSel.at(m_trampa)->GetTipo() == 4) {
+                                if (m_trampasSel.at(m_trampa)->Afordable(m_disponible)) {
                                     const std::vector<Hero*> &heros = m_heroes;
                                     Trampa* tramp = new Support(m_data, m_placer.at(i)->GetPosicion(), m_trampasSel.at(m_trampa)->GetTexturaPosicion(), heros, RANGO_SANACION);
                                     m_trampas.push_back(tramp);
@@ -158,8 +152,8 @@ namespace Zenon {
                                 } else {
                                     m_placer.at(i)->SetOcupadoFalse();
                                 }
-                            }else if (m_trampasSel.at(m_trampa)->GetTipo() == 5) {
-                               if (m_trampasSel.at(m_trampa)->Afordable(m_disponible)) {
+                            } else if (m_trampasSel.at(m_trampa)->GetTipo() == 5) {
+                                if (m_trampasSel.at(m_trampa)->Afordable(m_disponible)) {
                                     const std::vector<Hero*> &heros = m_heroes;
                                     Trampa* tramp = new Adrenalin(m_data, m_placer.at(i)->GetPosicion(), m_trampasSel.at(m_trampa)->GetTexturaPosicion(), heros, RANGO_ADRENALINA);
                                     m_trampas.push_back(tramp);
@@ -175,91 +169,88 @@ namespace Zenon {
                 for (int i = 0; i < m_heroes.size(); i++) {
                     if (m_heroes[i]->IsClicked()) {
                         m_heroes[i]->Select();
-                    }
-                    else if(m_heroes[i]->IsSelected())
+                    } else if (m_heroes[i]->IsSelected())
                         m_heroes[i]->Deselect();
-                    }
                 }
-
-            }
-            if(sf::Mouse::isButtonPressed(sf::Mouse::Right))
-            {
-                for(int i=0; i<m_heroes.size(); i++)
-                {
-                    if (m_heroes[i]->IsSelected()) 
-                    {
-                        m_heroes[i]->OrderMovement((sf::Vector2f)m_data->input.GetMousePosition(m_data->window));
-                    }
-                }
-                
             }
 
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::K)) {
-                for (int i = 0; i < m_heroes.size(); i++) {
-                    if (m_heroes[i]->IsSelected()) {
-                        m_data->data.UpdateData(m_heroes[i]->GetId(), false);
-                        delete m_heroes[i];
-                        m_heroes.erase(m_heroes.begin() + i);
-                    }
+        }
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
+            for (int i = 0; i < m_heroes.size(); i++) {
+                if (m_heroes[i]->IsSelected()) {
+                    m_heroes[i]->OrderMovement((sf::Vector2f)m_data->input.GetMousePosition(m_data->window));
                 }
-            }
-            
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::H)) {
-                m_wantsHydra = true;
             }
 
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
-                m_data->data.Reset();
-            }
-            
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)) {
-                m_trampa = 0;
-                m_hud->ProccessSelection(0);
-            }
-            
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)) {
-                if(m_trampasSel.size() >= 2)
-                {
-                    m_trampa = 1;
-                    m_hud->ProccessSelection(1);
-                }
-            }
-        
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)) {
-                if(m_trampasSel.size() >= 3)
-                {
-                    m_trampa = 2;
-                    m_hud->ProccessSelection(2);
-                }
-            }
-            
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4)) {
-                if(m_trampasSel.size() >= 4)
-                {
-                    m_trampa = 3;
-                    m_hud->ProccessSelection(3);
-                }
-            }
-            
-       
+        }
 
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::X)) {
-                m_wantsDoxy = true;
-            }
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)) {
-                m_wantsBerseker = true;
-            }
-        
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::N))
-            {
-                m_data->data.SetMoney(m_disponible);
-                m_data->machine.AddState(StateRef(new LevelSelectorState(m_data, true)));
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::K)) {
+            for (int i = 0; i < m_heroes.size(); i++) {
+                if (m_heroes[i]->IsSelected()) {
+                    m_data->data.UpdateData(m_heroes[i]->GetId(), false);
+                    delete m_heroes[i];
+                    m_heroes.erase(m_heroes.begin() + i);
+                }
             }
         }
 
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::H)) {
+            m_wantsHydra = true;
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
+            m_data->data.Reset();
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)) {
+            m_trampa = 0;
+            m_hud->ProccessSelection(0);
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)) {
+            if (m_trampasSel.size() >= 2) {
+                m_trampa = 1;
+                m_hud->ProccessSelection(1);
+            }
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)) {
+            if (m_trampasSel.size() >= 3) {
+                m_trampa = 2;
+                m_hud->ProccessSelection(2);
+            }
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4)) {
+            if (m_trampasSel.size() >= 4) {
+                m_trampa = 3;
+                m_hud->ProccessSelection(3);
+            }
+        }
+
+
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::X)) {
+            m_wantsDoxy = true;
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)) {
+            m_wantsBerseker = true;
+        }
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::N)) {
+            m_data->data.SetMoney(m_disponible);
+            m_data->machine.AddState(StateRef(new LevelSelectorState(m_data, true)));
+        }
+    }
+
     void SplashState::Update(float dt) {
-        
+
+        if (m_spawnerClock.getElapsedTime().asSeconds() >= 5.0f) {
+            SpawnTrapper(sf::Vector2f(300, 300));
+            m_spawnerClock.restart();
+        }
+
         if (m_wantsHydra) {
             SpawnHydra(m_routes[1].m_startPoint, m_routes[1]);
             m_wantsHydra = false;
@@ -298,15 +289,17 @@ namespace Zenon {
         for (int i = 0; i < m_enemies.size(); i++) {
             if (m_enemies.at(i)->GetActualState() != ENEMY_STATE_DEAD) {
                 m_enemies.at(i)->Update(dt);
-                if (m_enemies[i]->GetType() == Enemy::doxy) {
-                    if (m_enemies[i]->GetGB().intersects(m_objectives[0].getGlobalBounds()) ||
-                            m_enemies[i]->GetGB().intersects(m_objectives[1].getGlobalBounds()) ||
-                            m_enemies[i]->GetGB().intersects(m_objectives[2].getGlobalBounds())) {
-                        for (int x = 0; x < m_trampas.size(); x++) {
-                            m_trampas[x]->DeleteTarget(i);
-                        }
-                        delete m_enemies[i];
-                        m_enemies.erase(m_enemies.begin() + i);
+            }
+        }
+
+        for (int i = 0; i < m_trampas.size(); i++) {
+            if (m_trampas[i]->GetActualState() == TRAP_DESTROYED) {
+                for (int j = 0; j < m_placer.size(); j++) {
+                    if (m_placer[j]->GetPosicion().x == m_trampas[i]->GetPosition().x && m_placer[j]->GetPosicion().y == m_trampas[i]->GetPosition().y) {
+                        std::cout << "elimino trampa\n";
+                        delete m_trampas[i];
+                        m_trampas.erase(m_trampas.begin() + i);
+                        m_placer[j]->SetOcupadoFalse();
                     }
                 }
             }
@@ -326,39 +319,27 @@ namespace Zenon {
             m_hideCursor = false;
 
         m_mouseConstruct.setPosition((sf::Vector2f)m_data->input.GetMousePosition(m_data->window));
-        
+
         this->CheckFail();
         this->CheckDeadEnemies();
 
     }
 
     void SplashState::LoadAssets() {
-        sf::Sprite l_point1;
+        const std::vector<Enemy* >& l_enemies = m_enemies;
 
-        l_point1.setTexture(this->m_data->assets.GetTexture("point1"));
-        l_point1.setOrigin(l_point1.getGlobalBounds().width / 2, l_point1.getGlobalBounds().height / 2);
-        l_point1.scale(0.5, 0.5);
-        l_point1.setPosition(m_routes[0].m_bRoutes[0].m_endPoint.x, m_routes[0].m_bRoutes[0].m_endPoint.y);
+        //Objetivo 1
+        m_obj = new Generator(m_data, sf::Vector2f(m_routes[0].m_bRoutes[0].m_endPoint.x, m_routes[0].m_bRoutes[0].m_endPoint.y), l_enemies, m_routes[0].m_bRoutes[0]);
+        m_objectives.push_back(m_obj);
 
-        m_objectives.push_back(l_point1);
+        //Objective 2
+        m_obj = new Generator(m_data, sf::Vector2f(m_routes[0].m_bRoutes[1].m_endPoint.x, m_routes[0].m_bRoutes[1].m_endPoint.y), l_enemies, m_routes[0].m_bRoutes[1]);
+        m_objectives.push_back(m_obj);
 
-        sf::Sprite l_point2;
+        //Objective 3
+        m_obj = new Core(m_data, sf::Vector2f(m_routes[0].m_bRoutes[2].m_endPoint.x, m_routes[0].m_bRoutes[2].m_endPoint.y), l_enemies, m_routes[0].m_bRoutes[2]);
+        m_objectives.push_back(m_obj);
 
-        l_point2.setTexture(this->m_data->assets.GetTexture("point1"));
-        l_point2.setOrigin(l_point2.getGlobalBounds().width / 2, l_point2.getGlobalBounds().height / 2);
-        l_point2.scale(0.5, 0.5);
-        l_point2.setPosition(m_routes[0].m_bRoutes[1].m_endPoint.x, m_routes[0].m_bRoutes[1].m_endPoint.y);
-
-        m_objectives.push_back(l_point2);
-
-        sf::Sprite l_point3;
-
-        l_point3.setTexture(this->m_data->assets.GetTexture("tienda"));
-        l_point3.setOrigin(l_point3.getGlobalBounds().width / 2, l_point3.getGlobalBounds().height / 2);
-        l_point3.scale(0.5, 0.5);
-        l_point3.setPosition(m_routes[0].m_bRoutes[2].m_endPoint.x, m_routes[0].m_bRoutes[2].m_endPoint.y);
-
-        m_objectives.push_back(l_point3);
 
         m_textoDinero.setFont(m_data->assets.GetFont("FUENTE_DINERO"));
         m_textoDinero.setString(std::to_string(m_disponible));
@@ -378,6 +359,7 @@ namespace Zenon {
         t_bezier.m_segments = 20;
         t_bezier.m_bPoints[100] = t_bezier.m_endPoint;
         t_bezier.create();
+        t_bezier.m_bezierBody[t_bezier.m_bezierBody.size() - 2] = t_bezier.m_bezierBody[t_bezier.m_bezierBody.size() - 1];
         t_bezier.m_bPoints[10] = t_bezier.m_bezierBody[10];
         t_bezier.m_bPoints[20] = t_bezier.m_bezierBody[20];
 
@@ -389,6 +371,7 @@ namespace Zenon {
         t_bezier2.m_controlPoint2 = sf::Vector2f(500, 100);
         t_bezier2.m_segments = 20;
         t_bezier2.create();
+        t_bezier2.m_bezierBody[t_bezier2.m_bezierBody.size() - 2] = t_bezier2.m_bezierBody[t_bezier2.m_bezierBody.size() - 1];
 
         t_bezier.m_bRoutes.push_back(t_bezier2);
 
@@ -400,22 +383,37 @@ namespace Zenon {
         t_bezier3.m_controlPoint2 = sf::Vector2f(300, 500);
         t_bezier3.m_segments = 20;
         t_bezier3.create();
+        t_bezier3.m_bezierBody[t_bezier3.m_bezierBody.size() - 2] = t_bezier3.m_bezierBody[t_bezier3.m_bezierBody.size() - 1];
 
         t_bezier.m_bRoutes.push_back(t_bezier3);
 
         Bezier t_bezier4;
         t_bezier4.probability = 100;
         t_bezier4.m_startPoint = t_bezier.m_bPoints[20];
-        t_bezier4.m_endPoint = sf::Vector2f(1100, 200);
+        t_bezier4.m_endPoint = sf::Vector2f(900, 200);
         t_bezier4.m_controlPoint1 = sf::Vector2f(1100, 400);
         t_bezier4.m_controlPoint2 = sf::Vector2f(1100, 500);
         t_bezier4.m_segments = 20;
         t_bezier4.create();
+        t_bezier4.m_bezierBody[t_bezier4.m_bezierBody.size() - 2] = t_bezier4.m_bezierBody[t_bezier4.m_bezierBody.size() - 1];
 
         t_bezier.m_bRoutes.push_back(t_bezier4);
 
 
         m_routes.push_back(t_bezier);
+
+        Bezier t_bezierH;
+        t_bezierH.m_startPoint = sf::Vector2f(-100, 300);
+        t_bezierH.m_endPoint = sf::Vector2f(2000, 300);
+        t_bezierH.m_controlPoint1 = sf::Vector2f(t_bezierH.m_startPoint.x + 300, t_bezierH.m_startPoint.y - 500);
+        t_bezierH.m_controlPoint2 = sf::Vector2f(t_bezierH.m_endPoint.x - 500, t_bezierH.m_endPoint.y + 800);
+        t_bezierH.m_segments = 70;
+        t_bezierH.create();
+        t_bezierH.m_bezierBody[t_bezierH.m_bezierBody.size() - 2] = t_bezierH.m_bezierBody[t_bezierH.m_bezierBody.size() - 1];
+
+
+        m_routes.push_back(t_bezierH);
+
 
         for (int i = 0; i < m_routes[0].m_bezierBody.size(); i++) {
             sf::CircleShape circle;
@@ -437,6 +435,15 @@ namespace Zenon {
 
         }
 
+        for (int i = 0; i < m_routes[1].m_bezierBody.size(); i++) {
+            sf::CircleShape circle;
+            circle.setRadius(5.0f);
+            circle.setFillColor(sf::Color::Magenta);
+            circle.setOrigin(circle.getGlobalBounds().width / 2, circle.getGlobalBounds().height / 2);
+            circle.setPosition(m_routes[1].m_bezierBody[i].x, m_routes[1].m_bezierBody[i].y);
+            m_wps.push_back(circle);
+        }
+
         for (int i = 0; i < m_routes.size(); i++) {
             m_pathsVertex.push_back(ToVertex(m_routes[i].m_bezierBody));
             for (int j = 0; j < m_routes[i].m_bRoutes.size(); j++) {
@@ -445,10 +452,20 @@ namespace Zenon {
         }
     }
 
+    void SplashState::SpawnTrapper(sf::Vector2f l_position) {
+        const std::vector<Trampa*>& l_traps = m_trampas;
+        const std::vector<Objective*>& l_objectives = m_objectives;
+        const std::vector<Enemy*>& l_enemies = m_enemies;
+        Maps& l_map = *map;
+        m_enemy = new Trapper(m_data, Enemy::trapper, l_position, l_map, l_enemies, l_traps, l_objectives);
+        m_enemies.push_back(m_enemy);
+    }
+
     void SplashState::SpawnDoxy(sf::Vector2f l_position, int l_path) {
         const std::vector<Enemy*>& l_neighbor = m_enemies;
         const std::vector<Bezier>& l_routes = m_routes;
-        m_enemy = new Doxy(m_data, Enemy::doxy, l_position, l_neighbor, l_routes, l_path);
+        const std::vector<Objective*>& l_objectives = m_objectives;
+        m_enemy = new Doxy(m_data, Enemy::doxy, l_position, l_neighbor, l_objectives, l_routes, l_path);
         m_enemies.push_back(m_enemy);
     }
 
@@ -489,7 +506,7 @@ namespace Zenon {
         }
 
         for (int i = 0; i < m_objectives.size(); i++) {
-            this->m_data->window.draw(m_objectives[i]);
+            m_objectives[i]->Draw();
         }
 
         for (int i = 0; i < m_trampas.size(); i++) {
@@ -524,31 +541,25 @@ namespace Zenon {
         this->m_data->window.display();
     }
 
-    void SplashState::CheckColision()
-    {
-        for(int i=0; i<m_enemies.size(); i++)
-        {
-            for(int j=0; j<m_bullets.size(); j++)
-            {
-                if(m_bullets[j]->GetType()==1)
-                {
-                  if(abs(m_bullets[j]->GetOrigin().x- m_bullets[j]->GetSprite().getPosition().x)>RANGO_FUEGO
-                          ||abs(m_bullets[j]->GetOrigin().y- m_bullets[j]->GetSprite().getPosition().y)>RANGO_FUEGO){
-                      
-                    delete m_bullets[j];
-                    m_bullets.erase(m_bullets.begin()+j);                  }
+    void SplashState::CheckColision() {
+        for (int i = 0; i < m_enemies.size(); i++) {
+            for (int j = 0; j < m_bullets.size(); j++) {
+                if (m_bullets[j]->GetType() == 1) {
+                    if (abs(m_bullets[j]->GetOrigin().x - m_bullets[j]->GetSprite().getPosition().x) > RANGO_FUEGO
+                            || abs(m_bullets[j]->GetOrigin().y - m_bullets[j]->GetSprite().getPosition().y) > RANGO_FUEGO) {
+
+                        delete m_bullets[j];
+                        m_bullets.erase(m_bullets.begin() + j);
+                    }
                 }
 
-                if(m_enemies[i]->GetSprite().getGlobalBounds().intersects(m_bullets[j]->GetSprite().getGlobalBounds()))
-                {
+                if (m_enemies[i]->GetSprite().getGlobalBounds().intersects(m_bullets[j]->GetSprite().getGlobalBounds())) {
                     int killerCandidate = m_bullets[j]->WhoShooted();
                     delete m_bullets[j];
-                    m_bullets.erase(m_bullets.begin()+j);
+                    m_bullets.erase(m_bullets.begin() + j);
                     m_enemies[i]->TakeDamage(m_bullets[j]->GetPower());
-                    if(m_enemies[i]->GetActualState()==ENEMY_STATE_DEAD)
-                    {
-                        for(int w=0; w<m_trampas.size(); w++)
-                        {
+                    if (m_enemies[i]->GetActualState() == ENEMY_STATE_DEAD) {
+                        for (int w = 0; w < m_trampas.size(); w++) {
                             m_trampas[w]->DeleteTarget(m_enemies[i]->GetId());
                         }
                         m_disponible = m_trampas[killerCandidate]->CalculateRec(m_disponible);
@@ -556,30 +567,28 @@ namespace Zenon {
                         m_enemies.erase(m_enemies.begin() + i);
                     }
                 }
-      
+
             }
         }
-            for(int j=0; j<m_bullets.size(); j++)
-            {
-                if(m_bullets[j]->GetType()==1)
-                {
-                  if(abs(m_bullets[j]->GetOrigin().x- m_bullets[j]->GetSprite().getPosition().x)>RANGO_FUEGO
-                          ||abs(m_bullets[j]->GetOrigin().y- m_bullets[j]->GetSprite().getPosition().y)>RANGO_FUEGO){
-                      
+        for (int j = 0; j < m_bullets.size(); j++) {
+            if (m_bullets[j]->GetType() == 1) {
+                if (abs(m_bullets[j]->GetOrigin().x - m_bullets[j]->GetSprite().getPosition().x) > RANGO_FUEGO
+                        || abs(m_bullets[j]->GetOrigin().y - m_bullets[j]->GetSprite().getPosition().y) > RANGO_FUEGO) {
+
                     delete m_bullets[j];
-                    m_bullets.erase(m_bullets.begin()+j);                  }
+                    m_bullets.erase(m_bullets.begin() + j);
                 }
             }
-    }
-    
-    void SplashState::CheckFail()
-    {
-        if(m_heroes.size()==0)
-        {
-            m_data->machine.AddState(StateRef(new GameOverState(m_data, m_disponible)));
         }
     }
-    
+
+    void SplashState::CheckFail() {
+        if (m_objectives[m_objectives.size() - 1]->GetActualState() == OBJECTIVE_DESTROYED_STATE) {
+            this->m_data->data.SetConfidenceLevel(-3);
+            this->m_data->machine.AddState(StateRef(new LevelSelectorState(this->m_data, false)));
+        }
+    }
+
     void SplashState::SpawnHydra(sf::Vector2f l_position, Bezier& l_path) {
 
         const std::vector<Enemy*>& l_neighbor = m_enemies;
@@ -591,22 +600,17 @@ namespace Zenon {
         }
 
     }
-    
-    void SplashState::CheckDeadEnemies()
-    {
-        for(int i=0; i<m_enemies.size(); i++)
-        {
-            if(m_enemies[i]->GetActualState() == ENEMY_STATE_DEAD)
-            {
-                if(m_enemies[i]->GetActualState()==ENEMY_STATE_DEAD)
-                    {
-                        for(int w=0; w<m_trampas.size(); w++)
-                        {
-                            m_trampas[w]->DeleteTarget(m_enemies[i]->GetId());
-                        }
-                        delete m_enemies[i];
-                        m_enemies.erase(m_enemies.begin() + i);
+
+    void SplashState::CheckDeadEnemies() {
+        for (int i = 0; i < m_enemies.size(); i++) {
+            if (m_enemies[i]->GetActualState() == ENEMY_STATE_DEAD) {
+                if (m_enemies[i]->GetActualState() == ENEMY_STATE_DEAD) {
+                    for (int w = 0; w < m_trampas.size(); w++) {
+                        m_trampas[w]->DeleteTarget(m_enemies[i]->GetId());
                     }
+                    delete m_enemies[i];
+                    m_enemies.erase(m_enemies.begin() + i);
+                }
             }
         }
     }

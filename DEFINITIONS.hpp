@@ -27,6 +27,7 @@
 //Todo lo relacionado con los tiempos de aparición y estados de la trampa
 #define TRAP_STATE_APPEARING 0
 #define TRAP_STATE_PLACED 1
+#define TRAP_DESTROYED 2
 #define ATRAP_APPEARING_TIME 1.0f
 #define ATRAP_MACHINEGUN_APPEARING_TIME 3.0f
 #define DTRAP_APPEARING_TIME 2.0f
@@ -41,9 +42,15 @@
 #define ENEMY_SPEED 100.0f
 #define MINIMUM_WAYPOINT_DISTANCE 50.0f
 #define MINIMUM_NEIGHBOR_DISTANCE 50.0f
+#define MINIMUM_OBJECTIVE_DETECTION 80.0f
 #define ENEMY_REPULSION 10.0f
 #define WP_FACTOR 0.9
 #define ENEMY_FACTOR 0.7
+#define DOXY_HITING_STATE 2
+#define DOXY_HITING_TIME 1.0f
+
+
+
 
 
 //variables de la TORRETA
@@ -90,9 +97,22 @@
 
 
 #define SIGUIENTE_SPRITE "resources/next.png"
+//Variables de Objective
 #define POINT1 "resources/generador.png"
 #define TIENDA "resources/tienda.png"
 #define SPAWN "resources/effect.png"
+#define OBJECTIVE_ACTIVE_STATE 0
+#define OBJECTIVE_DESTROYED_STATE 1
+
+
+//--- Generator ---//
+#define GENERATOR_SCALEX 0.5f
+#define GENERATOR_SCALEY 0.5f
+#define GENERATOR_DAM_AREA 150.0f
+
+//--- Core ---//
+#define CORE_SCALEX 0.5f
+#define CORE_SCALEY 0.5f
 
 //variables de Hero
 #define SPRITESHEET_HEROE "resources/spritesheetHeroe1.png"
@@ -132,6 +152,16 @@
 #define BERSEKER_HITING_HERO_STATE 6
 #define BERSEKER_CHECKING_HERO_TIME 0.8f
 #define BERSEKER_HIT_HERO_TIME 1.0f
+
+//Variables TRAPPER
+#define TRAPPER_SPRITE "resources/trapper.png"
+#define TRAPPER_FOLLOWING_TRAP_STATE 2
+#define TRAPPER_HITING_TRAP_STATE 3
+#define TRAPPER_FOLLOWING_CORE_STATE 4
+#define TRAPPER_HITING_CORE_STATE 5
+#define TRAPPER_MINIMUM_WP_D 10.0f
+#define TRAPPER_SPEED 100.0f
+#define TRAPPER_HITING_TIME 3.5f
 
 //variables del LANZALLAMAS
 #define LANZALLAMAS_SPRITE "resources/lanzallamas.png"

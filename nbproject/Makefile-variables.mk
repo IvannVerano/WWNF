@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux
-CND_ARTIFACT_NAME_Debug=lastbeta
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/lastbeta
+CND_ARTIFACT_NAME_Debug=beta
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/beta
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux/package
-CND_PACKAGE_NAME_Debug=lastbeta.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/lastbeta.tar
+CND_PACKAGE_NAME_Debug=beta.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/beta.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux
-CND_ARTIFACT_NAME_Release=lastbeta
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/lastbeta
+CND_ARTIFACT_NAME_Release=beta
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/beta
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux/package
-CND_PACKAGE_NAME_Release=lastbeta.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/lastbeta.tar
+CND_PACKAGE_NAME_Release=beta.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/beta.tar
 #
 # include compiler specific variables
 #

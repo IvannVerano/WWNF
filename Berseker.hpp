@@ -15,6 +15,7 @@
 #include "Enemy.hpp"
 #include "MathHelper.hpp"
 #include"Maps.hpp"
+#include "Objective.hpp"
 #include "Hero.hpp"
 
 namespace Zenon {
@@ -23,7 +24,7 @@ namespace Zenon {
     public:
 
         Berseker(GameDataRef l_data, Enemy::TYPE l_type, sf::Vector2f l_position, const std::vector<Enemy*>& l_neighbors,
-                Maps &l_map, std::vector<sf::Sprite>& l_objectives, const std::vector<Hero*>& l_heroes);
+                Maps &l_map, const std::vector<Objective*>& l_objectives, const std::vector<Hero*>& l_heroes);
 
         ~Berseker();
 
@@ -37,14 +38,13 @@ namespace Zenon {
         void CheckState();
         int CheckNearestObj();
 
-
         //AUXILIAR
         void DrawDebugCircles();
 
     private:
 
         Maps& m_map;
-        std::vector<sf::Sprite>& m_objectives;
+        const std::vector<Objective*>& m_objectives;
         const std::vector<Hero*>& m_heroes;
         std::vector<sf::Vector2f> m_pathHero;
         std::vector<sf::Vector2f> m_pathObj;

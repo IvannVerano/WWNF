@@ -9,6 +9,7 @@
       <itemPath>Attack.hpp</itemPath>
       <itemPath>Bala.hpp</itemPath>
       <itemPath>Berseker.hpp</itemPath>
+      <itemPath>Core.hpp</itemPath>
       <itemPath>DEFINITIONS.hpp</itemPath>
       <itemPath>Doxy.hpp</itemPath>
       <itemPath>Enemigo.hpp</itemPath>
@@ -19,6 +20,7 @@
       <itemPath>Flamethrower.hpp</itemPath>
       <itemPath>Game.hpp</itemPath>
       <itemPath>GameOverState.hpp</itemPath>
+      <itemPath>Generator.hpp</itemPath>
       <itemPath>HUD.hpp</itemPath>
       <itemPath>Healer.hpp</itemPath>
       <itemPath>Hero.hpp</itemPath>
@@ -33,6 +35,7 @@
       <itemPath>MathHelper.hpp</itemPath>
       <itemPath>Node.hpp</itemPath>
       <itemPath>Nuke.hpp</itemPath>
+      <itemPath>Objective.hpp</itemPath>
       <itemPath>Placer.hpp</itemPath>
       <itemPath>Reward.hpp</itemPath>
       <itemPath>SaveData.hpp</itemPath>
@@ -41,6 +44,7 @@
       <itemPath>StateMachine.hpp</itemPath>
       <itemPath>Support.hpp</itemPath>
       <itemPath>Trampa.hpp</itemPath>
+      <itemPath>Trapper.hpp</itemPath>
       <itemPath>tinyxml2.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -55,6 +59,7 @@
       <itemPath>Attack.cpp</itemPath>
       <itemPath>Bala.cpp</itemPath>
       <itemPath>Berseker.cpp</itemPath>
+      <itemPath>Core.cpp</itemPath>
       <itemPath>Doxy.cpp</itemPath>
       <itemPath>Enemigo.cpp</itemPath>
       <itemPath>Enemy.cpp</itemPath>
@@ -64,6 +69,7 @@
       <itemPath>Flamethrower.cpp</itemPath>
       <itemPath>Game.cpp</itemPath>
       <itemPath>GameOverState.cpp</itemPath>
+      <itemPath>Generator.cpp</itemPath>
       <itemPath>HUD.cpp</itemPath>
       <itemPath>Healer.cpp</itemPath>
       <itemPath>Hero.cpp</itemPath>
@@ -77,12 +83,14 @@
       <itemPath>Maps.cpp</itemPath>
       <itemPath>Node.cpp</itemPath>
       <itemPath>Nuke.cpp</itemPath>
+      <itemPath>Objective.cpp</itemPath>
       <itemPath>Placer.cpp</itemPath>
       <itemPath>Reward.cpp</itemPath>
       <itemPath>SaveData.cpp</itemPath>
       <itemPath>SplashState.cpp</itemPath>
       <itemPath>StateMachine.cpp</itemPath>
       <itemPath>Support.cpp</itemPath>
+      <itemPath>Trapper.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
       <itemPath>tinyxml2.cpp</itemPath>
     </logicalFolder>
@@ -146,6 +154,10 @@
       </item>
       <item path="Berseker.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Core.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Core.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DEFINITIONS.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Doxy.cpp" ex="false" tool="1" flavor2="0">
@@ -183,6 +195,10 @@
       <item path="GameOverState.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="GameOverState.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Generator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Generator.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="HUD.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -238,6 +254,10 @@
       </item>
       <item path="Nuke.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Objective.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Objective.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Placer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Placer.hpp" ex="false" tool="3" flavor2="0">
@@ -265,6 +285,10 @@
       <item path="Support.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Trampa.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Trapper.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Trapper.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -313,6 +337,10 @@
       </item>
       <item path="Berseker.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Core.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Core.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="DEFINITIONS.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Doxy.cpp" ex="false" tool="1" flavor2="0">
@@ -350,6 +378,10 @@
       <item path="GameOverState.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="GameOverState.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Generator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Generator.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="HUD.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -405,6 +437,10 @@
       </item>
       <item path="Nuke.hpp" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="Objective.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Objective.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="Placer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Placer.hpp" ex="false" tool="3" flavor2="0">
@@ -432,6 +468,10 @@
       <item path="Support.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Trampa.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Trapper.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Trapper.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

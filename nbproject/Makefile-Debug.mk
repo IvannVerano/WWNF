@@ -40,6 +40,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Attack.o \
 	${OBJECTDIR}/Bala.o \
 	${OBJECTDIR}/Berseker.o \
+	${OBJECTDIR}/Core.o \
 	${OBJECTDIR}/Doxy.o \
 	${OBJECTDIR}/Enemigo.o \
 	${OBJECTDIR}/Enemy.o \
@@ -49,6 +50,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Flamethrower.o \
 	${OBJECTDIR}/Game.o \
 	${OBJECTDIR}/GameOverState.o \
+	${OBJECTDIR}/Generator.o \
 	${OBJECTDIR}/HUD.o \
 	${OBJECTDIR}/Healer.o \
 	${OBJECTDIR}/Hero.o \
@@ -62,12 +64,14 @@ OBJECTFILES= \
 	${OBJECTDIR}/Maps.o \
 	${OBJECTDIR}/Node.o \
 	${OBJECTDIR}/Nuke.o \
+	${OBJECTDIR}/Objective.o \
 	${OBJECTDIR}/Placer.o \
 	${OBJECTDIR}/Reward.o \
 	${OBJECTDIR}/SaveData.o \
 	${OBJECTDIR}/SplashState.o \
 	${OBJECTDIR}/StateMachine.o \
 	${OBJECTDIR}/Support.o \
+	${OBJECTDIR}/Trapper.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/tinyxml2.o
 
@@ -90,21 +94,21 @@ LDLIBSOPTIONS=-L/usr/lib/86x_64-linux-GNU /usr/lib/x86_64-linux-gnu/libsfml-audi
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/lastbeta
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/beta
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/lastbeta: /usr/lib/x86_64-linux-gnu/libsfml-audio.so
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/beta: /usr/lib/x86_64-linux-gnu/libsfml-audio.so
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/lastbeta: /usr/lib/x86_64-linux-gnu/libsfml-graphics.so
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/beta: /usr/lib/x86_64-linux-gnu/libsfml-graphics.so
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/lastbeta: /usr/lib/x86_64-linux-gnu/libsfml-network.so
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/beta: /usr/lib/x86_64-linux-gnu/libsfml-network.so
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/lastbeta: /usr/lib/x86_64-linux-gnu/libsfml-system.so
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/beta: /usr/lib/x86_64-linux-gnu/libsfml-system.so
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/lastbeta: /usr/lib/x86_64-linux-gnu/libsfml-window.so
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/beta: /usr/lib/x86_64-linux-gnu/libsfml-window.so
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/lastbeta: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/beta: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/lastbeta ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/beta ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/Adrenalin.o: Adrenalin.cpp
 	${MKDIR} -p ${OBJECTDIR}
@@ -130,6 +134,11 @@ ${OBJECTDIR}/Berseker.o: Berseker.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Berseker.o Berseker.cpp
+
+${OBJECTDIR}/Core.o: Core.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Core.o Core.cpp
 
 ${OBJECTDIR}/Doxy.o: Doxy.cpp
 	${MKDIR} -p ${OBJECTDIR}
@@ -175,6 +184,11 @@ ${OBJECTDIR}/GameOverState.o: GameOverState.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/GameOverState.o GameOverState.cpp
+
+${OBJECTDIR}/Generator.o: Generator.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Generator.o Generator.cpp
 
 ${OBJECTDIR}/HUD.o: HUD.cpp
 	${MKDIR} -p ${OBJECTDIR}
@@ -241,6 +255,11 @@ ${OBJECTDIR}/Nuke.o: Nuke.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Nuke.o Nuke.cpp
 
+${OBJECTDIR}/Objective.o: Objective.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Objective.o Objective.cpp
+
 ${OBJECTDIR}/Placer.o: Placer.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -271,6 +290,11 @@ ${OBJECTDIR}/Support.o: Support.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Support.o Support.cpp
 
+${OBJECTDIR}/Trapper.o: Trapper.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Trapper.o Trapper.cpp
+
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -288,7 +312,7 @@ ${OBJECTDIR}/tinyxml2.o: tinyxml2.cpp
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
 	${RM} -r ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libsfml-audio.so ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libsfml-graphics.so ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libsfml-network.so ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libsfml-system.so ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libsfml-window.so
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/lastbeta
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/beta
 
 # Subprojects
 .clean-subprojects:

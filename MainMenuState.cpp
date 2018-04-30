@@ -4,11 +4,10 @@
 #include "DEFINITIONS.hpp"
 
 
-namespace Zenon
-{
-    MainMenuState::MainMenuState(GameDataRef l_data): m_data(l_data)
-    {
-         m_data->assets.LoadTexture("TILESET", TILESET_FILEPATH);
+namespace Zenon {
+
+    MainMenuState::MainMenuState(GameDataRef l_data) : m_data(l_data) {
+        m_data->assets.LoadTexture("TILESET", TILESET_FILEPATH);
         m_data->assets.LoadTexture("No_trampa", NO_TRAP_SPRITE);
         m_data->assets.LoadTexture("Metralleta", METRALLETA_SPRITE);
         m_data->assets.LoadTexture("Defensa", DEFENSA_SPRITE);
@@ -45,6 +44,7 @@ namespace Zenon
         m_data->assets.LoadTexture("GUI_SANACION_SEL", GUI_SANACION_SEL);
         m_data->assets.LoadTexture("DESCRIPTIVE_SANACION", DESCRIPTIVE_SANACION);
         m_data->assets.LoadTexture("Hydra Sheet", HYDRA_SPRITE_SHEET);
+        m_data->assets.LoadTexture("trapper", TRAPPER_SPRITE);
         m_data->assets.LoadTexture("WorldMap", WORLD_MAP);
         m_data->assets.LoadTexture("MapMarker", MARKER);
         m_data->assets.LoadTexture("Herosprite2", SPRITESHEET_HEROE2);
@@ -59,7 +59,7 @@ namespace Zenon
         m_data->assets.LoadTexture("GUI_ADRENALINA_SEL", GUI_ADRENALINA_SEL);
         m_data->assets.LoadTexture("DESCRIPTIVE_ADRENALINA", DESCRIPTIVE_ADRENALINA);
         m_data->assets.LoadTexture("GUI_ADRENALINA_BLOCK", GUI_ADRENALINA_BLOCK);
-    
+
         m_data->assets.LoadTexture("Hielo", HIELO_SPRITE);
         m_data->assets.LoadTexture("GUI_HIELO", GUI_HIELO);
         m_data->assets.LoadTexture("GUI_HIELO_SEL", GUI_HIELO_SEL);
@@ -67,7 +67,7 @@ namespace Zenon
         m_data->assets.LoadTexture("GUI_NUKE_SEL", GUI_NUKE_SEL);
         m_data->assets.LoadTexture("DESCRIPTIVE_HIELO", DESCRIPTIVE_HIELO);
         m_data->assets.LoadTexture("Next", SIGUIENTE_SPRITE);
-        
+
         //Compra en fase de seleccion
         m_data->assets.LoadTexture("Empty_Map", EMPTY_MAP_SPRITE);
         m_data->assets.LoadTexture("Option1", OPTION1_SPRITE);
@@ -80,40 +80,33 @@ namespace Zenon
         m_data->assets.LoadTexture("Bottom2OFF", BOTTOM2OFF_SPRITE);
         m_data->assets.LoadTexture("Bottom3OFF", BOTTOM3OFF_SPRITE);
     }
-    
-    void MainMenuState::Init()
-    {
+
+    void MainMenuState::Init() {
         m_PlayButton.setTexture(m_data->assets.GetTexture("GUI_DEFENSA_BLOCK"));
-        m_PlayButton.setOrigin(m_PlayButton.getGlobalBounds().width/2, m_PlayButton.getGlobalBounds().height/2);
-        m_PlayButton.setPosition(200,200);
-        m_PlayButton.scale(0.8,0.8);
+        m_PlayButton.setOrigin(m_PlayButton.getGlobalBounds().width / 2, m_PlayButton.getGlobalBounds().height / 2);
+        m_PlayButton.setPosition(200, 200);
+        m_PlayButton.scale(0.8, 0.8);
     }
-    
-    void MainMenuState::HandleInput()
-    {
+
+    void MainMenuState::HandleInput() {
         sf::Event event;
-        while (this->m_data->window.pollEvent(event)) 
-        {
-            if(m_data->input.IsSpriteClicked(m_PlayButton, sf::Mouse::Left, m_data->window))
-            {
+        while (this->m_data->window.pollEvent(event)) {
+            if (m_data->input.IsSpriteClicked(m_PlayButton, sf::Mouse::Left, m_data->window)) {
                 this->NewGame();
             }
         }
     }
-    
-    void MainMenuState::Update(float dt)
-    {
+
+    void MainMenuState::Update(float dt) {
     }
-    
-    void MainMenuState::Draw(float dt)
-    {
+
+    void MainMenuState::Draw(float dt) {
         this->m_data->window.clear(sf::Color::Black);
         m_data->window.draw(m_PlayButton);
         this->m_data->window.display();
     }
-    
-    void MainMenuState::NewGame()
-    {
-        m_data->machine.AddState(StateRef(new LevelSelectorState(this->m_data,false)));
+
+    void MainMenuState::NewGame() {
+        m_data->machine.AddState(StateRef(new LevelSelectorState(this->m_data, false)));
     }
 }

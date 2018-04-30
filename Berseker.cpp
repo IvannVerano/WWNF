@@ -16,10 +16,9 @@
 namespace Zenon {
 
     Berseker::Berseker(GameDataRef l_data, Enemy::TYPE l_type, sf::Vector2f l_position, const std::vector<Enemy*>& l_neighbors,
-            Maps &l_map, std::vector<sf::Sprite>& l_objectives, const std::vector<Hero*>& l_heroes)
+            Maps &l_map, const std::vector<Objective*>& l_objectives, const std::vector<Hero*>& l_heroes)
     : Enemy(l_data, l_type, l_position, l_neighbors), m_map(l_map), m_objectives(l_objectives), m_heroes(l_heroes) {
 
-        m_objectives = l_objectives;
         m_enemySprite.setTexture(m_data->assets.GetTexture("berseker"));
         m_enemySprite.setOrigin(m_enemySprite.getGlobalBounds().width / 2, m_enemySprite.getGlobalBounds().height / 2);
         m_enemySprite.scale(0.7, 0.7);
@@ -83,11 +82,14 @@ namespace Zenon {
         if (m_state == BERSEKER_HITING_HERO_STATE) {
             if (CheckNearHero()) {
                 if (m_hitingClock.getElapsedTime().asSeconds() >= BERSEKER_HIT_HERO_TIME) {
-                    std::cout << "Ataque: -" << m_damage << std::endl;
                     m_heroes[m_heroTarget]->TakeDamage(m_damage);
-                    std::cout << "vida del heroe: " << m_heroes[m_heroTarget]->GetLive() << std::endl;
                     m_hitingClock.restart();
                 }
+            } else {
+                m_state = BERSEKER_MOVING_TO_OBJ_STATE;
+                m_pathComplete = false;
+                m_currentWP = 1;
+                FindObj();
             }
         }
 
@@ -98,7 +100,7 @@ namespace Zenon {
                     float l_module = Module(l_direction);
 
                     if (l_module < BERSEKER_MINIMUM_WP_D) {
-                        if (m_enemySprite.getGlobalBounds().intersects(m_objectives[m_obj].getGlobalBounds())) {
+                        if (m_enemySprite.getGlobalBounds().intersects(m_objectives[m_obj]->GetGB())) {
                             m_pathComplete = true;
                         } else {
                             m_currentWP++;
@@ -173,11 +175,19 @@ namespace Zenon {
     void Berseker::FindObj() {
         m_obj = CheckNearestObj();
         m_pathObj.clear();
-        if (m_map.GetPath(m_enemySprite.getPosition(), m_objectives[m_obj].getPosition(), m_pathObj)) {
-            CheckPathObj();
-            std::reverse(m_pathObj.begin(), m_pathObj.end());
+        if (m_obj == -1) {
+            m_state = BERSEKER_FOLLOWING_HERO_STATE;
+        } else {
+            if (m_map.GetPath(m_enemySprite.getPosition(), m_objectives[m_obj]->GetPosition(), m_pathObj)) {
+                CheckPathObj();
+                std::reverse(m_pathObj.begin(), m_pathObj.end());
+            } else {
+                m_state = BERSEKER_FOLLOWING_HERO_STATE;
+                m_pathComplete = false;
+                m_currentWP = 1;
+                FindHero();
+            }
         }
-        DrawDebugCircles();
     }
 
     void Berseker::CheckPathObj() {
@@ -212,13 +222,21 @@ namespace Zenon {
         float d = 0;
         float minD = 100000;
         int obj = -1;
+        int cuantos = 0;
         for (int i = 0; i < m_objectives.size(); i++) {
-            sf::Vector2f vec = m_objectives[i].getPosition() - m_enemySprite.getPosition();
-            d = Module(vec);
-            if (d < minD) {
-                minD = d;
-                obj = i;
+            if (m_objectives[i]->GetLife() > 10 && m_objectives[i]->GetActualState() != OBJECTIVE_DESTROYED_STATE) {
+                sf::Vector2f vec = m_objectives[i]->GetPosition() - m_enemySprite.getPosition();
+                cuantos++;
+                d = Module(vec);
+                if (d < minD) {
+                    minD = d;
+                    obj = i;
+                }
             }
+        }
+
+        if (cuantos == 0) {
+            obj = -1;
         }
 
         return obj;

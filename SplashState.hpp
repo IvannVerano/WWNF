@@ -18,6 +18,10 @@
 #include "Flamethrower.hpp"
 #include "Support.hpp"
 #include "Hydra.hpp"
+#include "Objective.hpp"
+#include "Generator.hpp"
+#include "Core.hpp"
+#include "Trapper.hpp"
 #include <vector>
 
 namespace Zenon {
@@ -36,13 +40,15 @@ namespace Zenon {
         void LoadAssets();
         void SpawnEnemy(sf::Vector2f l_position, int l_path);
         void SpawnDoxy(sf::Vector2f l_position, int l_path);
+        void SpawnTrapper(sf::Vector2f l_position);
         void SpawnBerseker(sf::Vector2f l_position, int l_obj);
         void SpawnHydra(sf::Vector2f l_position, Bezier& l_path);
+        void TrapsDestroyed();
         void CheckColision();
-        
+
         void CheckFail();
         void CheckDeadEnemies();
-        
+
         sf::VertexArray ToVertex(std::vector<sf::Vector2f> l_points);
 
     private:
@@ -52,6 +58,7 @@ namespace Zenon {
         int m_disponible;
 
         sf::Clock m_enemy_dead;
+        sf::Clock m_spawnerClock;
         sf::Texture _backgroundTexture;
         sf::Sprite _background;
         sf::Text m_textoDinero;
@@ -63,10 +70,11 @@ namespace Zenon {
         bool m_hideCursor;
 
         Enemy* m_enemy;
+        Objective* m_obj;
 
         std::vector<Trampa*> m_trampas;
         std::vector<Placer*> m_placer;
-        std::vector<sf::Sprite> m_objectives;
+        std::vector<Objective*> m_objectives;
         std::vector<FichaTrampa*> m_trampasSel;
         std::vector<Bezier> m_routes;
         std::vector<Enemy*> m_enemys;
@@ -79,6 +87,7 @@ namespace Zenon {
         bool m_wantsDoxy = false;
         bool m_wantsBerseker = false;
         bool m_wantsHydra = false;
+        bool m_wantsTrapper = false;
         Maps* map;
 
         std::vector<Hero*> m_heroes;

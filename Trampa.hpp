@@ -13,6 +13,7 @@
 
 #pragma once
 #include "Game.hpp"
+#include "DEFINITIONS.hpp"
 #include "MathHelper.hpp"
 #include <SFML/Graphics.hpp>
 #include <vector>
@@ -39,21 +40,49 @@ namespace Zenon {
 
         virtual void DeleteTarget(int l_position) {
         };
-        
-        virtual void SetAttributes(int l_id, float l_cadence, float l_apptime, int l_power, int l_range, int l_refresh, int l_wait, int l_percentaje, int l_price){};
+
+        virtual void SetAttributes(int l_id, float l_cadence, float l_apptime, int l_power, int l_range, int l_refresh, int l_wait, int l_percentaje, int l_price) {
+        };
+
+        void TakeDamage(int l_factor) {
+            m_life -= l_factor;
+            m_ocupada = true;
+            if (m_life < 0) {
+                m_state = TRAP_DESTROYED;
+            }
+        };
+
+        virtual int GetLife() {
+            return m_life;
+        }
+
+        sf::Vector2f GetPosition() {
+            std::cout << "me pides posicion\n";
+            return m_mainSprite.getPosition();
+        }
+
+        virtual int GetActualState() {
+            return m_state;
+        }
+
+        bool GetOcupada() {
+            return m_ocupada;
+        }
+
     protected:
+
         GameDataRef m_datos;
+        int m_state = TRAP_STATE_PLACED;
+        int m_life = 50;
+        int m_charge;
+        int m_animationAppearCounter;
+        bool m_ocupada = false;
         sf::Sprite m_mainSprite;
         sf::Sprite m_SpriteAnimation;
-        int m_state;
         sf::Clock m_timeAppear;
-        int m_animationAppearCounter;
-        std::vector<sf::IntRect> m_AnimationFramesAppear;
         sf::Clock m_aniAppearClock;
-        int m_precio;
-        int m_porcentaje;
-        int m_charge;
         sf::Clock m_timeRefresh;
+        std::vector<sf::IntRect> m_AnimationFramesAppear;
 
     };
 }

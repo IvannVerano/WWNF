@@ -11,9 +11,9 @@
 
 namespace Zenon {
 
-    #define PI 3.14159265
-    #define DEG_TO_RAD PI / 180.0f
-    #define RAD_TO_DEG 180.0f / PI
+#define PI 3.14159265
+#define DEG_TO_RAD PI / 180.0f
+#define RAD_TO_DEG 180.0f / PI
 
     inline float Module(sf::Vector2f& vec) {
         return std::sqrt(vec.x * vec.x + vec.y * vec.y);
@@ -67,6 +67,7 @@ namespace Zenon {
 
     struct Bezier {
         int probability;
+        bool m_transitable = true;
         sf::Vector2f m_startPoint;
         sf::Vector2f m_endPoint;
         sf::Vector2f m_controlPoint1;
@@ -132,6 +133,14 @@ namespace Zenon {
             for (int i = 0; i < m_bezierBody.size(); i++) {
                 m_bezierBody[i].y = (m_bezierBody[i].y * -1) + d;
             }
+        }
+
+        void SetIntransitable() {
+            m_transitable = false;
+        }
+
+        bool IsTransitable() {
+            return m_transitable;
         }
     };
 
