@@ -23,7 +23,39 @@ namespace Zenon
         m_heroHUDLife.setSize(sf::Vector2f(100,15));
         m_heroHUDLife.setPosition(m_heroHUD.getPosition().x - m_heroHUD.getGlobalBounds().width/2, m_heroHUD.getPosition().y+m_heroHUD.getGlobalBounds().height/2);
         m_heroHUDLife.setFillColor(sf::Color::Green);
+        
+        
+        //Construimos las animaciones
+        m_lateralMovementTexture = m_data->assets.GetTexture("LATERAL_MOV_FIGHTER");
+        m_lateralAnimation.push_back(sf::IntRect(100,0,20,28));
+        m_lateralAnimation.push_back(sf::IntRect(88,30,18,29));
+        m_lateralAnimation.push_back(sf::IntRect(88,30,18,29));
+        m_lateralAnimation.push_back(sf::IntRect(106,30,16,32));
+        m_lateralAnimation.push_back(sf::IntRect(106,30,16,32));
+        m_lateralAnimation.push_back(sf::IntRect(71,30,17,32));
+        m_lateralAnimation.push_back(sf::IntRect(71,30,17,32));
+        m_lateralAnimation.push_back(sf::IntRect(0,31,17,32));
+        m_lateralAnimation.push_back(sf::IntRect(0,31,17,32));
+        m_lateralAnimation.push_back(sf::IntRect(0,0,25,31));
+        m_lateralAnimation.push_back(sf::IntRect(0,0,25,31));
+        m_lateralAnimation.push_back(sf::IntRect(71,0,29,30));
+        m_lateralAnimation.push_back(sf::IntRect(71,0,29,30));
+        m_lateralAnimation.push_back(sf::IntRect(0,0,25,31));
+        m_lateralAnimation.push_back(sf::IntRect(0,0,25,31));
+        m_lateralAnimation.push_back(sf::IntRect(0,31,17,32));
+        m_lateralAnimation.push_back(sf::IntRect(0,31,17,32));
+        m_lateralAnimation.push_back(sf::IntRect(71,30,17,32));
+        m_lateralAnimation.push_back(sf::IntRect(71,30,17,32));
+        m_lateralAnimation.push_back(sf::IntRect(106,30,16,32));
+        m_lateralAnimation.push_back(sf::IntRect(106,30,16,32));
+        m_lateralAnimation.push_back(sf::IntRect(88,30,18,29));
+        m_lateralAnimation.push_back(sf::IntRect(88,30,18,29));
+        m_lateralAnimation.push_back(sf::IntRect(100,0,20,28));
+        
+        m_mainAnimation = m_lateralAnimation;
+        
     }
+    
     
     void Fighter::Update(float dt)
     {
@@ -180,6 +212,70 @@ namespace Zenon
         {
             m_target = -1;
             m_state = HERO_IDLE_STATE;
+        }
+    }
+    
+    void Fighter::Animate()
+    {
+        if (m_aniClock.getElapsedTime().asSeconds() > SPEED_ANIMATION / m_mainAnimation.size()) {
+            
+            if (m_animationCounter < m_mainAnimation.size() - 1) 
+            {
+                m_animationCounter++;
+            } 
+            else 
+            {
+                m_animationCounter = 0;
+            }
+
+            m_mainSprite.setTextureRect(m_mainAnimation.at(m_animationCounter));
+
+            m_aniClock.restart();
+        }
+    }
+    
+    void Fighter::Draw()
+    {
+        if (m_state == HERO_MOVING_STATE) {
+            m_mainSprite.setTexture(m_lateralMovementTexture);
+            this->SelectAnimation();
+            this->Animate();
+            m_data->window.draw(m_destinyPointer);
+        }
+        if (m_isSelected) 
+        {
+            m_data->window.draw(m_heroPlace);
+            m_data->window.draw(m_heroArrow);
+        }
+        
+        m_data->window.draw(m_heroHUD);
+        m_data->window.draw(m_heroHUDred);
+        m_data->window.draw(m_heroHUDLife);
+        m_data->window.draw(m_mainSprite);
+    }
+    
+    void Fighter::SelectAnimation()
+    {
+        sf::Vector2f distance = m_destiny - m_mainSprite.getPosition();
+        
+        if(distance.x < 0) // me muevo a la isquierda
+        {
+            if(m_way !=1)
+            {
+                m_way = 1;
+                m_mainSprite.scale(-1.0,1.0);
+            }
+        }
+        else if(distance.x > 0)
+        {
+            if(m_way !=0)
+            {
+                if(m_way == 1)
+                {
+                    m_way = 0;
+                    m_mainSprite.scale(-1.0,1.0);
+                }
+            }
         }
     }
     

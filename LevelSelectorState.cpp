@@ -47,6 +47,12 @@ namespace Zenon
         m_data->assets.LoadTexture("WorldMap", WORLD_MAP);
         m_data->assets.LoadTexture("MapMarker", MARKER);
         m_data->assets.LoadTexture("Herosprite2", SPRITESHEET_HEROE2);
+        m_data->assets.LoadTexture("GUI_AMETRALLADORA_BLOCK", GUI_AMETRALLADORA_BLOCK);
+        m_data->assets.LoadTexture("GUI_METRALLETA_BLOCK", GUI_METRALLETA_BLOCK);
+        m_data->assets.LoadTexture("GUI_DEFENSA_BLOCK", GUI_DEFENSA_BLOCK);
+        m_data->assets.LoadTexture("GUI_SANACION_BLOCK", GUI_SANACION_BLOCK);
+        m_data->assets.LoadTexture("GUI_LANZALLAMAS_BLOCK", GUI_LANZALLAMAS_BLOCK);
+        m_data->assets.LoadTexture("LATERAL_MOV_FIGHTER", SPRITESHEET_LATERAL_MOV1);
         
         if(rewardisOn)
             this->ProcessRewards();

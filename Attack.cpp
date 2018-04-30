@@ -67,6 +67,11 @@ namespace Zenon
         }
     }
     
+    void SelectAnimation()
+    {
+        
+    }
+    
     void Attack::Update(float dt)
     {
         switch(m_state)

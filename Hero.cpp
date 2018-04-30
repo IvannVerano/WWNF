@@ -116,7 +116,6 @@ namespace Zenon {
             m_data->window.draw(m_heroPlace);
             m_data->window.draw(m_heroArrow);
         }
-        
         m_data->window.draw(m_heroHUD);
         m_data->window.draw(m_heroHUDred);
         m_data->window.draw(m_heroHUDLife);

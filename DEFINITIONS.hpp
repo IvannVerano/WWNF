@@ -50,6 +50,7 @@
 #define METRALLETA_SPRITE "resources/seleccion1.png"
 #define GUI_METRALLETA "resources/gui_torreta.png"
 #define GUI_METRALLETA_SEL "resources/gui_torreta_sel.png"
+#define GUI_METRALLETA_BLOCK "resources/gui_torreta_blocked.png"
 #define DESCRIPTIVE_TURRET "resources/descriptor_torreta.png"
 #define RANGO_TORRETA 200
 #define CADENCIA_TORRETA 0.5f
@@ -63,6 +64,7 @@
 #define DEFENSA_SPRITE "resources/seleccion3.png"
 #define GUI_DEFENSA "resources/gui_defensa.png"
 #define GUI_DEFENSA_SEL "resources/gui_defensa_sel.png"
+#define GUI_DEFENSA_BLOCK "resources/gui_defensa_blocked.png"
 #define DESCRIPTIVE_DEFENSE "resources/descriptor_defensa.png"
 #define RANGO_TORRE_DEFENSA 200
 #define PRECIO_TORRE_DEFENSA 200
@@ -77,6 +79,7 @@
 #define AMETRALLADORA_SPRITE "resources/ametralladora.png"
 #define GUI_AMETRALLADORA "resources/gui_ametralladora.png"
 #define GUI_AMETRALLADORA_SEL "resources/gui_ametralladora_sel.png"
+#define GUI_AMETRALLADORA_BLOCK "resources/gui_ametralladora_blocked.png"
 #define DESCRIPTIVE_AMETRALLADORA "resources/descriptor_ametralladora.png"
 #define RANGO_AMETRALLADORA 200
 #define CADENCIA_AMETRALLADORA 0.1f
@@ -112,6 +115,8 @@
 #define HERO_DETECT_ENEMY 200.0f
 #define HERO_DISTANCEFOLLOWINGHERO 140.0f
 
+//variables de FIGHTER
+#define SPRITESHEET_LATERAL_MOV1 "resources/lateralmovement1.png"
 
 //Variables de Berseker
 #define BERSEKER_SPRITE "resources/berseker.png"
@@ -133,6 +138,7 @@
 #define FIRE_SPRITE "resources/flame.png"
 #define GUI_LANZALLAMAS "resources/gui_lanzallamas.png"
 #define GUI_LANZALLAMAS_SEL "resources/gui_lanzallamas_sel.png"
+#define GUI_LANZALLAMAS_BLOCK "resources/gui_lanzallamas_blocked.png"
 #define DESCRIPTIVE_LANZALLAMAS "resources/descriptor_ametralladora.png"
 #define RANGO_LANZALLAMAS 150
 #define CADENCIA_LANZALLAMAS 0.1f
@@ -149,6 +155,7 @@
 #define SANACION_SPRITE "resources/seleccion4.png"
 #define GUI_SANACION "resources/gui_support.png"
 #define GUI_SANACION_SEL "resources/gui_support_sel.png"
+#define GUI_SANACION_BLOCK "resources/gui_support_blocked.png"
 #define DESCRIPTIVE_SANACION "resources/descriptor_ametralladora.png"
 #define RANGO_SANACION 150
 #define CADENCIA_SANACION 0

@@ -10,7 +10,7 @@ namespace Zenon {
     public:
         Hero(GameDataRef l_data, Maps &l_map, int l_id);
         virtual void Update(float dt);
-        void Draw();
+        virtual void Draw();
         virtual void OrderMovement(sf::Vector2f l_destiny);
         void Move(float dt);
         void Select();

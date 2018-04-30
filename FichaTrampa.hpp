@@ -7,7 +7,7 @@ namespace Zenon
     class FichaTrampa
     {
         public:
-            FichaTrampa(GameDataRef l_data, sf::Texture l_posicion, sf::Texture l_gui_defecto, sf::Texture l_gui_sel, int l_tipo, sf::Vector2f l_posicion_gui,int l_precio, int l_porcentaje, float l_cadencia, int l_rango, int l_refresco, int l_potencia, float l_aparicion, sf::Texture l_descriptive);
+            FichaTrampa(GameDataRef l_data, sf::Texture l_posicion, sf::Texture l_gui_defecto, sf::Texture l_gui_sel, sf::Texture l_gui_blocked, int l_tipo, sf::Vector2f l_posicion_gui,int l_precio, int l_porcentaje, float l_cadencia, int l_rango, int l_refresco, int l_potencia, float l_aparicion, sf::Texture l_descriptive);
             void Draw();
             void GestionSeleccion();
             bool IsSelected();
@@ -31,6 +31,7 @@ namespace Zenon
             sf::Sprite m_descriptive;
             sf::Texture m_texturaPosicion;
             sf::Texture m_texturaHighlight;
+            sf::Texture m_texturaBlocked;
             sf::Texture m_textura_gui_defecto;
             sf::Texture m_textura_gui_seleccionado;
             sf::Texture m_descriptivetex;

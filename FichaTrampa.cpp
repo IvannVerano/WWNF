@@ -15,11 +15,12 @@
 #include <iostream>
 namespace Zenon
 {
-    FichaTrampa::FichaTrampa(GameDataRef l_data, sf::Texture l_posicion, sf::Texture l_gui_defecto, sf::Texture l_gui_sel, int l_tipo, sf::Vector2f l_posicion_gui,int l_precio,int l_porcentaje, float l_cadencia, int l_rango, int l_refresco, int l_potencia, float l_aparicion, sf::Texture l_descriptive):m_datos(l_data)
+    FichaTrampa::FichaTrampa(GameDataRef l_data, sf::Texture l_posicion, sf::Texture l_gui_defecto, sf::Texture l_gui_sel, sf::Texture l_gui_blocked, int l_tipo, sf::Vector2f l_posicion_gui,int l_precio, int l_porcentaje, float l_cadencia, int l_rango, int l_refresco, int l_potencia, float l_aparicion, sf::Texture l_descriptive):m_datos(l_data)
     {
         m_texturaPosicion = l_posicion;
         m_textura_gui_defecto = l_gui_defecto;
         m_textura_gui_seleccionado = l_gui_sel;
+        m_texturaBlocked = l_gui_blocked;
         m_tipo = l_tipo;
        
         m_mainSprite.setTexture(m_textura_gui_defecto);
@@ -47,17 +48,20 @@ namespace Zenon
     
     void FichaTrampa::GestionSeleccion()
     {
-        if(m_gui_seleccionado)
+        if(!m_locked)
         {
-            std::cout<<"Cambio la trampa a false"<<std::endl;
-            m_mainSprite.setTexture(m_textura_gui_defecto);
-            m_gui_seleccionado = false;
-        }
-        else
-        {
-            std::cout<<"Cambio la trampa a true"<<std::endl;
-            m_mainSprite.setTexture(m_textura_gui_seleccionado);
-            m_gui_seleccionado = true;
+            if(m_gui_seleccionado)
+            {
+                std::cout<<"Cambio la trampa a false"<<std::endl;
+                m_mainSprite.setTexture(m_textura_gui_defecto);
+                m_gui_seleccionado = false;
+            }
+            else
+            {
+                std::cout<<"Cambio la trampa a true"<<std::endl;
+                m_mainSprite.setTexture(m_textura_gui_seleccionado);
+                m_gui_seleccionado = true;
+            }
         }
     }
     
@@ -78,14 +82,16 @@ namespace Zenon
     void FichaTrampa::SetLocked(bool l_value)
     {
         m_locked = l_value;
+        
+        if(l_value)
+        {
+            m_mainSprite.setTexture(m_texturaBlocked);
+        }
     }
     
     void FichaTrampa::Draw()
     {
-        if(!m_locked)
-        {
-            m_datos->window.draw(m_mainSprite);
-        }
+        m_datos->window.draw(m_mainSprite);
         if(m_datos->input.IsSpriteHovered(m_mainSprite, sf::Mouse::Left, m_datos->window))
         {
             m_datos->window.draw(m_descriptive);

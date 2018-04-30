@@ -110,11 +110,14 @@ namespace Zenon
         {
             if(m_attackTimer.getElapsedTime().asSeconds() > HERO_ATTACKINGTIME)
             {
-                m_enemies[m_attackTarget]->TakeDamage(5);
-                if(m_enemies[m_attackTarget]->GetActualState() == ENEMY_STATE_DEAD)
+                if(m_attackTarget!=-1)
                 {
+                    m_enemies[m_attackTarget]->TakeDamage(5);
+                    if(m_enemies[m_attackTarget]->GetActualState() == ENEMY_STATE_DEAD)
+                    {
                     m_attackTarget = -1;
                     m_state = HERO_IDLE_STATE;
+                    }
                 }
                 
                 m_attackTimer.restart();
