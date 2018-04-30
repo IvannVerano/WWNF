@@ -13,6 +13,7 @@ namespace Zenon {
     public:
         FaseSeleccionState(GameDataRef l_data);
         void Init();
+        void InitOptions();
         void HandleInput();
         void Update(float dt);
         void Draw(float dt);
@@ -23,5 +24,21 @@ namespace Zenon {
         std::vector<FichaTrampa *> m_trampasSel;
         sf::Sprite m_boton;
         int m_dineroJugador;
+        
+        //Sistema de recompensas
+        sf::Sprite m_emptyMap;
+        std::vector<sf::Sprite> m_onBottom;
+        std::vector<sf::Sprite> m_offBottom;
+        std::vector<bool> m_boolVector;
+        std::vector<sf::Sprite> m_mapOptions;
+        int m_numBool = 3;
+        bool m_downMoney=false;
+        sf::Text m_moneyText;
+        int op1 = 50;
+        int op2 = 700;
+        int bottX = 600;
+        int bottY = 800;
+        int m_Sum;
+        int m_whSum;
     };
 }

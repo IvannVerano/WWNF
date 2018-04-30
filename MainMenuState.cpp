@@ -65,6 +65,18 @@ namespace Zenon
         m_data->assets.LoadTexture("GUI_SANACION_BLOCK", GUI_SANACION_BLOCK);
         m_data->assets.LoadTexture("GUI_LANZALLAMAS_BLOCK", GUI_LANZALLAMAS_BLOCK);
         m_data->assets.LoadTexture("LATERAL_MOV_FIGHTER", SPRITESHEET_LATERAL_MOV1);
+        
+        //Compra en fase de seleccion
+        m_data->assets.LoadTexture("Empty_Map", EMPTY_MAP_SPRITE);
+        m_data->assets.LoadTexture("Option1", OPTION1_SPRITE);
+        m_data->assets.LoadTexture("Option2", OPTION2_SPRITE);
+        m_data->assets.LoadTexture("Option3", OPTION3_SPRITE);
+        m_data->assets.LoadTexture("Bottom1", BOTTOM1_SPRITE);
+        m_data->assets.LoadTexture("Bottom2", BOTTOM2_SPRITE);
+        m_data->assets.LoadTexture("Bottom3", BOTTOM3_SPRITE);
+        m_data->assets.LoadTexture("Bottom1OFF", BOTTOM1OFF_SPRITE);
+        m_data->assets.LoadTexture("Bottom2OFF", BOTTOM2OFF_SPRITE);
+        m_data->assets.LoadTexture("Bottom3OFF", BOTTOM3OFF_SPRITE);
     }
     
     void MainMenuState::Init()

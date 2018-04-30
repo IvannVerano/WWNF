@@ -178,3 +178,15 @@
 #define SA      struct sockaddr
 #define MAXLINE 4096
 #define MAXSUB  200
+
+//Variables OPTIONS
+#define EMPTY_MAP_SPRITE "resources/emptyMap.png"
+#define OPTION1_SPRITE "resources/option1.png"
+#define OPTION2_SPRITE "resources/option2.png"
+#define OPTION3_SPRITE "resources/option3.png"
+#define BOTTOM1_SPRITE "resources/bottom1.png"
+#define BOTTOM2_SPRITE "resources/bottom2.png"
+#define BOTTOM3_SPRITE "resources/bottom3.png"
+#define BOTTOM1OFF_SPRITE "resources/bottom1OFF.png"
+#define BOTTOM2OFF_SPRITE "resources/bottom2OFF.png"
+#define BOTTOM3OFF_SPRITE "resources/bottom3OFF.png"

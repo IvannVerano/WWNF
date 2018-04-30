@@ -24,7 +24,7 @@ namespace Zenon {
 
     class SplashState : public State {
     public:
-        SplashState(GameDataRef l_data, std::vector<FichaTrampa*> l_fichaTrampa, int l_dinero);
+        SplashState(GameDataRef l_data, std::vector<FichaTrampa*> l_fichaTrampa);
 
         void Init();
 

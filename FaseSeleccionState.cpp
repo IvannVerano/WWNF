@@ -35,8 +35,84 @@ namespace Zenon {
             m_trampasdisp[i]->SetLocked(m_data->data.IsTrapUnlocked(i));
         }
 
-        m_dineroJugador = 500;
+        this->InitOptions();
 
+    }
+    
+    
+    void FaseSeleccionState::InitOptions()
+    {
+        m_emptyMap.setTexture(m_data->assets.GetTexture("Empty_Map"));
+        m_emptyMap.setScale(0.45,0.45);
+        m_emptyMap.setPosition(op1,op2);
+        
+        //Opciones que se añaden en el mapa
+        sf::Sprite m_option1, m_option2, m_option3, m_bottom1, m_bottom2, m_bottom3, m_bottom1off, m_bottom2off, m_bottom3off;
+        m_option1.setTexture(m_data->assets.GetTexture("Option1"));
+        m_option1.setScale(0.45,0.45);
+        m_option1.setPosition(op1,op2);
+        
+        m_option2.setTexture(m_data->assets.GetTexture("Option2"));
+        m_option2.setScale(0.45,0.45);
+        m_option2.setPosition(op1,op2);
+        
+        m_option3.setTexture(m_data->assets.GetTexture("Option3"));
+        m_option3.setScale(0.45,0.45);
+        m_option3.setPosition(op1,op2);
+          
+        m_mapOptions.push_back(m_option1);
+        m_mapOptions.push_back(m_option2);
+        m_mapOptions.push_back(m_option3);
+        
+        //Botones para seleccionar (ON)
+        m_bottom1.setTexture(m_data->assets.GetTexture("Bottom1"));
+        m_bottom1.setScale(0.3,0.3);
+        m_bottom1.setPosition(bottX, bottY);
+        
+        m_bottom2.setTexture(m_data->assets.GetTexture("Bottom2"));
+        m_bottom2.setScale(0.3,0.3);
+        m_bottom2.setPosition(bottX + 400, bottY);
+        
+        m_bottom3.setTexture(m_data->assets.GetTexture("Bottom3"));
+        m_bottom3.setScale(0.3,0.3);
+        m_bottom3.setPosition(bottX + 800, bottY);
+          
+        m_onBottom.push_back(m_bottom1);
+        m_onBottom.push_back(m_bottom2);
+        m_onBottom.push_back(m_bottom3);
+        
+        //Botones para seleccionar (OFF)
+        m_bottom1off.setTexture(m_data->assets.GetTexture("Bottom1OFF"));
+        m_bottom1off.setScale(0.3,0.3);
+        m_bottom1off.setPosition(bottX ,bottY);
+        
+        m_bottom2off.setTexture(m_data->assets.GetTexture("Bottom2OFF"));
+        m_bottom2off.setScale(0.3,0.3);
+        m_bottom2off.setPosition(bottX + 400, bottY);
+        
+        m_bottom3off.setTexture(m_data->assets.GetTexture("Bottom3OFF"));
+        m_bottom3off.setScale(0.3,0.3);
+        m_bottom3off.setPosition(bottX + 800, bottY);
+          
+        m_offBottom.push_back(m_bottom1off);
+        m_offBottom.push_back(m_bottom2off);
+        m_offBottom.push_back(m_bottom3off);
+        
+        //Vector de boleanos
+        for(int i = 0; i<m_numBool; i++)
+        {
+            m_boolVector.push_back(false);
+        }
+        
+        //Save data para el dinero
+        m_dineroJugador=m_data->data.GetMoney();
+        
+        //Letras del dinero
+        m_moneyText.setFont(m_data->assets.GetFont("FUENTE_DINERO"));
+        m_moneyText.setString(std::to_string(m_dineroJugador));
+        m_moneyText.setCharacterSize(20);
+        m_moneyText.setOrigin(m_moneyText.getGlobalBounds().width / 2, m_moneyText.getGlobalBounds().height / 2);
+        m_moneyText.setPosition(900, 800);
     }
 
     void FaseSeleccionState::HandleInput() {
@@ -58,11 +134,56 @@ namespace Zenon {
             if (this->m_data->input.IsSpriteClicked(this->m_boton, sf::Mouse::Left, m_data->window)) {
                 this->ChangeState();
             }
+            
+                        //Compra 
+            for(int i = 0; i<m_onBottom.size();i++)
+            {
+                if(this->m_data->input.IsSpriteClicked(this->m_onBottom[i], sf::Mouse::Left, m_data->window) && m_boolVector[i] == false)
+                {
+                    m_boolVector[i] = true;  
+                    m_Sum = i;
+                    m_downMoney = true;
+                }
+            }  
+            
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::F11))
+            {
+             this->m_data->window.close();   
+             m_data->window.create(sf::VideoMode(1920, 1080), "We Will Not Fall" , sf::Style::Fullscreen);
+            }
+            
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+            {
+                this->m_data->window.close();  
+                m_data->window.create(sf::VideoMode(1920, 1080), "We Will Not Fall" , sf::Style::Titlebar | sf::Style::Close);
+            }
         }
     }
 
     void FaseSeleccionState::Update(float dt) {
+        if(m_downMoney == true)
+        {
+            if(m_downMoney == true)
+            {
+                switch (m_Sum)
+                {
+                    case 0:
+                        m_whSum = 150;
+                    break;
 
+                    case 1:
+                        m_whSum = 150;
+                    break;
+
+                    case 2:
+                        m_whSum = 500;
+                    break;
+                }
+                m_dineroJugador -= m_whSum;
+                m_moneyText.setString(std::to_string(m_dineroJugador));
+                m_downMoney = false;  
+            }
+        }
 
     }
 
@@ -74,6 +195,24 @@ namespace Zenon {
         }
 
         this->m_data->window.draw(m_boton);
+        
+        this->m_data->window.draw(m_emptyMap); 
+        for ( int i = 0; i < m_numBool; i++)
+        {
+            if(m_boolVector[i]==false)
+            {
+                this->m_data->window.draw(m_onBottom[i]);
+            }
+            else
+            {
+                this->m_data->window.draw(m_offBottom[i]);
+                this->m_data->window.draw(m_mapOptions[i]);
+            }
+        }
+        
+        this->m_data->window.draw(m_moneyText);
+        
+        
         this->m_data->window.display();
     }
 
@@ -84,10 +223,12 @@ namespace Zenon {
                 m_trampasSel.push_back(m_trampasdisp.at(i));
         }
         
+        m_data->data.SetMoney(m_dineroJugador);
+        
         std::cout<<"Cuando salgo del FaseSeleccion, hay: "<<m_trampasSel.size()<<std::endl;
 
         if (m_trampasSel.size() > 0) {
-            m_data->machine.AddState(StateRef(new SplashState(this->m_data, m_trampasSel, m_dineroJugador)));
+            m_data->machine.AddState(StateRef(new SplashState(this->m_data, m_trampasSel)));
         }
     }
 }

@@ -17,7 +17,7 @@
 
 namespace Zenon {
 
-    SplashState::SplashState(GameDataRef data, std::vector<FichaTrampa*> l_fichaTrampa, int l_dinero) : m_data(data) {
+    SplashState::SplashState(GameDataRef data, std::vector<FichaTrampa*> l_fichaTrampa) : m_data(data) {
         m_trampasSel = l_fichaTrampa;
         m_disponible = m_data->data.GetMoney();
     }
