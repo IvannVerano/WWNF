@@ -7,53 +7,6 @@ namespace Zenon
 {
     LevelSelectorState::LevelSelectorState(GameDataRef l_data, bool rewardisOn):m_data(l_data)
     {
-        m_data->assets.LoadTexture("TILESET", TILESET_FILEPATH);
-        m_data->assets.LoadTexture("No_trampa", NO_TRAP_SPRITE);
-        m_data->assets.LoadTexture("Metralleta", METRALLETA_SPRITE);
-        m_data->assets.LoadTexture("Defensa", DEFENSA_SPRITE);
-        m_data->assets.LoadTexture("GUI_METRALLETA", GUI_METRALLETA);
-        m_data->assets.LoadTexture("GUI_METRALLETA_SEL", GUI_METRALLETA_SEL);
-        m_data->assets.LoadTexture("GUI_DEFENSA", GUI_DEFENSA);
-        m_data->assets.LoadTexture("GUI_DEFENSA_SEL", GUI_DEFENSA_SEL);
-        m_data->assets.LoadTexture("GUI_ELEMENTS", GUI_ELEMENTS);
-        m_data->assets.LoadTexture("WHITE_GUI_ELEMENTS", WHITE_GUI_ELEMENTS);
-        m_data->assets.LoadTexture("CURSOR_BUILD", CURSOR_BUILD);
-        m_data->assets.LoadTexture("enemigo", ENEMY_SPRITE);
-        m_data->assets.LoadTexture("berseker", BERSEKER_SPRITE);
-        m_data->assets.LoadTexture("bullet", LASER_SPRITE);
-        m_data->assets.LoadTexture("ametralladora", AMETRALLADORA_SPRITE);
-        m_data->assets.LoadTexture("GUI_AMETRALLADORA", GUI_AMETRALLADORA);
-        m_data->assets.LoadTexture("GUI_AMETRALLADORA_SEL", GUI_AMETRALLADORA_SEL);
-        m_data->assets.LoadFont("FUENTE_DINERO", FONT_DINERO);
-        m_data->assets.LoadTexture("DESCRIPTIVE_TURRET", DESCRIPTIVE_TURRET);
-        m_data->assets.LoadTexture("DESCRIPTIVE_DEFENSE", DESCRIPTIVE_DEFENSE);
-        m_data->assets.LoadTexture("DESCRIPTIVE_AMETRALLADORA", DESCRIPTIVE_AMETRALLADORA);
-        m_data->assets.LoadTexture("point1", POINT1);
-        m_data->assets.LoadTexture("tienda", TIENDA);
-        m_data->assets.LoadTexture("spawn", SPAWN);
-        m_data->assets.LoadTexture("Hero", SPRITESHEET_HEROE);
-        m_data->assets.LoadTexture("Hero_GUI", HERO_GUI_POS);
-        m_data->assets.LoadTexture("Hero_Face1", SPRITE_HEROE_FACE1);
-        m_data->assets.LoadTexture("lanzallamas", LANZALLAMAS_SPRITE);
-        m_data->assets.LoadTexture("fire", FIRE_SPRITE);
-        m_data->assets.LoadTexture("GUI_LANZALLAMAS", GUI_LANZALLAMAS);
-        m_data->assets.LoadTexture("GUI_LANZALLAMAS_SEL", GUI_LANZALLAMAS_SEL);
-        m_data->assets.LoadTexture("DESCRIPTIVE_LANZALLAMAS", DESCRIPTIVE_AMETRALLADORA);
-        m_data->assets.LoadTexture("sanacion", SANACION_SPRITE);
-        m_data->assets.LoadTexture("GUI_SANACION", GUI_SANACION);
-        m_data->assets.LoadTexture("GUI_SANACION_SEL", GUI_SANACION_SEL);
-        m_data->assets.LoadTexture("DESCRIPTIVE_SANACION", DESCRIPTIVE_SANACION);
-        m_data->assets.LoadTexture("Hydra Sheet", HYDRA_SPRITE_SHEET);
-        m_data->assets.LoadTexture("WorldMap", WORLD_MAP);
-        m_data->assets.LoadTexture("MapMarker", MARKER);
-        m_data->assets.LoadTexture("Herosprite2", SPRITESHEET_HEROE2);
-        m_data->assets.LoadTexture("GUI_AMETRALLADORA_BLOCK", GUI_AMETRALLADORA_BLOCK);
-        m_data->assets.LoadTexture("GUI_METRALLETA_BLOCK", GUI_METRALLETA_BLOCK);
-        m_data->assets.LoadTexture("GUI_DEFENSA_BLOCK", GUI_DEFENSA_BLOCK);
-        m_data->assets.LoadTexture("GUI_SANACION_BLOCK", GUI_SANACION_BLOCK);
-        m_data->assets.LoadTexture("GUI_LANZALLAMAS_BLOCK", GUI_LANZALLAMAS_BLOCK);
-        m_data->assets.LoadTexture("LATERAL_MOV_FIGHTER", SPRITESHEET_LATERAL_MOV1);
-        
         if(rewardisOn)
             this->ProcessRewards();
     }

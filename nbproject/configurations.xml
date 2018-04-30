@@ -27,6 +27,7 @@
       <itemPath>InputManager.hpp</itemPath>
       <itemPath>Level.hpp</itemPath>
       <itemPath>LevelSelectorState.hpp</itemPath>
+      <itemPath>MainMenuState.hpp</itemPath>
       <itemPath>Maps.hpp</itemPath>
       <itemPath>MathHelper.hpp</itemPath>
       <itemPath>Node.hpp</itemPath>
@@ -69,6 +70,7 @@
       <itemPath>InputManager.cpp</itemPath>
       <itemPath>Level.cpp</itemPath>
       <itemPath>LevelSelectorState.cpp</itemPath>
+      <itemPath>MainMenuState.cpp</itemPath>
       <itemPath>Maps.cpp</itemPath>
       <itemPath>Node.cpp</itemPath>
       <itemPath>Placer.cpp</itemPath>
@@ -209,6 +211,10 @@
       <item path="LevelSelectorState.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="LevelSelectorState.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MainMenuState.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MainMenuState.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Maps.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -364,6 +370,10 @@
       <item path="LevelSelectorState.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="LevelSelectorState.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MainMenuState.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="MainMenuState.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Maps.cpp" ex="false" tool="1" flavor2="0">
       </item>

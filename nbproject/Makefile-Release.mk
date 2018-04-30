@@ -57,6 +57,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/InputManager.o \
 	${OBJECTDIR}/Level.o \
 	${OBJECTDIR}/LevelSelectorState.o \
+	${OBJECTDIR}/MainMenuState.o \
 	${OBJECTDIR}/Maps.o \
 	${OBJECTDIR}/Node.o \
 	${OBJECTDIR}/Placer.o \
@@ -202,6 +203,11 @@ ${OBJECTDIR}/LevelSelectorState.o: LevelSelectorState.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/LevelSelectorState.o LevelSelectorState.cpp
+
+${OBJECTDIR}/MainMenuState.o: MainMenuState.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/MainMenuState.o MainMenuState.cpp
 
 ${OBJECTDIR}/Maps.o: Maps.cpp
 	${MKDIR} -p ${OBJECTDIR}
