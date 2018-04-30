@@ -28,6 +28,9 @@ namespace Zenon {
         sf::Vector2f GetCurrentPosition();
         bool IsRecovered();
         bool ImTargeted();
+        void SetDoping(bool l_doping);
+
+        
     protected:
         GameDataRef m_data;
         int m_state;
@@ -50,6 +53,9 @@ namespace Zenon {
         bool m_isSelected;
         bool m_pathComplete;
 
-
+        bool m_doping;
+        float m_power=16.0f;
+        float m_initpower=m_power;
+        sf::Clock m_time;
     };
 }

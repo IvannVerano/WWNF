@@ -56,6 +56,7 @@ namespace Zenon {
         sf::Sprite _background;
         sf::Text m_textoDinero;
         sf::Sprite m_mouseConstruct;
+        sf::Vector2f m_posicion;
 
         HUD * m_hud;
         bool m_noCompruebes;
@@ -68,7 +69,7 @@ namespace Zenon {
         std::vector<sf::Sprite> m_objectives;
         std::vector<FichaTrampa*> m_trampasSel;
         std::vector<Bezier> m_routes;
-        std::vector<Enemigo*> m_enemys;
+        std::vector<Enemy*> m_enemys;
         std::vector<Enemy*> m_enemies;
         std::vector<Bala*>m_bullets;
         std::vector<sf::CircleShape> m_wps;

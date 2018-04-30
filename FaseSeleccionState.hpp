@@ -24,7 +24,8 @@ namespace Zenon {
         std::vector<FichaTrampa *> m_trampasSel;
         sf::Sprite m_boton;
         int m_dineroJugador;
-        
+        int m_random;
+
         //Sistema de recompensas
         sf::Sprite m_emptyMap;
         std::vector<sf::Sprite> m_onBottom;

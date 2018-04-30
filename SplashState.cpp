@@ -5,10 +5,12 @@
 #include "DEFINITIONS.hpp"
 #include "Trampa.hpp"
 #include "Attack.hpp"
-#include "Defensa.hpp"
 #include "HUD.hpp"
 #include "Hero.hpp"
 #include "Healer.hpp"
+#include "Ice.hpp"
+#include "Nuke.hpp"
+#include "Adrenalin.hpp"
 #include "Fighter.hpp"
 #include "GameOverState.hpp"
 #include "LevelSelectorState.hpp"
@@ -36,6 +38,8 @@ namespace Zenon {
         }
 
         m_trampa = -1;
+        m_posicion.x= m_data->window.getSize().x/2;
+        m_posicion.y= m_data->window.getSize().y/2;
 
         Maps &mapref = *map;
         for (int i = 0; i < m_data->data.NumberOfHeroes(); i++) {
@@ -86,6 +90,37 @@ namespace Zenon {
                 if (m_hud->CheckClick()) {
                     m_trampa = m_hud->GetClick();
                 }
+                
+                                if (m_trampa> -1 && m_trampasSel.at(m_trampa)->GetTipo() == 6) {
+                     
+                    std::cout<<"feo mierda"<<std::endl;
+                    const std::vector<Enemy*> &enes = m_enemies;
+
+
+                   
+                    Trampa* tramp = new Ice(m_data, m_posicion, m_trampasSel.at(m_trampa)->GetTexturaPosicion(), enes);
+                    m_trampas.push_back(tramp);
+                } 
+                
+                if (m_trampa> -1 && m_trampasSel.at(m_trampa)->GetTipo() == 7) {
+
+                    sf::Vector2f m_posicion;
+                    const std::vector<Enemy*> &enes = m_enemies;
+
+                    
+                    if(m_trampasSel.at(m_trampa)->IsClicked())
+                    {
+                        std::cout<<"feo mierda2"<<std::endl;
+
+                        m_posicion=(sf::Vector2f)m_data->input.GetMousePosition(m_data->window );
+
+                        Trampa* tramp1 = new Nuke(m_data, m_posicion, m_trampasSel.at(m_trampa)->GetTexturaPosicion(), enes);
+                        m_trampas.push_back(tramp1);                        
+                        //crear aqui la mininuke con las posiciones pilladas arriba
+                    }    
+                }  
+                
+                
                 for (int i = 0; i < m_placer.size(); i++) {
                     if (m_placer.at(i)->Clicked(m_trampa)) {
                         if (m_trampa> -1) {
@@ -100,17 +135,7 @@ namespace Zenon {
                                 } else {
                                     m_placer.at(i)->SetOcupadoFalse();
                                 }
-                            } else if (m_trampasSel.at(m_trampa)->GetTipo() == 2) {
-                                if (m_trampasSel.at(m_trampa)->Afordable(m_disponible)) {
-                                    const std::vector<Enemigo*> &enes = m_enemys;
-                                    Trampa* tramp = new Defensa(m_data, m_placer.at(i)->GetPosicion(), m_trampasSel.at(m_trampa)->GetTexturaPosicion(), enes, RANGO_TORRE_DEFENSA);
-                                    m_trampas.push_back(tramp);
-                                    m_disponible -= m_trampasSel.at(m_trampa)->GetPrecio();
-                                } else {
-                                    m_placer.at(i)->SetOcupadoFalse();
-                                }
-                            }
-                            else if (m_trampasSel.at(m_trampa)->GetTipo() == 3) {
+                            } else if (m_trampasSel.at(m_trampa)->GetTipo() == 3) {
                                 if (m_trampasSel.at(m_trampa)->Afordable(m_disponible)) {
                                     const std::vector<Enemy*> &enes = m_enemies;
                                     const std::vector<Bala*> &bull = m_bullets;
@@ -128,6 +153,15 @@ namespace Zenon {
                                if (m_trampasSel.at(m_trampa)->Afordable(m_disponible)) {
                                     const std::vector<Hero*> &heros = m_heroes;
                                     Trampa* tramp = new Support(m_data, m_placer.at(i)->GetPosicion(), m_trampasSel.at(m_trampa)->GetTexturaPosicion(), heros, RANGO_SANACION);
+                                    m_trampas.push_back(tramp);
+                                    m_disponible -= m_trampasSel.at(m_trampa)->GetPrecio();
+                                } else {
+                                    m_placer.at(i)->SetOcupadoFalse();
+                                }
+                            }else if (m_trampasSel.at(m_trampa)->GetTipo() == 5) {
+                               if (m_trampasSel.at(m_trampa)->Afordable(m_disponible)) {
+                                    const std::vector<Hero*> &heros = m_heroes;
+                                    Trampa* tramp = new Adrenalin(m_data, m_placer.at(i)->GetPosicion(), m_trampasSel.at(m_trampa)->GetTexturaPosicion(), heros, RANGO_ADRENALINA);
                                     m_trampas.push_back(tramp);
                                     m_disponible -= m_trampasSel.at(m_trampa)->GetPrecio();
                                 } else {

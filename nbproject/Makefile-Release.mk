@@ -35,11 +35,11 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/Adrenalin.o \
 	${OBJECTDIR}/AssetManager.o \
 	${OBJECTDIR}/Attack.o \
 	${OBJECTDIR}/Bala.o \
 	${OBJECTDIR}/Berseker.o \
-	${OBJECTDIR}/Defensa.o \
 	${OBJECTDIR}/Doxy.o \
 	${OBJECTDIR}/Enemigo.o \
 	${OBJECTDIR}/Enemy.o \
@@ -54,12 +54,14 @@ OBJECTFILES= \
 	${OBJECTDIR}/Hero.o \
 	${OBJECTDIR}/Hydra.o \
 	${OBJECTDIR}/HydraSegment.o \
+	${OBJECTDIR}/Ice.o \
 	${OBJECTDIR}/InputManager.o \
 	${OBJECTDIR}/Level.o \
 	${OBJECTDIR}/LevelSelectorState.o \
 	${OBJECTDIR}/MainMenuState.o \
 	${OBJECTDIR}/Maps.o \
 	${OBJECTDIR}/Node.o \
+	${OBJECTDIR}/Nuke.o \
 	${OBJECTDIR}/Placer.o \
 	${OBJECTDIR}/Reward.o \
 	${OBJECTDIR}/SaveData.o \
@@ -94,6 +96,11 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/lastbeta: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/lastbeta ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/Adrenalin.o: Adrenalin.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Adrenalin.o Adrenalin.cpp
+
 ${OBJECTDIR}/AssetManager.o: AssetManager.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -113,11 +120,6 @@ ${OBJECTDIR}/Berseker.o: Berseker.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Berseker.o Berseker.cpp
-
-${OBJECTDIR}/Defensa.o: Defensa.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Defensa.o Defensa.cpp
 
 ${OBJECTDIR}/Doxy.o: Doxy.cpp
 	${MKDIR} -p ${OBJECTDIR}
@@ -189,6 +191,11 @@ ${OBJECTDIR}/HydraSegment.o: HydraSegment.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/HydraSegment.o HydraSegment.cpp
 
+${OBJECTDIR}/Ice.o: Ice.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Ice.o Ice.cpp
+
 ${OBJECTDIR}/InputManager.o: InputManager.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -218,6 +225,11 @@ ${OBJECTDIR}/Node.o: Node.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Node.o Node.cpp
+
+${OBJECTDIR}/Nuke.o: Nuke.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Nuke.o Nuke.cpp
 
 ${OBJECTDIR}/Placer.o: Placer.cpp
 	${MKDIR} -p ${OBJECTDIR}

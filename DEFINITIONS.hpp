@@ -84,11 +84,12 @@
 #define RANGO_AMETRALLADORA 200
 #define CADENCIA_AMETRALLADORA 0.1f
 #define POTENCIA_AMETRALLADORA 5
-#define PRECIO_AMETRALLADORA 200
+#define PRECIO_AMETRALLADORA 400
 #define PORCENTAJE_AMETRALLADORA 20
 #define REFRESCO_AMETRALLADORA 6
 
 
+#define SIGUIENTE_SPRITE "resources/next.png"
 #define POINT1 "resources/generador.png"
 #define TIENDA "resources/tienda.png"
 #define SPAWN "resources/effect.png"
@@ -132,13 +133,11 @@
 #define BERSEKER_CHECKING_HERO_TIME 0.8f
 #define BERSEKER_HIT_HERO_TIME 1.0f
 
-
 //variables del LANZALLAMAS
 #define LANZALLAMAS_SPRITE "resources/lanzallamas.png"
 #define FIRE_SPRITE "resources/flame.png"
 #define GUI_LANZALLAMAS "resources/gui_lanzallamas.png"
 #define GUI_LANZALLAMAS_SEL "resources/gui_lanzallamas_sel.png"
-#define GUI_LANZALLAMAS_BLOCK "resources/gui_lanzallamas_blocked.png"
 #define DESCRIPTIVE_LANZALLAMAS "resources/descriptor_ametralladora.png"
 #define RANGO_LANZALLAMAS 150
 #define CADENCIA_LANZALLAMAS 0.1f
@@ -148,6 +147,8 @@
 #define REFRESCO_LANZALLAMAS 4
 #define ANGULO_LANZALLAMAS 3
 #define RANGO_FUEGO 150
+#define GUI_LANZALLAMAS_BLOCK "resources/gui_lanzallamas_blocked.png"
+
 
 
 //Variables TORRE SANACION
@@ -155,16 +156,52 @@
 #define SANACION_SPRITE "resources/seleccion4.png"
 #define GUI_SANACION "resources/gui_support.png"
 #define GUI_SANACION_SEL "resources/gui_support_sel.png"
-#define GUI_SANACION_BLOCK "resources/gui_support_blocked.png"
 #define DESCRIPTIVE_SANACION "resources/descriptor_ametralladora.png"
 #define RANGO_SANACION 150
 #define CADENCIA_SANACION 0
-#define POTENCIA_SANACION 15
+#define POTENCIA_SANACION 10
 #define PRECIO_SANACION 500
 #define PORCENTAJE_SANACION 0
 #define REFRESCO_SANACION 0
-#define TIEMPO_CURA  2.0f
+#define TIEMPO_CURA  5
+#define GUI_SANACION_BLOCK "resources/gui_support_blocked.png"
 
+
+//Variables TORRE ADRENALINA
+
+#define ADRENALINA_SPRITE "resources/seleccion5.png"
+#define GUI_ADRENALINA "resources/gui_adrenalina.png"
+#define GUI_ADRENALINA_SEL "resources/gui_adrenalina_sel.png"
+#define GUI_ADRENALINA_BLOCK "resources/gui_adrenalina_blocked.png"
+#define DESCRIPTIVE_ADRENALINA "resources/descriptor_ametralladora.png"
+#define RANGO_ADRENALINA 150
+#define CADENCIA_ADRENALINA 0
+#define POTENCIA_ADRENALINA 10
+#define PRECIO_ADRENALINA 250
+#define PORCENTAJE_ADRENALINA 0
+#define REFRESCO_ADRENALINA 0
+#define TIEMPO_ADRENALINA  15.0f
+#define EFECTO_ADRENALINA 1.4f
+
+
+
+//variable de la TORRE HIELO
+#define HIELO_SPRITE "resources/seleccion3.png"
+#define GUI_HIELO "resources/gui_ice.png"
+#define GUI_HIELO_SEL "resources/gui_ice_sel.png"
+#define DESCRIPTIVE_HIELO "resources/descriptor_defensa.png"
+#define RANGO_TORRE_HIELO 2000
+#define PRECIO_TORRE_HIELO 200
+#define REALENTIZA_TORRE_HIELO 0.8f
+#define REFRESCO_TORRE_HIELO 0
+#define POTENCIA_TORRE_HIELO 0
+#define PORCENTAJE_TORRE_HIELO 0
+#define CADENCIA_TORRE_HIELO 0
+
+#define GUI_NUKE "resources/gui_nuke.png"
+#define GUI_NUKE_SEL "resources/gui_nuke_sel.png"
+#define RANGO_NUKE 400
+#define POTENCIA_NUKE 2000
 
 //Variables HYDRA
 #define HYDRA_SPRITE_SHEET "resources/HydraSheet2.png"

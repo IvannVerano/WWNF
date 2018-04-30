@@ -63,6 +63,20 @@ namespace Zenon {
 
                 this->Move(dt);
             }
+            
+                        if(m_doping!=false)
+            {
+                    if(m_time.getElapsedTime().asSeconds()>TIEMPO_ADRENALINA && m_doping==true){                       
+                        m_doping=false;
+                        m_power=m_initpower;
+                        m_time.restart();
+                    }
+                    else
+                    {
+                        std::cout<<"CHACHO QUE VOY CICLAO!!(clase hero)"<<std::endl;
+                        m_power=m_initpower*EFECTO_ADRENALINA;
+                    }   
+            } 
         }
     }
     
@@ -96,7 +110,13 @@ namespace Zenon {
     }
 
     void Hero::Move(float dt) {
-        m_mainSprite.move(dt * m_direction.x*HERO_SPEED, dt * m_direction.y * HERO_SPEED);
+        if(m_doping!=true){
+            m_mainSprite.move(dt * m_direction.x*HERO_SPEED, dt * m_direction.y * HERO_SPEED);
+
+        }else{
+            m_mainSprite.move((dt * m_direction.x*HERO_SPEED)*EFECTO_ADRENALINA, (dt * m_direction.y * HERO_SPEED)*EFECTO_ADRENALINA);
+
+        }
     };
 
     void Hero::TakeDamage(float l_damage) {
@@ -193,7 +213,10 @@ namespace Zenon {
     {
         return m_data->input.IsSpriteClicked(m_mainSprite, sf::Mouse::Right, m_data->window);
     }
-    
+        void Hero::SetDoping(bool l_doping) {
+
+        m_doping=l_doping;
+    }    
     
 
 }

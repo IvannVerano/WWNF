@@ -14,22 +14,51 @@ namespace Zenon {
 
     void FaseSeleccionState::Init() {
         
-        m_boton.setTexture(m_data->assets.GetTexture("Metralleta"));
+        m_boton.setTexture(m_data->assets.GetTexture("Next"));
         m_boton.setOrigin(m_boton.getGlobalBounds().width / 2, m_boton.getGlobalBounds().height / 2);
         m_boton.setPosition(800, 400);
 
         FichaTrampa * metralleta = new FichaTrampa(m_data, m_data->assets.GetTexture("Metralleta"), m_data->assets.GetTexture("GUI_METRALLETA"), m_data->assets.GetTexture("GUI_METRALLETA_SEL"), m_data->assets.GetTexture("GUI_METRALLETA_BLOCK"), 1, sf::Vector2f(150, 150), PRECIO_TORRETA, PORCENTAJE_TORRETA, CADENCIA_TORRETA, RANGO_TORRETA, REFRESCO_TORRETA, POTENCIA_TORRETA, ATRAP_APPEARING_TIME, m_data->assets.GetTexture("DESCRIPTIVE_TURRET"));
         FichaTrampa * ametralladora = new FichaTrampa(m_data, m_data->assets.GetTexture("ametralladora"), m_data->assets.GetTexture("GUI_AMETRALLADORA"), m_data->assets.GetTexture("GUI_AMETRALLADORA_SEL"), m_data->assets.GetTexture("GUI_AMETRALLADORA_BLOCK"), 1, sf::Vector2f(550, 150), PRECIO_AMETRALLADORA, PORCENTAJE_AMETRALLADORA, CADENCIA_AMETRALLADORA, RANGO_AMETRALLADORA, REFRESCO_AMETRALLADORA, POTENCIA_AMETRALLADORA, ATRAP_MACHINEGUN_APPEARING_TIME, m_data->assets.GetTexture("DESCRIPTIVE_AMETRALLADORA"));
-        FichaTrampa * defensa = new FichaTrampa(m_data, m_data->assets.GetTexture("Defensa"), m_data->assets.GetTexture("GUI_DEFENSA"), m_data->assets.GetTexture("GUI_DEFENSA_SEL"), m_data->assets.GetTexture("GUI_DEFENSA_BLOCK"), 2, sf::Vector2f(350, 150), PRECIO_TORRE_DEFENSA, PORCENTAJE_TORRE_DEFENSA, CADENCIA_TORRE_DEFENSA, RANGO_TORRE_DEFENSA, REFRESCO_TORRE_DEFENSA, POTENCIA_TORRE_DEFENSA, DTRAP_APPEARING_TIME, m_data->assets.GetTexture("DESCRIPTIVE_DEFENSE"));
         FichaTrampa * lanzallamas=new FichaTrampa(m_data, m_data->assets.GetTexture("lanzallamas"),m_data->assets.GetTexture("GUI_LANZALLAMAS"),m_data->assets.GetTexture("GUI_LANZALLAMAS_SEL"), m_data->assets.GetTexture("GUI_LANZALLAMAS_BLOCK"),3,sf::Vector2f(750, 150), PRECIO_LANZALLAMAS,PORCENTAJE_LANZALLAMAS,CADENCIA_LANZALLAMAS,RANGO_LANZALLAMAS,REFRESCO_LANZALLAMAS,POTENCIA_LANZALLAMAS,ATRAP_MACHINEGUN_APPEARING_TIME,m_data->assets.GetTexture("DESCRIPTIVE_AMETRALLADORA"));
-        FichaTrampa * sanacion=new FichaTrampa(m_data, m_data->assets.GetTexture("sanacion"),m_data->assets.GetTexture("GUI_SANACION"),m_data->assets.GetTexture("GUI_SANACION_SEL"), m_data->assets.GetTexture("GUI_SANACION_BLOCK"),4,sf::Vector2f(150, 500), PRECIO_SANACION,PORCENTAJE_SANACION,CADENCIA_SANACION,RANGO_SANACION,REFRESCO_SANACION,POTENCIA_SANACION, DTRAP_APPEARING_TIME,m_data->assets.GetTexture("DESCRIPTIVE_SANACION"));
-        
+        FichaTrampa * sanacion=new FichaTrampa(m_data, m_data->assets.GetTexture("sanacion"),m_data->assets.GetTexture("GUI_SANACION"),m_data->assets.GetTexture("GUI_SANACION_SEL"), m_data->assets.GetTexture("GUI_SANACION_BLOCK"),4,sf::Vector2f(350, 150), PRECIO_SANACION,PORCENTAJE_SANACION,CADENCIA_SANACION,RANGO_SANACION,REFRESCO_SANACION,POTENCIA_SANACION, DTRAP_APPEARING_TIME,m_data->assets.GetTexture("DESCRIPTIVE_SANACION"));
+        FichaTrampa * adrenalina=new FichaTrampa(m_data, m_data->assets.GetTexture("Adrenalina"),m_data->assets.GetTexture("GUI_ADRENALINA"),m_data->assets.GetTexture("GUI_ADRENALINA_SEL"), m_data->assets.GetTexture("GUI_ADRENALINA_BLOCK"),5,sf::Vector2f(150, 400), PRECIO_ADRENALINA,PORCENTAJE_ADRENALINA,CADENCIA_ADRENALINA,RANGO_ADRENALINA,REFRESCO_ADRENALINA,POTENCIA_ADRENALINA, DTRAP_APPEARING_TIME,m_data->assets.GetTexture("DESCRIPTIVE_ADRENALINA"));
+
+
         m_trampasdisp.push_back(metralleta);
-        m_trampasdisp.push_back(defensa);
         m_trampasdisp.push_back(ametralladora);
         m_trampasdisp.push_back(lanzallamas);
         m_trampasdisp.push_back(sanacion);
+        m_trampasdisp.push_back(adrenalina);
+      //  m_random=rand()%101;
+        m_random = 26;
+
+        if(m_random<25){
+            FichaTrampa * hielo = new FichaTrampa(m_data, m_data->assets.GetTexture("Hielo"), m_data->assets.GetTexture("GUI_HIELO"), m_data->assets.GetTexture("GUI_HIELO_SEL"), m_data->assets.GetTexture("GUI_AMETRALLADORA_BLOCK"), 6, sf::Vector2f(550, 400), PRECIO_TORRE_HIELO, PORCENTAJE_TORRE_HIELO, CADENCIA_TORRE_HIELO, RANGO_TORRE_HIELO, REFRESCO_TORRE_HIELO, POTENCIA_TORRE_HIELO, DTRAP_APPEARING_TIME, m_data->assets.GetTexture("DESCRIPTIVE_HIELO"));
+            m_trampasdisp.push_back(hielo);
+        //    std::cout<<"Hola soy el 1"<<std::endl;
+        }
         
+        if(m_random >=25 && m_random<50){
+            FichaTrampa * nuke = new FichaTrampa(m_data, m_data->assets.GetTexture("Hielo"), m_data->assets.GetTexture("GUI_NUKE"), m_data->assets.GetTexture("GUI_NUKE_SEL"), m_data->assets.GetTexture("GUI_AMETRALLADORA_BLOCK"), 7, sf::Vector2f(550, 400), PRECIO_TORRE_HIELO, PORCENTAJE_TORRE_HIELO, CADENCIA_TORRE_HIELO, RANGO_NUKE, REFRESCO_TORRE_HIELO, POTENCIA_TORRE_HIELO, DTRAP_APPEARING_TIME, m_data->assets.GetTexture("DESCRIPTIVE_HIELO"));
+            m_trampasdisp.push_back(nuke);
+        //    std::cout<<"Hola soy el 2"<<std::endl;
+        }
+
+        if(m_random >=50 && m_random<75){
+            FichaTrampa * hielo = new FichaTrampa(m_data, m_data->assets.GetTexture("Hielo"), m_data->assets.GetTexture("GUI_HIELO"), m_data->assets.GetTexture("GUI_HIELO_SEL"), m_data->assets.GetTexture("GUI_AMETRALLADORA_BLOCK"), 6, sf::Vector2f(550, 400), PRECIO_TORRE_HIELO, PORCENTAJE_TORRE_HIELO, CADENCIA_TORRE_HIELO, RANGO_TORRE_HIELO, REFRESCO_TORRE_HIELO, POTENCIA_TORRE_HIELO, DTRAP_APPEARING_TIME, m_data->assets.GetTexture("DESCRIPTIVE_HIELO"));
+            m_trampasdisp.push_back(hielo);
+        //    std::cout<<"Hola soy el 3"<<std::endl;
+            
+        }
+        
+        if(m_random >=75 && m_random<100){
+            FichaTrampa * nuke = new FichaTrampa(m_data, m_data->assets.GetTexture("Hielo"), m_data->assets.GetTexture("GUI_NUKE"), m_data->assets.GetTexture("GUI_NUKE_SEL"), m_data->assets.GetTexture("GUI_AMETRALLADORA_BLOCK"), 7, sf::Vector2f(550, 400), PRECIO_TORRE_HIELO, PORCENTAJE_TORRE_HIELO, CADENCIA_TORRE_HIELO, RANGO_NUKE, REFRESCO_TORRE_HIELO, POTENCIA_TORRE_HIELO, DTRAP_APPEARING_TIME, m_data->assets.GetTexture("DESCRIPTIVE_HIELO"));
+            m_trampasdisp.push_back(nuke);
+         //   std::cout<<"Hola soy el 4"<<std::endl;
+        }        
+
+    
         for(int i=0; i<m_trampasdisp.size(); i++)
         {
             m_trampasdisp[i]->SetLocked(m_data->data.IsTrapUnlocked(i));
@@ -190,7 +219,7 @@ namespace Zenon {
     void FaseSeleccionState::Draw(float dt) {
         this->m_data->window.clear(sf::Color::Black);
 
-        for (int i = 0; i < m_trampasdisp.size(); i++) {
+        for (int i = 0; i < m_trampasdisp.size()-1; i++) {
             m_trampasdisp.at(i)->Draw();
         }
 
@@ -224,10 +253,10 @@ namespace Zenon {
         }
         
         m_data->data.SetMoney(m_dineroJugador);
-        
         std::cout<<"Cuando salgo del FaseSeleccion, hay: "<<m_trampasSel.size()<<std::endl;
 
         if (m_trampasSel.size() > 0) {
+            m_trampasSel.push_back(m_trampasdisp.at(m_trampasdisp.size()-1));
             m_data->machine.AddState(StateRef(new SplashState(this->m_data, m_trampasSel)));
         }
     }

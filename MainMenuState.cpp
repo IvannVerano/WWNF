@@ -1,15 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/* 
- * File:   MainMenuState.cpp
- * Author: user
- * 
- * Created on 30 de abril de 2018, 17:58
- */
 
 #include "MainMenuState.hpp"
 #include "DEFINITIONS.hpp"
@@ -65,6 +54,19 @@ namespace Zenon
         m_data->assets.LoadTexture("GUI_SANACION_BLOCK", GUI_SANACION_BLOCK);
         m_data->assets.LoadTexture("GUI_LANZALLAMAS_BLOCK", GUI_LANZALLAMAS_BLOCK);
         m_data->assets.LoadTexture("LATERAL_MOV_FIGHTER", SPRITESHEET_LATERAL_MOV1);
+        m_data->assets.LoadTexture("Adrenalina", ADRENALINA_SPRITE);
+        m_data->assets.LoadTexture("GUI_ADRENALINA", GUI_ADRENALINA);
+        m_data->assets.LoadTexture("GUI_ADRENALINA_SEL", GUI_ADRENALINA_SEL);
+        m_data->assets.LoadTexture("DESCRIPTIVE_ADRENALINA", DESCRIPTIVE_ADRENALINA);
+        m_data->assets.LoadTexture("GUI_ADRENALINA_BLOCK", GUI_ADRENALINA_BLOCK);
+    
+        m_data->assets.LoadTexture("Hielo", HIELO_SPRITE);
+        m_data->assets.LoadTexture("GUI_HIELO", GUI_HIELO);
+        m_data->assets.LoadTexture("GUI_HIELO_SEL", GUI_HIELO_SEL);
+        m_data->assets.LoadTexture("GUI_NUKE", GUI_NUKE);
+        m_data->assets.LoadTexture("GUI_NUKE_SEL", GUI_NUKE_SEL);
+        m_data->assets.LoadTexture("DESCRIPTIVE_HIELO", DESCRIPTIVE_HIELO);
+        m_data->assets.LoadTexture("Next", SIGUIENTE_SPRITE);
         
         //Compra en fase de seleccion
         m_data->assets.LoadTexture("Empty_Map", EMPTY_MAP_SPRITE);
