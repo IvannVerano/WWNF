@@ -118,6 +118,7 @@
 #define SPRITESHEET_HEROE "resources/spritesheetHeroe1.png"
 #define SPRITESHEET_HEROE2 "resources/spritesheetHeroe2.png"
 #define SPRITE_HEROE_FACE1 "resources/HeroHud1.png"
+#define SPRITE_HEROE_FACE2 "resources/HeroHud2.png"
 #define HERO_IDLE_STATE 0
 #define HERO_MOVING_STATE 1
 #define HERO_DEAD_STATE 3
@@ -168,7 +169,7 @@
 #define FIRE_SPRITE "resources/flame.png"
 #define GUI_LANZALLAMAS "resources/gui_lanzallamas.png"
 #define GUI_LANZALLAMAS_SEL "resources/gui_lanzallamas_sel.png"
-#define DESCRIPTIVE_LANZALLAMAS "resources/descriptor_ametralladora.png"
+#define DESCRIPTIVE_LANZALLAMAS "resources/descriptor_lanzallamas.png"
 #define RANGO_LANZALLAMAS 150
 #define CADENCIA_LANZALLAMAS 0.1f
 #define POTENCIA_LANZALLAMAS 10
@@ -203,7 +204,7 @@
 #define GUI_ADRENALINA "resources/gui_adrenalina.png"
 #define GUI_ADRENALINA_SEL "resources/gui_adrenalina_sel.png"
 #define GUI_ADRENALINA_BLOCK "resources/gui_adrenalina_blocked.png"
-#define DESCRIPTIVE_ADRENALINA "resources/descriptor_ametralladora.png"
+#define DESCRIPTIVE_ADRENALINA "resources/descriptor_adrenalina.png"
 #define RANGO_ADRENALINA 150
 #define CADENCIA_ADRENALINA 0
 #define POTENCIA_ADRENALINA 10

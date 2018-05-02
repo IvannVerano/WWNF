@@ -25,7 +25,7 @@ namespace Zenon
         m_mainSprite.setPosition(400, 400);
         m_mainSprite.scale(2.0, 2.0);
         
-        m_heroHUD.setTexture(m_data->assets.GetTexture("Hero_Face1"));
+        m_heroHUD.setTexture(m_data->assets.GetTexture("HERO_FACE2"));
         m_heroHUD.setOrigin(m_heroHUD.getLocalBounds().width / 2, m_heroHUD.getLocalBounds().height / 2);
         m_heroHUD.setPosition(1000,900);
         m_heroHUD.scale(0.92,0.92);

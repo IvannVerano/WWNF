@@ -38,7 +38,7 @@ namespace Zenon {
         m_data->assets.LoadTexture("fire", FIRE_SPRITE);
         m_data->assets.LoadTexture("GUI_LANZALLAMAS", GUI_LANZALLAMAS);
         m_data->assets.LoadTexture("GUI_LANZALLAMAS_SEL", GUI_LANZALLAMAS_SEL);
-        m_data->assets.LoadTexture("DESCRIPTIVE_LANZALLAMAS", DESCRIPTIVE_AMETRALLADORA);
+        m_data->assets.LoadTexture("DESCRIPTIVE_LANZALLAMAS", DESCRIPTIVE_LANZALLAMAS);
         m_data->assets.LoadTexture("sanacion", SANACION_SPRITE);
         m_data->assets.LoadTexture("GUI_SANACION", GUI_SANACION);
         m_data->assets.LoadTexture("GUI_SANACION_SEL", GUI_SANACION_SEL);
@@ -59,6 +59,7 @@ namespace Zenon {
         m_data->assets.LoadTexture("GUI_ADRENALINA_SEL", GUI_ADRENALINA_SEL);
         m_data->assets.LoadTexture("DESCRIPTIVE_ADRENALINA", DESCRIPTIVE_ADRENALINA);
         m_data->assets.LoadTexture("GUI_ADRENALINA_BLOCK", GUI_ADRENALINA_BLOCK);
+        m_data->assets.LoadTexture("HERO_FACE2", SPRITE_HEROE_FACE2);
 
         m_data->assets.LoadTexture("Hielo", HIELO_SPRITE);
         m_data->assets.LoadTexture("GUI_HIELO", GUI_HIELO);

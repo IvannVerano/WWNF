@@ -25,14 +25,14 @@ namespace Zenon
        
         m_mainSprite.setTexture(m_textura_gui_defecto);
         m_mainSprite.setOrigin(m_mainSprite.getGlobalBounds().width/2, m_mainSprite.getGlobalBounds().height/2);
-        m_mainSprite.scale(0.5,0.5);
+        m_mainSprite.scale(0.2,0.2);
         m_mainSprite.setPosition(l_posicion_gui);
         
         m_descriptivetex = l_descriptive;
         m_descriptive.setTexture(m_descriptivetex);
         m_descriptive.setOrigin(m_descriptive.getGlobalBounds().height/2,m_descriptive.getGlobalBounds().height/2);
         m_descriptive.scale(0.8,0.8);
-        m_descriptive.setPosition(200, 500);
+        m_descriptive.setPosition(1250, 300);
         
         m_gui_seleccionado = false;
         m_precio=l_precio;

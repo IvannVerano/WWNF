@@ -16,11 +16,12 @@ namespace Zenon {
         
         m_boton.setTexture(m_data->assets.GetTexture("Next"));
         m_boton.setOrigin(m_boton.getGlobalBounds().width / 2, m_boton.getGlobalBounds().height / 2);
-        m_boton.setPosition(800, 400);
+        m_boton.setPosition(1600, 70);
+        m_boton.scale(0.7, 0.7);
 
         FichaTrampa * metralleta = new FichaTrampa(m_data, m_data->assets.GetTexture("Metralleta"), m_data->assets.GetTexture("GUI_METRALLETA"), m_data->assets.GetTexture("GUI_METRALLETA_SEL"), m_data->assets.GetTexture("GUI_METRALLETA_BLOCK"), 1, sf::Vector2f(150, 150), PRECIO_TORRETA, PORCENTAJE_TORRETA, CADENCIA_TORRETA, RANGO_TORRETA, REFRESCO_TORRETA, POTENCIA_TORRETA, ATRAP_APPEARING_TIME, m_data->assets.GetTexture("DESCRIPTIVE_TURRET"));
         FichaTrampa * ametralladora = new FichaTrampa(m_data, m_data->assets.GetTexture("ametralladora"), m_data->assets.GetTexture("GUI_AMETRALLADORA"), m_data->assets.GetTexture("GUI_AMETRALLADORA_SEL"), m_data->assets.GetTexture("GUI_AMETRALLADORA_BLOCK"), 1, sf::Vector2f(550, 150), PRECIO_AMETRALLADORA, PORCENTAJE_AMETRALLADORA, CADENCIA_AMETRALLADORA, RANGO_AMETRALLADORA, REFRESCO_AMETRALLADORA, POTENCIA_AMETRALLADORA, ATRAP_MACHINEGUN_APPEARING_TIME, m_data->assets.GetTexture("DESCRIPTIVE_AMETRALLADORA"));
-        FichaTrampa * lanzallamas=new FichaTrampa(m_data, m_data->assets.GetTexture("lanzallamas"),m_data->assets.GetTexture("GUI_LANZALLAMAS"),m_data->assets.GetTexture("GUI_LANZALLAMAS_SEL"), m_data->assets.GetTexture("GUI_LANZALLAMAS_BLOCK"),3,sf::Vector2f(750, 150), PRECIO_LANZALLAMAS,PORCENTAJE_LANZALLAMAS,CADENCIA_LANZALLAMAS,RANGO_LANZALLAMAS,REFRESCO_LANZALLAMAS,POTENCIA_LANZALLAMAS,ATRAP_MACHINEGUN_APPEARING_TIME,m_data->assets.GetTexture("DESCRIPTIVE_AMETRALLADORA"));
+        FichaTrampa * lanzallamas=new FichaTrampa(m_data, m_data->assets.GetTexture("lanzallamas"),m_data->assets.GetTexture("GUI_LANZALLAMAS"),m_data->assets.GetTexture("GUI_LANZALLAMAS_SEL"), m_data->assets.GetTexture("GUI_LANZALLAMAS_BLOCK"),3,sf::Vector2f(750, 150), PRECIO_LANZALLAMAS,PORCENTAJE_LANZALLAMAS,CADENCIA_LANZALLAMAS,RANGO_LANZALLAMAS,REFRESCO_LANZALLAMAS,POTENCIA_LANZALLAMAS,ATRAP_MACHINEGUN_APPEARING_TIME,m_data->assets.GetTexture("DESCRIPTIVE_LANZALLAMAS"));
         FichaTrampa * sanacion=new FichaTrampa(m_data, m_data->assets.GetTexture("sanacion"),m_data->assets.GetTexture("GUI_SANACION"),m_data->assets.GetTexture("GUI_SANACION_SEL"), m_data->assets.GetTexture("GUI_SANACION_BLOCK"),4,sf::Vector2f(350, 150), PRECIO_SANACION,PORCENTAJE_SANACION,CADENCIA_SANACION,RANGO_SANACION,REFRESCO_SANACION,POTENCIA_SANACION, DTRAP_APPEARING_TIME,m_data->assets.GetTexture("DESCRIPTIVE_SANACION"));
         FichaTrampa * adrenalina=new FichaTrampa(m_data, m_data->assets.GetTexture("Adrenalina"),m_data->assets.GetTexture("GUI_ADRENALINA"),m_data->assets.GetTexture("GUI_ADRENALINA_SEL"), m_data->assets.GetTexture("GUI_ADRENALINA_BLOCK"),5,sf::Vector2f(150, 400), PRECIO_ADRENALINA,PORCENTAJE_ADRENALINA,CADENCIA_ADRENALINA,RANGO_ADRENALINA,REFRESCO_ADRENALINA,POTENCIA_ADRENALINA, DTRAP_APPEARING_TIME,m_data->assets.GetTexture("DESCRIPTIVE_ADRENALINA"));
 
@@ -95,15 +96,15 @@ namespace Zenon {
         
         //Botones para seleccionar (ON)
         m_bottom1.setTexture(m_data->assets.GetTexture("Bottom1"));
-        m_bottom1.setScale(0.3,0.3);
+        m_bottom1.setScale(0.8,0.8);
         m_bottom1.setPosition(bottX, bottY);
         
         m_bottom2.setTexture(m_data->assets.GetTexture("Bottom2"));
-        m_bottom2.setScale(0.3,0.3);
+        m_bottom2.setScale(0.8,0.8);
         m_bottom2.setPosition(bottX + 400, bottY);
         
         m_bottom3.setTexture(m_data->assets.GetTexture("Bottom3"));
-        m_bottom3.setScale(0.3,0.3);
+        m_bottom3.setScale(0.8,0.8);
         m_bottom3.setPosition(bottX + 800, bottY);
           
         m_onBottom.push_back(m_bottom1);
@@ -112,15 +113,15 @@ namespace Zenon {
         
         //Botones para seleccionar (OFF)
         m_bottom1off.setTexture(m_data->assets.GetTexture("Bottom1OFF"));
-        m_bottom1off.setScale(0.3,0.3);
+        m_bottom1off.setScale(0.8,0.8);
         m_bottom1off.setPosition(bottX ,bottY);
         
         m_bottom2off.setTexture(m_data->assets.GetTexture("Bottom2OFF"));
-        m_bottom2off.setScale(0.3,0.3);
+        m_bottom2off.setScale(0.8,0.8);
         m_bottom2off.setPosition(bottX + 400, bottY);
         
         m_bottom3off.setTexture(m_data->assets.GetTexture("Bottom3OFF"));
-        m_bottom3off.setScale(0.3,0.3);
+        m_bottom3off.setScale(0.8,0.8);
         m_bottom3off.setPosition(bottX + 800, bottY);
           
         m_offBottom.push_back(m_bottom1off);
@@ -139,9 +140,9 @@ namespace Zenon {
         //Letras del dinero
         m_moneyText.setFont(m_data->assets.GetFont("FUENTE_DINERO"));
         m_moneyText.setString(std::to_string(m_dineroJugador));
-        m_moneyText.setCharacterSize(20);
+        m_moneyText.setCharacterSize(40);
         m_moneyText.setOrigin(m_moneyText.getGlobalBounds().width / 2, m_moneyText.getGlobalBounds().height / 2);
-        m_moneyText.setPosition(900, 800);
+        m_moneyText.setPosition(1150, 50);
     }
 
     void FaseSeleccionState::HandleInput() {
