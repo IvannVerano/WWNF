@@ -20,9 +20,7 @@ namespace Zenon {
     }
 
     void LevelSelectorState::Init() {
-        
-
-
+       
         Level * america = new Level(m_data, sf::Vector2f(500, 400), "America");
         m_levels.push_back(america);
 
@@ -60,7 +58,7 @@ namespace Zenon {
                         if (m_levels.at(i)->CheckClick()) {
                             m_levels[i]->SetDataRewards(i);
                             selected = true;
-                            this->ChangeState();
+                            this->ChangeState(m_levels[i]->Getcoordinates());
                         }
                     }
                 }
@@ -83,8 +81,8 @@ namespace Zenon {
         this->m_data->machine.AddState(StateRef(new GameOverState(this->m_data, m_data->data.GetMoney())));
     }
 
-    void LevelSelectorState::ChangeState() {
-        this-> m_data->machine.AddState(StateRef(new FaseSeleccionState(this->m_data)));
+    void LevelSelectorState::ChangeState(sf::Vector2f l_coordinates) {
+        this-> m_data->machine.AddState(StateRef(new FaseSeleccionState(this->m_data, l_coordinates)));
     }
 
     void LevelSelectorState::Draw(float dt) {

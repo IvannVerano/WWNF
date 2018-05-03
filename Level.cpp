@@ -86,4 +86,9 @@ namespace Zenon
     {
         return m_panicLevel;
     }
+    
+    sf::Vector2f Level::Getcoordinates()
+    {
+        return m_mainSprite.getPosition();
+    }
 }

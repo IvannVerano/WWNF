@@ -37,6 +37,7 @@
       <itemPath>Nuke.hpp</itemPath>
       <itemPath>Objective.hpp</itemPath>
       <itemPath>Placer.hpp</itemPath>
+      <itemPath>PlaneScene.hpp</itemPath>
       <itemPath>Reward.hpp</itemPath>
       <itemPath>SaveData.hpp</itemPath>
       <itemPath>SplashState.hpp</itemPath>
@@ -85,6 +86,7 @@
       <itemPath>Nuke.cpp</itemPath>
       <itemPath>Objective.cpp</itemPath>
       <itemPath>Placer.cpp</itemPath>
+      <itemPath>PlaneScene.cpp</itemPath>
       <itemPath>Reward.cpp</itemPath>
       <itemPath>SaveData.cpp</itemPath>
       <itemPath>SplashState.cpp</itemPath>
@@ -261,6 +263,10 @@
       <item path="Placer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Placer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PlaneScene.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PlaneScene.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Reward.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -444,6 +450,10 @@
       <item path="Placer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Placer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="PlaneScene.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="PlaneScene.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Reward.cpp" ex="false" tool="1" flavor2="0">
       </item>

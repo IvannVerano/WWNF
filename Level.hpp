@@ -18,6 +18,7 @@ namespace Zenon
             void Draw();
             std::string GetLevelName();
             int GetPanicLevel();
+            sf::Vector2f Getcoordinates();
         private:
             GameDataRef m_data;
             int m_civilians;

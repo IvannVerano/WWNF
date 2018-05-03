@@ -258,3 +258,13 @@
 #define BOTTOM1OFF_SPRITE "resources/bottom1OFF.png"
 #define BOTTOM2OFF_SPRITE "resources/bottom2OFF.png"
 #define BOTTOM3OFF_SPRITE "resources/bottom3OFF.png"
+
+
+//fichero cinematica
+#define PLANE "resources/Plane.png"
+#define PLANE_SPEED 170.0f
+#define BOTON_DESPLEGAR "resources/Desplegar.png"
+#define CLEAN_MAP "resources/CleanMap.jpg"
+
+//bgs
+#define SELECT_BG "resources/selectBackground.png"

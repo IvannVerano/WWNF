@@ -488,6 +488,7 @@ namespace Zenon {
 
     void SplashState::Draw(float dt) {
         this->m_data->window.clear(sf::Color::Black);
+        this->m_data->window.setView(this->m_data->window.getDefaultView());
         this->m_data->window.draw(m_textoDinero);
         map->Draw();
         this->m_data->window.draw(this->_background);

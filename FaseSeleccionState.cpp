@@ -2,17 +2,20 @@
 #include "FaseSeleccionState.hpp"
 #include "FichaTrampa.hpp"
 #include "DEFINITIONS.hpp"
-#include "SplashState.hpp"
 #include "SaveData.hpp"
+#include "PlaneScene.hpp"
 #include <iostream>
 
 namespace Zenon {
 
-    FaseSeleccionState::FaseSeleccionState(GameDataRef data) : m_data(data) {
-
+    FaseSeleccionState::FaseSeleccionState(GameDataRef data, sf::Vector2f l_coordinates) : m_data(data) 
+    {
+        m_coordinates = l_coordinates;
     }
 
     void FaseSeleccionState::Init() {
+        
+        m_background.setTexture(m_data->assets.GetTexture("SelectBG"));
         
         m_boton.setTexture(m_data->assets.GetTexture("Next"));
         m_boton.setOrigin(m_boton.getGlobalBounds().width / 2, m_boton.getGlobalBounds().height / 2);
@@ -220,6 +223,8 @@ namespace Zenon {
     void FaseSeleccionState::Draw(float dt) {
         this->m_data->window.clear(sf::Color::Black);
 
+        this->m_data->window.draw(m_background);
+        
         for (int i = 0; i < m_trampasdisp.size()-1; i++) {
             m_trampasdisp.at(i)->Draw();
         }
@@ -258,7 +263,7 @@ namespace Zenon {
 
         if (m_trampasSel.size() > 0) {
             m_trampasSel.push_back(m_trampasdisp.at(m_trampasdisp.size()-1));
-            m_data->machine.AddState(StateRef(new SplashState(this->m_data, m_trampasSel)));
+            m_data->machine.AddState(StateRef(new PlaneScene(this->m_data, m_trampasSel, m_coordinates)));
         }
     }
 }

@@ -80,6 +80,11 @@ namespace Zenon {
         m_data->assets.LoadTexture("Bottom1OFF", BOTTOM1OFF_SPRITE);
         m_data->assets.LoadTexture("Bottom2OFF", BOTTOM2OFF_SPRITE);
         m_data->assets.LoadTexture("Bottom3OFF", BOTTOM3OFF_SPRITE);
+        
+        m_data->assets.LoadTexture("Plane", PLANE);
+        m_data->assets.LoadTexture("Desplegar", BOTON_DESPLEGAR);
+        m_data->assets.LoadTexture("SelectBG", SELECT_BG); 
+        m_data->assets.LoadTexture("CleanMap", CLEAN_MAP);
     }
 
     void MainMenuState::Init() {

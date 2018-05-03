@@ -66,6 +66,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Nuke.o \
 	${OBJECTDIR}/Objective.o \
 	${OBJECTDIR}/Placer.o \
+	${OBJECTDIR}/PlaneScene.o \
 	${OBJECTDIR}/Reward.o \
 	${OBJECTDIR}/SaveData.o \
 	${OBJECTDIR}/SplashState.o \
@@ -264,6 +265,11 @@ ${OBJECTDIR}/Placer.o: Placer.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Placer.o Placer.cpp
+
+${OBJECTDIR}/PlaneScene.o: PlaneScene.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/PlaneScene.o PlaneScene.cpp
 
 ${OBJECTDIR}/Reward.o: Reward.cpp
 	${MKDIR} -p ${OBJECTDIR}

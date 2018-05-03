@@ -15,7 +15,7 @@ namespace Zenon {
         void Update(float dt);
         void Draw(float dt);
         void RetrieveReward();
-        void ChangeState();
+        void ChangeState(sf::Vector2f l_coordinates);
         void ProcessRewards();
         void InitPanicLevelGUI();
         void CallGameOver();
