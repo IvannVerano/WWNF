@@ -1,7 +1,7 @@
 #pragma once
 #include "State.hpp"
 #include "Game.hpp"
-#include "LevelSelectorState.hpp"
+#include "MainMenuState.hpp"
 #include <arpa/inet.h>
 #include <assert.h>
 #include <errno.h>
@@ -32,7 +32,7 @@ namespace Zenon
         private:
             sf::Sprite m_getBackButton;
             sf::Sprite m_sendDataToServerButton;
-            sf::Text m_failText;
+            sf::Sprite m_bg;
             std::string m_playerInput;
             sf::Text m_playerText;
             sf::Text m_yourPoints;

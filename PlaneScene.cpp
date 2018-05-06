@@ -3,10 +3,10 @@
 
 namespace Zenon
 {
-    PlaneScene::PlaneScene(GameDataRef l_data, std::vector<FichaTrampa*> l_fichaTrampa, sf::Vector2f l_destinyPoint): m_data(l_data)
+    PlaneScene::PlaneScene(GameDataRef l_data, std::vector<FichaTrampa*> l_fichaTrampa): m_data(l_data)
     {
         m_fichaTrampa = l_fichaTrampa;
-        m_destinyPoint = l_destinyPoint;
+        m_destinyPoint = m_data->reward.GetLevelLocation();
     }
     
     void PlaneScene::Init()

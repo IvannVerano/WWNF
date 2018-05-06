@@ -13,7 +13,7 @@
 #include "Adrenalin.hpp"
 #include "Fighter.hpp"
 #include "GameOverState.hpp"
-#include "LevelSelectorState.hpp"
+#include "PlaneReturnScene.hpp"
 #include <string>
 #include <iostream>
 
@@ -240,7 +240,7 @@ namespace Zenon {
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::N)) {
             m_data->data.SetMoney(m_disponible);
-            m_data->machine.AddState(StateRef(new LevelSelectorState(m_data, true)));
+            m_data->machine.AddState(StateRef(new PlaneReturnScene(m_data, true)));
         }
     }
 
@@ -586,7 +586,7 @@ namespace Zenon {
     void SplashState::CheckFail() {
         if (m_objectives[m_objectives.size() - 1]->GetActualState() == OBJECTIVE_DESTROYED_STATE) {
             this->m_data->data.SetConfidenceLevel(-3);
-            this->m_data->machine.AddState(StateRef(new LevelSelectorState(this->m_data, false)));
+            this->m_data->machine.AddState(StateRef(new PlaneReturnScene(this->m_data, false)));
         }
     }
 

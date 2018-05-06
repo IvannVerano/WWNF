@@ -15,7 +15,7 @@ namespace Zenon {
         void Update(float dt);
         void Draw(float dt);
         void RetrieveReward();
-        void ChangeState(sf::Vector2f l_coordinates);
+        void ChangeState();
         void ProcessRewards();
         void InitPanicLevelGUI();
         void CallGameOver();
@@ -24,7 +24,7 @@ namespace Zenon {
         GameDataRef m_data;
         std::vector<Level*> m_levels;
         std::vector<sf::RectangleShape> m_panicLevels;
-        std::vector<sf::Text> m_levelNames;
+        std::vector<sf::RectangleShape> m_confidence;
         sf::Text m_moneyText;
         sf::Sprite m_background;
         bool selected = false;

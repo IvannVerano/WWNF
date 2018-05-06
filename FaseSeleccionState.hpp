@@ -11,7 +11,7 @@ namespace Zenon {
 
     class FaseSeleccionState : public State {
     public:
-        FaseSeleccionState(GameDataRef l_data, sf::Vector2f l_coordinates);
+        FaseSeleccionState(GameDataRef l_data);
         void Init();
         void InitOptions();
         void HandleInput();
@@ -42,7 +42,5 @@ namespace Zenon {
         int bottY = 800;
         int m_Sum;
         int m_whSum;
-        
-        sf::Vector2f m_coordinates;
     };
 }

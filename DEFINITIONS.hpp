@@ -50,7 +50,8 @@
 #define DOXY_HITING_TIME 1.0f
 
 
-
+//variables del menu
+#define BACKGROUND_MONEY "resources/BotonDinero.png"
 
 
 //variables de la TORRETA
@@ -263,8 +264,18 @@
 //fichero cinematica
 #define PLANE "resources/Plane.png"
 #define PLANE_SPEED 170.0f
+#define PLANE_SPEED_RETURN 30.0f;
 #define BOTON_DESPLEGAR "resources/Desplegar.png"
 #define CLEAN_MAP "resources/CleanMap.jpg"
 
 //bgs
 #define SELECT_BG "resources/selectBackground.png"
+#define INFOBOX "resources/Infobox.png"
+#define GAME_OVERBG "resources/GameOver.jpg"
+
+//botones gameOver
+#define SAVEBUTTON "resources/Guarda.png"
+#define REPEATBUTTON "resources/Repite.png"
+
+
+

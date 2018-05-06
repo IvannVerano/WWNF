@@ -2,16 +2,15 @@
 
 #include "State.hpp"
 #include "Game.hpp"
-#include "FichaTrampa.hpp"
 #include "SplashState.hpp"
 #include "MathHelper.hpp"
 
 namespace Zenon
 {
-    class PlaneScene: public State
+    class PlaneReturnScene: public State
     {
         public:
-            PlaneScene(GameDataRef l_data, std::vector<FichaTrampa*> l_fichaTrampa);
+            PlaneReturnScene(GameDataRef l_data, bool success);
             void Init();
             void HandleInput();
             void Update(float dt);
@@ -24,14 +23,24 @@ namespace Zenon
             sf::Sprite m_nextButton;
             sf::Sprite m_plane;
             sf::Sprite m_background;
+            sf::Sprite m_infobox;
             sf::Vector2f m_destinyPoint;
             sf::Vector2f m_trajectory;
+            
+            sf::Text m_textSuccess;
+            sf::Text m_civilians;
+            sf::Text m_trapUnlocked;
+            sf::Text m_money;
+            sf::Text m_confidenceReward;
+            
             bool hasArrived = false;
-            std::vector<FichaTrampa*> m_fichaTrampa;
             
             sf::Vector2f m_normalized;
             
             sf::View m_camera;
+           
+            bool isSuccess;
             
+            sf::Clock m_clockApparition;
     };
 }

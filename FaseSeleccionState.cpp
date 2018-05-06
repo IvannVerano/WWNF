@@ -8,9 +8,8 @@
 
 namespace Zenon {
 
-    FaseSeleccionState::FaseSeleccionState(GameDataRef data, sf::Vector2f l_coordinates) : m_data(data) 
+    FaseSeleccionState::FaseSeleccionState(GameDataRef data) : m_data(data) 
     {
-        m_coordinates = l_coordinates;
     }
 
     void FaseSeleccionState::Init() {
@@ -263,7 +262,7 @@ namespace Zenon {
 
         if (m_trampasSel.size() > 0) {
             m_trampasSel.push_back(m_trampasdisp.at(m_trampasdisp.size()-1));
-            m_data->machine.AddState(StateRef(new PlaneScene(this->m_data, m_trampasSel, m_coordinates)));
+            m_data->machine.AddState(StateRef(new PlaneScene(this->m_data, m_trampasSel)));
         }
     }
 }

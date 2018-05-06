@@ -9,7 +9,7 @@ namespace Zenon
     class Level
     {
         public:
-            Level(GameDataRef l_data, sf::Vector2f l_location, std::string l_name);
+            Level(GameDataRef l_data, sf::Vector2f l_location, sf::Vector2f l_locationSmall, std::string l_name);
             void CreateLevelRewards();
             void SetDataRewards(int l_position);
             void SetPanicLevel(int l_position);
@@ -29,6 +29,7 @@ namespace Zenon
             std::vector<const char*> m_levels;
             sf::Sprite m_mainSprite;
             std::string m_LevelName;
+            sf::Vector2f m_location;
             
             
             

@@ -85,6 +85,12 @@ namespace Zenon {
         m_data->assets.LoadTexture("Desplegar", BOTON_DESPLEGAR);
         m_data->assets.LoadTexture("SelectBG", SELECT_BG); 
         m_data->assets.LoadTexture("CleanMap", CLEAN_MAP);
+        
+        m_data->assets.LoadTexture("MoneyButton", BACKGROUND_MONEY);
+        m_data->assets.LoadTexture("Infobox", INFOBOX);
+        m_data->assets.LoadTexture("GOBG", GAME_OVERBG);
+        m_data->assets.LoadTexture("Guardar", SAVEBUTTON);
+        m_data->assets.LoadTexture("Repeat", REPEATBUTTON);
     }
 
     void MainMenuState::Init() {

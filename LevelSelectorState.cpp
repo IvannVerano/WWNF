@@ -21,16 +21,16 @@ namespace Zenon {
 
     void LevelSelectorState::Init() {
        
-        Level * america = new Level(m_data, sf::Vector2f(500, 400), "America");
+        Level * america = new Level(m_data, sf::Vector2f(500, 450), sf::Vector2f(630, 350), "America");
         m_levels.push_back(america);
 
-        Level * europe = new Level(m_data, sf::Vector2f(1100, 360), "Europa");
+        Level * europe = new Level(m_data, sf::Vector2f(1000, 400), sf::Vector2f(1030, 350), "Europa");
         m_levels.push_back(europe);
 
-        Level * asia = new Level(m_data, sf::Vector2f(1400, 450), "Asia");
+        Level * asia = new Level(m_data, sf::Vector2f(1400, 500), sf::Vector2f(1250, 360), "Asia");
         m_levels.push_back(asia);
 
-        Level * africa = new Level(m_data, sf::Vector2f(1050, 600), "Africa");
+        Level * africa = new Level(m_data, sf::Vector2f(1000, 500), sf::Vector2f(1030, 460), "Africa");
         m_levels.push_back(africa);
 
 
@@ -43,10 +43,19 @@ namespace Zenon {
 
         m_moneyText.setFont(m_data->assets.GetFont("FUENTE_DINERO"));
         m_moneyText.setString(std::to_string(m_data->data.GetMoney()));
-        m_moneyText.setCharacterSize(40);
-        m_moneyText.setPosition(sf::Vector2f(100, 920));
+        m_moneyText.setCharacterSize(35);
+        m_moneyText.setPosition(sf::Vector2f(350, 802));
 
         this->InitPanicLevelGUI();
+        
+        for(int i = 0; i<m_data->data.GetConfidenceLevel(); i++)
+        {
+            sf::RectangleShape rect;
+            rect.setSize(sf::Vector2f(15, 20));
+            rect.setPosition(30*i + 800, 150);
+            rect.setFillColor(sf::Color::Green);
+            m_confidence.push_back(rect);
+        }
     }
 
     void LevelSelectorState::HandleInput() {
@@ -58,11 +67,15 @@ namespace Zenon {
                         if (m_levels.at(i)->CheckClick()) {
                             m_levels[i]->SetDataRewards(i);
                             selected = true;
-                            this->ChangeState(m_levels[i]->Getcoordinates());
+                            this->ChangeState();
                         }
                     }
                 }
 
+            }
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+            {
+                m_data->window.close();
             }
         }
 
@@ -81,12 +94,14 @@ namespace Zenon {
         this->m_data->machine.AddState(StateRef(new GameOverState(this->m_data, m_data->data.GetMoney())));
     }
 
-    void LevelSelectorState::ChangeState(sf::Vector2f l_coordinates) {
-        this-> m_data->machine.AddState(StateRef(new FaseSeleccionState(this->m_data, l_coordinates)));
+    void LevelSelectorState::ChangeState() 
+    {
+        this-> m_data->machine.AddState(StateRef(new FaseSeleccionState(this->m_data)));
     }
 
     void LevelSelectorState::Draw(float dt) {
         this->m_data->window.clear(sf::Color::Black);
+        this->m_data->window.setView(this->m_data->window.getDefaultView());
         m_data->window.draw(m_background);
         for (int i = 0; i < m_levels.size(); i++) {
             m_levels[i]->Draw();
@@ -94,8 +109,9 @@ namespace Zenon {
         for (int i = 0; i < m_panicLevels.size(); i++) {
             m_data->window.draw(m_panicLevels[i]);
         }
-        for (int i = 0; i < m_levelNames.size(); i++) {
-            m_data->window.draw(m_levelNames[i]);
+        for(int i=0; i<m_confidence.size(); i++)
+        {
+            m_data->window.draw(m_confidence[i]);
         }
         m_data->window.draw(m_moneyText);
         this->m_data->window.display();
@@ -104,13 +120,26 @@ namespace Zenon {
     void LevelSelectorState::InitPanicLevelGUI() {
         for (int i = 0; i < m_levels.size(); i++) {
             sf::RectangleShape rec;
-            sf::Text text;
-            text.setFont(m_data->assets.GetFont("FUENTE_DINERO"));
-            text.setString(m_levels[i]->GetLevelName());
-            text.setColor(sf::Color::White);
-            text.setPosition(100 + 500 * i, 50);
-            rec.setSize(sf::Vector2f(m_levels[i]->GetPanicLevel(), 20));
-            rec.setPosition(100 + 500 * i, 100);
+            rec.setSize(sf::Vector2f(m_levels[i]->GetPanicLevel()+75, 18));
+            switch(i)
+            {
+                case 0:
+                    //AMERICA
+                    rec.setPosition(115, 329);
+                break;
+                case 1:
+                    //EUROPA
+                    rec.setPosition(1593, 329);
+                break;
+                case 2:
+                    //ASIA
+                    rec.setPosition(1593, 612);
+                break;
+                case 3:
+                    //AFRICA
+                    rec.setPosition(115, 612);
+                break;
+            }
             if (m_levels[i]->GetPanicLevel() > 70) {
                 rec.setFillColor(sf::Color::Red);
             } else if (m_levels[i]->GetPanicLevel() >= 50) {
@@ -118,9 +147,7 @@ namespace Zenon {
             } else {
                 rec.setFillColor(sf::Color::Blue);
             }
-
             m_panicLevels.push_back(rec);
-            m_levelNames.push_back(text);
         }
     }
 }
