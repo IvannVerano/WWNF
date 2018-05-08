@@ -277,5 +277,10 @@
 #define SAVEBUTTON "resources/Guarda.png"
 #define REPEATBUTTON "resources/Repite.png"
 
+//cosas MainMenu
+#define MAINMENUBACKGROUND "resources/mainBackground.png"
+#define NEWGAMEBUTTON "resources/startButton.png"
+#define CHARGEGAME "resources/loadButton.png"
+
 
 

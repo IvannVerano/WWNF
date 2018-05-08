@@ -15,6 +15,7 @@ namespace Zenon {
     void FaseSeleccionState::Init() {
         
         m_background.setTexture(m_data->assets.GetTexture("SelectBG"));
+        m_background.scale(1.2,1.2);
         
         m_boton.setTexture(m_data->assets.GetTexture("Next"));
         m_boton.setOrigin(m_boton.getGlobalBounds().width / 2, m_boton.getGlobalBounds().height / 2);

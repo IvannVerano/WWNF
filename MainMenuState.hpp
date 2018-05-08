@@ -19,5 +19,6 @@ namespace Zenon
         private:
             GameDataRef m_data;
             sf::Sprite m_PlayButton;
+            sf::Sprite m_Background;
     };
 }

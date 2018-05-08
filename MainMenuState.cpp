@@ -91,13 +91,18 @@ namespace Zenon {
         m_data->assets.LoadTexture("GOBG", GAME_OVERBG);
         m_data->assets.LoadTexture("Guardar", SAVEBUTTON);
         m_data->assets.LoadTexture("Repeat", REPEATBUTTON);
+        m_data->assets.LoadTexture("BGMM", MAINMENUBACKGROUND);
+        m_data->assets.LoadTexture("NewGame", NEWGAMEBUTTON);
+        
     }
 
     void MainMenuState::Init() {
-        m_PlayButton.setTexture(m_data->assets.GetTexture("GUI_DEFENSA_BLOCK"));
+        m_Background.setTexture(m_data->assets.GetTexture("BGMM"));
+        m_PlayButton.setTexture(m_data->assets.GetTexture("NewGame"));
         m_PlayButton.setOrigin(m_PlayButton.getGlobalBounds().width / 2, m_PlayButton.getGlobalBounds().height / 2);
         m_PlayButton.setPosition(200, 200);
         m_PlayButton.scale(0.8, 0.8);
+        m_Background.scale(1.2,1.2);
     }
 
     void MainMenuState::HandleInput() {
@@ -114,6 +119,7 @@ namespace Zenon {
 
     void MainMenuState::Draw(float dt) {
         this->m_data->window.clear(sf::Color::Black);
+        this->m_data->window.draw(m_Background);
         m_data->window.draw(m_PlayButton);
         this->m_data->window.display();
     }
