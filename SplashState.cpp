@@ -27,7 +27,7 @@ namespace Zenon {
     void SplashState::Init() {
         std::cout << "Tienes " << m_trampasSel.size() << " trampas" << std::endl;
 
-        const char * titulo = "definitivo12.tmx";
+        const char * titulo = "MapicaNuevo.tmx";
         map = new Maps(m_data, titulo);
 
         m_loc_placers = map->GetPlacerLocation();

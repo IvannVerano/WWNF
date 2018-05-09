@@ -10,7 +10,7 @@
 #define CURSOR_BUILD "resources/CursorBuild.png"
 #define LASER_SPRITE "resources/laser.png"
 #define FONT_DINERO "resources/Autobus-Bold.ttf"
-#define TILESET_FILEPATH "resources/BG_Laboratory.png"
+#define TILESET_FILEPATH "resources/Tileset01.png"
 #define HERO_GUI_POS "resources/circles.png"
 #define WORLD_MAP "resources/WorldMap.jpg"
 #define MARKER "resources/marcadormapa.png"
