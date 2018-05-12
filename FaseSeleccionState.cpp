@@ -14,6 +14,12 @@ namespace Zenon {
 
     void FaseSeleccionState::Init() {
         
+        m_theme = new sf::Music();
+        m_theme->openFromFile(LOADOUT_THEME);
+        m_theme->setLoop(true);
+        m_theme->setVolume(50);
+        m_theme->play();
+        
         m_background.setTexture(m_data->assets.GetTexture("SelectBG"));
         m_background.scale(1.2,1.2);
         
@@ -263,7 +269,7 @@ namespace Zenon {
 
         if (m_trampasSel.size() > 0) {
             m_trampasSel.push_back(m_trampasdisp.at(m_trampasdisp.size()-1));
-            m_data->machine.AddState(StateRef(new PlaneScene(this->m_data, m_trampasSel)));
+            m_data->machine.AddState(StateRef(new PlaneScene(this->m_data, m_trampasSel, m_theme)));
         }
     }
 }

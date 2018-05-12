@@ -264,7 +264,7 @@
 //fichero cinematica
 #define PLANE "resources/Plane.png"
 #define PLANE_SPEED 500.0f
-#define PLANE_SPEED_RETURN 30.0f
+#define PLANE_SPEED_RETURN 100.0f
 #define BOTON_DESPLEGAR "resources/Desplegar.png"
 #define CLEAN_MAP "resources/CleanMap.jpg"
 
@@ -282,5 +282,22 @@
 #define NEWGAMEBUTTON "resources/startButton.png"
 #define CHARGEGAME "resources/loadButton.png"
 
+
+//Soundtrack
+#define LOADOUT_THEME "resources/soundtrack/music/loadout.wav"
+#define VICTORY_THEME "resources/soundtrack/music/success.wav"
+#define FAILURE_THEME "resources/soundtrack/music/failure.wav"
+
+#define DEPLOY_1 "resources/soundtrack/soundeffects/deploy1.ogg"
+#define DEPLOY_2 "resources/soundtrack/soundeffects/deploy2.ogg"
+#define DEPLOY_3 "resources/soundtrack/soundeffects/deploy3.ogg"
+#define DEPLOY_4 "resources/soundtrack/soundeffects/deploy4.ogg"
+
+#define VICTORY_1 "resources/soundtrack/soundeffects/victory1.ogg"
+#define VICTORY_2 "resources/soundtrack/soundeffects/victory2.ogg"
+#define VICTORY_3 "resources/soundtrack/soundeffects/victory3.ogg"
+#define DEFEAT_1 "resources/soundtrack/soundeffects/defeat1.ogg"
+#define DEFEAT_2 "resources/soundtrack/soundeffects/defeat2.ogg"
+#define DEFEAT_3 "resources/soundtrack/soundeffects/defeat3.ogg"
 
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "State.hpp"
 #include "Game.hpp"
 #include "FichaTrampa.hpp"
@@ -42,5 +43,7 @@ namespace Zenon {
         int bottY = 800;
         int m_Sum;
         int m_whSum;
+        
+        sf::Music * m_theme;
     };
 }

@@ -8,6 +8,19 @@ namespace Zenon
     {
         m_destinyPoint = sf::Vector2f(100, 3000);
         isSuccess = success;
+        
+        m_theme = new sf::Music();
+        if(isSuccess)
+        {
+            m_theme->openFromFile(VICTORY_THEME);
+        }
+        else
+        {
+            m_theme->openFromFile(FAILURE_THEME);
+        }
+        
+        m_theme->setVolume(50);
+        m_theme->play();
     }
     
     void PlaneReturnScene::Init()
@@ -41,7 +54,7 @@ namespace Zenon
         
         
         m_destiny.setPosition(m_destinyPoint);
-        m_nextButton.setPosition(m_destinyPoint.x + 100, m_destinyPoint.y + 50);
+        m_nextButton.setPosition(m_plane.getPosition().x - 100, m_plane.getPosition().y);
        
         m_plane.setPosition(960, 540);
         m_textSuccess.setPosition(m_plane.getPosition().x - 100, m_plane.getPosition().y - 100);
@@ -50,7 +63,6 @@ namespace Zenon
         m_background.setOrigin(m_data->reward.GetReturnLocation());
         m_background.setPosition(m_plane.getPosition());
         m_background.scale(5.0,5.0);
-        m_nextButton.scale(0.3,0.3);
         
         if(isSuccess)
         {
@@ -144,12 +156,11 @@ namespace Zenon
         m_destiny.rotate(20*dt);
         if(!hasArrived)
         {
-            m_background.move(m_normalized.x*dt*PLANE_SPEED * -1, m_normalized.y*dt*PLANE_SPEED *-1);
-            m_destiny.move(m_normalized.x*dt*PLANE_SPEED * -1, m_normalized.y*dt*PLANE_SPEED *-1);
-            m_nextButton.move(m_normalized.x*dt*PLANE_SPEED * -1, m_normalized.y*dt*PLANE_SPEED *-1);
-            
+            m_background.move(m_normalized.x*dt*PLANE_SPEED_RETURN * -1, m_normalized.y*dt*PLANE_SPEED_RETURN *-1);
+            m_destiny.move(m_normalized.x*dt*PLANE_SPEED_RETURN * -1, m_normalized.y*dt*PLANE_SPEED_RETURN *-1);
             m_textSuccess.setPosition(m_plane.getPosition().x - 350, m_plane.getPosition().y - 410);
             m_infobox.setPosition(m_plane.getPosition().x -300, m_plane.getPosition().y -250 );
+            m_nextButton.setPosition(m_plane.getPosition().x - 300, m_plane.getPosition().y +10);
             m_civilians.setPosition(m_textSuccess.getPosition().x - 130, m_textSuccess.getPosition().y + 65);
             m_confidenceReward.setPosition(m_textSuccess.getPosition().x - 130, m_textSuccess.getPosition().y + 115);
             m_money.setPosition(m_textSuccess.getPosition().x - 130, m_textSuccess.getPosition().y + 165);
@@ -168,27 +179,34 @@ namespace Zenon
         this->m_data->window.draw(m_infobox);
         this->m_data->window.draw(m_textSuccess);
         
-        if(m_clockApparition.getElapsedTime().asSeconds() > 0.5f)
-            this->m_data->window.draw(m_civilians);
         if(m_clockApparition.getElapsedTime().asSeconds() > 1.0f)
-            this->m_data->window.draw(m_confidenceReward);
-        if(m_clockApparition.getElapsedTime().asSeconds() > 1.5f)
-            this->m_data->window.draw(m_money);
+            this->m_data->window.draw(m_civilians);
         if(m_clockApparition.getElapsedTime().asSeconds() > 2.0f)
+        {
+            this->m_data->window.draw(m_confidenceReward);
+            if(!isSounded)
+            {
+                this->PlaySound();
+                isSounded = true;
+            }
+        }
+        if(m_clockApparition.getElapsedTime().asSeconds() > 3.0f)
+            this->m_data->window.draw(m_money);
+        if(m_clockApparition.getElapsedTime().asSeconds() > 4.0f)
             this->m_data->window.draw(m_trapUnlocked);
+        if(m_clockApparition.getElapsedTime().asSeconds()> 5.0f)
+            this->m_data->window.draw(m_nextButton);
         
         
         this->m_data->window.draw(m_destiny);
         this->m_data->window.draw(m_plane);
-        if(hasArrived)
-        {
-            this->m_data->window.draw(m_nextButton);
-        }
         this->m_data->window.display();
     }
     
     void PlaneReturnScene::StartGame()
     {
+        m_theme->stop();
+        delete m_theme;
         this->m_data->machine.AddState(StateRef(new LevelSelectorState(m_data, isSuccess)));
     }
     
@@ -217,5 +235,37 @@ namespace Zenon
                 }
                 
                 m_plane.setRotation(angle);
+    }
+    
+    void PlaneReturnScene::PlaySound()
+    {
+        int pointer = rand()%3;
+        
+        switch(pointer)
+        {
+            case 0:
+                if(isSuccess)
+                    m_bufferSound.loadFromFile(VICTORY_1);
+                else
+                    m_bufferSound.loadFromFile(DEFEAT_1);
+            break;
+            
+            case 1:
+                if(isSuccess)
+                    m_bufferSound.loadFromFile(VICTORY_2);
+                else
+                    m_bufferSound.loadFromFile(DEFEAT_2);
+            break;
+            
+            case 2:
+                if(isSuccess)
+                    m_bufferSound.loadFromFile(VICTORY_3);
+                else
+                    m_bufferSound.loadFromFile(DEFEAT_3);
+            break;
+        }
+        
+        m_soundPlay.setBuffer(m_bufferSound);
+        m_soundPlay.play();
     }
 }

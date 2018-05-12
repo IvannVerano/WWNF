@@ -3,10 +3,12 @@
 
 namespace Zenon
 {
-    PlaneScene::PlaneScene(GameDataRef l_data, std::vector<FichaTrampa*> l_fichaTrampa): m_data(l_data)
+    PlaneScene::PlaneScene(GameDataRef l_data, std::vector<FichaTrampa*> l_fichaTrampa, sf::Music * l_theme): m_data(l_data)
     {
+        m_theme = l_theme;
         m_fichaTrampa = l_fichaTrampa;
         m_destinyPoint = m_data->reward.GetLevelLocation();
+        
     }
     
     void PlaneScene::Init()
@@ -65,9 +67,10 @@ namespace Zenon
             m_destiny.move(m_normalized.x*dt*PLANE_SPEED * -1, m_normalized.y*dt*PLANE_SPEED *-1);
             m_nextButton.move(m_normalized.x*dt*PLANE_SPEED * -1, m_normalized.y*dt*PLANE_SPEED *-1);
         }
-        if (m_plane.getGlobalBounds().intersects(m_destiny.getGlobalBounds()))
+        if (m_plane.getGlobalBounds().intersects(m_destiny.getGlobalBounds()) && !hasArrived)
         {
             hasArrived = true;
+            this->PlaySound();
         }
     }
     
@@ -86,6 +89,9 @@ namespace Zenon
     
     void PlaneScene::StartGame()
     {
+        m_theme->stop();
+        m_soundPlay.stop();
+        delete m_theme;
         this->m_data->machine.AddState(StateRef(new SplashState(m_data, m_fichaTrampa)));
     }
     
@@ -114,5 +120,34 @@ namespace Zenon
                 }
                 
                 m_plane.setRotation(angle);
+    }
+    
+    void PlaneScene::PlaySound()
+    {
+          int point = rand()%4;
+          
+          switch(point)
+          {
+              case 0:
+                  m_bufferSound.loadFromFile(DEPLOY_1);
+              break;
+              
+              case 1:
+                  m_bufferSound.loadFromFile(DEPLOY_2);
+              break;
+              
+              case 2:
+                  m_bufferSound.loadFromFile(DEPLOY_3);
+              break;
+              
+              case 3:
+                  m_bufferSound.loadFromFile(DEPLOY_4);
+              break;
+                  
+          }
+          m_soundPlay.setBuffer(m_bufferSound);
+          m_soundPlay.play();
+          
+          std::cout<<"le di al play"<<std::endl;
     }
 }
