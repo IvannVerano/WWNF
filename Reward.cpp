@@ -8,13 +8,14 @@ namespace Zenon
         this->ResetpanicLevels();
     }
     
-    void Reward::SetReward(int l_money, int l_idTrap, int l_civRescued, int l_confidence, int l_positionSaved, sf::Vector2f l_pointLocation)
+    void Reward::SetReward(int l_money, int l_idTrap, int l_civRescued, int l_confidence, int l_positionSaved, sf::Vector2f l_pointLocation, sf::Vector2f l_returnLocation)
     {
         m_moneyReward = l_money;
         m_idTrapReward = l_idTrap;
         m_civiliansRescued = l_civRescued;
         m_confidenceRestablished = l_confidence;
         m_pointLocation = l_pointLocation;
+        m_returnLocation = l_returnLocation;
         for(int i=0; i<m_panicLevelIncrease.size(); i++)
         {
             if (i==l_positionSaved)
@@ -66,5 +67,10 @@ namespace Zenon
     sf::Vector2f Reward::GetLevelLocation()
     {
         return m_pointLocation;
+    }
+    
+    sf::Vector2f Reward::GetReturnLocation()
+    {
+        return m_returnLocation;
     }
 }

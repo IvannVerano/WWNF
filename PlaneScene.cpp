@@ -23,17 +23,14 @@ namespace Zenon
         m_destiny.setPosition(m_destinyPoint);
         m_nextButton.setPosition(m_destinyPoint.x + 100, m_destinyPoint.y + 50);
        
-        m_plane.setPosition(100, 800);
-        
+        m_plane.setPosition(960, 540);
+        m_background.setOrigin(100, 800);
+        m_background.scale(5.0,5.0);
         m_nextButton.scale(0.3,0.3);
         m_destiny.scale(0.8,0.8);
-        m_plane.scale(0.2,0.2); 
+        
         
         m_trajectory = m_destinyPoint - m_plane.getPosition();
-        
-        m_camera.setCenter(m_plane.getPosition());
-        m_camera.setSize(1920, 1080);
-        m_camera.zoom(0.5f);
         
         float module = Module(m_trajectory);
         m_normalized = Normalize(m_trajectory, module);
@@ -64,8 +61,9 @@ namespace Zenon
         m_destiny.rotate(20*dt);
         if(!hasArrived)
         {
-            m_plane.move(m_normalized.x*dt*PLANE_SPEED, m_normalized.y*dt*PLANE_SPEED);
-            m_camera.setCenter(m_plane.getPosition());
+            m_background.move(m_normalized.x*dt*PLANE_SPEED * -1, m_normalized.y*dt*PLANE_SPEED *-1);
+            m_destiny.move(m_normalized.x*dt*PLANE_SPEED * -1, m_normalized.y*dt*PLANE_SPEED *-1);
+            m_nextButton.move(m_normalized.x*dt*PLANE_SPEED * -1, m_normalized.y*dt*PLANE_SPEED *-1);
         }
         if (m_plane.getGlobalBounds().intersects(m_destiny.getGlobalBounds()))
         {
@@ -76,7 +74,6 @@ namespace Zenon
     void PlaneScene::Draw(float dt)
     {
         this->m_data->window.clear(sf::Color::Black);
-        this->m_data->window.setView(m_camera);
         this->m_data->window.draw(m_background);
         this->m_data->window.draw(m_destiny);
         this->m_data->window.draw(m_plane);

@@ -21,16 +21,16 @@ namespace Zenon {
 
     void LevelSelectorState::Init() {
        
-        Level * america = new Level(m_data, sf::Vector2f(500, 450), sf::Vector2f(630, 350), "America");
+        Level * america = new Level(m_data, sf::Vector2f(2000, -1950), sf::Vector2f(630, 350), "America", sf::Vector2f(500, 450));
         m_levels.push_back(america);
 
-        Level * europe = new Level(m_data, sf::Vector2f(1000, 400), sf::Vector2f(1030, 350), "Europa");
+        Level * europe = new Level(m_data, sf::Vector2f(4550, -2050), sf::Vector2f(1030, 350), "Europa", sf::Vector2f(1000, 400));
         m_levels.push_back(europe);
 
-        Level * asia = new Level(m_data, sf::Vector2f(1400, 500), sf::Vector2f(1250, 360), "Asia");
+        Level * asia = new Level(m_data, sf::Vector2f(6500, -1600), sf::Vector2f(1250, 360), "Asia", sf::Vector2f(1400, 500));
         m_levels.push_back(asia);
 
-        Level * africa = new Level(m_data, sf::Vector2f(1000, 500), sf::Vector2f(1030, 460), "Africa");
+        Level * africa = new Level(m_data, sf::Vector2f(5000, -1150), sf::Vector2f(1030, 460), "Africa", sf::Vector2f(1000, 500));
         m_levels.push_back(africa);
 
 

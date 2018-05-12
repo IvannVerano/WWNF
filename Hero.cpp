@@ -105,7 +105,12 @@ namespace Zenon {
         } 
         else 
         {
-            m_path = m_backupPath;
+            if(m_backupPath.size()>0)
+            {
+                m_path = m_backupPath;
+            }
+            else
+                m_state = HERO_IDLE_STATE;
         }
     }
 

@@ -37,7 +37,6 @@ namespace Zenon
             
             sf::Vector2f m_normalized;
             
-            sf::View m_camera;
            
             bool isSuccess;
             

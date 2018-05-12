@@ -263,8 +263,8 @@
 
 //fichero cinematica
 #define PLANE "resources/Plane.png"
-#define PLANE_SPEED 170.0f
-#define PLANE_SPEED_RETURN 30.0f;
+#define PLANE_SPEED 500.0f
+#define PLANE_SPEED_RETURN 30.0f
 #define BOTON_DESPLEGAR "resources/Desplegar.png"
 #define CLEAN_MAP "resources/CleanMap.jpg"
 

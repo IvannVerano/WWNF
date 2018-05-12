@@ -2,7 +2,7 @@
 
 namespace Zenon
 {
-    Level::Level(GameDataRef l_data, sf::Vector2f l_location, sf::Vector2f l_locationSmall, std::string l_name):m_data(l_data)
+    Level::Level(GameDataRef l_data, sf::Vector2f l_location, sf::Vector2f l_locationSmall, std::string l_name, sf::Vector2f l_return):m_data(l_data)
     {
         m_mainSprite.setTexture(m_data->assets.GetTexture("MapMarker"));
         m_mainSprite.setOrigin(m_mainSprite.getGlobalBounds().width/2, m_mainSprite.getGlobalBounds().height/2);
@@ -12,6 +12,7 @@ namespace Zenon
         m_levels.push_back(level);
         m_LevelName = l_name;
         m_location = l_location;
+        m_return = l_return;
     }
     
     void Level::SetPanicLevel(int l_position)
@@ -76,7 +77,7 @@ namespace Zenon
     
     void Level::SetDataRewards(int l_position)
     {
-        m_data->reward.SetReward(m_money, m_idTrapReward, m_civilians, m_confidenceReward, l_position, m_location);
+        m_data->reward.SetReward(m_money, m_idTrapReward, m_civilians, m_confidenceReward, l_position, m_location, m_return);
     }
     
     std::string Level::GetLevelName()
@@ -92,5 +93,10 @@ namespace Zenon
     sf::Vector2f Level::Getcoordinates()
     {
         return m_location;
+    }
+    
+    sf::Vector2f Level::GetReturn()
+    {
+        return m_return;
     }
 }

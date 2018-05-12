@@ -152,7 +152,8 @@ namespace Zenon {
         this->ResetNodeMap();
         //Ahora toca averiguar en que nodo caen nuestras coordenadas
         
-        
+        std::cout<<_height*32<<std::endl;
+        std::cout<<l_endPoint.y<<std::endl;
         if(l_endPoint.x<0 || l_endPoint.x>=_width*32 || l_endPoint.y<0 || l_endPoint.y>=_height*32)
         {
             std::cout<<"Mesalgoooo"<<std::endl;
@@ -185,6 +186,11 @@ namespace Zenon {
                     }
                 }
             }
+        }
+        
+        if(!validator)
+        {
+            return false;
         }
 
         if (endNode->IsObstacle())
