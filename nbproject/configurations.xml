@@ -23,6 +23,7 @@
       <itemPath>Generator.hpp</itemPath>
       <itemPath>HUD.hpp</itemPath>
       <itemPath>Healer.hpp</itemPath>
+      <itemPath>HelpState.hpp</itemPath>
       <itemPath>Hero.hpp</itemPath>
       <itemPath>Hydra.hpp</itemPath>
       <itemPath>HydraSegment.hpp</itemPath>
@@ -74,6 +75,7 @@
       <itemPath>Generator.cpp</itemPath>
       <itemPath>HUD.cpp</itemPath>
       <itemPath>Healer.cpp</itemPath>
+      <itemPath>HelpState.cpp</itemPath>
       <itemPath>Hero.cpp</itemPath>
       <itemPath>Hydra.cpp</itemPath>
       <itemPath>HydraSegment.cpp</itemPath>
@@ -211,6 +213,10 @@
       <item path="Healer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Healer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="HelpState.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="HelpState.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Hero.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -402,6 +408,10 @@
       <item path="Healer.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Healer.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="HelpState.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="HelpState.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Hero.cpp" ex="false" tool="1" flavor2="0">
       </item>

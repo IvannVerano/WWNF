@@ -53,6 +53,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Generator.o \
 	${OBJECTDIR}/HUD.o \
 	${OBJECTDIR}/Healer.o \
+	${OBJECTDIR}/HelpState.o \
 	${OBJECTDIR}/Hero.o \
 	${OBJECTDIR}/Hydra.o \
 	${OBJECTDIR}/HydraSegment.o \
@@ -96,21 +97,21 @@ LDLIBSOPTIONS=-L/usr/lib/86x_64-linux-GNU /usr/lib/x86_64-linux-gnu/libsfml-audi
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/versionnewmap
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/betasonora
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/versionnewmap: /usr/lib/x86_64-linux-gnu/libsfml-audio.so
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/betasonora: /usr/lib/x86_64-linux-gnu/libsfml-audio.so
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/versionnewmap: /usr/lib/x86_64-linux-gnu/libsfml-graphics.so
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/betasonora: /usr/lib/x86_64-linux-gnu/libsfml-graphics.so
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/versionnewmap: /usr/lib/x86_64-linux-gnu/libsfml-network.so
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/betasonora: /usr/lib/x86_64-linux-gnu/libsfml-network.so
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/versionnewmap: /usr/lib/x86_64-linux-gnu/libsfml-system.so
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/betasonora: /usr/lib/x86_64-linux-gnu/libsfml-system.so
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/versionnewmap: /usr/lib/x86_64-linux-gnu/libsfml-window.so
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/betasonora: /usr/lib/x86_64-linux-gnu/libsfml-window.so
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/versionnewmap: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/betasonora: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/versionnewmap ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/betasonora ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/Adrenalin.o: Adrenalin.cpp
 	${MKDIR} -p ${OBJECTDIR}
@@ -201,6 +202,11 @@ ${OBJECTDIR}/Healer.o: Healer.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Healer.o Healer.cpp
+
+${OBJECTDIR}/HelpState.o: HelpState.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/SFML -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/HelpState.o HelpState.cpp
 
 ${OBJECTDIR}/Hero.o: Hero.cpp
 	${MKDIR} -p ${OBJECTDIR}
@@ -324,7 +330,7 @@ ${OBJECTDIR}/tinyxml2.o: tinyxml2.cpp
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
 	${RM} -r ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libsfml-audio.so ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libsfml-graphics.so ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libsfml-network.so ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libsfml-system.so ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/libsfml-window.so
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/versionnewmap
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/betasonora
 
 # Subprojects
 .clean-subprojects:

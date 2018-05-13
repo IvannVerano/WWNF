@@ -278,7 +278,9 @@
 #define REPEATBUTTON "resources/Repite.png"
 
 //cosas MainMenu
-#define MAINMENUBACKGROUND "resources/mainBackground.png"
+#define MAINMENUBACKGROUND "resources/fondo_menu.png"
+#define EXITBUTTON "resources/exitButton.png"
+#define HELPBUTTON "resources/helpButton.png"
 #define NEWGAMEBUTTON "resources/startButton.png"
 #define CHARGEGAME "resources/loadButton.png"
 

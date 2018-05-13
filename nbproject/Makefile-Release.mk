@@ -53,6 +53,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Generator.o \
 	${OBJECTDIR}/HUD.o \
 	${OBJECTDIR}/Healer.o \
+	${OBJECTDIR}/HelpState.o \
 	${OBJECTDIR}/Hero.o \
 	${OBJECTDIR}/Hydra.o \
 	${OBJECTDIR}/HydraSegment.o \
@@ -96,11 +97,11 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/versionnewmap
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/betasonora
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/versionnewmap: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/betasonora: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/versionnewmap ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/betasonora ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/Adrenalin.o: Adrenalin.cpp
 	${MKDIR} -p ${OBJECTDIR}
@@ -191,6 +192,11 @@ ${OBJECTDIR}/Healer.o: Healer.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Healer.o Healer.cpp
+
+${OBJECTDIR}/HelpState.o: HelpState.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/HelpState.o HelpState.cpp
 
 ${OBJECTDIR}/Hero.o: Hero.cpp
 	${MKDIR} -p ${OBJECTDIR}
