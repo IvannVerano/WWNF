@@ -108,27 +108,25 @@ namespace Zenon {
         m_PlayButton.setTexture(m_data->assets.GetTexture("NewGame"));
         m_PlayButton.setOrigin(m_PlayButton.getGlobalBounds().width / 2, m_PlayButton.getGlobalBounds().height / 2);
         m_PlayButton.scale(0.8, 0.8);
-        m_PlayButton.setPosition(this->m_data->window.getSize().x / 2, this->m_data->window.getSize().y / 2 + 50);
+        m_PlayButton.setPosition(m_Background.getGlobalBounds().width / 2, m_Background.getGlobalBounds().height / 2 + 20);
 
 
         m_ChargeButton.setTexture(m_data->assets.GetTexture("ChargeGame"));
         m_ChargeButton.setOrigin(m_ChargeButton.getGlobalBounds().width / 2, m_ChargeButton.getGlobalBounds().height / 2);
         m_ChargeButton.scale(0.8, 0.8);
-        m_ChargeButton.setPosition(this->m_data->window.getSize().x / 2, m_PlayButton.getPosition().y + 120);
+        m_ChargeButton.setPosition(m_PlayButton.getPosition().x, m_PlayButton.getPosition().y + 120);
 
 
         m_HelpButton.setTexture(m_data->assets.GetTexture("Help"));
         m_HelpButton.setOrigin(m_HelpButton.getGlobalBounds().width / 2, m_HelpButton.getGlobalBounds().height / 2);
         m_HelpButton.scale(0.8, 0.8);
-        m_HelpButton.setPosition(this->m_data->window.getSize().x / 2, m_ChargeButton.getPosition().y + 120);
+        m_HelpButton.setPosition(m_PlayButton.getPosition().x, m_ChargeButton.getPosition().y + 120);
 
 
         m_ExitButton.setTexture(m_data->assets.GetTexture("ExitGame"));
         m_ExitButton.setOrigin(m_ExitButton.getGlobalBounds().width / 2, m_ExitButton.getGlobalBounds().height / 2);
         m_ExitButton.scale(0.8, 0.8);
-        m_ExitButton.setPosition(this->m_data->window.getSize().x / 2, m_HelpButton.getPosition().y + 120);
-
-
+        m_ExitButton.setPosition(m_PlayButton.getPosition().x, m_HelpButton.getPosition().y + 120);
 
     }
 
