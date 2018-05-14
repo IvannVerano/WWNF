@@ -13,6 +13,7 @@
 #define TILESET_FILEPATH "resources/Tileset01.png"
 #define HERO_GUI_POS "resources/circles.png"
 #define WORLD_MAP "resources/WorldMap.jpg"
+#define FOLDER "resources/Folder.png"
 #define MARKER "resources/marcadormapa.png"
 
 #define MAXIMUM_CHAR 50

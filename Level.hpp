@@ -32,6 +32,8 @@ namespace Zenon
             std::string m_LevelName;
             sf::Vector2f m_location;
             sf::Vector2f m_return;
+            sf::Text m_info;
+            sf::Sprite m_container;
             
             
             

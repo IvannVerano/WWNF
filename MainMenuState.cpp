@@ -98,6 +98,9 @@ namespace Zenon {
         m_data->assets.LoadTexture("ExitGame", EXITBUTTON);
         m_data->assets.LoadTexture("Help", HELPBUTTON);
         m_data->assets.LoadTexture("ChargeGame", CHARGEGAME);
+        
+        //LevelSelector
+        m_data->assets.LoadTexture("Folder", FOLDER);
 
     }
 
