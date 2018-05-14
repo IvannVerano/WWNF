@@ -45,10 +45,14 @@ namespace Zenon {
         };
 
         void TakeDamage(int l_factor) {
-            m_life -= l_factor;
-            m_ocupada = true;
-            if (m_life < 0) {
-                m_state = TRAP_DESTROYED;
+            if (m_state != TRAP_DYING_STATE) {
+                std::cout << "Soy la trampa de la posicion: " << m_SpriteAnimation.getPosition().x << ", " << m_SpriteAnimation.getPosition().y << std::endl;
+                m_life -= l_factor;
+                m_ocupada = true;
+                if (m_life <= 0) {
+                    m_dyingClock.restart();
+                    m_state = TRAP_DYING_STATE;
+                }
             }
         };
 
@@ -57,7 +61,6 @@ namespace Zenon {
         }
 
         sf::Vector2f GetPosition() {
-            std::cout << "me pides posicion\n";
             return m_mainSprite.getPosition();
         }
 
@@ -67,6 +70,10 @@ namespace Zenon {
 
         bool GetOcupada() {
             return m_ocupada;
+        }
+
+        float getDyingClockTime() {
+            return m_dyingClock.getElapsedTime().asSeconds();
         }
 
     protected:
@@ -82,6 +89,7 @@ namespace Zenon {
         sf::Clock m_timeAppear;
         sf::Clock m_aniAppearClock;
         sf::Clock m_timeRefresh;
+        sf::Clock m_dyingClock;
         std::vector<sf::IntRect> m_AnimationFramesAppear;
 
     };

@@ -40,6 +40,7 @@ namespace Zenon {
         const std::vector<Objective*>& m_objectives;
         std::vector<sf::Vector2f> m_pathObj;
         sf::Clock m_hitingClock;
+        std::vector<sf::CircleShape> m_debugCircles;
         int m_currentWP = 1;
         int m_obj = -1;
         bool m_pathCompleted = false;

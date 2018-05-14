@@ -40,11 +40,15 @@ namespace Zenon {
             m_levels[i]->SetPanicLevel(i);
             m_levels[i]->CreateLevelRewards();
         }
-
         m_moneyText.setFont(m_data->assets.GetFont("FUENTE_DINERO"));
         m_moneyText.setString(std::to_string(m_data->data.GetMoney()));
-        m_moneyText.setCharacterSize(35);
-        m_moneyText.setPosition(sf::Vector2f(350, 802));
+        m_moneyText.setCharacterSize(45);
+        m_moneyText.setPosition(m_data->window.getSize().x/2,m_data->window.getSize().y/2+270);
+    
+        m_moneyBackground.setTexture(this->m_data->assets.GetTexture("MoneyButton"));
+        m_moneyBackground.setOrigin(m_moneyBackground.getGlobalBounds().width/2,m_moneyBackground.getGlobalBounds().height/2);
+        m_moneyBackground.setPosition(m_data->window.getSize().x/2,m_data->window.getSize().y/2+300);
+        
 
         this->InitPanicLevelGUI();
         
@@ -113,6 +117,7 @@ namespace Zenon {
         {
             m_data->window.draw(m_confidence[i]);
         }
+        m_data->window.draw(m_moneyBackground);
         m_data->window.draw(m_moneyText);
         this->m_data->window.display();
     }

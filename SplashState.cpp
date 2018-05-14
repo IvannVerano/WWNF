@@ -30,6 +30,11 @@ namespace Zenon {
         const char * titulo = "MapicaNuevo.tmx";
         map = new Maps(m_data, titulo);
 
+        m_mouseCoordinates.setFont(this->m_data->assets.GetFont("FUENTE_DINERO"));
+        m_mouseCoordinates.setString(std::to_string(sf::Mouse::getPosition(this->m_data->window).x) + ", " + std::to_string(sf::Mouse::getPosition(this->m_data->window).y));
+        m_mouseCoordinates.setOrigin(m_mouseCoordinates.getGlobalBounds().width / 2, m_mouseCoordinates.getGlobalBounds().height / 2);
+        m_mouseCoordinates.setPosition(sf::Mouse::getPosition(this->m_data->window).x, sf::Mouse::getPosition(this->m_data->window).y - 10);
+
         m_loc_placers = map->GetPlacerLocation();
         //Creamos los placer en base a nuestro mapa de polla
         for (int x = 0; x < m_loc_placers.size(); x++) {
@@ -238,6 +243,10 @@ namespace Zenon {
             m_wantsBerseker = true;
         }
 
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::T)) {
+            m_wantsTrapper = true;
+        }
+
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::N)) {
             m_data->data.SetMoney(m_disponible);
             m_data->machine.AddState(StateRef(new PlaneReturnScene(m_data, true)));
@@ -246,9 +255,15 @@ namespace Zenon {
 
     void SplashState::Update(float dt) {
 
+        m_mouseCoordinates.setString(std::to_string(sf::Mouse::getPosition(this->m_data->window).x) + ", " + std::to_string(sf::Mouse::getPosition(this->m_data->window).y));
+        m_mouseCoordinates.setOrigin(m_mouseCoordinates.getGlobalBounds().width / 2, m_mouseCoordinates.getGlobalBounds().height / 2);
+        m_mouseCoordinates.setPosition(sf::Mouse::getPosition(this->m_data->window).x, sf::Mouse::getPosition(this->m_data->window).y - 20);
+
         if (m_spawnerClock.getElapsedTime().asSeconds() >= 5.0f) {
+
             SpawnTrapper(sf::Vector2f(300, 300));
             m_spawnerClock.restart();
+
         }
 
         if (m_wantsHydra) {
@@ -278,12 +293,21 @@ namespace Zenon {
 
         m_textoDinero.setString(std::to_string(m_disponible));
         int counter = 0;
+
         for (int i = 0; i < m_trampas.size(); i++) {
-            m_trampas.at(i)->Update(dt);
+            if (m_trampas[i] != nullptr) {
+                m_trampas.at(i)->Update(dt);
+            }
         }
 
-        for (int i = 0; i < m_bullets.size(); i++) {
-            m_bullets[i]->Update(dt);
+        for (int i = 0; i < m_trampas.size(); i++) {
+            if (m_trampas[i] != nullptr) {
+                if (m_trampas[i]->GetActualState() == TRAP_DYING_STATE && m_trampas[i]->getDyingClockTime() >= TRAP_DYING_TIME) {
+                    FreePlacer(i);
+                    delete m_trampas[i];
+                    m_trampas[i] = nullptr;
+                }
+            }
         }
 
         for (int i = 0; i < m_enemies.size(); i++) {
@@ -292,18 +316,11 @@ namespace Zenon {
             }
         }
 
-        for (int i = 0; i < m_trampas.size(); i++) {
-            if (m_trampas[i]->GetActualState() == TRAP_DESTROYED) {
-                for (int j = 0; j < m_placer.size(); j++) {
-                    if (m_placer[j]->GetPosicion().x == m_trampas[i]->GetPosition().x && m_placer[j]->GetPosicion().y == m_trampas[i]->GetPosition().y) {
-                        std::cout << "elimino trampa\n";
-                        delete m_trampas[i];
-                        m_trampas.erase(m_trampas.begin() + i);
-                        m_placer[j]->SetOcupadoFalse();
-                    }
-                }
-            }
+        for (int i = 0; i < m_bullets.size(); i++) {
+            m_bullets[i]->Update(dt);
         }
+
+
 
         this->CheckColision();
 
@@ -337,7 +354,7 @@ namespace Zenon {
         m_objectives.push_back(m_obj);
 
         //Objective 3
-        m_obj = new Core(m_data, sf::Vector2f(m_routes[0].m_bRoutes[2].m_endPoint.x, m_routes[0].m_bRoutes[2].m_endPoint.y), l_enemies, m_routes[0].m_bRoutes[2]);
+        m_obj = new Core(m_data, sf::Vector2f(1580, 466), l_enemies, m_routes[0].m_bRoutes[2]);
         m_objectives.push_back(m_obj);
 
 
@@ -452,6 +469,17 @@ namespace Zenon {
         }
     }
 
+    void SplashState::FreePlacer(int l_trap) {
+        bool stop = false;
+
+        for (int i = 0; i < m_placer.size() && !stop; i++) {
+            if (m_placer[i]->GetPosicion().x == m_trampas[l_trap]->GetPosition().x && m_placer[i]->GetPosicion().y == m_trampas[l_trap]->GetPosition().y) {
+                m_placer[i]->SetOcupadoFalse();
+                stop = true;
+            }
+        }
+    }
+
     void SplashState::SpawnTrapper(sf::Vector2f l_position) {
         const std::vector<Trampa*>& l_traps = m_trampas;
         const std::vector<Objective*>& l_objectives = m_objectives;
@@ -511,7 +539,9 @@ namespace Zenon {
         }
 
         for (int i = 0; i < m_trampas.size(); i++) {
-            m_trampas.at(i)->Draw();
+            if (m_trampas[i] != nullptr) {
+                m_trampas.at(i)->Draw();
+            }
         }
 
         for (int i = 0; i < m_enemys.size(); i++) {
@@ -539,6 +569,7 @@ namespace Zenon {
         } else
             this->m_data->window.setMouseCursorVisible(true);
 
+        this->m_data->window.draw(m_mouseCoordinates);
         this->m_data->window.display();
     }
 
@@ -561,7 +592,9 @@ namespace Zenon {
                     m_enemies[i]->TakeDamage(m_bullets[j]->GetPower());
                     if (m_enemies[i]->GetActualState() == ENEMY_STATE_DEAD) {
                         for (int w = 0; w < m_trampas.size(); w++) {
-                            m_trampas[w]->DeleteTarget(m_enemies[i]->GetId());
+                            if (m_trampas[w] != nullptr) {
+                                m_trampas[w]->DeleteTarget(m_enemies[i]->GetId());
+                            }
                         }
                         m_disponible = m_trampas[killerCandidate]->CalculateRec(m_disponible);
                         delete m_enemies[i];
@@ -605,13 +638,13 @@ namespace Zenon {
     void SplashState::CheckDeadEnemies() {
         for (int i = 0; i < m_enemies.size(); i++) {
             if (m_enemies[i]->GetActualState() == ENEMY_STATE_DEAD) {
-                if (m_enemies[i]->GetActualState() == ENEMY_STATE_DEAD) {
-                    for (int w = 0; w < m_trampas.size(); w++) {
+                for (int w = 0; w < m_trampas.size(); w++) {
+                    if (m_trampas[w] != nullptr) {
                         m_trampas[w]->DeleteTarget(m_enemies[i]->GetId());
                     }
-                    delete m_enemies[i];
-                    m_enemies.erase(m_enemies.begin() + i);
                 }
+                delete m_enemies[i];
+                m_enemies.erase(m_enemies.begin() + i);
             }
         }
     }

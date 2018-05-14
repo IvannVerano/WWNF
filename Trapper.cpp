@@ -23,14 +23,7 @@ namespace Zenon {
         m_enemySprite.setOrigin(m_enemySprite.getGlobalBounds().width / 2, m_enemySprite.getGlobalBounds().height / 2);
         m_enemySprite.setPosition(l_position);
         m_enemySprite.scale(0.7f, 0.7f);
-
-        if (m_traps.size() > 0) {
-            FindTrap();
-        } else {
-            std::cout << "entro aqui, no habia trampas\n";
-            FindCore();
-        }
-
+        FindTrap();
     }
 
     Trapper::~Trapper() {
@@ -38,78 +31,81 @@ namespace Zenon {
 
     void Trapper::Update(float dt) {
 
-
-        if (m_state == TRAPPER_HITING_CORE_STATE) {
-            if (m_hitingClock.getElapsedTime().asSeconds() >= TRAPPER_HITING_TIME) {
-                std::cout << "pego al core\n";
-                m_objectives[m_objectives.size() - 1]->TakeDamage(50);
-                m_hitingClock.restart();
-            }
-        } else {
+        if (m_state != TRAPPER_HITING_CORE_STATE) {
             if (m_state == TRAPPER_FOLLOWING_TRAP_STATE) {
+                std::cout << "me muevo hacia una trampa\n";
                 if (!m_pathCompleted) {
-                    if (m_traps[m_obj]->GetActualState() != TRAP_DESTROYED) {
-                        sf::Vector2f l_vec = m_pathObj[m_currentWP] - m_enemySprite.getPosition();
-                        float l_module = Module(l_vec);
-                        if (l_module <= TRAPPER_MINIMUM_WP_D) {
-                            if (m_currentWP == m_pathObj.size() - 2) {
-                                m_pathCompleted = true;
-                                m_state = TRAPPER_HITING_TRAP_STATE;
-                            } else {
-                                m_currentWP++;
+                    if (m_traps[m_obj] != nullptr) {
+                        std::cout << "Soy el enemigo: " << this->GetId() << " y me voy a mover. MI objetivo es: " << m_obj << std::endl;
+                        if (m_traps[m_obj]->GetActualState() != TRAP_DYING_STATE && m_traps[m_obj]->GetLife() > 25 && m_traps[m_obj]->getDyingClockTime() >= 1) {
+                            sf::Vector2f l_vec = m_pathObj[m_currentWP] - m_enemySprite.getPosition();
+                            float l_module = Module(l_vec);
+                            if (l_module <= TRAPPER_MINIMUM_WP_D) {
+                                if (m_currentWP == m_pathObj.size() - 2) {
+                                    m_pathCompleted = true;
+                                    m_state = TRAPPER_HITING_TRAP_STATE;
+                                } else {
+                                    m_currentWP++;
+                                }
                             }
-                        }
 
-                        if (l_module > TRAPPER_MINIMUM_WP_D) {
-                            l_vec = Normalize(l_vec, l_module);
-                            m_enemySprite.move(TRAPPER_SPEED * dt * l_vec.x, TRAPPER_SPEED * dt * l_vec.y);
+                            if (l_module > TRAPPER_MINIMUM_WP_D) {
+                                l_vec = Normalize(l_vec, l_module);
+                                m_enemySprite.move(TRAPPER_SPEED * dt * l_vec.x, TRAPPER_SPEED * dt * l_vec.y);
+                            }
+                        } else {
+                            FindTrap();
                         }
+                    } else {
+                        FindTrap();
+                    }
+                }
+            }
+
+            if (m_state == TRAPPER_HITING_TRAP_STATE) {
+                std::cout << "pego a una trampa una trampa\n";
+                if (m_traps[m_obj] != nullptr) {
+                    if (m_traps[m_obj]->GetActualState() != TRAP_DYING_STATE) {
+                        if (m_hitingClock.getElapsedTime().asSeconds() >= TRAPPER_HITING_TIME) {
+                            m_traps[m_obj]->TakeDamage(25);
+                            m_hitingClock.restart();
+                        }
+                    } else {
+                        FindTrap();
                     }
                 } else {
                     FindTrap();
                 }
             }
 
-            if (m_state == TRAPPER_HITING_TRAP_STATE) {
-                if (m_traps.size() > 0) {
-                    if (m_traps[m_obj]->GetActualState() != TRAP_DESTROYED) {
-                        if (m_hitingClock.getElapsedTime().asSeconds() >= TRAPPER_HITING_TIME) {
-                            std::cout << "pego a la trampa\n";
-                            m_traps[m_obj]->TakeDamage(50);
-                        }
-                    } else {
-                        FindTrap();
-                    }
-                } else {
-                    FindCore();
-                }
-            }
-
             if (m_state == TRAPPER_FOLLOWING_CORE_STATE) {
-                std::cout << "a moverse\n";
-                if (!m_pathCompleted) {
-                    if (m_traps.size() == 0) {
-                        sf::Vector2f l_vec = m_pathObj[m_currentWP] - m_enemySprite.getPosition();
-                        float l_module = Module(l_vec);
-                        if (l_module <= TRAPPER_MINIMUM_WP_D) {
-                            if (m_currentWP == m_pathObj.size() - 2) {
-                                m_pathCompleted = true;
-                                m_state = TRAPPER_HITING_CORE_STATE;
-                            } else {
-                                m_currentWP++;
-                            }
-                        }
 
-                        if (l_module > TRAPPER_MINIMUM_WP_D) {
-                            l_vec = Normalize(l_vec, l_module);
-                            m_enemySprite.move(TRAPPER_SPEED * dt * l_vec.x, TRAPPER_SPEED * dt * l_vec.y);
+                std::cout << "me muevo hacia el core\n";
+                if (!m_pathCompleted) {
+                    sf::Vector2f l_vec = m_pathObj[m_currentWP] - m_enemySprite.getPosition();
+                    float l_module = Module(l_vec);
+
+                    if (l_module < TRAPPER_MINIMUM_WP_D) {
+                        if (m_currentWP == m_pathObj.size() - 2) {
+                            m_pathCompleted = true;
+                            m_state = TRAPPER_HITING_CORE_STATE;
+                        } else {
+                            m_currentWP++;
                         }
-                    } else {
-                        FindTrap();
+                    }
+
+                    if (l_module > TRAPPER_MINIMUM_WP_D) {
+                        l_vec = Normalize(l_vec, l_module);
+                        m_enemySprite.move(TRAPPER_SPEED * dt * l_vec.x, TRAPPER_SPEED * dt * l_vec.y);
                     }
                 }
+
             }
+
+        } else {
+            std::cout << "pego al core\n";
         }
+
     }
 
     bool Trapper::TheresTrap() {
@@ -135,6 +131,7 @@ namespace Zenon {
     void Trapper::FindTrap() {
         m_obj = CheckNearTrap();
         m_pathObj.clear();
+        m_debugCircles.clear();
         if (m_obj != -1) {
             if (m_map.GetPath(m_enemySprite.getPosition(), m_traps[m_obj]->GetPosition(), m_pathObj)) {
                 CheckPath();
@@ -142,22 +139,17 @@ namespace Zenon {
                 m_state = TRAPPER_FOLLOWING_TRAP_STATE;
                 m_currentWP = 1;
                 m_pathCompleted = false;
+                for (int i = 0; i < m_pathObj.size(); i++) {
+                    sf::CircleShape circle;
+                    circle.setRadius(3);
+                    circle.setFillColor(sf::Color::Green);
+                    circle.setOrigin(circle.getGlobalBounds().width / 2, circle.getGlobalBounds().height / 2);
+                    m_debugCircles.push_back(circle);
+                }
             }
         } else {
             FindCore();
         }
-    }
-
-    void Trapper::FindCore() {
-        m_pathObj.clear();
-        if (m_map.GetPath(m_enemySprite.getPosition(), m_objectives[m_objectives.size() - 1]->GetPosition(), m_pathObj)) {
-            CheckPath();
-            std::reverse(m_pathObj.begin(), m_pathObj.end());
-            m_state = TRAPPER_FOLLOWING_CORE_STATE;
-            m_currentWP = 1;
-            m_pathCompleted = false;
-        }
-
     }
 
     int Trapper::CheckNearTrap() {
@@ -166,15 +158,17 @@ namespace Zenon {
         int obj = -1;
         int cuantos = 0;
 
-        if (m_traps.size() != 0) {
+        if (m_traps.size() > 0) {
             for (int i = 0; i < m_traps.size(); i++) {
-                if (m_traps[i]->GetLife() > 10 && m_traps[i]->GetActualState() != TRAP_DESTROYED && m_traps[i]->GetOcupada() == false) {
-                    sf::Vector2f vec = m_traps[i]->GetPosition() - m_enemySprite.getPosition();
-                    cuantos++;
-                    d = Module(vec);
-                    if (d < minD) {
-                        minD = d;
-                        obj = i;
+                if (m_traps[i] != nullptr) {
+                    if (m_traps[i]->GetLife() > 25 && m_traps[i]->GetActualState() != TRAP_DYING_STATE && m_traps[i] ->getDyingClockTime() >= 1) {
+                        sf::Vector2f vec = m_traps[i]->GetPosition() - m_enemySprite.getPosition();
+                        cuantos++;
+                        d = Module(vec);
+                        if (d < minD) {
+                            minD = d;
+                            obj = i;
+                        }
                     }
                 }
             }
@@ -185,6 +179,19 @@ namespace Zenon {
             obj = -1;
         }
         return obj;
+    }
+
+    void Trapper::FindCore() {
+        m_pathObj.clear();
+        if (m_map.GetPath(m_enemySprite.getPosition(), m_objectives[2]->GetPosition(), m_pathObj)) {
+            m_obj = 2;
+            CheckPath();
+            std::reverse(m_pathObj.begin(), m_pathObj.end());
+            m_state = TRAPPER_FOLLOWING_CORE_STATE;
+            m_currentWP = 1;
+            m_pathCompleted = false;
+        }
+
     }
 
     void Trapper::CheckPath() {
@@ -202,6 +209,11 @@ namespace Zenon {
     }
 
     void Trapper::Draw() {
+
+        for (int i = 0; i < m_debugCircles.size(); i++) {
+            this->m_data->window.draw(m_debugCircles[i]);
+        }
+
         this->m_data->window.draw(m_enemySprite);
     }
 }

@@ -188,13 +188,13 @@ namespace Zenon {
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::F11))
             {
              this->m_data->window.close();   
-             m_data->window.create(sf::VideoMode(1920, 1080), "We Will Not Fall" , sf::Style::Fullscreen);
+             m_data->window.create(sf::VideoMode(1920, 1088), "We Will Not Fall" , sf::Style::Fullscreen);
             }
             
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
             {
                 this->m_data->window.close();  
-                m_data->window.create(sf::VideoMode(1920, 1080), "We Will Not Fall" , sf::Style::Titlebar | sf::Style::Close);
+                m_data->window.create(sf::VideoMode(1920, 1088), "We Will Not Fall" , sf::Style::Titlebar | sf::Style::Close);
             }
         }
     }

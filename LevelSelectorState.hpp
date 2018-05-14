@@ -27,6 +27,7 @@ namespace Zenon {
         std::vector<sf::RectangleShape> m_confidence;
         sf::Text m_moneyText;
         sf::Sprite m_background;
+        sf::Sprite m_moneyBackground;
         bool selected = false;
     };
 }
