@@ -80,45 +80,56 @@ namespace Zenon {
         m_data->assets.LoadTexture("Bottom1OFF", BOTTOM1OFF_SPRITE);
         m_data->assets.LoadTexture("Bottom2OFF", BOTTOM2OFF_SPRITE);
         m_data->assets.LoadTexture("Bottom3OFF", BOTTOM3OFF_SPRITE);
-        
+
         m_data->assets.LoadTexture("Plane", PLANE);
         m_data->assets.LoadTexture("Desplegar", BOTON_DESPLEGAR);
-        m_data->assets.LoadTexture("SelectBG", SELECT_BG); 
+        m_data->assets.LoadTexture("SelectBG", SELECT_BG);
         m_data->assets.LoadTexture("CleanMap", CLEAN_MAP);
-        
+
         m_data->assets.LoadTexture("MoneyButton", BACKGROUND_MONEY);
         m_data->assets.LoadTexture("Infobox", INFOBOX);
         m_data->assets.LoadTexture("GOBG", GAME_OVERBG);
         m_data->assets.LoadTexture("Guardar", SAVEBUTTON);
         m_data->assets.LoadTexture("Repeat", REPEATBUTTON);
         m_data->assets.LoadTexture("BGMM", MAINMENUBACKGROUND);
-        
+
         //Main
         m_data->assets.LoadTexture("NewGame", NEWGAMEBUTTON);
         m_data->assets.LoadTexture("ExitGame", EXITBUTTON);
         m_data->assets.LoadTexture("Help", HELPBUTTON);
         m_data->assets.LoadTexture("ChargeGame", CHARGEGAME);
-        
+
     }
 
     void MainMenuState::Init() {
+
         m_Background.setTexture(m_data->assets.GetTexture("BGMM"));
+
         m_PlayButton.setTexture(m_data->assets.GetTexture("NewGame"));
-        m_ChargeButton.setTexture(m_data->assets.GetTexture("ChargeGame"));
-        m_HelpButton.setTexture(m_data->assets.GetTexture("Help"));
-        m_ExitButton.setTexture(m_data->assets.GetTexture("ExitGame"));
-        m_ChargeButton.setOrigin(m_ChargeButton.getGlobalBounds().width / 2, m_ChargeButton.getGlobalBounds().height / 2);
-        m_ExitButton.setOrigin(m_ExitButton.getGlobalBounds().width / 2, m_ExitButton.getGlobalBounds().height / 2);
-        m_HelpButton.setOrigin(m_HelpButton.getGlobalBounds().width / 2, m_HelpButton.getGlobalBounds().height / 2);
         m_PlayButton.setOrigin(m_PlayButton.getGlobalBounds().width / 2, m_PlayButton.getGlobalBounds().height / 2);
-        m_PlayButton.setPosition(this->m_data->window.getSize().x/2, this->m_data->window.getSize().y/2 + 50);
-        m_ChargeButton.setPosition(m_PlayButton.getPosition().x, m_PlayButton.getPosition().y + 120);
-        m_HelpButton.setPosition(m_ChargeButton.getPosition().x, m_ChargeButton.getPosition().y + 120);
-        m_ExitButton.setPosition(m_HelpButton.getPosition().x, m_HelpButton.getPosition().y + 120);
-        m_HelpButton.scale(0.8, 0.8);
-        m_ExitButton.scale(0.8, 0.8);
-        m_ChargeButton.scale(0.8, 0.8);
         m_PlayButton.scale(0.8, 0.8);
+        m_PlayButton.setPosition(this->m_data->window.getSize().x / 2, this->m_data->window.getSize().y / 2 + 50);
+
+
+        m_ChargeButton.setTexture(m_data->assets.GetTexture("ChargeGame"));
+        m_ChargeButton.setOrigin(m_ChargeButton.getGlobalBounds().width / 2, m_ChargeButton.getGlobalBounds().height / 2);
+        m_ChargeButton.scale(0.8, 0.8);
+        m_ChargeButton.setPosition(this->m_data->window.getSize().x / 2, m_PlayButton.getPosition().y + 120);
+
+
+        m_HelpButton.setTexture(m_data->assets.GetTexture("Help"));
+        m_HelpButton.setOrigin(m_HelpButton.getGlobalBounds().width / 2, m_HelpButton.getGlobalBounds().height / 2);
+        m_HelpButton.scale(0.8, 0.8);
+        m_HelpButton.setPosition(this->m_data->window.getSize().x / 2, m_ChargeButton.getPosition().y + 120);
+
+
+        m_ExitButton.setTexture(m_data->assets.GetTexture("ExitGame"));
+        m_ExitButton.setOrigin(m_ExitButton.getGlobalBounds().width / 2, m_ExitButton.getGlobalBounds().height / 2);
+        m_ExitButton.scale(0.8, 0.8);
+        m_ExitButton.setPosition(this->m_data->window.getSize().x / 2, m_HelpButton.getPosition().y + 120);
+
+
+
     }
 
     void MainMenuState::HandleInput() {
@@ -127,21 +138,21 @@ namespace Zenon {
             if (m_data->input.IsSpriteClicked(m_PlayButton, sf::Mouse::Left, m_data->window)) {
                 this->NewGame();
             }
-            
+
             if (m_data->input.IsSpriteClicked(m_ExitButton, sf::Mouse::Left, m_data->window)) {
                 this->m_data->window.close();
             }
-            
+
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
                 this->m_data->window.close();
-                m_data->window.create(sf::VideoMode(1920, 1080), "We Will Not Fall" , sf::Style::Titlebar | sf::Style::Close);
+                m_data->window.create(sf::VideoMode(1920, 1080), "We Will Not Fall", sf::Style::Titlebar | sf::Style::Close);
 
             }
-            
+
             if (m_data->input.IsSpriteClicked(m_HelpButton, sf::Mouse::Left, m_data->window)) {
                 this->NewHelpState();
             }
-            
+
         }
     }
 
@@ -160,10 +171,10 @@ namespace Zenon {
 
     void MainMenuState::NewGame() {
         m_data->machine.AddState(StateRef(new LevelSelectorState(this->m_data, false)));
-        
+
     }
-    
-    void MainMenuState::NewHelpState(){
+
+    void MainMenuState::NewHelpState() {
         m_data->machine.AddState(StateRef(new HelpState(this->m_data)));
     }
 }

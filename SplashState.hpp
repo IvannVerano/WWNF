@@ -44,6 +44,7 @@ namespace Zenon {
         void SpawnBerseker(sf::Vector2f l_position, int l_obj);
         void SpawnHydra(sf::Vector2f l_position, Bezier& l_path);
         void TrapsDestroyed();
+        void FreePlacer(int l_trap);
         void CheckColision();
 
         void CheckFail();
@@ -62,6 +63,7 @@ namespace Zenon {
         sf::Texture _backgroundTexture;
         sf::Sprite _background;
         sf::Text m_textoDinero;
+        sf::Text m_mouseCoordinates;
         sf::Sprite m_mouseConstruct;
         sf::Vector2f m_posicion;
 
