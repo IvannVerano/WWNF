@@ -38,6 +38,9 @@ namespace Zenon
             int m_price;
             int m_realID;
             bool m_reload;
+            sf::SoundBuffer m_buffer;
+            sf::Sound m_sound;
+            sf::Clock playTime;
             
     };
 }

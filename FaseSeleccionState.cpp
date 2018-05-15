@@ -21,18 +21,17 @@ namespace Zenon {
         m_theme->play();
         
         m_background.setTexture(m_data->assets.GetTexture("SelectBG"));
-        m_background.scale(1.2,1.2);
         
         m_boton.setTexture(m_data->assets.GetTexture("Next"));
         m_boton.setOrigin(m_boton.getGlobalBounds().width / 2, m_boton.getGlobalBounds().height / 2);
         m_boton.setPosition(1600, 70);
         m_boton.scale(0.7, 0.7);
 
-        FichaTrampa * metralleta = new FichaTrampa(m_data, m_data->assets.GetTexture("Metralleta"), m_data->assets.GetTexture("GUI_METRALLETA"), m_data->assets.GetTexture("GUI_METRALLETA_SEL"), m_data->assets.GetTexture("GUI_METRALLETA_BLOCK"), 1, sf::Vector2f(150, 150), PRECIO_TORRETA, PORCENTAJE_TORRETA, CADENCIA_TORRETA, RANGO_TORRETA, REFRESCO_TORRETA, POTENCIA_TORRETA, ATRAP_APPEARING_TIME, m_data->assets.GetTexture("DESCRIPTIVE_TURRET"));
-        FichaTrampa * ametralladora = new FichaTrampa(m_data, m_data->assets.GetTexture("ametralladora"), m_data->assets.GetTexture("GUI_AMETRALLADORA"), m_data->assets.GetTexture("GUI_AMETRALLADORA_SEL"), m_data->assets.GetTexture("GUI_AMETRALLADORA_BLOCK"), 1, sf::Vector2f(550, 150), PRECIO_AMETRALLADORA, PORCENTAJE_AMETRALLADORA, CADENCIA_AMETRALLADORA, RANGO_AMETRALLADORA, REFRESCO_AMETRALLADORA, POTENCIA_AMETRALLADORA, ATRAP_MACHINEGUN_APPEARING_TIME, m_data->assets.GetTexture("DESCRIPTIVE_AMETRALLADORA"));
-        FichaTrampa * lanzallamas=new FichaTrampa(m_data, m_data->assets.GetTexture("lanzallamas"),m_data->assets.GetTexture("GUI_LANZALLAMAS"),m_data->assets.GetTexture("GUI_LANZALLAMAS_SEL"), m_data->assets.GetTexture("GUI_LANZALLAMAS_BLOCK"),3,sf::Vector2f(750, 150), PRECIO_LANZALLAMAS,PORCENTAJE_LANZALLAMAS,CADENCIA_LANZALLAMAS,RANGO_LANZALLAMAS,REFRESCO_LANZALLAMAS,POTENCIA_LANZALLAMAS,ATRAP_MACHINEGUN_APPEARING_TIME,m_data->assets.GetTexture("DESCRIPTIVE_LANZALLAMAS"));
-        FichaTrampa * sanacion=new FichaTrampa(m_data, m_data->assets.GetTexture("sanacion"),m_data->assets.GetTexture("GUI_SANACION"),m_data->assets.GetTexture("GUI_SANACION_SEL"), m_data->assets.GetTexture("GUI_SANACION_BLOCK"),4,sf::Vector2f(350, 150), PRECIO_SANACION,PORCENTAJE_SANACION,CADENCIA_SANACION,RANGO_SANACION,REFRESCO_SANACION,POTENCIA_SANACION, DTRAP_APPEARING_TIME,m_data->assets.GetTexture("DESCRIPTIVE_SANACION"));
-        FichaTrampa * adrenalina=new FichaTrampa(m_data, m_data->assets.GetTexture("Adrenalina"),m_data->assets.GetTexture("GUI_ADRENALINA"),m_data->assets.GetTexture("GUI_ADRENALINA_SEL"), m_data->assets.GetTexture("GUI_ADRENALINA_BLOCK"),5,sf::Vector2f(150, 400), PRECIO_ADRENALINA,PORCENTAJE_ADRENALINA,CADENCIA_ADRENALINA,RANGO_ADRENALINA,REFRESCO_ADRENALINA,POTENCIA_ADRENALINA, DTRAP_APPEARING_TIME,m_data->assets.GetTexture("DESCRIPTIVE_ADRENALINA"));
+        FichaTrampa * metralleta = new FichaTrampa(m_data, m_data->assets.GetTexture("Metralleta"), m_data->assets.GetTexture("GUI_METRALLETA"), m_data->assets.GetTexture("GUI_METRALLETA_SEL"), m_data->assets.GetTexture("GUI_METRALLETA_BLOCK"), 1, sf::Vector2f(150, 250), PRECIO_TORRETA, PORCENTAJE_TORRETA, CADENCIA_TORRETA, RANGO_TORRETA, REFRESCO_TORRETA, POTENCIA_TORRETA, ATRAP_APPEARING_TIME, m_data->assets.GetTexture("DESCRIPTIVE_TURRET"));
+        FichaTrampa * ametralladora = new FichaTrampa(m_data, m_data->assets.GetTexture("ametralladora"), m_data->assets.GetTexture("GUI_AMETRALLADORA"), m_data->assets.GetTexture("GUI_AMETRALLADORA_SEL"), m_data->assets.GetTexture("GUI_AMETRALLADORA_BLOCK"), 1, sf::Vector2f(550, 250), PRECIO_AMETRALLADORA, PORCENTAJE_AMETRALLADORA, CADENCIA_AMETRALLADORA, RANGO_AMETRALLADORA, REFRESCO_AMETRALLADORA, POTENCIA_AMETRALLADORA, ATRAP_MACHINEGUN_APPEARING_TIME, m_data->assets.GetTexture("DESCRIPTIVE_AMETRALLADORA"));
+        FichaTrampa * lanzallamas=new FichaTrampa(m_data, m_data->assets.GetTexture("lanzallamas"),m_data->assets.GetTexture("GUI_LANZALLAMAS"),m_data->assets.GetTexture("GUI_LANZALLAMAS_SEL"), m_data->assets.GetTexture("GUI_LANZALLAMAS_BLOCK"),3,sf::Vector2f(750, 250), PRECIO_LANZALLAMAS,PORCENTAJE_LANZALLAMAS,CADENCIA_LANZALLAMAS,RANGO_LANZALLAMAS,REFRESCO_LANZALLAMAS,POTENCIA_LANZALLAMAS,ATRAP_MACHINEGUN_APPEARING_TIME,m_data->assets.GetTexture("DESCRIPTIVE_LANZALLAMAS"));
+        FichaTrampa * sanacion=new FichaTrampa(m_data, m_data->assets.GetTexture("sanacion"),m_data->assets.GetTexture("GUI_SANACION"),m_data->assets.GetTexture("GUI_SANACION_SEL"), m_data->assets.GetTexture("GUI_SANACION_BLOCK"),4,sf::Vector2f(350, 250), PRECIO_SANACION,PORCENTAJE_SANACION,CADENCIA_SANACION,RANGO_SANACION,REFRESCO_SANACION,POTENCIA_SANACION, DTRAP_APPEARING_TIME,m_data->assets.GetTexture("DESCRIPTIVE_SANACION"));
+        FichaTrampa * adrenalina=new FichaTrampa(m_data, m_data->assets.GetTexture("Adrenalina"),m_data->assets.GetTexture("GUI_ADRENALINA"),m_data->assets.GetTexture("GUI_ADRENALINA_SEL"), m_data->assets.GetTexture("GUI_ADRENALINA_BLOCK"),5,sf::Vector2f(150, 500), PRECIO_ADRENALINA,PORCENTAJE_ADRENALINA,CADENCIA_ADRENALINA,RANGO_ADRENALINA,REFRESCO_ADRENALINA,POTENCIA_ADRENALINA, DTRAP_APPEARING_TIME,m_data->assets.GetTexture("DESCRIPTIVE_ADRENALINA"));
 
 
         m_trampasdisp.push_back(metralleta);
@@ -152,6 +151,22 @@ namespace Zenon {
         m_moneyText.setCharacterSize(40);
         m_moneyText.setOrigin(m_moneyText.getGlobalBounds().width / 2, m_moneyText.getGlobalBounds().height / 2);
         m_moneyText.setPosition(1150, 50);
+        
+        m_bgMoney.setTexture(this->m_data->assets.GetTexture("MoneyButton"));
+        m_bgMoney.setOrigin(m_bgMoney.getGlobalBounds().width/2,m_bgMoney.getGlobalBounds().height/2);
+        m_bgMoney.scale(0.7,0.7);
+        m_bgMoney.setPosition(m_moneyText.getPosition().x-7, m_moneyText.getPosition().y + 10);
+        m_boton.setPosition(m_bgMoney.getPosition().x + 400, m_bgMoney.getPosition().y);
+        
+        m_introText.setFont(m_data->assets.GetFont("FUENTE_DINERO"));
+        m_introText.setString("SELECCIONA TUS ARMAS");
+        m_introText.setCharacterSize(72);
+        m_introText.setPosition(m_boton.getPosition().x - 1470, m_boton.getPosition().y- 50);
+        
+        m_advertiseText.setFont(m_data->assets.GetFont("FUENTE_DINERO"));
+        m_advertiseText.setString("Elige alguna ayuda (Cuidado, puedes quedarte sin recursos)");
+        m_advertiseText.setCharacterSize(40);
+        m_advertiseText.setPosition(600, 720);
     }
 
     void FaseSeleccionState::HandleInput() {
@@ -251,8 +266,13 @@ namespace Zenon {
             }
         }
         
+        this->m_data->window.draw(m_bgMoney);
+        
+        this->m_data->window.draw(m_introText);
+        
         this->m_data->window.draw(m_moneyText);
         
+        this->m_data->window.draw(m_advertiseText);
         
         this->m_data->window.display();
     }

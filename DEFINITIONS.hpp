@@ -56,6 +56,7 @@
 
 //variables del menu
 #define BACKGROUND_MONEY "resources/BotonDinero.png"
+#define TRAPs_GUI "resources/GuiBatalla.png"
 
 
 //variables de la TORRETA
@@ -313,5 +314,8 @@
 #define DEFEAT_1 "resources/soundtrack/soundeffects/defeat1.ogg"
 #define DEFEAT_2 "resources/soundtrack/soundeffects/defeat2.ogg"
 #define DEFEAT_3 "resources/soundtrack/soundeffects/defeat3.ogg"
+
+#define SOUND_TURRET "resources/soundtrack/soundeffects/torreta.ogg"
+#define SWORD_SOUND "resources/soundtrack/soundeffects/espada.ogg"
 
 

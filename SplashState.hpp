@@ -63,6 +63,7 @@ namespace Zenon {
         sf::Clock m_spawnerClock;
         sf::Texture _backgroundTexture;
         sf::Sprite _background;
+        sf::Sprite m_trapsGui;
         sf::Text m_textoDinero;
         sf::Text m_mouseCoordinates;
         sf::Text m_countdownText;

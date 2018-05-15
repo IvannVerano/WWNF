@@ -29,7 +29,7 @@ namespace Zenon {
         
         m_countdownText.setFont(m_data->assets.GetFont("FUENTE_DINERO"));
         m_countdownText.setString("Prepara tus armas  " + std::to_string(m_countdown));
-        m_countdownText.setPosition(850,900);
+        m_countdownText.setPosition(820,950);
         m_countdownText.setCharacterSize(40);
         
         const char * titulo = "MapicaNuevo.tmx";
@@ -78,6 +78,13 @@ namespace Zenon {
         m_mouseConstruct.setTexture(m_data->assets.GetTexture("CURSOR_BUILD"));
         m_mouseConstruct.setOrigin(m_mouseConstruct.getGlobalBounds().width / 2, m_mouseConstruct.getGlobalBounds().height / 2);
         m_mouseConstruct.scale(0.7, 0.7);
+        
+        m_trapsGui.setTexture(m_data->assets.GetTexture("TrapsGui"));
+        m_trapsGui.setOrigin(m_trapsGui.getGlobalBounds().width / 2, m_trapsGui.getGlobalBounds().height / 2);
+        m_trapsGui.setPosition(m_data->window.getSize().x/2, m_data->window.getSize().y/2 + 450);
+        m_trapsGui.scale(1.7,1.0);
+
+        
 
         LoadPaths();
         LoadAssets();
@@ -553,6 +560,7 @@ namespace Zenon {
         this->m_data->window.draw(m_textoDinero);
         map->Draw();
         this->m_data->window.draw(this->_background);
+        this->m_data->window.draw(m_trapsGui);
 
 
         for (int i = 0; i < m_placer.size(); i++) {

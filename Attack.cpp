@@ -33,6 +33,9 @@ namespace Zenon
         m_ShootCadence.restart();
         m_timeRefresh.restart();
         m_reload=false;
+        
+        m_buffer.loadFromFile(SOUND_TURRET);
+        m_sound.setBuffer(m_buffer);
     }
     
     void Attack::SetAttributes(int l_id, float l_cadence, float l_apptime, int l_power, int l_range, int l_refresh, int l_wait, int l_percentaje, int l_price)
@@ -205,7 +208,13 @@ namespace Zenon
     
     void Attack::CreateBullet(sf::Vector2f l_direccionSentido, float angle)
     {
-       Bala * c_bala = new Bala(m_datos, m_mainSprite.getPosition(), l_direccionSentido, angle, m_potencia, m_id,0);
+        if(playTime.getElapsedTime().asSeconds()>0.25f)
+        {
+            m_sound.play();
+            playTime.restart();
+        }
+       
+        Bala * c_bala = new Bala(m_datos, m_mainSprite.getPosition(), l_direccionSentido, angle, m_potencia, m_id,0);
        m_bullets.push_back(c_bala);
     }
     

@@ -27,7 +27,7 @@ namespace Zenon
             m_texturas_highlight.push_back(l_trampas.at(i)->GetTexturaHighlight());
             c_option1.setTexture(l_trampas.at(i)->GetTexturaGUI());
             c_option1.setOrigin(c_option1.getGlobalBounds().width/2, c_option1.getGlobalBounds().height + 100);
-            c_option1.setPosition(250*(i+1), 1050);
+            c_option1.setPosition(250*(i+1), 1070);
             c_option1.setScale(0.12,0.12);
             m_options.push_back(c_option1);
         }

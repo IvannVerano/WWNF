@@ -5,6 +5,9 @@ namespace Zenon
 {
     Fighter::Fighter(GameDataRef l_data, Maps& l_map, int l_id, const std::vector<Enemy*>& l_enemies) : Hero(l_data,l_map,l_id), m_enemies(l_enemies)
     {
+        m_buffer.loadFromFile(SWORD_SOUND);
+        m_sound.setBuffer(m_buffer);
+        
         m_mainSprite.setTexture(m_data->assets.GetTexture("Hero"));
         m_mainSprite.setTextureRect(sf::IntRect(105, 284, 14, 42));
         m_mainSprite.setOrigin(m_mainSprite.getGlobalBounds().width / 2, m_mainSprite.getGlobalBounds().height / 2);
@@ -206,6 +209,7 @@ namespace Zenon
             {
                 if(m_attackTimer.getElapsedTime().asSeconds() > HERO_ATTACKINGTIME)
                 {
+                    m_sound.play();
                     for(int i = 0; i< m_enemies.size(); i++)
                     {
                          sf::Vector2f distance = m_mainSprite.getPosition() - m_enemies[i]->GetSprite().getPosition();

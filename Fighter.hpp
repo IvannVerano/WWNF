@@ -40,6 +40,10 @@ namespace Zenon
         std::vector<sf::IntRect> m_lateralAnimation;
         std::vector<sf::IntRect> m_idleAnimation;
         
+        sf::SoundBuffer m_buffer;
+        sf::Sound m_sound;
+        sf::Clock playTime;
+        
     };
 }
 

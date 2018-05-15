@@ -1,7 +1,9 @@
 #pragma once
 #include "Game.hpp"
+#include "DEFINITIONS.hpp"
 #include <vector>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 namespace Zenon {
 
@@ -32,6 +34,8 @@ namespace Zenon {
         int m_power;
         int m_who;
         int m_type;
+        sf::SoundBuffer m_buffer;
+        sf::Sound m_sound;
         
 
     };

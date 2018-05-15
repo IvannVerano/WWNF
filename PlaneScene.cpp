@@ -28,7 +28,7 @@ namespace Zenon
         m_plane.setPosition(960, 540);
         m_background.setOrigin(100, 800);
         m_background.scale(5.0,5.0);
-        m_nextButton.scale(0.3,0.3);
+        m_nextButton.scale(0.5,0.5);
         m_destiny.scale(0.8,0.8);
         
         
