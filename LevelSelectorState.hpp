@@ -9,7 +9,7 @@ namespace Zenon {
 
     class LevelSelectorState : public State {
     public:
-        LevelSelectorState(GameDataRef l_data, bool rewardisOn);
+        LevelSelectorState(GameDataRef l_data, bool rewardisOn, bool chargeGame);
         void Init();
         void HandleInput();
         void Update(float dt);
@@ -29,5 +29,6 @@ namespace Zenon {
         sf::Sprite m_background;
         sf::Sprite m_moneyBackground;
         bool selected = false;
+        bool m_charging;
     };
 }

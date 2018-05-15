@@ -24,18 +24,22 @@ namespace Zenon
             int GetGeneralPunctuation();
             void SetConfidenceLevel(int increment);
             int GetConfidenceLevel();
+            void UpdatePanicLevels(std::vector<int> l_panic);
+            std::vector<int> GetPanicLevels();
             
         private:
             std::vector<bool> m_heroesState;
             std::vector<bool> m_trapsUnlocked;
+            std::vector<int> m_panicLevels;
             tinyxml2::XMLDocument m_doc;
             tinyxml2::XMLElement *m_data;
             tinyxml2::XMLElement *m_heroes;
             tinyxml2::XMLElement *m_traps;
-            
+            tinyxml2::XMLElement *m_panics;
             
             int m_alive;
             int m_unlocked;
+            int m_panic;
             int m_money = 1000;
             int m_generalPunctuation = 0;
             int m_confidenceLevel = 3;

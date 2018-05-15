@@ -6,12 +6,20 @@
 
 namespace Zenon {
 
-    LevelSelectorState::LevelSelectorState(GameDataRef l_data, bool rewardisOn) : m_data(l_data) {
+    LevelSelectorState::LevelSelectorState(GameDataRef l_data, bool rewardisOn, bool chargeGame) : m_data(l_data) {
         if (rewardisOn)
             this->ProcessRewards();
+        
+        if(!chargeGame)
+        {
+            m_data->data.Reset();
+        }
+        
+        m_charging = chargeGame;
     }
 
-    void LevelSelectorState::ProcessRewards() {
+    void LevelSelectorState::ProcessRewards() 
+    {
         m_data->data.AddMoney(m_data->reward.GetMoney());
         m_data->data.SetGeneralPunctuation(m_data->reward.GetCiviliansRescued());
         m_data->data.SetConfidenceLevel(m_data->reward.GetConfidenceRestablish());
@@ -36,10 +44,31 @@ namespace Zenon {
 
         m_background.setTexture(m_data->assets.GetTexture("WorldMap"));
 
-        for (int i = 0; i < m_levels.size(); i++) {
+        std::vector<int> c_auxPanics;
+        for (int i = 0; i < m_levels.size(); i++) 
+        {
             m_levels[i]->SetPanicLevel(i);
             m_levels[i]->CreateLevelRewards();
+            c_auxPanics.push_back(m_levels[i]->GetPanicLevel());
         }
+        if(m_charging)
+        {
+            std::cout<<"Entro a actualizar"<<std::endl;
+            m_data->data.UpdatePanicLevels(c_auxPanics);
+        }
+        //Si estamos cargando el juego, seteamos los niveles de pánico a lo que toca
+        if(!m_charging)
+        {
+           std::vector<int> l_panic = m_data->data.GetPanicLevels();
+           for(int i=0; i<l_panic.size(); i++)
+           {
+               std::cout<<"Panico: "<<l_panic[i]<<std::endl;
+               m_levels[i]->SetPanic(l_panic[i]);
+           }
+        }
+        
+        
+        
         m_moneyText.setFont(m_data->assets.GetFont("FUENTE_DINERO"));
         m_moneyText.setString(std::to_string(m_data->data.GetMoney()));
         m_moneyText.setCharacterSize(45);
@@ -49,7 +78,6 @@ namespace Zenon {
         m_moneyBackground.setOrigin(m_moneyBackground.getGlobalBounds().width/2,m_moneyBackground.getGlobalBounds().height/2);
         m_moneyBackground.setPosition(m_data->window.getSize().x/2,m_data->window.getSize().y/2+300);
         
-
         this->InitPanicLevelGUI();
         
         for(int i = 0; i<m_data->data.GetConfidenceLevel(); i++)
@@ -60,6 +88,8 @@ namespace Zenon {
             rect.setFillColor(sf::Color::Green);
             m_confidence.push_back(rect);
         }
+        
+        this->m_data->data.SaveChanges();
     }
 
     void LevelSelectorState::HandleInput() {

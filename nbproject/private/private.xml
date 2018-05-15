@@ -6,6 +6,17 @@
     </data>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/user/NetBeansProjects/NewMap/LevelSelectorState.cpp</file>
+            <file>file:/home/user/NetBeansProjects/NewMap/SaveData.cpp</file>
+            <file>file:/home/user/NetBeansProjects/NewMap/main.cpp</file>
+            <file>file:/home/user/NetBeansProjects/NewMap/MainMenuState.hpp</file>
+            <file>file:/home/user/NetBeansProjects/NewMap/MainMenuState.cpp</file>
+            <file>file:/home/user/NetBeansProjects/NewMap/Level.hpp</file>
+            <file>file:/home/user/NetBeansProjects/NewMap/SaveData.hpp</file>
+            <file>file:/home/user/NetBeansProjects/NewMap/Level.cpp</file>
+            <file>file:/home/user/NetBeansProjects/NewMap/LevelSelectorState.hpp</file>
+            <file>file:/home/user/NetBeansProjects/NewMap/PlaneReturnScene.cpp</file>
+        </group>
     </open-files>
 </project-private>

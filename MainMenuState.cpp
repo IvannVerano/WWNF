@@ -153,6 +153,10 @@ namespace Zenon {
             if (m_data->input.IsSpriteClicked(m_HelpButton, sf::Mouse::Left, m_data->window)) {
                 this->NewHelpState();
             }
+            
+            if (m_data->input.IsSpriteClicked(m_ChargeButton, sf::Mouse::Left, m_data->window)) {
+                this->ChargeGame();
+            }
 
         }
     }
@@ -171,11 +175,16 @@ namespace Zenon {
     }
 
     void MainMenuState::NewGame() {
-        m_data->machine.AddState(StateRef(new LevelSelectorState(this->m_data, false)));
+        m_data->machine.AddState(StateRef(new LevelSelectorState(this->m_data, false, false)));
 
     }
 
     void MainMenuState::NewHelpState() {
         m_data->machine.AddState(StateRef(new HelpState(this->m_data)));
+    }
+    
+    void MainMenuState::ChargeGame()
+    {
+         m_data->machine.AddState(StateRef(new LevelSelectorState(this->m_data, false, true)));
     }
 }

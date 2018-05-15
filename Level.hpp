@@ -20,6 +20,7 @@ namespace Zenon
             int GetPanicLevel();
             sf::Vector2f Getcoordinates();
             sf::Vector2f GetReturn();
+            void SetPanic(int quantiy);
         private:
             GameDataRef m_data;
             int m_civilians;

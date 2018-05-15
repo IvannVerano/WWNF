@@ -29,15 +29,18 @@ namespace Zenon {
             m_trapsUnlocked.push_back(m_unlocked);
             m_traps = m_traps->NextSiblingElement("trap");
         }
-
-
-        for (int i = 0; i < m_heroesState.size(); i++) {
-            std::cout << this->IsHeroeAlive(i) << std::endl;
+        
+        m_panics = m_data->FirstChildElement("panicLevel");
+        while(m_panics)
+        {
+            m_panics->QueryIntAttribute("level", &m_panic);
+            m_panicLevels.push_back(m_panic);
+            m_panics= m_panics->NextSiblingElement("panicLevel");
         }
-
-        for (int i = 0; i < m_trapsUnlocked.size(); i++) {
-            std::cout << this->IsTrapUnlocked(i) << std::endl;
-        }
+        
+        m_data->FirstChildElement("money")->QueryIntAttribute("quantity", &m_money);
+        m_data->FirstChildElement("confidence")->QueryIntAttribute("quantity", &m_confidenceLevel);
+        
     }
 
     void SaveData::Reset() {
@@ -53,6 +56,13 @@ namespace Zenon {
         m_money = 1000;
         m_generalPunctuation = 0;
         m_confidenceLevel = 3;
+        m_panicLevels.clear();
+        
+        for(int i=0; i<4; i++)
+        {
+            m_panicLevels.push_back(5);
+        }
+        
         this->SaveChanges();
     }
 
@@ -76,6 +86,21 @@ namespace Zenon {
             pElement->SetAttribute("unlocked", (int) m_trapsUnlocked[i]);
             pData->InsertEndChild(pElement);
         }
+        
+        for(int i = 0; i<m_panicLevels.size(); i++)
+        {
+            tinyxml2::XMLElement * pElement = xmlDoc.NewElement("panicLevel");
+            pElement->SetAttribute("level", (int) m_panicLevels[i]);
+            pData->InsertEndChild(pElement);
+        }
+        
+        tinyxml2::XMLElement *moneyElement = xmlDoc.NewElement("money");
+        moneyElement->SetAttribute("quantity", m_money);
+        pData->InsertEndChild(moneyElement);
+        
+        tinyxml2::XMLElement *confidenceElement = xmlDoc.NewElement("confidence");
+        confidenceElement->SetAttribute("quantity", m_confidenceLevel);
+        pData->InsertEndChild(confidenceElement);
 
         tinyxml2::XMLError eResult = xmlDoc.SaveFile("SaveData.xml");
 
@@ -128,6 +153,16 @@ namespace Zenon {
 
     int SaveData::GetGeneralPunctuation() {
         return m_generalPunctuation;
+    }
+    
+    void SaveData::UpdatePanicLevels(std::vector<int> l_panic)
+    {
+        m_panicLevels = l_panic;
+    }
+    
+    std::vector<int>SaveData::GetPanicLevels()
+    {
+        return m_panicLevels;
     }
 
 }

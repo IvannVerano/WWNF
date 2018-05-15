@@ -24,13 +24,17 @@ namespace Zenon
         m_panicLevel = m_data->reward.GetPanicIncrease(l_position);
     }
    
+    void Level::SetPanic(int quantiy)
+    {
+        m_panicLevel = quantiy;
+    }
     
     void Level::CreateLevelRewards()
     {
         m_civilians = 250 * m_panicLevel;
         m_money = (rand()%5) * m_panicLevel;
         
-        if (m_panicLevel > 25)
+        if (m_panicLevel > 0)
         {
             int probability = rand()%100;
             if(probability>60)

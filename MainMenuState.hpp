@@ -16,6 +16,7 @@ namespace Zenon
             void HandleInput();
             void NewGame();
             void NewHelpState();
+            void ChargeGame();
             void Update(float dt);
             void Draw(float dt);
         private:

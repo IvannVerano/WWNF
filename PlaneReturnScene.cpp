@@ -207,7 +207,7 @@ namespace Zenon
     {
         m_theme->stop();
         delete m_theme;
-        this->m_data->machine.AddState(StateRef(new LevelSelectorState(m_data, isSuccess)));
+        this->m_data->machine.AddState(StateRef(new LevelSelectorState(m_data, isSuccess, true)));
     }
     
     void PlaneReturnScene::SetPlaneRotation()
