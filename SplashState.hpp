@@ -57,6 +57,7 @@ namespace Zenon {
 
         int m_trampa;
         int m_disponible;
+        int m_countdown = 30;
 
         sf::Clock m_enemy_dead;
         sf::Clock m_spawnerClock;
@@ -64,12 +65,14 @@ namespace Zenon {
         sf::Sprite _background;
         sf::Text m_textoDinero;
         sf::Text m_mouseCoordinates;
+        sf::Text m_countdownText;
         sf::Sprite m_mouseConstruct;
         sf::Vector2f m_posicion;
 
         HUD * m_hud;
         bool m_noCompruebes;
         bool m_hideCursor;
+        bool isCombatPhase = false;
 
         Enemy* m_enemy;
         Objective* m_obj;
@@ -85,6 +88,8 @@ namespace Zenon {
         std::vector<sf::CircleShape> m_wps;
         std::vector<sf::VertexArray> m_pathsVertex;
         std::vector<sf::Vector2f> m_loc_placers;
+        
+        sf::Clock m_preparationCountdown; 
 
         bool m_wantsDoxy = false;
         bool m_wantsBerseker = false;

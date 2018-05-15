@@ -7,16 +7,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/user/NetBeansProjects/NewMap/LevelSelectorState.cpp</file>
-            <file>file:/home/user/NetBeansProjects/NewMap/SaveData.cpp</file>
-            <file>file:/home/user/NetBeansProjects/NewMap/main.cpp</file>
-            <file>file:/home/user/NetBeansProjects/NewMap/MainMenuState.hpp</file>
-            <file>file:/home/user/NetBeansProjects/NewMap/MainMenuState.cpp</file>
-            <file>file:/home/user/NetBeansProjects/NewMap/Level.hpp</file>
-            <file>file:/home/user/NetBeansProjects/NewMap/SaveData.hpp</file>
-            <file>file:/home/user/NetBeansProjects/NewMap/Level.cpp</file>
-            <file>file:/home/user/NetBeansProjects/NewMap/LevelSelectorState.hpp</file>
-            <file>file:/home/user/NetBeansProjects/NewMap/PlaneReturnScene.cpp</file>
+            <file>file:/home/antonio/NetBeansProjects/Beta/DEFINITIONS.hpp</file>
+            <file>file:/home/antonio/NetBeansProjects/Beta/Fighter.hpp</file>
+            <file>file:/home/antonio/NetBeansProjects/Beta/Healer.hpp</file>
+            <file>file:/home/antonio/NetBeansProjects/Beta/SplashState.hpp</file>
+            <file>file:/home/antonio/NetBeansProjects/Beta/MainMenuState.cpp</file>
+            <file>file:/home/antonio/NetBeansProjects/Beta/Fighter.cpp</file>
+            <file>file:/home/antonio/NetBeansProjects/Beta/SplashState.cpp</file>
+            <file>file:/home/antonio/NetBeansProjects/Beta/MainMenuState.hpp</file>
+            <file>file:/home/antonio/NetBeansProjects/Beta/Healer.cpp</file>
         </group>
     </open-files>
 </project-private>

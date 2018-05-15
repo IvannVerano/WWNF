@@ -48,6 +48,14 @@ namespace Zenon {
         m_data->assets.LoadTexture("WorldMap", WORLD_MAP);
         m_data->assets.LoadTexture("MapMarker", MARKER);
         m_data->assets.LoadTexture("Herosprite2", SPRITESHEET_HEROE2);
+        m_data->assets.LoadTexture("Hero1_Up_animation", HEROE_1_UP);
+        m_data->assets.LoadTexture("Hero1_Down_animation", HEROE_1_DOWN);
+        m_data->assets.LoadTexture("Hero1_Attack", HEROE_1_ATTACK);
+        m_data->assets.LoadTexture("Hero1_Idle", HEROE_1_IDLE);
+        m_data->assets.LoadTexture("Hero2_Moving", HEROE_2_MOVING);
+        m_data->assets.LoadTexture("Hero2_UpDown", HEROE_2_UPDOWN);
+        m_data->assets.LoadTexture("Hero2_Idle", HEROE_2_IDLE);
+        m_data->assets.LoadTexture("Hero2_Attack", HEROE_2_ATTACK);
         m_data->assets.LoadTexture("GUI_AMETRALLADORA_BLOCK", GUI_AMETRALLADORA_BLOCK);
         m_data->assets.LoadTexture("GUI_METRALLETA_BLOCK", GUI_METRALLETA_BLOCK);
         m_data->assets.LoadTexture("GUI_DEFENSA_BLOCK", GUI_DEFENSA_BLOCK);

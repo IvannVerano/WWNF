@@ -16,11 +16,13 @@ namespace Zenon
         void SearchTarget();
         void Animate();
         void SelectAnimation();
+        void SelectTexture();
         void Draw();
     private:
         sf::Clock m_recalculateElapsed;
         sf::Clock m_attackTimer;
         sf::Clock m_aniClock;
+        sf::Clock m_switchAnimation;
         int m_target;
         int m_animationCounter = 0;
         int m_way = 0; //0-derecha, 1-izquierda
@@ -28,8 +30,15 @@ namespace Zenon
         
         sf::Texture m_idleTexture;
         sf::Texture m_lateralMovementTexture;
+        sf::Texture m_upMovementTexture;
+        sf::Texture m_downMovementTexture;
+        sf::Texture m_attackingAnimationTexture;
         std::vector<sf::IntRect> m_mainAnimation;
+        std::vector<sf::IntRect> m_upAnimation;
+        std::vector<sf::IntRect> m_downAnimation;
+        std::vector<sf::IntRect> m_attackAnimation;
         std::vector<sf::IntRect> m_lateralAnimation;
+        std::vector<sf::IntRect> m_idleAnimation;
         
     };
 }

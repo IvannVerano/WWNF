@@ -121,6 +121,14 @@
 
 //variables de Hero
 #define SPRITESHEET_HEROE "resources/spritesheetHeroe1.png"
+#define HEROE_1_UP "resources/hero1upanimation.png"
+#define HEROE_1_DOWN "resources/Hero1_DownAnimation.png"
+#define HEROE_1_IDLE "resources/Hero1_IdleAnimation.png"
+#define HEROE_2_MOVING "resources/Hero2_moving.png"
+#define HEROE_2_UPDOWN "resources/Hero2_UpDown.png"
+#define HEROE_2_IDLE "resources/Hero2_Idle.png"
+#define HEROE_2_ATTACK "resources/Heroe2_attack.png"
+#define HEROE_1_ATTACK "resources/Hero1_attack.png"
 #define SPRITESHEET_HEROE2 "resources/spritesheetHeroe2.png"
 #define SPRITE_HEROE_FACE1 "resources/HeroHud1.png"
 #define SPRITE_HEROE_FACE2 "resources/HeroHud2.png"

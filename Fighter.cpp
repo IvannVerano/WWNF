@@ -13,7 +13,7 @@ namespace Zenon
         
         m_heroHUD.setTexture(m_data->assets.GetTexture("Hero_Face1"));
         m_heroHUD.setOrigin(m_heroHUD.getLocalBounds().width / 2, m_heroHUD.getLocalBounds().height / 2);
-        m_heroHUD.setPosition(885,900);
+        m_heroHUD.setPosition(1300,980);
         m_heroHUD.scale(0.92,0.92);
         
         m_heroHUDred.setSize(sf::Vector2f(100,15));
@@ -26,7 +26,12 @@ namespace Zenon
         
         
         //Construimos las animaciones
+        m_idleTexture = m_data->assets.GetTexture("Hero1_Idle");
         m_lateralMovementTexture = m_data->assets.GetTexture("LATERAL_MOV_FIGHTER");
+        m_upMovementTexture = m_data->assets.GetTexture("Hero1_Up_animation");
+        m_downMovementTexture = m_data->assets.GetTexture("Hero1_Down_animation");
+        m_attackingAnimationTexture = m_data->assets.GetTexture("Hero1_Attack");
+        
         m_lateralAnimation.push_back(sf::IntRect(100,0,20,28));
         m_lateralAnimation.push_back(sf::IntRect(88,30,18,29));
         m_lateralAnimation.push_back(sf::IntRect(88,30,18,29));
@@ -52,7 +57,82 @@ namespace Zenon
         m_lateralAnimation.push_back(sf::IntRect(88,30,18,29));
         m_lateralAnimation.push_back(sf::IntRect(100,0,20,28));
         
-        m_mainAnimation = m_lateralAnimation;
+        
+        //Animacion para arriba
+        m_upAnimation.push_back(sf::IntRect(0,0,14,34));
+        m_upAnimation.push_back(sf::IntRect(0,0,14,34));
+        m_upAnimation.push_back(sf::IntRect(14,0,14,33));
+        m_upAnimation.push_back(sf::IntRect(14,0,14,33));
+        m_upAnimation.push_back(sf::IntRect(28,33,14,25));
+        m_upAnimation.push_back(sf::IntRect(28,33,14,25));
+        m_upAnimation.push_back(sf::IntRect(42,33,12,26));
+        m_upAnimation.push_back(sf::IntRect(42,33,12,26));
+        m_upAnimation.push_back(sf::IntRect(14,0,13,27));
+        m_upAnimation.push_back(sf::IntRect(14,0,13,27));
+        m_upAnimation.push_back(sf::IntRect(28,0,15,33));
+        m_upAnimation.push_back(sf::IntRect(28,0,15,33));
+        m_upAnimation.push_back(sf::IntRect(0,34,13,29));
+        m_upAnimation.push_back(sf::IntRect(0,34,13,29));
+        
+        //Animacion para abajo
+        m_downAnimation.push_back(sf::IntRect(81,0,15,32));
+        m_downAnimation.push_back(sf::IntRect(81,0,15,32));
+        m_downAnimation.push_back(sf::IntRect(49,0,16,33));
+        m_downAnimation.push_back(sf::IntRect(49,0,16,33));
+        m_downAnimation.push_back(sf::IntRect(0,0,17,36));
+        m_downAnimation.push_back(sf::IntRect(0,0,17,36));
+        m_downAnimation.push_back(sf::IntRect(65,0,16,36));
+        m_downAnimation.push_back(sf::IntRect(65,0,16,36));
+        m_downAnimation.push_back(sf::IntRect(81,0,15,32));
+        m_downAnimation.push_back(sf::IntRect(81,0,15,32));
+        m_downAnimation.push_back(sf::IntRect(34,0,15,32));
+        m_downAnimation.push_back(sf::IntRect(34,0,15,32));
+        m_downAnimation.push_back(sf::IntRect(17,0,17,32));
+        m_downAnimation.push_back(sf::IntRect(17,0,17,32));
+        m_downAnimation.push_back(sf::IntRect(17,32,15,32));
+        m_downAnimation.push_back(sf::IntRect(17,32,15,32));
+        
+        //Animacion de ataque
+        m_attackAnimation.push_back(sf::IntRect(85,47,26,44));
+        m_attackAnimation.push_back(sf::IntRect(0,0,42,42));
+        m_attackAnimation.push_back(sf::IntRect(0,87,42,40));
+        m_attackAnimation.push_back(sf::IntRect(0,87,42,40));
+        m_attackAnimation.push_back(sf::IntRect(0,42,42,45));
+        m_attackAnimation.push_back(sf::IntRect(42,0,43,45));
+        m_attackAnimation.push_back(sf::IntRect(42,0,43,45));
+        m_attackAnimation.push_back(sf::IntRect(85,0,45,47));
+        m_attackAnimation.push_back(sf::IntRect(85,0,45,47));
+        m_attackAnimation.push_back(sf::IntRect(85,47,26,44));
+        m_attackAnimation.push_back(sf::IntRect(85,47,26,44));
+        m_attackAnimation.push_back(sf::IntRect(85,47,26,44));
+        m_attackAnimation.push_back(sf::IntRect(85,47,26,44));
+        m_attackAnimation.push_back(sf::IntRect(85,47,26,44));
+        m_attackAnimation.push_back(sf::IntRect(85,47,26,44));
+        m_attackAnimation.push_back(sf::IntRect(85,47,26,44));
+        m_attackAnimation.push_back(sf::IntRect(85,47,26,44));
+        m_attackAnimation.push_back(sf::IntRect(85,47,26,44));
+        m_attackAnimation.push_back(sf::IntRect(85,47,26,44));
+        
+        //Animacion de idle
+        m_idleAnimation.push_back(sf::IntRect(0,0,13,36));
+        m_idleAnimation.push_back(sf::IntRect(65,0,13,36));
+        m_idleAnimation.push_back(sf::IntRect(65,0,13,36));
+        m_idleAnimation.push_back(sf::IntRect(0,36,13,36));
+        m_idleAnimation.push_back(sf::IntRect(0,36,13,36));
+        m_idleAnimation.push_back(sf::IntRect(52,0,13,36));
+        m_idleAnimation.push_back(sf::IntRect(52,0,13,36));
+        m_idleAnimation.push_back(sf::IntRect(52,0,13,36));
+        m_idleAnimation.push_back(sf::IntRect(0,36,13,36));
+        m_idleAnimation.push_back(sf::IntRect(0,36,13,36));
+        m_idleAnimation.push_back(sf::IntRect(65,0,13,36));
+        m_idleAnimation.push_back(sf::IntRect(65,0,13,36));
+        m_idleAnimation.push_back(sf::IntRect(0,0,13,36));
+        m_idleAnimation.push_back(sf::IntRect(26,0,13,36));
+        m_idleAnimation.push_back(sf::IntRect(26,0,13,36));
+        m_idleAnimation.push_back(sf::IntRect(39,0,13,36));
+        
+        
+        m_mainAnimation = m_idleAnimation;
         
     }
     
@@ -234,14 +314,57 @@ namespace Zenon
         }
     }
     
+    void Fighter::SelectTexture()
+    {
+        sf::Vector2f distance = m_destiny - m_mainSprite.getPosition();
+        if(std::abs(distance.y) > std::abs(distance.x))
+        {
+            if(distance.y<0)
+                m_mainSprite.setTexture(m_upMovementTexture);
+            else
+                m_mainSprite.setTexture(m_downMovementTexture);
+        }
+        else
+        {
+            m_mainSprite.setTexture(m_lateralMovementTexture);
+        }
+    }
+    
     void Fighter::Draw()
     {
-        if (m_state == HERO_MOVING_STATE) {
-            m_mainSprite.setTexture(m_lateralMovementTexture);
-            this->SelectAnimation();
-            this->Animate();
+        if (m_state == HERO_MOVING_STATE || m_state == HERO_FOLLOWING_ENEMY) {
+            if(m_switchAnimation.getElapsedTime().asSeconds() > 0.2f)
+            {
+                this->SelectTexture();
+                this->SelectAnimation();
+                m_switchAnimation.restart();
+            }
             m_data->window.draw(m_destinyPointer);
+            this->Animate();
         }
+        
+        if(m_state == HERO_ATTACKING_ENEMY)
+        {
+            if(m_switchAnimation.getElapsedTime().asSeconds() > 0.2f)
+            {
+                m_mainSprite.setTexture(m_attackingAnimationTexture);
+                m_mainAnimation = m_attackAnimation;
+            }
+            this->Animate();
+        }
+        
+        if(m_state == HERO_IDLE_STATE)
+        {
+            if(m_switchAnimation.getElapsedTime().asSeconds() > 0.2f)
+            {
+                m_mainSprite.setTexture(m_idleTexture);
+                m_mainAnimation = m_idleAnimation;
+            }
+            this->Animate();
+        }
+        
+        
+        
         if (m_isSelected) 
         {
             m_data->window.draw(m_heroPlace);
@@ -257,23 +380,37 @@ namespace Zenon
     void Fighter::SelectAnimation()
     {
         sf::Vector2f distance = m_destiny - m_mainSprite.getPosition();
-        
-        if(distance.x < 0) // me muevo a la isquierda
+        if(std::abs(distance.y) > std::abs(distance.x))
         {
-            if(m_way !=1)
+            if(distance.y<0)
             {
-                m_way = 1;
-                m_mainSprite.scale(-1.0,1.0);
+                m_mainAnimation = m_upAnimation;
+            }
+            else
+            {
+                m_mainAnimation = m_downAnimation;
             }
         }
-        else if(distance.x > 0)
+        else
         {
-            if(m_way !=0)
+            m_mainAnimation = m_lateralAnimation;
+            if(distance.x < 0) // me muevo a la isquierda
             {
-                if(m_way == 1)
+                if(m_way !=1)
                 {
-                    m_way = 0;
+                    m_way = 1;
                     m_mainSprite.scale(-1.0,1.0);
+                }
+            }
+            else if(distance.x > 0)
+            {
+                if(m_way !=0)
+                {
+                    if(m_way == 1)
+                    {
+                        m_way = 0;
+                        m_mainSprite.scale(-1.0,1.0);
+                    }
                 }
             }
         }

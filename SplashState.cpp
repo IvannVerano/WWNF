@@ -26,7 +26,12 @@ namespace Zenon {
 
     void SplashState::Init() {
         std::cout << "Tienes " << m_trampasSel.size() << " trampas" << std::endl;
-
+        
+        m_countdownText.setFont(m_data->assets.GetFont("FUENTE_DINERO"));
+        m_countdownText.setString("Prepara tus armas  " + std::to_string(m_countdown));
+        m_countdownText.setPosition(850,900);
+        m_countdownText.setCharacterSize(40);
+        
         const char * titulo = "MapicaNuevo.tmx";
         map = new Maps(m_data, titulo);
 
@@ -262,6 +267,20 @@ namespace Zenon {
             SpawnTrapper(sf::Vector2f(300, 300));
             m_spawnerClock.restart();
         }*/
+        
+        if(!isCombatPhase)
+        {
+            if(m_preparationCountdown.getElapsedTime().asSeconds() > 1.0f)
+            {
+                m_countdown --;
+                m_countdownText.setString("Prepara tus armas " + std::to_string(m_countdown));
+                if(m_countdown == 0)
+                {
+                    isCombatPhase = true;
+                }
+                m_preparationCountdown.restart();
+            }
+        }
 
         if (m_wantsHydra) {
             SpawnHydra(m_routes[1].m_startPoint, m_routes[1]);
@@ -584,6 +603,8 @@ namespace Zenon {
             this->m_data->window.setMouseCursorVisible(true);
 
         this->m_data->window.draw(m_mouseCoordinates);
+        if(!isCombatPhase)
+            this->m_data->window.draw(m_countdownText);
         this->m_data->window.display();
     }
 
