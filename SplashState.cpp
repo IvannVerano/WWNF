@@ -74,7 +74,6 @@ namespace Zenon {
         m_mouseConstruct.setOrigin(m_mouseConstruct.getGlobalBounds().width / 2, m_mouseConstruct.getGlobalBounds().height / 2);
         m_mouseConstruct.scale(0.7, 0.7);
 
-
         LoadPaths();
         LoadAssets();
 
@@ -247,10 +246,10 @@ namespace Zenon {
             m_wantsTrapper = true;
         }
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::N)) {
+        /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::N)) {
             m_data->data.SetMoney(m_disponible);
             m_data->machine.AddState(StateRef(new PlaneReturnScene(m_data, true)));
-        }
+        }*/
     }
 
     void SplashState::Update(float dt) {
@@ -259,12 +258,10 @@ namespace Zenon {
         m_mouseCoordinates.setOrigin(m_mouseCoordinates.getGlobalBounds().width / 2, m_mouseCoordinates.getGlobalBounds().height / 2);
         m_mouseCoordinates.setPosition(sf::Mouse::getPosition(this->m_data->window).x, sf::Mouse::getPosition(this->m_data->window).y - 20);
 
-        if (m_spawnerClock.getElapsedTime().asSeconds() >= 5.0f) {
-
+        /*if (m_spawnerClock.getElapsedTime().asSeconds() >= 5.0f) {
             SpawnTrapper(sf::Vector2f(300, 300));
             m_spawnerClock.restart();
-
-        }
+        }*/
 
         if (m_wantsHydra) {
             SpawnHydra(m_routes[1].m_startPoint, m_routes[1]);
@@ -320,8 +317,6 @@ namespace Zenon {
             m_bullets[i]->Update(dt);
         }
 
-
-
         this->CheckColision();
 
         for (int i = 0; i < m_placer.size(); i++) {
@@ -337,25 +332,25 @@ namespace Zenon {
 
         m_mouseConstruct.setPosition((sf::Vector2f)m_data->input.GetMousePosition(m_data->window));
 
-        this->CheckFail();
+        //this->CheckFail();
         this->CheckDeadEnemies();
 
     }
 
     void SplashState::LoadAssets() {
-        const std::vector<Enemy* >& l_enemies = m_enemies;
+        /*const std::vector<Enemy* >& l_enemies = m_enemies;
 
         //Objetivo 1
-        m_obj = new Generator(m_data, sf::Vector2f(m_routes[0].m_bRoutes[0].m_endPoint.x, m_routes[0].m_bRoutes[0].m_endPoint.y), l_enemies, m_routes[0].m_bRoutes[0]);
+        m_obj = new Generator(m_data, sf::Vector2f(960, 60), l_enemies, m_routes[0].m_bRoutes[0]);
         m_objectives.push_back(m_obj);
 
         //Objective 2
-        m_obj = new Generator(m_data, sf::Vector2f(m_routes[0].m_bRoutes[1].m_endPoint.x, m_routes[0].m_bRoutes[1].m_endPoint.y), l_enemies, m_routes[0].m_bRoutes[1]);
+        m_obj = new Generator(m_data, sf::Vector2f(1734, 786), l_enemies, m_routes[0].m_bRoutes[1]);
         m_objectives.push_back(m_obj);
 
         //Objective 3
         m_obj = new Core(m_data, sf::Vector2f(1580, 466), l_enemies, m_routes[0].m_bRoutes[2]);
-        m_objectives.push_back(m_obj);
+        m_objectives.push_back(m_obj);*/
 
 
         m_textoDinero.setFont(m_data->assets.GetFont("FUENTE_DINERO"));
@@ -367,7 +362,26 @@ namespace Zenon {
 
     void SplashState::LoadPaths() {
 
-        Bezier t_bezier;
+
+        Bezier bezier1;
+        bezier1.m_startPoint = sf::Vector2f(208, 129);
+        bezier1.m_endPoint = sf::Vector2f(455, 466);
+        bezier1.m_controlPoint1 = sf::Vector2f(bezier1.m_startPoint.x, bezier1.m_startPoint.y + 200);
+        bezier1.m_controlPoint2 = sf::Vector2f(bezier1.m_endPoint.x - 200, bezier1.m_endPoint.y);
+        bezier1.m_segments = 20;
+        bezier1.create();
+        bezier1.AddCurve(bezier1.m_endPoint, sf::Vector2f(766, 657), sf::Vector2f(bezier1.m_endPoint.x + 200, bezier1.m_endPoint.y), sf::Vector2f(776, 500), 20);
+        bezier1.AddCurve(bezier1.m_bezierBody[bezier1.m_bezierBody.size() - 1], sf::Vector2f(1218, 653),
+                sf::Vector2f(bezier1.m_bezierBody[bezier1.m_bezierBody.size() - 1].x + 50, bezier1.m_bezierBody[bezier1.m_bezierBody.size() - 1].y + 150),
+                sf::Vector2f(bezier1.m_bezierBody[bezier1.m_bezierBody.size() - 1].x + 300, bezier1.m_bezierBody[bezier1.m_bezierBody.size() - 1].y + 150), 20);
+        bezier1.AddCurve(bezier1.m_bezierBody[bezier1.m_bezierBody.size() - 1], sf::Vector2f(1533, 459),
+                sf::Vector2f(bezier1.m_bezierBody[bezier1.m_bezierBody.size() - 1].x + 100, bezier1.m_bezierBody[bezier1.m_bezierBody.size() - 1].y - 100),
+                sf::Vector2f(1033, 459), 15);
+
+
+        m_routes.push_back(bezier1);
+
+        /*Bezier t_bezier;
         t_bezier.probability = 50;
         t_bezier.m_startPoint = sf::Vector2f(50, 50);
         t_bezier.m_endPoint = sf::Vector2f(725, 525);
@@ -429,7 +443,7 @@ namespace Zenon {
         t_bezierH.m_bezierBody[t_bezierH.m_bezierBody.size() - 2] = t_bezierH.m_bezierBody[t_bezierH.m_bezierBody.size() - 1];
 
 
-        m_routes.push_back(t_bezierH);
+        m_routes.push_back(t_bezierH);*/
 
 
         for (int i = 0; i < m_routes[0].m_bezierBody.size(); i++) {
@@ -452,12 +466,12 @@ namespace Zenon {
 
         }
 
-        for (int i = 0; i < m_routes[1].m_bezierBody.size(); i++) {
+        for (int i = 0; i < m_routes[0].m_bezierBody.size(); i++) {
             sf::CircleShape circle;
             circle.setRadius(5.0f);
             circle.setFillColor(sf::Color::Magenta);
             circle.setOrigin(circle.getGlobalBounds().width / 2, circle.getGlobalBounds().height / 2);
-            circle.setPosition(m_routes[1].m_bezierBody[i].x, m_routes[1].m_bezierBody[i].y);
+            circle.setPosition(m_routes[0].m_bezierBody[i].x, m_routes[0].m_bezierBody[i].y);
             m_wps.push_back(circle);
         }
 

@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=NewMap
+PROJECTNAME=BetaPresentacion
 
 # Active Configuration
 DEFAULTCONF=Debug
