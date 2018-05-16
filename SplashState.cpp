@@ -25,15 +25,34 @@ namespace Zenon {
     }
 
     void SplashState::Init() {
+        m_spawnWait = std::max(0.1f, 3.0f - (((float) 5.0f/*NIVEL DE PANICO */) / 99.0f) * 3.0f);
         std::cout << "Tienes " << m_trampasSel.size() << " trampas" << std::endl;
-        
+
         m_countdownText.setFont(m_data->assets.GetFont("FUENTE_DINERO"));
         m_countdownText.setString("Prepara tus armas  " + std::to_string(m_countdown));
-        m_countdownText.setPosition(820,950);
+        m_countdownText.setPosition(820, 950);
         m_countdownText.setCharacterSize(40);
-        
+
         const char * titulo = "MapicaNuevo.tmx";
         map = new Maps(m_data, titulo);
+
+        spawn1 = sf::RectangleShape(sf::Vector2f(144, 70));
+        spawn1.setOrigin(spawn1.getGlobalBounds().width / 2, spawn1.getGlobalBounds().height / 2);
+        spawn1.setFillColor(sf::Color::Green);
+        spawn1.setPosition(210, 860);
+
+
+
+        spawn2 = sf::RectangleShape(sf::Vector2f(144, 70));
+        spawn2.setOrigin(spawn2.getGlobalBounds().width / 2, spawn2.getGlobalBounds().height / 2);
+        spawn2.setFillColor(sf::Color::Blue);
+        spawn2.setPosition(210, 80);
+
+
+        spawn3 = sf::RectangleShape(sf::Vector2f(70, 144));
+        spawn3.setOrigin(spawn3.getGlobalBounds().width / 2, spawn3.getGlobalBounds().height / 2);
+        spawn3.setFillColor(sf::Color::Red);
+        spawn3.setPosition(120, 465);
 
         m_mouseCoordinates.setFont(this->m_data->assets.GetFont("FUENTE_DINERO"));
         m_mouseCoordinates.setString(std::to_string(sf::Mouse::getPosition(this->m_data->window).x) + ", " + std::to_string(sf::Mouse::getPosition(this->m_data->window).y));
@@ -78,13 +97,13 @@ namespace Zenon {
         m_mouseConstruct.setTexture(m_data->assets.GetTexture("CURSOR_BUILD"));
         m_mouseConstruct.setOrigin(m_mouseConstruct.getGlobalBounds().width / 2, m_mouseConstruct.getGlobalBounds().height / 2);
         m_mouseConstruct.scale(0.7, 0.7);
-        
+
         m_trapsGui.setTexture(m_data->assets.GetTexture("TrapsGui"));
         m_trapsGui.setOrigin(m_trapsGui.getGlobalBounds().width / 2, m_trapsGui.getGlobalBounds().height / 2);
-        m_trapsGui.setPosition(m_data->window.getSize().x/2, m_data->window.getSize().y/2 + 450);
-        m_trapsGui.scale(1.7,1.0);
+        m_trapsGui.setPosition(m_data->window.getSize().x / 2, m_data->window.getSize().y / 2 + 450);
+        m_trapsGui.scale(1.7, 1.0);
 
-        
+
 
         LoadPaths();
         LoadAssets();
@@ -270,45 +289,24 @@ namespace Zenon {
         m_mouseCoordinates.setOrigin(m_mouseCoordinates.getGlobalBounds().width / 2, m_mouseCoordinates.getGlobalBounds().height / 2);
         m_mouseCoordinates.setPosition(sf::Mouse::getPosition(this->m_data->window).x, sf::Mouse::getPosition(this->m_data->window).y - 20);
 
-        if (m_spawnerClock.getElapsedTime().asSeconds() >= 5.0f) {
-            SpawnTrapper(sf::Vector2f(300, 300));
-            m_spawnerClock.restart();
-        }
-        
-        if(!isCombatPhase)
-        {
-            if(m_preparationCountdown.getElapsedTime().asSeconds() > 1.0f)
-            {
-                m_countdown --;
+        if (!isCombatPhase) {
+            if (m_preparationCountdown.getElapsedTime().asSeconds() > 1.0f) {
+                m_countdown--;
                 m_countdownText.setString("Prepara tus armas " + std::to_string(m_countdown));
-                if(m_countdown == 0)
-                {
+                if (m_countdown == 0) {
                     isCombatPhase = true;
                 }
                 m_preparationCountdown.restart();
             }
         }
-        
-        if(doxy_frequency.getElapsedTime().asSeconds() > 0.2)
-        {
-            SpawnDoxy(sf::Vector2f(m_routes[0].m_startPoint.x, m_routes[0].m_startPoint.y), 0);
-            doxy_frequency.restart();
+
+        if (isCombatPhase) {
+            if (m_spawnerClock.getElapsedTime().asSeconds() >= m_spawnWait) {
+                CheckSpawnType(rand() % 3, rand() % 100 + 1);
+                m_spawnerClock.restart();
+            }
         }
 
-        if (m_wantsHydra) {
-            SpawnHydra(m_routes[1].m_startPoint, m_routes[1]);
-            m_wantsHydra = false;
-        }
-
-        if (m_wantsDoxy) {
-            SpawnDoxy(sf::Vector2f(m_routes[0].m_startPoint.x, m_routes[0].m_startPoint.y), 0);
-            m_wantsDoxy = false;
-        }
-
-        if (m_wantsBerseker) {
-            SpawnBerseker(sf::Vector2f(100, 500), 0);
-            m_wantsBerseker = false;
-        }
 
         for (int i = 0; i < m_heroes.size(); i++) {
             m_heroes[i]->Update(dt);
@@ -392,8 +390,120 @@ namespace Zenon {
         m_textoDinero.setPosition(900, 800);
     }
 
-    void SplashState::LoadPaths() {
+    void SplashState::CheckSpawnType(int spawn, int enemyTypeProbability) {
+        sf::Vector2f l_spawnPosition;
+        int limiteInferiorX;
+        int limiteInferiorY;
+        int limiteSuperiorX;
+        int limiteSuperiorY;
+        float x;
+        float y;
 
+        switch (spawn) {
+            case 0:
+                limiteInferiorX = spawn1.getPosition().x - spawn1.getGlobalBounds().width / 2;
+                limiteInferiorY = spawn1.getPosition().y - spawn1.getGlobalBounds().height / 2;
+                limiteSuperiorX = spawn1.getPosition().x + spawn1.getGlobalBounds().width / 2;
+                limiteSuperiorY = spawn1.getPosition().y + spawn1.getGlobalBounds().height / 2;
+                x = std::abs((rand() % (limiteInferiorX - limiteSuperiorX + 1)) - limiteSuperiorX);
+                y = std::abs((rand() % (limiteSuperiorY - limiteInferiorY + 1)) - limiteInferiorY);
+                l_spawnPosition = sf::Vector2f(x, y);
+
+                if (enemyTypeProbability <= 65) {
+                    //spawneamos Doxy
+                    int formation = rand() % 3;
+                    switch (formation) {
+                        case 0:
+                            SpawnDoxy(l_spawnPosition, 1);
+                            break;
+                        case 1:
+                            SpawnDoxy(l_spawnPosition, 1);
+                            SpawnDoxy(sf::Vector2f(l_spawnPosition.x + 60, l_spawnPosition.y), 1);
+                            break;
+                        case 2:
+                            SpawnDoxy(sf::Vector2f(l_spawnPosition.x + 30, l_spawnPosition.y + 60), 1);
+                            SpawnDoxy(l_spawnPosition, 1);
+                            SpawnDoxy(sf::Vector2f(l_spawnPosition.x + 60, l_spawnPosition.y), 1);
+
+                    }
+
+                } else if (enemyTypeProbability > 65 && enemyTypeProbability <= 90) {
+                    SpawnBerseker(l_spawnPosition, 0);
+
+                } else if (enemyTypeProbability > 90) {
+                    SpawnTrapper(l_spawnPosition);
+                }
+
+                break;
+
+            case 1:
+                limiteInferiorX = spawn2.getPosition().x - spawn2.getGlobalBounds().width / 2;
+                limiteInferiorY = spawn2.getPosition().y - spawn2.getGlobalBounds().height / 2;
+                limiteSuperiorX = spawn2.getPosition().x + spawn2.getGlobalBounds().width / 2;
+                limiteSuperiorY = spawn2.getPosition().y + spawn2.getGlobalBounds().height / 2;
+                x = std::abs((rand() % (limiteInferiorX - limiteSuperiorX + 1)) - limiteSuperiorX);
+                y = std::abs((rand() % (limiteInferiorY - limiteSuperiorY + 1)) - limiteSuperiorY);
+                l_spawnPosition = sf::Vector2f(x, y);
+
+                if (enemyTypeProbability <= 65) {
+                    //spawneamos Doxy
+                    int formation = rand() % 3;
+                    switch (formation) {
+                        case 0:
+                            SpawnDoxy(l_spawnPosition, 0);
+                            break;
+                        case 1:
+                            SpawnDoxy(l_spawnPosition, 0);
+                            SpawnDoxy(sf::Vector2f(l_spawnPosition.x + 60, l_spawnPosition.y), 0);
+                            break;
+                        case 2:
+                            SpawnDoxy(sf::Vector2f(l_spawnPosition.x + 30, l_spawnPosition.y + 60), 0);
+                            SpawnDoxy(l_spawnPosition, 0);
+                            SpawnDoxy(sf::Vector2f(l_spawnPosition.x + 60, l_spawnPosition.y), 0);
+                    }
+                } else if (enemyTypeProbability > 65 && enemyTypeProbability <= 90) {
+                    SpawnBerseker(l_spawnPosition, 0);
+                } else if (enemyTypeProbability > 90) {
+                    if (TheresTraps()) {
+                        SpawnTrapper(l_spawnPosition);
+                    }
+                }
+
+
+                break;
+
+            case 2:
+                limiteInferiorX = spawn3.getPosition().x - spawn3.getGlobalBounds().width / 2;
+                limiteInferiorY = spawn3.getPosition().y - spawn3.getGlobalBounds().height / 2;
+                limiteSuperiorX = spawn3.getPosition().x + spawn3.getGlobalBounds().width / 2;
+                limiteSuperiorY = spawn3.getPosition().y + spawn3.getGlobalBounds().height / 2;
+                x = std::abs((rand() % (limiteInferiorX - limiteSuperiorX + 1)) - limiteSuperiorX);
+                y = std::abs((rand() % (limiteInferiorY - limiteSuperiorY + 1)) - limiteSuperiorY);
+                l_spawnPosition = sf::Vector2f(x, y);
+
+                if (enemyTypeProbability > 65 && enemyTypeProbability <= 90) {
+                    SpawnBerseker(l_spawnPosition, 0);
+                } else if (enemyTypeProbability > 90) {
+                    if (TheresTraps()) {
+                        SpawnTrapper(l_spawnPosition);
+                    }
+                }
+
+                break;
+        }
+    }
+
+    bool SplashState::TheresTraps() {
+        bool there = false;
+        for (int i = 0; i < m_trampas.size() && !there; i++) {
+            if (m_trampas[i] != nullptr) {
+                there = true;
+            }
+        }
+        return there;
+    }
+
+    void SplashState::LoadPaths() {
 
         Bezier bezier1;
         bezier1.m_startPoint = sf::Vector2f(208, 129);
@@ -409,9 +519,57 @@ namespace Zenon {
         bezier1.AddCurve(bezier1.m_bezierBody[bezier1.m_bezierBody.size() - 1], sf::Vector2f(1533, 459),
                 sf::Vector2f(bezier1.m_bezierBody[bezier1.m_bezierBody.size() - 1].x + 100, bezier1.m_bezierBody[bezier1.m_bezierBody.size() - 1].y - 100),
                 sf::Vector2f(1033, 459), 15);
+        bezier1.m_bPoints[29] = bezier1.m_bezierBody[29];
+        bezier1.m_bPoints[59] = bezier1.m_bezierBody[59];
 
+        Bezier bezier1br1;
+        bezier1br1.probability = 30;
+        bezier1br1.m_startPoint = bezier1.m_bPoints[29];
+        bezier1br1.m_endPoint = sf::Vector2f(960, 70);
+        bezier1br1.m_controlPoint1 = sf::Vector2f(bezier1br1.m_startPoint.x + 150, bezier1br1.m_startPoint.y - 200);
+        bezier1br1.m_controlPoint2 = sf::Vector2f(bezier1br1.m_endPoint.x - 60, bezier1br1.m_endPoint.y + 400);
+        bezier1br1.m_segments = 20;
+        bezier1br1.create();
+
+        bezier1.m_bRoutes.push_back(bezier1br1);
+
+        Bezier bezier1br2;
+        bezier1br2.probability = 30;
+        bezier1br2.m_startPoint = bezier1.m_bPoints[59];
+        bezier1br2.m_endPoint = sf::Vector2f(1731, 790);
+        bezier1br2.m_controlPoint1 = sf::Vector2f(bezier1br2.m_startPoint.x + 150, bezier1br2.m_startPoint.y + 200);
+        bezier1br2.m_controlPoint2 = sf::Vector2f(bezier1br2.m_endPoint.x - 250, bezier1br2.m_endPoint.y - 50);
+        bezier1br2.m_segments = 20;
+        bezier1br2.create();
+
+        bezier1.m_bRoutes.push_back(bezier1br2);
 
         m_routes.push_back(bezier1);
+
+        Bezier bezier2;
+        bezier2.m_startPoint = sf::Vector2f(235, 806);
+        bezier2.m_endPoint = sf::Vector2f(752, 477);
+        bezier2.m_controlPoint1 = sf::Vector2f(bezier2.m_startPoint.x, bezier2.m_startPoint.y - 190);
+        bezier2.m_controlPoint2 = sf::Vector2f(bezier2.m_endPoint.x - 100, bezier2.m_endPoint.y + 120);
+        bezier2.m_segments = 20;
+        bezier2.create();
+        bezier2.AddCurve(bezier2.m_endPoint, sf::Vector2f(960, 83),
+                sf::Vector2f(bezier2.m_endPoint.x + 170, bezier2.m_endPoint.y - 200),
+                sf::Vector2f(bezier2.m_endPoint.x - 100, bezier2.m_endPoint.y - 80), 20);
+        bezier2.m_bPoints[19] = bezier2.m_bezierBody[19];
+
+        Bezier bezier2br1;
+        bezier2br1.m_startPoint = bezier2.m_bPoints[19];
+        bezier2br1.m_endPoint = sf::Vector2f(1579, 479);
+        bezier2br1.m_controlPoint1 = sf::Vector2f(bezier2br1.m_startPoint.x + 100, bezier2br1.m_startPoint.y - 250);
+        bezier2br1.m_controlPoint2 = sf::Vector2f(bezier2br1.m_endPoint.x - 200, bezier2br1.m_endPoint.y - 200);
+        bezier2br1.m_segments = 20;
+        bezier2br1.probability = 40;
+        bezier2br1.create();
+
+        bezier2.m_bRoutes.push_back(bezier2br1);
+
+        m_routes.push_back(bezier2);
 
         /*Bezier t_bezier;
         t_bezier.probability = 50;
@@ -478,7 +636,7 @@ namespace Zenon {
         m_routes.push_back(t_bezierH);*/
 
 
-        for (int i = 0; i < m_routes[0].m_bezierBody.size(); i++) {
+        /*for (int i = 0; i < m_routes[0].m_bezierBody.size(); i++) {
             sf::CircleShape circle;
             circle.setRadius(5.0f);
             circle.setFillColor(sf::Color::Red);
@@ -512,7 +670,7 @@ namespace Zenon {
             for (int j = 0; j < m_routes[i].m_bRoutes.size(); j++) {
                 m_pathsVertex.push_back(ToVertex(m_routes[i].m_bRoutes[j].m_bezierBody));
             }
-        }
+        }*/
     }
 
     void SplashState::FreePlacer(int l_trap) {
@@ -617,7 +775,7 @@ namespace Zenon {
             this->m_data->window.setMouseCursorVisible(true);
 
         this->m_data->window.draw(m_mouseCoordinates);
-        if(!isCombatPhase)
+        if (!isCombatPhase)
             this->m_data->window.draw(m_countdownText);
         this->m_data->window.display();
     }

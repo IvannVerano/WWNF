@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=BetaSonora
+PROJECTNAME=Presentacion
 
 # Active Configuration
 DEFAULTCONF=Debug

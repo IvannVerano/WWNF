@@ -43,6 +43,8 @@ namespace Zenon {
         void SpawnTrapper(sf::Vector2f l_position);
         void SpawnBerseker(sf::Vector2f l_position, int l_obj);
         void SpawnHydra(sf::Vector2f l_position, Bezier& l_path);
+        void CheckSpawnType(int spawn, int enemyTypeProbability);
+        bool TheresTraps();
         void TrapsDestroyed();
         void FreePlacer(int l_trap);
         void CheckColision();
@@ -69,6 +71,7 @@ namespace Zenon {
         sf::Text m_countdownText;
         sf::Sprite m_mouseConstruct;
         sf::Vector2f m_posicion;
+        float m_spawnWait;
 
         HUD * m_hud;
         bool m_noCompruebes;
@@ -77,6 +80,10 @@ namespace Zenon {
 
         Enemy* m_enemy;
         Objective* m_obj;
+
+        sf::RectangleShape spawn1;
+        sf::RectangleShape spawn2;
+        sf::RectangleShape spawn3;
 
         std::vector<Trampa*> m_trampas;
         std::vector<Placer*> m_placer;
@@ -89,9 +96,9 @@ namespace Zenon {
         std::vector<sf::CircleShape> m_wps;
         std::vector<sf::VertexArray> m_pathsVertex;
         std::vector<sf::Vector2f> m_loc_placers;
-        
-        sf::Clock m_preparationCountdown; 
-        
+
+        sf::Clock m_preparationCountdown;
+
         sf::Clock doxy_frequency;
         sf::Clock berseker_frequency;
         sf::Clock trapper_frequency;
