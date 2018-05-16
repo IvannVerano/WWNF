@@ -37,6 +37,7 @@ namespace Zenon {
         bool CheckNearHero();
         void CheckState();
         int CheckNearestObj();
+        void Animate();
 
         //AUXILIAR
         void DrawDebugCircles();
@@ -59,6 +60,15 @@ namespace Zenon {
 
         float m_damage = 20.0f;
         bool m_pathComplete = false;
+        
+        sf::Clock ChangeAnim;
+        sf::Texture m_movingFrames;
+        std::vector<sf::IntRect> m_mainAnimation;
+        std::vector<sf::IntRect> m_animationMovement;
+        std::vector<sf::IntRect> m_attackAnimation;
+        sf::Clock m_aniClock;
+        sf::Clock m_switchAnimation;
+        int m_animationCounter = 0;
 
     };
 }

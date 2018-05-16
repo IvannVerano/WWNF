@@ -19,10 +19,77 @@ namespace Zenon {
     Enemy(l_data, l_type, l_position, l_neighbors), m_map(l_map), m_traps(l_traps), m_objectives(l_objectives) {
 
         m_life = 5000;
-        m_enemySprite.setTexture(this->m_data->assets.GetTexture("trapper"));
+        m_movingFrames = m_data->assets.GetTexture("Trapper_animation");
+        m_enemySprite.setTexture(m_movingFrames);
+        
+        
+        m_animationMovement.push_back(sf::IntRect(120, 207, 24, 55));
+        m_animationMovement.push_back(sf::IntRect(120, 207, 24, 55));
+        m_animationMovement.push_back(sf::IntRect(120, 207, 24, 55));
+        m_animationMovement.push_back(sf::IntRect(120, 207, 24, 55));
+        m_animationMovement.push_back(sf::IntRect(0, 104, 31, 56));
+        m_animationMovement.push_back(sf::IntRect(0, 104, 31, 56));
+        m_animationMovement.push_back(sf::IntRect(0, 104, 31, 56));
+        m_animationMovement.push_back(sf::IntRect(0, 104, 31, 56));
+        m_animationMovement.push_back(sf::IntRect(43, 0, 45, 51));
+        m_animationMovement.push_back(sf::IntRect(43, 0, 45, 51));
+        m_animationMovement.push_back(sf::IntRect(43, 0, 45, 51));
+        m_animationMovement.push_back(sf::IntRect(43, 0, 45, 51));
+        m_animationMovement.push_back(sf::IntRect(0, 363, 38, 55));
+        m_animationMovement.push_back(sf::IntRect(0, 363, 38, 55));
+        m_animationMovement.push_back(sf::IntRect(0, 363, 38, 55));
+        m_animationMovement.push_back(sf::IntRect(0, 363, 38, 55));
+        m_animationMovement.push_back(sf::IntRect(0, 104, 31, 56));
+        m_animationMovement.push_back(sf::IntRect(0, 104, 31, 56));
+        m_animationMovement.push_back(sf::IntRect(0, 104, 31, 56));
+        m_animationMovement.push_back(sf::IntRect(0, 104, 31, 56));
+        m_animationMovement.push_back(sf::IntRect(120, 207, 24, 55));
+        m_animationMovement.push_back(sf::IntRect(120, 207, 24, 55));
+        m_animationMovement.push_back(sf::IntRect(120, 207, 24, 55));
+        m_animationMovement.push_back(sf::IntRect(120, 207, 24, 55));
+        m_animationMovement.push_back(sf::IntRect(0, 104, 31, 56));
+        m_animationMovement.push_back(sf::IntRect(0, 104, 31, 56));
+        m_animationMovement.push_back(sf::IntRect(0, 104, 31, 56));
+        m_animationMovement.push_back(sf::IntRect(0, 104, 31, 56));
+        m_animationMovement.push_back(sf::IntRect(0, 104, 31, 56));
+        m_animationMovement.push_back(sf::IntRect(0, 0, 43, 51));
+        m_animationMovement.push_back(sf::IntRect(0, 0, 43, 51));
+        m_animationMovement.push_back(sf::IntRect(0, 0, 43, 51));
+        m_animationMovement.push_back(sf::IntRect(0, 0, 43, 51));
+        m_animationMovement.push_back(sf::IntRect(0, 363, 38, 55));
+        m_animationMovement.push_back(sf::IntRect(0, 363, 38, 55));
+        m_animationMovement.push_back(sf::IntRect(0, 363, 38, 55));
+        m_animationMovement.push_back(sf::IntRect(0, 363, 38, 55));
+        
+        m_attackAnimation.push_back(sf::IntRect(315, 0, 37, 50));
+        m_attackAnimation.push_back(sf::IntRect(315, 0, 37, 50));
+        m_attackAnimation.push_back(sf::IntRect(0, 160, 37, 48));
+        m_attackAnimation.push_back(sf::IntRect(0, 160, 37, 48));
+        m_attackAnimation.push_back(sf::IntRect(0, 418, 41, 50));
+        m_attackAnimation.push_back(sf::IntRect(0, 418, 41, 50));
+        m_attackAnimation.push_back(sf::IntRect(0, 51, 34, 53));
+        m_attackAnimation.push_back(sf::IntRect(0, 51, 34, 53));
+        m_attackAnimation.push_back(sf::IntRect(0, 208, 33, 51));
+        m_attackAnimation.push_back(sf::IntRect(0, 208, 33, 51));
+        m_attackAnimation.push_back(sf::IntRect(210, 100, 55, 50));
+        m_attackAnimation.push_back(sf::IntRect(210, 100, 55, 50));
+        m_attackAnimation.push_back(sf::IntRect(265, 100, 53, 48));
+        m_attackAnimation.push_back(sf::IntRect(265, 100, 53, 48));
+        m_attackAnimation.push_back(sf::IntRect(367, 100, 52, 48));
+        m_attackAnimation.push_back(sf::IntRect(367, 100, 52, 48));
+        m_attackAnimation.push_back(sf::IntRect(318, 100, 49, 48));
+        m_attackAnimation.push_back(sf::IntRect(318, 100, 49, 48));
+        m_attackAnimation.push_back(sf::IntRect(162, 100, 48, 47));
+        m_attackAnimation.push_back(sf::IntRect(162, 100, 48, 47));
+        
+        
+        m_enemySprite.setTextureRect(m_animationMovement.at(0));
         m_enemySprite.setOrigin(m_enemySprite.getGlobalBounds().width / 2, m_enemySprite.getGlobalBounds().height / 2);
         m_enemySprite.setPosition(l_position);
-        m_enemySprite.scale(0.7f, 0.7f);
+        m_enemySprite.scale(2.5f, 2.5f);
+        
+        m_mainAnimation = m_animationMovement;
+        
         FindTrap();
     }
 
@@ -67,6 +134,7 @@ namespace Zenon {
                 if (m_traps[m_obj] != nullptr) {
                     if (m_traps[m_obj]->GetActualState() != TRAP_DYING_STATE) {
                         if (m_hitingClock.getElapsedTime().asSeconds() >= TRAPPER_HITING_TIME) {
+                            m_mainAnimation = m_attackAnimation;
                             m_traps[m_obj]->TakeDamage(25);
                             m_hitingClock.restart();
                         }
@@ -103,6 +171,7 @@ namespace Zenon {
             }
 
         } else {
+            m_mainAnimation = m_attackAnimation;
             std::cout << "pego al core\n";
         }
 
@@ -193,7 +262,6 @@ namespace Zenon {
         }
 
     }
-
     void Trapper::CheckPath() {
         int contador = 0;
         while (contador < m_pathObj.size()) {
@@ -213,8 +281,31 @@ namespace Zenon {
         for (int i = 0; i < m_debugCircles.size(); i++) {
             this->m_data->window.draw(m_debugCircles[i]);
         }
-
+        if(m_state == TRAPPER_FOLLOWING_CORE_STATE || m_state == TRAPPER_FOLLOWING_TRAP_STATE)
+        {
+            m_mainAnimation = m_animationMovement;
+        }
+        this->Animate();
         this->m_data->window.draw(m_enemySprite);
+    }
+    
+    void Trapper::Animate()
+    {
+        if (m_aniClock.getElapsedTime().asSeconds() > 1.5f / m_mainAnimation.size()) {
+            
+            if (m_animationCounter < m_mainAnimation.size() - 1) 
+            {
+                m_animationCounter++;
+            } 
+            else 
+            {
+                m_animationCounter = 0;
+            }
+
+            m_enemySprite.setTextureRect(m_mainAnimation.at(m_animationCounter));
+
+            m_aniClock.restart();
+        }
     }
 }
 

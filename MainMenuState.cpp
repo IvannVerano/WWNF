@@ -44,7 +44,7 @@ namespace Zenon {
         m_data->assets.LoadTexture("GUI_SANACION_SEL", GUI_SANACION_SEL);
         m_data->assets.LoadTexture("DESCRIPTIVE_SANACION", DESCRIPTIVE_SANACION);
         m_data->assets.LoadTexture("Hydra Sheet", HYDRA_SPRITE_SHEET);
-        m_data->assets.LoadTexture("trapper", TRAPPER_SPRITE);
+        m_data->assets.LoadTexture("Trapper_animation", TRAPPER_MOVE_ANIMATION);
         m_data->assets.LoadTexture("WorldMap", WORLD_MAP);
         m_data->assets.LoadTexture("MapMarker", MARKER);
         m_data->assets.LoadTexture("Herosprite2", SPRITESHEET_HEROE2);
@@ -68,6 +68,7 @@ namespace Zenon {
         m_data->assets.LoadTexture("DESCRIPTIVE_ADRENALINA", DESCRIPTIVE_ADRENALINA);
         m_data->assets.LoadTexture("GUI_ADRENALINA_BLOCK", GUI_ADRENALINA_BLOCK);
         m_data->assets.LoadTexture("HERO_FACE2", SPRITE_HEROE_FACE2);
+        m_data->assets.LoadTexture("Berseker_Move", BERSEKER_MOVE_ANIMATION);
 
         m_data->assets.LoadTexture("Hielo", HIELO_SPRITE);
         m_data->assets.LoadTexture("GUI_HIELO", GUI_HIELO);
@@ -110,6 +111,12 @@ namespace Zenon {
         
         //LevelSelector
         m_data->assets.LoadTexture("Folder", FOLDER);
+        
+        //HELP STATE
+        m_data->assets.LoadTexture("HelpBG", HELPBG_SPRITE);
+        m_data->assets.LoadTexture("HelpReturn", RETURN_SPRITE);
+        
+        m_data->assets.LoadTexture("DoxyAnimation", DOXY_ANIMATION);
 
     }
 
@@ -185,7 +192,6 @@ namespace Zenon {
 
     void MainMenuState::NewGame() {
         m_data->machine.AddState(StateRef(new LevelSelectorState(this->m_data, false, false)));
-
     }
 
     void MainMenuState::NewHelpState() {

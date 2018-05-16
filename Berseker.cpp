@@ -18,13 +18,97 @@ namespace Zenon {
     Berseker::Berseker(GameDataRef l_data, Enemy::TYPE l_type, sf::Vector2f l_position, const std::vector<Enemy*>& l_neighbors,
             Maps &l_map, const std::vector<Objective*>& l_objectives, const std::vector<Hero*>& l_heroes)
     : Enemy(l_data, l_type, l_position, l_neighbors), m_map(l_map), m_objectives(l_objectives), m_heroes(l_heroes) {
-
-        m_enemySprite.setTexture(m_data->assets.GetTexture("berseker"));
+        
+        
+        
+        m_movingFrames = m_data->assets.GetTexture("Berseker_Move");
+        m_enemySprite.setTexture(m_movingFrames);
+       
+        
+        m_animationMovement.push_back(sf::IntRect(161,62,20,33));
+        m_animationMovement.push_back(sf::IntRect(161,62,20,33));
+        m_animationMovement.push_back(sf::IntRect(161,62,20,33));
+        m_animationMovement.push_back(sf::IntRect(161,95,20,32));
+        m_animationMovement.push_back(sf::IntRect(161,95,20,32));
+        m_animationMovement.push_back(sf::IntRect(161,95,20,32));
+        m_animationMovement.push_back(sf::IntRect(124,35,18,32));
+        m_animationMovement.push_back(sf::IntRect(124,35,18,32));
+        m_animationMovement.push_back(sf::IntRect(124,35,18,32));
+        m_animationMovement.push_back(sf::IntRect(124,67,18,31));
+        m_animationMovement.push_back(sf::IntRect(124,67,18,31));
+        m_animationMovement.push_back(sf::IntRect(124,67,18,31));
+        m_animationMovement.push_back(sf::IntRect(161,127,20,29));
+        m_animationMovement.push_back(sf::IntRect(161,127,20,29));
+        m_animationMovement.push_back(sf::IntRect(161,127,20,29));
+        m_animationMovement.push_back(sf::IntRect(124,98,18,35));
+        m_animationMovement.push_back(sf::IntRect(124,98,18,35));
+        m_animationMovement.push_back(sf::IntRect(124,98,18,35));
+        m_animationMovement.push_back(sf::IntRect(182,0,22,36));
+        m_animationMovement.push_back(sf::IntRect(182,0,22,36));
+        m_animationMovement.push_back(sf::IntRect(182,0,22,36));
+        m_animationMovement.push_back(sf::IntRect(142,69,19,35));
+        m_animationMovement.push_back(sf::IntRect(142,69,19,35));
+        m_animationMovement.push_back(sf::IntRect(142,69,19,35));
+        m_animationMovement.push_back(sf::IntRect(142,104,19,36));
+        m_animationMovement.push_back(sf::IntRect(142,104,19,36));
+        m_animationMovement.push_back(sf::IntRect(142,104,19,36));
+        m_animationMovement.push_back(sf::IntRect(161,189,21,35));
+        m_animationMovement.push_back(sf::IntRect(161,189,21,35));
+        m_animationMovement.push_back(sf::IntRect(161,189,21,35));
+        m_animationMovement.push_back(sf::IntRect(161,224,21,30));
+        m_animationMovement.push_back(sf::IntRect(161,224,21,30));
+        m_animationMovement.push_back(sf::IntRect(161,224,21,30));
+        m_animationMovement.push_back(sf::IntRect(182,36,20,21));
+        m_animationMovement.push_back(sf::IntRect(182,36,20,21));
+        m_animationMovement.push_back(sf::IntRect(182,36,20,21));
+        m_animationMovement.push_back(sf::IntRect(182,67,21,32));
+        m_animationMovement.push_back(sf::IntRect(182,67,21,32));
+        m_animationMovement.push_back(sf::IntRect(182,67,21,32));
+        m_animationMovement.push_back(sf::IntRect(142,175,19,30));
+        m_animationMovement.push_back(sf::IntRect(142,175,19,30));
+        m_animationMovement.push_back(sf::IntRect(142,175,19,30));
+        m_animationMovement.push_back(sf::IntRect(182,99,20,29));
+        m_animationMovement.push_back(sf::IntRect(182,99,20,29));
+        m_animationMovement.push_back(sf::IntRect(182,99,20,29));
+        
+        m_attackAnimation.push_back(sf::IntRect(204, 38, 30, 35));
+        m_attackAnimation.push_back(sf::IntRect(204, 38, 30, 35));
+        m_attackAnimation.push_back(sf::IntRect(204, 38, 30, 35));
+        m_attackAnimation.push_back(sf::IntRect(204, 0, 31, 38));
+        m_attackAnimation.push_back(sf::IntRect(204, 0, 31, 38));
+        m_attackAnimation.push_back(sf::IntRect(204, 0, 31, 38));
+        m_attackAnimation.push_back(sf::IntRect(235, 0, 34, 37));
+        m_attackAnimation.push_back(sf::IntRect(235, 0, 34, 37));
+        m_attackAnimation.push_back(sf::IntRect(235, 0, 34, 37));
+        m_attackAnimation.push_back(sf::IntRect(235, 0, 34, 37));
+        m_attackAnimation.push_back(sf::IntRect(269, 0, 42, 42));
+        m_attackAnimation.push_back(sf::IntRect(269, 0, 42, 42));
+        m_attackAnimation.push_back(sf::IntRect(269, 0, 42, 42));
+        m_attackAnimation.push_back(sf::IntRect(269, 0, 42, 42));
+        m_attackAnimation.push_back(sf::IntRect(235, 37, 34, 31));
+        m_attackAnimation.push_back(sf::IntRect(235, 37, 34, 31));
+        m_attackAnimation.push_back(sf::IntRect(235, 37, 34, 31));
+        m_attackAnimation.push_back(sf::IntRect(204, 108, 25, 38));
+        m_attackAnimation.push_back(sf::IntRect(204, 108, 25, 38));
+        m_attackAnimation.push_back(sf::IntRect(204, 108, 25, 38));
+        m_attackAnimation.push_back(sf::IntRect(204, 146, 26, 38));
+        m_attackAnimation.push_back(sf::IntRect(204, 146, 26, 38));
+        m_attackAnimation.push_back(sf::IntRect(204, 146, 26, 38));
+        m_attackAnimation.push_back(sf::IntRect(204, 146, 26, 38));
+        m_attackAnimation.push_back(sf::IntRect(204, 73, 26, 35));
+        m_attackAnimation.push_back(sf::IntRect(204, 73, 26, 35));
+        m_attackAnimation.push_back(sf::IntRect(204, 73, 26, 35));
+        m_attackAnimation.push_back(sf::IntRect(204, 73, 26, 35));
+        m_attackAnimation.push_back(sf::IntRect(204, 38, 30, 35));
+        
+        m_enemySprite.setTextureRect(m_animationMovement.at(0));
         m_enemySprite.setOrigin(m_enemySprite.getGlobalBounds().width / 2, m_enemySprite.getGlobalBounds().height / 2);
-        m_enemySprite.scale(0.7, 0.7);
         m_enemySprite.setPosition(l_position);
+        m_enemySprite.scale(2.7, 2.7);
         FindObj();
         m_state = BERSEKER_MOVING_TO_OBJ_STATE;
+        m_mainAnimation = m_attackAnimation;
+        
     }
 
     Berseker::~Berseker() {
@@ -80,6 +164,7 @@ namespace Zenon {
 
 
         if (m_state == BERSEKER_HITING_HERO_STATE) {
+            m_mainAnimation = m_attackAnimation;
             if (CheckNearHero()) {
                 if (m_hitingClock.getElapsedTime().asSeconds() >= BERSEKER_HIT_HERO_TIME) {
                     m_heroes[m_heroTarget]->TakeDamage(m_damage);
@@ -112,6 +197,10 @@ namespace Zenon {
                         m_enemySprite.move(BERSEKER_SPEED * dt * l_direction.x, BERSEKER_SPEED * dt * l_direction.y);
                     }
                 }
+                else
+                {
+                    m_mainAnimation = m_attackAnimation;
+                }
             }
         }
 
@@ -121,9 +210,25 @@ namespace Zenon {
         for (int i = 0; i < m_debugCircles.size(); i++) {
             this->m_data->window.draw(m_debugCircles[i]);
         }
-
-        this->m_data->window.draw(m_enemySprite);
+        if(ChangeAnim.getElapsedTime().asSeconds() > 0.5f)
+        {
+            if(m_state == BERSEKER_HITING_HERO_STATE || m_state == BERSEKER_HITING_D)
+            {
+                std::cout<<"cambio a atack"<<std::endl;
+                m_mainAnimation = m_attackAnimation;
+            }
+            else if(m_state == BERSEKER_FOLLOWING_HERO_STATE || m_state == BERSEKER_MOVING_TO_OBJ_STATE)
+            {
+                std::cout<<"me muevo"<<std::endl;
+                m_mainAnimation = m_animationMovement;
+            }
+            
+            ChangeAnim.restart();
+        }
+        this->Animate();
+        m_data->window.draw(m_enemySprite); 
     }
+
 
     void Berseker::CheckState() {
         if (CheckNearHero()) {
@@ -249,6 +354,25 @@ namespace Zenon {
             circle.setPosition(m_pathObj[i].x, m_pathObj[i].y);
             circle.setFillColor(sf::Color::Red);
             m_debugCircles.push_back(circle);
+        }
+    }
+    
+    void Berseker::Animate()
+    {
+       if (m_aniClock.getElapsedTime().asSeconds() > SPEED_ANIMATION / m_mainAnimation.size()) {
+            
+            if (m_animationCounter < m_mainAnimation.size() - 1) 
+            {
+                m_animationCounter++;
+            } 
+            else 
+            {
+                m_animationCounter = 0;
+            }
+
+            m_enemySprite.setTextureRect(m_mainAnimation.at(m_animationCounter));
+
+            m_aniClock.restart();
         }
     }
 

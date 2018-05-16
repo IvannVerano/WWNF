@@ -11,6 +11,7 @@
  * Created on 18 de abril de 2018, 17:58
  */
 
+#include <SFML/Graphics.hpp>
 #include "Enemy.hpp"
 #include "MathHelper.hpp"
 #include "Objective.hpp"
@@ -27,8 +28,10 @@ namespace Zenon {
         void FindObj();
         void SetHiting();
         void Hit();
+        void Animate();
         int GetCurrentWP();
         Bezier GetPath();
+        void Draw();
 
     private:
 
@@ -39,11 +42,22 @@ namespace Zenon {
         bool m_pathCompleted = false;
         bool m_toFinalWP = false;
 
+        
         sf::Vector2f m_resultant;
         sf::Vector2f m_finalWP;
         sf::Clock m_hitingClock;
         Objective* m_objTarget;
         const std::vector<Objective*>& m_objectives;
+        
+        
+        sf::Texture m_movingFrames;
+        std::vector<sf::IntRect> m_mainAnimation;
+        std::vector<sf::IntRect> m_animationMovement;
+        sf::Clock m_aniClock;
+        sf::Clock m_switchAnimation;
+        int m_animationCounter = 0;
+        
+        
         std::vector<sf::Vector2f> m_resultantAcc;
 
 

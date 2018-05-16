@@ -32,6 +32,7 @@ namespace Zenon {
         bool TheresTrap();
         int CheckNearTrap();
         void CheckPath();
+        void Animate();
 
     private:
 
@@ -43,8 +44,16 @@ namespace Zenon {
         std::vector<sf::CircleShape> m_debugCircles;
         int m_currentWP = 1;
         int m_obj = -1;
+        int m_animationCounter = 0;
         bool m_pathCompleted = false;
         bool m_trapDestroyed = false;
+        
+        sf::Texture m_movingFrames;
+        std::vector<sf::IntRect> m_mainAnimation;
+        std::vector<sf::IntRect> m_animationMovement;
+        std::vector<sf::IntRect> m_attackAnimation;
+        sf::Clock m_aniClock;
+        sf::Clock m_switchAnimation;
 
 
     };

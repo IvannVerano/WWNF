@@ -258,10 +258,10 @@ namespace Zenon {
             m_wantsTrapper = true;
         }
 
-        /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::N)) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::N)) {
             m_data->data.SetMoney(m_disponible);
             m_data->machine.AddState(StateRef(new PlaneReturnScene(m_data, true)));
-        }*/
+        }
     }
 
     void SplashState::Update(float dt) {
@@ -270,10 +270,10 @@ namespace Zenon {
         m_mouseCoordinates.setOrigin(m_mouseCoordinates.getGlobalBounds().width / 2, m_mouseCoordinates.getGlobalBounds().height / 2);
         m_mouseCoordinates.setPosition(sf::Mouse::getPosition(this->m_data->window).x, sf::Mouse::getPosition(this->m_data->window).y - 20);
 
-        /*if (m_spawnerClock.getElapsedTime().asSeconds() >= 5.0f) {
+        if (m_spawnerClock.getElapsedTime().asSeconds() >= 5.0f) {
             SpawnTrapper(sf::Vector2f(300, 300));
             m_spawnerClock.restart();
-        }*/
+        }
         
         if(!isCombatPhase)
         {
@@ -287,6 +287,12 @@ namespace Zenon {
                 }
                 m_preparationCountdown.restart();
             }
+        }
+        
+        if(doxy_frequency.getElapsedTime().asSeconds() > 0.2)
+        {
+            SpawnDoxy(sf::Vector2f(m_routes[0].m_startPoint.x, m_routes[0].m_startPoint.y), 0);
+            doxy_frequency.restart();
         }
 
         if (m_wantsHydra) {
@@ -364,7 +370,7 @@ namespace Zenon {
     }
 
     void SplashState::LoadAssets() {
-        /*const std::vector<Enemy* >& l_enemies = m_enemies;
+        const std::vector<Enemy* >& l_enemies = m_enemies;
 
         //Objetivo 1
         m_obj = new Generator(m_data, sf::Vector2f(960, 60), l_enemies, m_routes[0].m_bRoutes[0]);
@@ -376,7 +382,7 @@ namespace Zenon {
 
         //Objective 3
         m_obj = new Core(m_data, sf::Vector2f(1580, 466), l_enemies, m_routes[0].m_bRoutes[2]);
-        m_objectives.push_back(m_obj);*/
+        m_objectives.push_back(m_obj);
 
 
         m_textoDinero.setFont(m_data->assets.GetFont("FUENTE_DINERO"));

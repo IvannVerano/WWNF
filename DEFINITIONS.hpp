@@ -52,6 +52,9 @@
 #define ENEMY_FACTOR 0.7
 #define DOXY_HITING_STATE 2
 #define DOXY_HITING_TIME 1.0f
+#define DOXY_ANIMATION "resources/doxyAnimation.png"
+#define BERSEKER_MOVE_ANIMATION "resources/bersekerSpriteSheet.png"
+#define TRAPPER_MOVE_ANIMATION "resources/trapperAnimation.png"
 
 
 //variables del menu
@@ -153,6 +156,10 @@
 
 //variables de FIGHTER
 #define SPRITESHEET_LATERAL_MOV1 "resources/lateralmovement1.png"
+
+//HELP STATE
+#define HELPBG_SPRITE "resources/Ayuda.png"
+#define RETURN_SPRITE "resources/returnButton.png"
 
 //Variables de Berseker
 #define BERSEKER_SPRITE "resources/berseker.png"

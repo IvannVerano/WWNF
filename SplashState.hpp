@@ -91,6 +91,10 @@ namespace Zenon {
         std::vector<sf::Vector2f> m_loc_placers;
         
         sf::Clock m_preparationCountdown; 
+        
+        sf::Clock doxy_frequency;
+        sf::Clock berseker_frequency;
+        sf::Clock trapper_frequency;
 
         bool m_wantsDoxy = false;
         bool m_wantsBerseker = false;

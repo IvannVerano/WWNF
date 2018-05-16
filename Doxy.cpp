@@ -11,6 +11,9 @@
  * Created on 18 de abril de 2018, 17:58
  */
 
+#include <vector>
+#include <SFML/Graphics/Transformable.hpp>
+#include <SFML/Graphics/Sprite.hpp>
 #include "Doxy.hpp"
 #include "Enemy.hpp"
 
@@ -19,12 +22,45 @@ namespace Zenon {
     Doxy::Doxy(GameDataRef l_data, Enemy::TYPE l_type, sf::Vector2f l_position, const std::vector<Enemy*>& l_neighbors, const std::vector<Objective*>& l_objectives, const std::vector<Bezier>& l_routes, int l_path) :
     Enemy(l_data, l_type, l_position, l_neighbors), m_routes(l_routes), m_objectives(l_objectives) {
         m_path = m_routes[l_path];
-        m_enemySprite.setTexture(m_data->assets.GetTexture("enemigo"));
         m_enemySprite.setOrigin(m_enemySprite.getGlobalBounds().width / 2, m_enemySprite.getGlobalBounds().height / 2);
         m_enemySprite.scale(0.5, 0.5);
         m_enemySprite.setPosition(l_position);
         m_pathCompleted = false;
         srand(time(NULL));
+        
+        
+        //Creamos animacion
+        m_movingFrames = m_data->assets.GetTexture("DoxyAnimation");
+        m_enemySprite.setTexture(m_movingFrames);
+        m_enemySprite.scale(2.7, 2.7);
+        m_animationMovement.push_back(sf::IntRect(36,83,36,30));
+        m_animationMovement.push_back(sf::IntRect(36,83,36,30));
+        m_animationMovement.push_back(sf::IntRect(36,83,36,30));
+        m_animationMovement.push_back(sf::IntRect(0,225,36,28));
+        m_animationMovement.push_back(sf::IntRect(0,225,36,28));
+        m_animationMovement.push_back(sf::IntRect(0,225,36,28));
+        m_animationMovement.push_back(sf::IntRect(36,25,36,29));
+        m_animationMovement.push_back(sf::IntRect(36,25,36,29));
+        m_animationMovement.push_back(sf::IntRect(36,25,36,29));
+        m_animationMovement.push_back(sf::IntRect(36,25,36,29));
+        m_animationMovement.push_back(sf::IntRect(0,225,36,28));
+        m_animationMovement.push_back(sf::IntRect(0,225,36,28));
+        m_animationMovement.push_back(sf::IntRect(0,225,36,28));
+        m_animationMovement.push_back(sf::IntRect(0,225,36,28));
+        m_animationMovement.push_back(sf::IntRect(74,52,36,28));
+        m_animationMovement.push_back(sf::IntRect(74,52,36,28));
+        m_animationMovement.push_back(sf::IntRect(74,52,36,28));
+        m_animationMovement.push_back(sf::IntRect(74,107,30,29));
+        m_animationMovement.push_back(sf::IntRect(74,136,34,29));
+        m_animationMovement.push_back(sf::IntRect(74,136,34,29));
+        m_animationMovement.push_back(sf::IntRect(74,136,34,29));
+        m_animationMovement.push_back(sf::IntRect(74,52,36,28));
+        m_animationMovement.push_back(sf::IntRect(74,52,36,28));
+        m_animationMovement.push_back(sf::IntRect(74,52,36,28));
+        
+        m_enemySprite.setTextureRect(m_animationMovement.at(0));
+        m_mainAnimation = m_animationMovement;
+        
     }
 
     void Doxy::Update(float dt) {
@@ -221,6 +257,30 @@ namespace Zenon {
 
     int Doxy::GetCurrentWP() {
         return m_currentWP;
+    }
+    
+    void Doxy::Animate()
+    {
+        if (m_aniClock.getElapsedTime().asSeconds() > SPEED_ANIMATION / m_mainAnimation.size()) {
+            
+            if (m_animationCounter < m_mainAnimation.size() - 1) 
+            {
+                m_animationCounter++;
+            } 
+            else 
+            {
+                m_animationCounter = 0;
+            }
+
+            m_enemySprite.setTextureRect(m_mainAnimation.at(m_animationCounter));
+
+            m_aniClock.restart();
+        }
+    }
+    
+    void Doxy::Draw() {
+        this->Animate();
+        m_data->window.draw(m_enemySprite);
     }
 
 

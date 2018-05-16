@@ -7,19 +7,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/antonio/NetBeansProjects/Beta/main.cpp</file>
-            <file>file:/home/antonio/NetBeansProjects/Beta/Fighter.hpp</file>
-            <file>file:/home/antonio/NetBeansProjects/Beta/HUD.cpp</file>
-            <file>file:/home/antonio/NetBeansProjects/Beta/SplashState.hpp</file>
-            <file>file:/home/antonio/NetBeansProjects/Beta/MainMenuState.cpp</file>
-            <file>file:/home/antonio/NetBeansProjects/Beta/Fighter.cpp</file>
-            <file>file:/home/antonio/NetBeansProjects/Beta/Attack.hpp</file>
-            <file>file:/home/antonio/NetBeansProjects/Beta/Bala.cpp</file>
-            <file>file:/home/antonio/NetBeansProjects/Beta/Core.hpp</file>
-            <file>file:/home/antonio/NetBeansProjects/Beta/DEFINITIONS.hpp</file>
-            <file>file:/home/antonio/NetBeansProjects/Beta/Bala.hpp</file>
-            <file>file:/home/antonio/NetBeansProjects/Beta/Attack.cpp</file>
-            <file>file:/home/antonio/NetBeansProjects/Beta/SplashState.cpp</file>
+            <file>file:/home/user/NetBeansProjects/BetaSonora/Berseker.cpp</file>
+            <file>file:/home/user/NetBeansProjects/BetaSonora/Berseker.hpp</file>
+            <file>file:/home/user/NetBeansProjects/BetaSonora/DEFINITIONS.hpp</file>
+            <file>file:/home/user/NetBeansProjects/BetaSonora/Trapper.hpp</file>
+            <file>file:/home/user/NetBeansProjects/BetaSonora/Doxy.cpp</file>
+            <file>file:/home/user/NetBeansProjects/BetaSonora/Trapper.cpp</file>
+            <file>file:/home/user/NetBeansProjects/BetaSonora/MainMenuState.cpp</file>
+            <file>file:/home/user/NetBeansProjects/BetaSonora/Doxy.hpp</file>
         </group>
     </open-files>
 </project-private>
