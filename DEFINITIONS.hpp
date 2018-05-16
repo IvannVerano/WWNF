@@ -15,6 +15,8 @@
 #define WORLD_MAP "resources/WorldMap.jpg"
 #define FOLDER "resources/Folder.png"
 #define MARKER "resources/marcadormapa.png"
+#define MAINMENUTHEME "resources/soundtrack/music/menu.wav"
+#define PREPARE "resources/soundtrack/music/preparation.wav"
 
 #define MAXIMUM_CHAR 50
 

@@ -110,6 +110,7 @@ namespace Zenon {
         Maps* map;
 
         std::vector<Hero*> m_heroes;
+        sf::Music m_themePreparation;
 
 
 

@@ -26,7 +26,7 @@ namespace Zenon
             sf::Sprite m_ExitButton;
             sf::Sprite m_HelpButton;
             sf::Sprite m_ChargeButton;
-            
+            sf::Music mainTheme;
             
     };
 }

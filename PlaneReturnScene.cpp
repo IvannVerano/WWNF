@@ -1,6 +1,7 @@
 #include "PlaneReturnScene.hpp"
 #include "SplashState.hpp"
 #include "LevelSelectorState.hpp"
+#include "GameOverState.hpp"
 
 namespace Zenon
 {
@@ -207,7 +208,7 @@ namespace Zenon
     {
         m_theme->stop();
         delete m_theme;
-        this->m_data->machine.AddState(StateRef(new LevelSelectorState(m_data, isSuccess, true)));
+        this->m_data->machine.AddState(StateRef(new GameOverState(this->m_data, m_data->data.GetMoney())));
     }
     
     void PlaneReturnScene::SetPlaneRotation()

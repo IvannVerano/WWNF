@@ -22,10 +22,14 @@ namespace Zenon {
     SplashState::SplashState(GameDataRef data, std::vector<FichaTrampa*> l_fichaTrampa) : m_data(data) {
         m_trampasSel = l_fichaTrampa;
         m_disponible = m_data->data.GetMoney();
+        m_themePreparation.openFromFile(PREPARE);
+        m_themePreparation.setVolume(50);
+        m_themePreparation.setLoop(true);
+        m_themePreparation.play();
     }
 
     void SplashState::Init() {
-        m_spawnWait = std::max(0.1f, 3.0f - (((float) 5.0f/*NIVEL DE PANICO */) / 99.0f) * 3.0f);
+        m_spawnWait = std::max(0.1f, 3.0f - (((float) 1.0f/*NIVEL DE PANICO */) / 99.0f) * 3.0f);
         std::cout << "Tienes " << m_trampasSel.size() << " trampas" << std::endl;
 
         m_countdownText.setFont(m_data->assets.GetFont("FUENTE_DINERO"));
@@ -220,13 +224,8 @@ namespace Zenon {
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::K)) {
-            for (int i = 0; i < m_heroes.size(); i++) {
-                if (m_heroes[i]->IsSelected()) {
-                    m_data->data.UpdateData(m_heroes[i]->GetId(), false);
-                    delete m_heroes[i];
-                    m_heroes.erase(m_heroes.begin() + i);
-                }
-            }
+            m_themePreparation.stop();
+            m_data->machine.AddState(StateRef(new PlaneReturnScene(m_data, false)));
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::H)) {
@@ -362,7 +361,7 @@ namespace Zenon {
 
         m_mouseConstruct.setPosition((sf::Vector2f)m_data->input.GetMousePosition(m_data->window));
 
-        //this->CheckFail();
+        this->CheckFail();
         this->CheckDeadEnemies();
 
     }
@@ -636,7 +635,7 @@ namespace Zenon {
         m_routes.push_back(t_bezierH);*/
 
 
-        /*for (int i = 0; i < m_routes[0].m_bezierBody.size(); i++) {
+        for (int i = 0; i < m_routes[0].m_bezierBody.size(); i++) {
             sf::CircleShape circle;
             circle.setRadius(5.0f);
             circle.setFillColor(sf::Color::Red);
@@ -670,7 +669,7 @@ namespace Zenon {
             for (int j = 0; j < m_routes[i].m_bRoutes.size(); j++) {
                 m_pathsVertex.push_back(ToVertex(m_routes[i].m_bRoutes[j].m_bezierBody));
             }
-        }*/
+        }
     }
 
     void SplashState::FreePlacer(int l_trap) {

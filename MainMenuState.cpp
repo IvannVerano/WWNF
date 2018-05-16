@@ -7,6 +7,9 @@
 namespace Zenon {
 
     MainMenuState::MainMenuState(GameDataRef l_data) : m_data(l_data) {
+        mainTheme.openFromFile(MAINMENUTHEME);
+        mainTheme.play();
+        mainTheme.setVolume(50);
         m_data->assets.LoadTexture("TILESET", TILESET_FILEPATH);
         m_data->assets.LoadTexture("No_trampa", NO_TRAP_SPRITE);
         m_data->assets.LoadTexture("Metralleta", METRALLETA_SPRITE);
@@ -191,15 +194,18 @@ namespace Zenon {
     }
 
     void MainMenuState::NewGame() {
+        mainTheme.stop();
         m_data->machine.AddState(StateRef(new LevelSelectorState(this->m_data, false, false)));
     }
 
     void MainMenuState::NewHelpState() {
+        mainTheme.stop();
         m_data->machine.AddState(StateRef(new HelpState(this->m_data)));
     }
     
     void MainMenuState::ChargeGame()
     {
+        mainTheme.stop();
          m_data->machine.AddState(StateRef(new LevelSelectorState(this->m_data, false, true)));
     }
 }
