@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux
-CND_ARTIFACT_NAME_Debug=presentacionreal
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/presentacionreal
+CND_ARTIFACT_NAME_Debug=wwnf
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/wwnf
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux/package
-CND_PACKAGE_NAME_Debug=presentacionreal.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/presentacionreal.tar
+CND_PACKAGE_NAME_Debug=wwnf.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/wwnf.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux
-CND_ARTIFACT_NAME_Release=presentacionreal
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/presentacionreal
+CND_ARTIFACT_NAME_Release=wwnf
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/wwnf
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux/package
-CND_PACKAGE_NAME_Release=presentacionreal.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/presentacionreal.tar
+CND_PACKAGE_NAME_Release=wwnf.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/wwnf.tar
 #
 # include compiler specific variables
 #

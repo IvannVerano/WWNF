@@ -39,32 +39,7 @@ namespace Zenon {
         m_trampasdisp.push_back(sanacion);
         m_trampasdisp.push_back(adrenalina);
         //  m_random=rand()%101;
-        m_random = 26;
 
-        if (m_random < 25) {
-            FichaTrampa * hielo = new FichaTrampa(m_data, m_data->assets.GetTexture("Hielo"), m_data->assets.GetTexture("GUI_HIELO"), m_data->assets.GetTexture("GUI_HIELO_SEL"), m_data->assets.GetTexture("GUI_AMETRALLADORA_BLOCK"), 6, sf::Vector2f(550, 400), PRECIO_TORRE_HIELO, PORCENTAJE_TORRE_HIELO, CADENCIA_TORRE_HIELO, RANGO_TORRE_HIELO, REFRESCO_TORRE_HIELO, POTENCIA_TORRE_HIELO, DTRAP_APPEARING_TIME, m_data->assets.GetTexture("DESCRIPTIVE_HIELO"));
-            m_trampasdisp.push_back(hielo);
-            //    std::cout<<"Hola soy el 1"<<std::endl;
-        }
-
-        if (m_random >= 25 && m_random < 50) {
-            FichaTrampa * nuke = new FichaTrampa(m_data, m_data->assets.GetTexture("Hielo"), m_data->assets.GetTexture("GUI_NUKE"), m_data->assets.GetTexture("GUI_NUKE_SEL"), m_data->assets.GetTexture("GUI_AMETRALLADORA_BLOCK"), 7, sf::Vector2f(550, 400), PRECIO_TORRE_HIELO, PORCENTAJE_TORRE_HIELO, CADENCIA_TORRE_HIELO, RANGO_NUKE, REFRESCO_TORRE_HIELO, POTENCIA_TORRE_HIELO, DTRAP_APPEARING_TIME, m_data->assets.GetTexture("DESCRIPTIVE_HIELO"));
-            m_trampasdisp.push_back(nuke);
-            //    std::cout<<"Hola soy el 2"<<std::endl;
-        }
-
-        if (m_random >= 50 && m_random < 75) {
-            FichaTrampa * hielo = new FichaTrampa(m_data, m_data->assets.GetTexture("Hielo"), m_data->assets.GetTexture("GUI_HIELO"), m_data->assets.GetTexture("GUI_HIELO_SEL"), m_data->assets.GetTexture("GUI_AMETRALLADORA_BLOCK"), 6, sf::Vector2f(550, 400), PRECIO_TORRE_HIELO, PORCENTAJE_TORRE_HIELO, CADENCIA_TORRE_HIELO, RANGO_TORRE_HIELO, REFRESCO_TORRE_HIELO, POTENCIA_TORRE_HIELO, DTRAP_APPEARING_TIME, m_data->assets.GetTexture("DESCRIPTIVE_HIELO"));
-            m_trampasdisp.push_back(hielo);
-            //    std::cout<<"Hola soy el 3"<<std::endl;
-
-        }
-
-        if (m_random >= 75 && m_random < 100) {
-            FichaTrampa * nuke = new FichaTrampa(m_data, m_data->assets.GetTexture("Hielo"), m_data->assets.GetTexture("GUI_NUKE"), m_data->assets.GetTexture("GUI_NUKE_SEL"), m_data->assets.GetTexture("GUI_AMETRALLADORA_BLOCK"), 7, sf::Vector2f(550, 400), PRECIO_TORRE_HIELO, PORCENTAJE_TORRE_HIELO, CADENCIA_TORRE_HIELO, RANGO_NUKE, REFRESCO_TORRE_HIELO, POTENCIA_TORRE_HIELO, DTRAP_APPEARING_TIME, m_data->assets.GetTexture("DESCRIPTIVE_HIELO"));
-            m_trampasdisp.push_back(nuke);
-            //   std::cout<<"Hola soy el 4"<<std::endl;
-        }
 
 
         for (int i = 0; i < m_trampasdisp.size(); i++) {
@@ -234,7 +209,8 @@ namespace Zenon {
 
         this->m_data->window.draw(m_background);
 
-        for (int i = 0; i < m_trampasdisp.size() - 1; i++) {
+        for (int i = 0; i < m_trampasdisp.size()
+                ; i++) {
             m_trampasdisp.at(i)->Draw();
         }
 

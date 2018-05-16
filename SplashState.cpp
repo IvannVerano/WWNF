@@ -108,30 +108,6 @@ namespace Zenon {
                     m_trampa = m_hud->GetClick();
                 }
 
-                if (m_trampa> -1 && m_trampasSel.at(m_trampa)->GetTipo() == 6) {
-
-                    std::cout << "feo mierda" << std::endl;
-                    const std::vector<Enemy*> &enes = m_enemies;
-                    Trampa* tramp = new Ice(m_data, m_posicion, m_trampasSel.at(m_trampa)->GetTexturaPosicion(), enes);
-                    m_trampas.push_back(tramp);
-
-                }
-
-                if (m_trampa> -1 && m_trampasSel.at(m_trampa)->GetTipo() == 7) {
-
-                    sf::Vector2f m_posicion;
-                    const std::vector<Enemy*> &enes = m_enemies;
-
-
-                    if (m_trampasSel.at(m_trampa)->IsClicked()) {
-                        std::cout << "feo mierda2" << std::endl;
-                        m_posicion = (sf::Vector2f)m_data->input.GetMousePosition(m_data->window);
-                        Trampa* tramp1 = new Nuke(m_data, m_posicion, m_trampasSel.at(m_trampa)->GetTexturaPosicion(), enes);
-                        m_trampas.push_back(tramp1);
-                    }
-                }
-
-
                 for (int i = 0; i < m_placer.size(); i++) {
                     if (m_placer.at(i)->Clicked(m_trampa)) {
                         if (m_trampa> -1) {
