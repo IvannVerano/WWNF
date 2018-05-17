@@ -160,6 +160,7 @@ namespace Zenon {
             }
 
             if (m_data->input.IsSpriteClicked(m_ExitButton, sf::Mouse::Left, m_data->window)) {
+                mainTheme.stop();
                 this->m_data->window.close();
             }
 

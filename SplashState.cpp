@@ -26,6 +26,9 @@ namespace Zenon {
         m_themePreparation.setVolume(50);
         m_themePreparation.setLoop(true);
         m_themePreparation.play();
+        m_themeCombat.openFromFile(COMBAT);
+        m_themeCombat.setVolume(50);
+        m_themeCombat.setLoop(true);
     }
 
     void SplashState::Init() {
@@ -225,6 +228,7 @@ namespace Zenon {
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::K)) {
             m_themePreparation.stop();
+            m_themeCombat.stop();
             m_data->machine.AddState(StateRef(new PlaneReturnScene(m_data, false)));
         }
 
@@ -278,6 +282,8 @@ namespace Zenon {
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::N)) {
             m_data->data.SetMoney(m_disponible);
+            m_themePreparation.stop();
+            m_themeCombat.stop();
             m_data->machine.AddState(StateRef(new PlaneReturnScene(m_data, true)));
         }
     }
@@ -293,6 +299,8 @@ namespace Zenon {
                 m_countdown--;
                 m_countdownText.setString("Prepara tus armas " + std::to_string(m_countdown));
                 if (m_countdown == 0) {
+                    m_themePreparation.stop();
+                    m_themeCombat.play();
                     isCombatPhase = true;
                 }
                 m_preparationCountdown.restart();
@@ -824,6 +832,7 @@ namespace Zenon {
 
     void SplashState::CheckFail() {
         if (m_objectives[m_objectives.size() - 1]->GetActualState() == OBJECTIVE_DESTROYED_STATE) {
+            m_themeCombat.stop();
             this->m_data->data.SetConfidenceLevel(-3);
             this->m_data->machine.AddState(StateRef(new PlaneReturnScene(this->m_data, false)));
         }

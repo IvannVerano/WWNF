@@ -111,6 +111,7 @@ namespace Zenon {
 
         std::vector<Hero*> m_heroes;
         sf::Music m_themePreparation;
+        sf::Music m_themeCombat;
 
 
 

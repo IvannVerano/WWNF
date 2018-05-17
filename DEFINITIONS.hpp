@@ -17,6 +17,7 @@
 #define MARKER "resources/marcadormapa.png"
 #define MAINMENUTHEME "resources/soundtrack/music/menu.wav"
 #define PREPARE "resources/soundtrack/music/preparation.wav"
+#define COMBAT "resources/soundtrack/music/combat.wav"
 
 #define MAXIMUM_CHAR 50
 
