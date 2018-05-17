@@ -18,10 +18,7 @@
 #define MAINMENUTHEME "resources/soundtrack/music/menu.wav"
 #define PREPARE "resources/soundtrack/music/preparation.wav"
 #define COMBAT "resources/soundtrack/music/combat.wav"
-
 #define MAXIMUM_CHAR 50
-
-
 
 //Relojes
 #define CLOCK_SELECTION 0.5f
@@ -185,7 +182,7 @@
 #define TRAPPER_FOLLOWING_CORE_STATE 4
 #define TRAPPER_HITING_CORE_STATE 5
 #define TRAPPER_MINIMUM_WP_D 10.0f
-#define TRAPPER_SPEED 100.0f
+#define TRAPPER_SPEED 40.0f
 #define TRAPPER_HITING_TIME 2.5f
 
 //variables del LANZALLAMAS

@@ -27,40 +27,40 @@ namespace Zenon {
         m_enemySprite.setPosition(l_position);
         m_pathCompleted = false;
         srand(time(NULL));
-        
-        
+
+
         //Creamos animacion
         m_movingFrames = m_data->assets.GetTexture("DoxyAnimation");
         m_enemySprite.setTexture(m_movingFrames);
         m_enemySprite.scale(2.7, 2.7);
-        m_animationMovement.push_back(sf::IntRect(36,83,36,30));
-        m_animationMovement.push_back(sf::IntRect(36,83,36,30));
-        m_animationMovement.push_back(sf::IntRect(36,83,36,30));
-        m_animationMovement.push_back(sf::IntRect(0,225,36,28));
-        m_animationMovement.push_back(sf::IntRect(0,225,36,28));
-        m_animationMovement.push_back(sf::IntRect(0,225,36,28));
-        m_animationMovement.push_back(sf::IntRect(36,25,36,29));
-        m_animationMovement.push_back(sf::IntRect(36,25,36,29));
-        m_animationMovement.push_back(sf::IntRect(36,25,36,29));
-        m_animationMovement.push_back(sf::IntRect(36,25,36,29));
-        m_animationMovement.push_back(sf::IntRect(0,225,36,28));
-        m_animationMovement.push_back(sf::IntRect(0,225,36,28));
-        m_animationMovement.push_back(sf::IntRect(0,225,36,28));
-        m_animationMovement.push_back(sf::IntRect(0,225,36,28));
-        m_animationMovement.push_back(sf::IntRect(74,52,36,28));
-        m_animationMovement.push_back(sf::IntRect(74,52,36,28));
-        m_animationMovement.push_back(sf::IntRect(74,52,36,28));
-        m_animationMovement.push_back(sf::IntRect(74,107,30,29));
-        m_animationMovement.push_back(sf::IntRect(74,136,34,29));
-        m_animationMovement.push_back(sf::IntRect(74,136,34,29));
-        m_animationMovement.push_back(sf::IntRect(74,136,34,29));
-        m_animationMovement.push_back(sf::IntRect(74,52,36,28));
-        m_animationMovement.push_back(sf::IntRect(74,52,36,28));
-        m_animationMovement.push_back(sf::IntRect(74,52,36,28));
-        
+        m_animationMovement.push_back(sf::IntRect(36, 83, 36, 30));
+        m_animationMovement.push_back(sf::IntRect(36, 83, 36, 30));
+        m_animationMovement.push_back(sf::IntRect(36, 83, 36, 30));
+        m_animationMovement.push_back(sf::IntRect(0, 225, 36, 28));
+        m_animationMovement.push_back(sf::IntRect(0, 225, 36, 28));
+        m_animationMovement.push_back(sf::IntRect(0, 225, 36, 28));
+        m_animationMovement.push_back(sf::IntRect(36, 25, 36, 29));
+        m_animationMovement.push_back(sf::IntRect(36, 25, 36, 29));
+        m_animationMovement.push_back(sf::IntRect(36, 25, 36, 29));
+        m_animationMovement.push_back(sf::IntRect(36, 25, 36, 29));
+        m_animationMovement.push_back(sf::IntRect(0, 225, 36, 28));
+        m_animationMovement.push_back(sf::IntRect(0, 225, 36, 28));
+        m_animationMovement.push_back(sf::IntRect(0, 225, 36, 28));
+        m_animationMovement.push_back(sf::IntRect(0, 225, 36, 28));
+        m_animationMovement.push_back(sf::IntRect(74, 52, 36, 28));
+        m_animationMovement.push_back(sf::IntRect(74, 52, 36, 28));
+        m_animationMovement.push_back(sf::IntRect(74, 52, 36, 28));
+        m_animationMovement.push_back(sf::IntRect(74, 107, 30, 29));
+        m_animationMovement.push_back(sf::IntRect(74, 136, 34, 29));
+        m_animationMovement.push_back(sf::IntRect(74, 136, 34, 29));
+        m_animationMovement.push_back(sf::IntRect(74, 136, 34, 29));
+        m_animationMovement.push_back(sf::IntRect(74, 52, 36, 28));
+        m_animationMovement.push_back(sf::IntRect(74, 52, 36, 28));
+        m_animationMovement.push_back(sf::IntRect(74, 52, 36, 28));
+
         m_enemySprite.setTextureRect(m_animationMovement.at(0));
         m_mainAnimation = m_animationMovement;
-        
+
     }
 
     void Doxy::Update(float dt) {
@@ -68,7 +68,9 @@ namespace Zenon {
         if (m_state == DOXY_HITING_STATE) {
 
             if (m_hitingClock.getElapsedTime().asSeconds() >= DOXY_HITING_TIME) {
-                m_objTarget->TakeDamage(50);
+                if (m_objTarget->GetActualState() != OBJECTIVE_DESTROYED_STATE) {
+                    m_objTarget->TakeDamage(50);
+                }
                 m_hitingClock.restart();
             }
         } else {
@@ -258,17 +260,14 @@ namespace Zenon {
     int Doxy::GetCurrentWP() {
         return m_currentWP;
     }
-    
-    void Doxy::Animate()
-    {
+
+    void Doxy::Animate() {
         if (m_aniClock.getElapsedTime().asSeconds() > SPEED_ANIMATION / m_mainAnimation.size()) {
-            
-            if (m_animationCounter < m_mainAnimation.size() - 1) 
-            {
+
+            if (m_animationCounter < m_mainAnimation.size() - 1) {
                 m_animationCounter++;
-            } 
-            else 
-            {
+            }
+            else {
                 m_animationCounter = 0;
             }
 
@@ -277,7 +276,7 @@ namespace Zenon {
             m_aniClock.restart();
         }
     }
-    
+
     void Doxy::Draw() {
         this->Animate();
         m_data->window.draw(m_enemySprite);

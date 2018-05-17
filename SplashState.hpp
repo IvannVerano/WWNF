@@ -66,6 +66,7 @@ namespace Zenon {
         sf::Texture _backgroundTexture;
         sf::Sprite _background;
         sf::Sprite m_trapsGui;
+        sf::Sprite m_dineroButton;
         sf::Text m_textoDinero;
         sf::Text m_mouseCoordinates;
         sf::Text m_countdownText;
@@ -77,6 +78,8 @@ namespace Zenon {
         bool m_noCompruebes;
         bool m_hideCursor;
         bool isCombatPhase = false;
+        bool m_debugMode = false;
+        bool m_wantsChangeD = false;
 
         Enemy* m_enemy;
         Objective* m_obj;
@@ -112,8 +115,6 @@ namespace Zenon {
         std::vector<Hero*> m_heroes;
         sf::Music m_themePreparation;
         sf::Music m_themeCombat;
-
-
 
     };
 }

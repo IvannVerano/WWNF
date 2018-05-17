@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux
-CND_ARTIFACT_NAME_Debug=presentacionreal
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/presentacionreal
+CND_ARTIFACT_NAME_Debug=preset
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/preset
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux/package
-CND_PACKAGE_NAME_Debug=presentacionreal.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/presentacionreal.tar
+CND_PACKAGE_NAME_Debug=preset.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/preset.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux
-CND_ARTIFACT_NAME_Release=presentacionreal
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/presentacionreal
+CND_ARTIFACT_NAME_Release=preset
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/preset
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux/package
-CND_PACKAGE_NAME_Release=presentacionreal.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/presentacionreal.tar
+CND_PACKAGE_NAME_Release=preset.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/preset.tar
 #
 # include compiler specific variables
 #

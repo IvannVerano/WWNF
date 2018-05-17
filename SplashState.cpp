@@ -48,13 +48,10 @@ namespace Zenon {
         spawn1.setFillColor(sf::Color::Green);
         spawn1.setPosition(210, 860);
 
-
-
         spawn2 = sf::RectangleShape(sf::Vector2f(144, 70));
         spawn2.setOrigin(spawn2.getGlobalBounds().width / 2, spawn2.getGlobalBounds().height / 2);
         spawn2.setFillColor(sf::Color::Blue);
         spawn2.setPosition(210, 80);
-
 
         spawn3 = sf::RectangleShape(sf::Vector2f(70, 144));
         spawn3.setOrigin(spawn3.getGlobalBounds().width / 2, spawn3.getGlobalBounds().height / 2);
@@ -135,11 +132,9 @@ namespace Zenon {
 
                     std::cout << "feo mierda" << std::endl;
                     const std::vector<Enemy*> &enes = m_enemies;
-
-
-
                     Trampa* tramp = new Ice(m_data, m_posicion, m_trampasSel.at(m_trampa)->GetTexturaPosicion(), enes);
                     m_trampas.push_back(tramp);
+
                 }
 
                 if (m_trampa> -1 && m_trampasSel.at(m_trampa)->GetTipo() == 7) {
@@ -150,12 +145,9 @@ namespace Zenon {
 
                     if (m_trampasSel.at(m_trampa)->IsClicked()) {
                         std::cout << "feo mierda2" << std::endl;
-
                         m_posicion = (sf::Vector2f)m_data->input.GetMousePosition(m_data->window);
-
                         Trampa* tramp1 = new Nuke(m_data, m_posicion, m_trampasSel.at(m_trampa)->GetTexturaPosicion(), enes);
                         m_trampas.push_back(tramp1);
-                        //crear aqui la mininuke con las posiciones pilladas arriba
                     }
                 }
 
@@ -272,6 +264,10 @@ namespace Zenon {
             m_wantsDoxy = true;
         }
 
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::F5)) {
+            m_wantsChangeD = true;
+        }
+
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)) {
             m_wantsBerseker = true;
         }
@@ -294,10 +290,20 @@ namespace Zenon {
         m_mouseCoordinates.setOrigin(m_mouseCoordinates.getGlobalBounds().width / 2, m_mouseCoordinates.getGlobalBounds().height / 2);
         m_mouseCoordinates.setPosition(sf::Mouse::getPosition(this->m_data->window).x, sf::Mouse::getPosition(this->m_data->window).y - 20);
 
+        if (m_wantsChangeD) {
+            if (m_debugMode == true) {
+                m_debugMode = false;
+                m_wantsChangeD = false;
+            } else {
+                m_debugMode = true;
+                m_wantsChangeD = false;
+            }
+        }
+
         if (!isCombatPhase) {
             if (m_preparationCountdown.getElapsedTime().asSeconds() > 1.0f) {
                 m_countdown--;
-                m_countdownText.setString("Prepara tus armas " + std::to_string(m_countdown));
+                m_countdownText.setString("Prepara tu estrategia:  " + std::to_string(m_countdown));
                 if (m_countdown == 0) {
                     m_themePreparation.stop();
                     m_themeCombat.play();
@@ -389,12 +395,17 @@ namespace Zenon {
         m_obj = new Core(m_data, sf::Vector2f(1580, 466), l_enemies, m_routes[0].m_bRoutes[2]);
         m_objectives.push_back(m_obj);
 
+        m_dineroButton.setTexture(this->m_data->assets.GetTexture("MoneyButton"));
+        m_dineroButton.setOrigin(m_dineroButton.getGlobalBounds().width / 2, m_dineroButton.getGlobalBounds().height / 2);
+        m_dineroButton.scale(0.6, 0.6);
+        m_dineroButton.setPosition(1650, 990);
 
         m_textoDinero.setFont(m_data->assets.GetFont("FUENTE_DINERO"));
         m_textoDinero.setString(std::to_string(m_disponible));
         m_textoDinero.setCharacterSize(20);
         m_textoDinero.setOrigin(m_textoDinero.getGlobalBounds().width / 2, m_textoDinero.getGlobalBounds().height / 2);
-        m_textoDinero.setPosition(900, 800);
+        m_textoDinero.scale(1.5, 1.5);
+        m_textoDinero.setPosition(sf::Vector2f(m_dineroButton.getPosition().x + 20, m_dineroButton.getPosition().y - 8));
     }
 
     void SplashState::CheckSpawnType(int spawn, int enemyTypeProbability) {
@@ -578,72 +589,37 @@ namespace Zenon {
 
         m_routes.push_back(bezier2);
 
-        /*Bezier t_bezier;
-        t_bezier.probability = 50;
-        t_bezier.m_startPoint = sf::Vector2f(50, 50);
-        t_bezier.m_endPoint = sf::Vector2f(725, 525);
-        t_bezier.m_controlPoint1 = sf::Vector2f(500, 100);
-        t_bezier.m_controlPoint2 = sf::Vector2f(500, 500);
-        t_bezier.m_segments = 20;
-        t_bezier.m_bPoints[100] = t_bezier.m_endPoint;
-        t_bezier.create();
-        t_bezier.m_bezierBody[t_bezier.m_bezierBody.size() - 2] = t_bezier.m_bezierBody[t_bezier.m_bezierBody.size() - 1];
-        t_bezier.m_bPoints[10] = t_bezier.m_bezierBody[10];
-        t_bezier.m_bPoints[20] = t_bezier.m_bezierBody[20];
+        for (int i = 0; i < m_routes.size(); i++) {
+            for (int j = 0; j < m_routes[i].m_bezierBody.size(); j++) {
+                sf::CircleShape circle;
+                circle.setRadius(5.0f);
+                circle.setFillColor(sf::Color::Magenta);
+                circle.setOrigin(circle.getGlobalBounds().width / 2, circle.getGlobalBounds().height / 2);
+                circle.setPosition(m_routes[i].m_bezierBody[j].x, m_routes[i].m_bezierBody[j].y);
+                m_wps.push_back(circle);
+            }
 
-        Bezier t_bezier2;
-        t_bezier2.probability = 60;
-        t_bezier2.m_startPoint = t_bezier.m_bPoints[10];
-        t_bezier2.m_endPoint = sf::Vector2f(750, 100);
-        t_bezier2.m_controlPoint1 = sf::Vector2f(500, 200);
-        t_bezier2.m_controlPoint2 = sf::Vector2f(500, 100);
-        t_bezier2.m_segments = 20;
-        t_bezier2.create();
-        t_bezier2.m_bezierBody[t_bezier2.m_bezierBody.size() - 2] = t_bezier2.m_bezierBody[t_bezier2.m_bezierBody.size() - 1];
-
-        t_bezier.m_bRoutes.push_back(t_bezier2);
-
-        Bezier t_bezier3;
-        t_bezier3.probability = 30;
-        t_bezier3.m_startPoint = t_bezier.m_bPoints[10];
-        t_bezier3.m_endPoint = sf::Vector2f(450, 550);
-        t_bezier3.m_controlPoint1 = sf::Vector2f(350, 400);
-        t_bezier3.m_controlPoint2 = sf::Vector2f(300, 500);
-        t_bezier3.m_segments = 20;
-        t_bezier3.create();
-        t_bezier3.m_bezierBody[t_bezier3.m_bezierBody.size() - 2] = t_bezier3.m_bezierBody[t_bezier3.m_bezierBody.size() - 1];
-
-        t_bezier.m_bRoutes.push_back(t_bezier3);
-
-        Bezier t_bezier4;
-        t_bezier4.probability = 100;
-        t_bezier4.m_startPoint = t_bezier.m_bPoints[20];
-        t_bezier4.m_endPoint = sf::Vector2f(900, 200);
-        t_bezier4.m_controlPoint1 = sf::Vector2f(1100, 400);
-        t_bezier4.m_controlPoint2 = sf::Vector2f(1100, 500);
-        t_bezier4.m_segments = 20;
-        t_bezier4.create();
-        t_bezier4.m_bezierBody[t_bezier4.m_bezierBody.size() - 2] = t_bezier4.m_bezierBody[t_bezier4.m_bezierBody.size() - 1];
-
-        t_bezier.m_bRoutes.push_back(t_bezier4);
+            for (int k = 0; k < m_routes[i].m_bRoutes.size(); k++) {
+                for (int n = 0; n < m_routes[i].m_bRoutes[k].m_bezierBody.size(); n++) {
+                    sf::CircleShape circle;
+                    circle.setRadius(5.0f);
+                    circle.setFillColor(sf::Color::Yellow);
+                    circle.setOrigin(circle.getGlobalBounds().width / 2, circle.getGlobalBounds().height / 2);
+                    circle.setPosition(m_routes[i].m_bRoutes[k].m_bezierBody[n]);
+                    m_wps.push_back(circle);
+                }
+            }
 
 
-        m_routes.push_back(t_bezier);
+            m_pathsVertex.push_back(ToVertex(m_routes[i].m_bezierBody));
 
-        Bezier t_bezierH;
-        t_bezierH.m_startPoint = sf::Vector2f(-100, 300);
-        t_bezierH.m_endPoint = sf::Vector2f(2000, 300);
-        t_bezierH.m_controlPoint1 = sf::Vector2f(t_bezierH.m_startPoint.x + 300, t_bezierH.m_startPoint.y - 500);
-        t_bezierH.m_controlPoint2 = sf::Vector2f(t_bezierH.m_endPoint.x - 500, t_bezierH.m_endPoint.y + 800);
-        t_bezierH.m_segments = 70;
-        t_bezierH.create();
-        t_bezierH.m_bezierBody[t_bezierH.m_bezierBody.size() - 2] = t_bezierH.m_bezierBody[t_bezierH.m_bezierBody.size() - 1];
+            for (int m = 0; m < m_routes[i].m_bRoutes.size(); m++) {
+                m_pathsVertex.push_back(ToVertex(m_routes[i].m_bRoutes[m].m_bezierBody));
+            }
 
+        }
 
-        m_routes.push_back(t_bezierH);*/
-
-
-        for (int i = 0; i < m_routes[0].m_bezierBody.size(); i++) {
+        /*for (int i = 0; i < m_routes[0].m_bezierBody.size(); i++) {
             sf::CircleShape circle;
             circle.setRadius(5.0f);
             circle.setFillColor(sf::Color::Red);
@@ -677,7 +653,7 @@ namespace Zenon {
             for (int j = 0; j < m_routes[i].m_bRoutes.size(); j++) {
                 m_pathsVertex.push_back(ToVertex(m_routes[i].m_bRoutes[j].m_bezierBody));
             }
-        }
+        }*/
     }
 
     void SplashState::FreePlacer(int l_trap) {
@@ -728,22 +704,25 @@ namespace Zenon {
     void SplashState::Draw(float dt) {
         this->m_data->window.clear(sf::Color::Black);
         this->m_data->window.setView(this->m_data->window.getDefaultView());
-        this->m_data->window.draw(m_textoDinero);
+
         map->Draw();
         this->m_data->window.draw(this->_background);
+
+        if (m_debugMode) {
+            for (int i = 0; i < m_pathsVertex.size(); i++) {
+                this->m_data->window.draw(m_pathsVertex[i]);
+            }
+
+            for (int i = 0; i < m_wps.size(); i++) {
+                this->m_data->window.draw(m_wps[i]);
+            }
+        }
+
         this->m_data->window.draw(m_trapsGui);
 
 
         for (int i = 0; i < m_placer.size(); i++) {
             m_placer.at(i)->Draw();
-        }
-
-        for (int i = 0; i < m_pathsVertex.size(); i++) {
-            this->m_data->window.draw(m_pathsVertex[i]);
-        }
-
-        for (int i = 0; i < m_wps.size(); i++) {
-            this->m_data->window.draw(m_wps[i]);
         }
 
         for (int i = 0; i < m_objectives.size(); i++) {
@@ -784,6 +763,10 @@ namespace Zenon {
         this->m_data->window.draw(m_mouseCoordinates);
         if (!isCombatPhase)
             this->m_data->window.draw(m_countdownText);
+
+        this->m_data->window.draw(m_dineroButton);
+        this->m_data->window.draw(m_textoDinero);
+
         this->m_data->window.display();
     }
 
