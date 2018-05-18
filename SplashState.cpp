@@ -63,37 +63,13 @@ namespace Zenon {
         m_mouseCoordinates.setOrigin(m_mouseCoordinates.getGlobalBounds().width / 2, m_mouseCoordinates.getGlobalBounds().height / 2);
         m_mouseCoordinates.setPosition(sf::Mouse::getPosition(this->m_data->window).x, sf::Mouse::getPosition(this->m_data->window).y - 10);
 
-        m_loc_placers = map->GetPlacerLocation();
-        //Creamos los placer en base a nuestro mapa de polla
-        for (int x = 0; x < m_loc_placers.size(); x++) {
-            Placer* plaser = new Placer(m_data, m_loc_placers.at(x));
-            m_placer.push_back(plaser);
-        }
+        LoadPlacers();
 
         m_trampa = -1;
         m_posicion.x = m_data->window.getSize().x / 2;
         m_posicion.y = m_data->window.getSize().y / 2;
 
-        Maps &mapref = *map;
-        for (int i = 0; i < m_data->data.NumberOfHeroes(); i++) {
-            if (m_data->data.IsHeroeAlive(i)) {
-                const std::vector<Hero*>& l_allies = m_heroes;
-                const std::vector<Enemy*>& l_enemies = m_enemies;
-                Hero * c_hero;
-                switch (i) {
-                    case 0:
-                        c_hero = new Fighter(m_data, mapref, i, l_enemies);
-                        m_heroes.push_back(c_hero);
-                        break;
-                    case 1:
-                        c_hero = new Healer(m_data, mapref, i, l_allies, l_enemies);
-                        m_heroes.push_back(c_hero);
-                        break;
-                }
-
-            }
-
-        }
+        LoadHeroes();
 
         m_hud = new HUD(m_data, m_trampasSel);
         m_noCompruebes = false;
@@ -315,7 +291,7 @@ namespace Zenon {
 
         if (isCombatPhase) {
             if (m_spawnerClock.getElapsedTime().asSeconds() >= m_spawnWait) {
-                CheckSpawnType(rand() % 3, rand() % 100 + 1);
+                CheckSpawnType(rand() % 3, rand() % 100);
                 m_spawnerClock.restart();
             }
         }
@@ -350,6 +326,15 @@ namespace Zenon {
             }
         }
 
+        for (int i = 0; i < m_objectives.size(); i++) {
+            if (m_objectives[i]->GetActualState() == OBJECTIVE_DESTROYED_STATE) {
+                delete m_objectives[i];
+                m_objectives.erase(m_objectives.begin() + i);
+            }
+        }
+
+
+
         for (int i = 0; i < m_enemies.size(); i++) {
             if (m_enemies.at(i)->GetActualState() != ENEMY_STATE_DEAD) {
                 m_enemies.at(i)->Update(dt);
@@ -380,19 +365,51 @@ namespace Zenon {
 
     }
 
+    void SplashState::LoadHeroes() {
+        Maps &mapref = *map;
+        for (int i = 0; i < m_data->data.NumberOfHeroes(); i++) {
+            if (m_data->data.IsHeroeAlive(i)) {
+                const std::vector<Hero*>& l_allies = m_heroes;
+                const std::vector<Enemy*>& l_enemies = m_enemies;
+                Hero * c_hero;
+                switch (i) {
+                    case 0:
+                        c_hero = new Fighter(m_data, mapref, i, l_enemies);
+                        m_heroes.push_back(c_hero);
+                        break;
+                    case 1:
+                        c_hero = new Healer(m_data, mapref, i, l_allies, l_enemies);
+                        m_heroes.push_back(c_hero);
+                        break;
+                }
+            }
+        }
+    }
+
+    void SplashState::LoadPlacers() {
+        m_loc_placers = map->GetPlacerLocation();
+        //Creamos los placer en base a nuestro mapa de polla
+        for (int x = 0; x < m_loc_placers.size(); x++) {
+            Placer* plaser = new Placer(m_data, m_loc_placers.at(x));
+            m_placer.push_back(plaser);
+        }
+    }
+
     void SplashState::LoadAssets() {
         const std::vector<Enemy* >& l_enemies = m_enemies;
 
+        std::vector<Bezier>& paths = m_routes;
+
         //Objetivo 1
-        m_obj = new Generator(m_data, sf::Vector2f(960, 60), l_enemies, m_routes[0].m_bRoutes[0]);
+        m_obj = new Generator(m_data, sf::Vector2f(960, 60), l_enemies, paths);
         m_objectives.push_back(m_obj);
 
         //Objective 2
-        m_obj = new Generator(m_data, sf::Vector2f(1734, 786), l_enemies, m_routes[0].m_bRoutes[1]);
+        m_obj = new Generator(m_data, sf::Vector2f(1734, 786), l_enemies, paths);
         m_objectives.push_back(m_obj);
 
         //Objective 3
-        m_obj = new Core(m_data, sf::Vector2f(1580, 466), l_enemies, m_routes[0].m_bRoutes[2]);
+        m_obj = new Core(m_data, sf::Vector2f(1690, 466), l_enemies, paths);
         m_objectives.push_back(m_obj);
 
         m_dineroButton.setTexture(this->m_data->assets.GetTexture("MoneyButton"));
@@ -534,9 +551,11 @@ namespace Zenon {
         bezier1.AddCurve(bezier1.m_bezierBody[bezier1.m_bezierBody.size() - 1], sf::Vector2f(1218, 653),
                 sf::Vector2f(bezier1.m_bezierBody[bezier1.m_bezierBody.size() - 1].x + 50, bezier1.m_bezierBody[bezier1.m_bezierBody.size() - 1].y + 150),
                 sf::Vector2f(bezier1.m_bezierBody[bezier1.m_bezierBody.size() - 1].x + 300, bezier1.m_bezierBody[bezier1.m_bezierBody.size() - 1].y + 150), 20);
-        bezier1.AddCurve(bezier1.m_bezierBody[bezier1.m_bezierBody.size() - 1], sf::Vector2f(1533, 459),
+        bezier1.AddCurve(bezier1.m_bezierBody[bezier1.m_bezierBody.size() - 1], sf::Vector2f(1690, 459),
                 sf::Vector2f(bezier1.m_bezierBody[bezier1.m_bezierBody.size() - 1].x + 100, bezier1.m_bezierBody[bezier1.m_bezierBody.size() - 1].y - 100),
-                sf::Vector2f(1033, 459), 15);
+                sf::Vector2f(1033, 459), 22);
+        bezier1.m_bezierBody[bezier1.m_bezierBody.size() - 2].x = bezier1.m_bezierBody[bezier1.m_bezierBody.size() - 1].x;
+        bezier1.m_bezierBody[bezier1.m_bezierBody.size() - 2].y = bezier1.m_bezierBody[bezier1.m_bezierBody.size() - 1].y;
         bezier1.m_bPoints[29] = bezier1.m_bezierBody[29];
         bezier1.m_bPoints[59] = bezier1.m_bezierBody[59];
 
@@ -548,11 +567,13 @@ namespace Zenon {
         bezier1br1.m_controlPoint2 = sf::Vector2f(bezier1br1.m_endPoint.x - 60, bezier1br1.m_endPoint.y + 400);
         bezier1br1.m_segments = 20;
         bezier1br1.create();
+        bezier1br1.m_bezierBody[bezier1br1.m_bezierBody.size() - 2].x = bezier1br1.m_bezierBody[bezier1br1.m_bezierBody.size() - 1].x;
+        bezier1br1.m_bezierBody[bezier1br1.m_bezierBody.size() - 2].y = bezier1br1.m_bezierBody[bezier1br1.m_bezierBody.size() - 1].y;
 
         bezier1.m_bRoutes.push_back(bezier1br1);
 
         Bezier bezier1br2;
-        bezier1br2.probability = 30;
+        bezier1br2.probability = 40;
         bezier1br2.m_startPoint = bezier1.m_bPoints[59];
         bezier1br2.m_endPoint = sf::Vector2f(1731, 790);
         bezier1br2.m_controlPoint1 = sf::Vector2f(bezier1br2.m_startPoint.x + 150, bezier1br2.m_startPoint.y + 200);
@@ -569,21 +590,25 @@ namespace Zenon {
         bezier2.m_endPoint = sf::Vector2f(752, 477);
         bezier2.m_controlPoint1 = sf::Vector2f(bezier2.m_startPoint.x, bezier2.m_startPoint.y - 190);
         bezier2.m_controlPoint2 = sf::Vector2f(bezier2.m_endPoint.x - 100, bezier2.m_endPoint.y + 120);
-        bezier2.m_segments = 20;
+        bezier2.m_segments = 15;
         bezier2.create();
-        bezier2.AddCurve(bezier2.m_endPoint, sf::Vector2f(960, 83),
-                sf::Vector2f(bezier2.m_endPoint.x + 170, bezier2.m_endPoint.y - 200),
-                sf::Vector2f(bezier2.m_endPoint.x - 100, bezier2.m_endPoint.y - 80), 20);
-        bezier2.m_bPoints[19] = bezier2.m_bezierBody[19];
+        bezier2.AddCurve(bezier2.m_endPoint, sf::Vector2f(1185, 380),
+                sf::Vector2f(bezier2.m_endPoint.x + 40, bezier2.m_endPoint.y - 150),
+                sf::Vector2f(1185 - 50, 380 - 50), 20);
+        bezier2.AddCurve(bezier2.m_bezierBody[bezier2.m_bezierBody.size() - 1], sf::Vector2f(1690, 459),
+                sf::Vector2f(bezier2.m_bezierBody[bezier2.m_bezierBody.size() - 1].x + 50, bezier2.m_bezierBody[bezier2.m_bezierBody.size() - 1].y + 100),
+                sf::Vector2f(1670, 440), 20);
+        bezier2.m_bPoints[25] = bezier2.m_bezierBody[25];
 
         Bezier bezier2br1;
-        bezier2br1.m_startPoint = bezier2.m_bPoints[19];
-        bezier2br1.m_endPoint = sf::Vector2f(1579, 479);
-        bezier2br1.m_controlPoint1 = sf::Vector2f(bezier2br1.m_startPoint.x + 100, bezier2br1.m_startPoint.y - 250);
-        bezier2br1.m_controlPoint2 = sf::Vector2f(bezier2br1.m_endPoint.x - 200, bezier2br1.m_endPoint.y - 200);
+        bezier2br1.m_startPoint = bezier2.m_bPoints[25];
+        bezier2br1.m_endPoint = sf::Vector2f(956, 87);
+        bezier2br1.m_controlPoint1 = sf::Vector2f(bezier2br1.m_startPoint.x + 180, bezier2br1.m_startPoint.y - 50);
+        bezier2br1.m_controlPoint2 = sf::Vector2f(bezier2br1.m_endPoint.x + 50, bezier2br1.m_endPoint.y - 50);
         bezier2br1.m_segments = 20;
         bezier2br1.probability = 40;
         bezier2br1.create();
+        bezier2br1.m_bezierBody[bezier2br1.m_bezierBody.size() - 2] = bezier2br1.m_bezierBody[bezier2br1.m_bezierBody.size() - 1];
 
         bezier2.m_bRoutes.push_back(bezier2br1);
 
@@ -610,7 +635,6 @@ namespace Zenon {
                 }
             }
 
-
             m_pathsVertex.push_back(ToVertex(m_routes[i].m_bezierBody));
 
             for (int m = 0; m < m_routes[i].m_bRoutes.size(); m++) {
@@ -619,41 +643,6 @@ namespace Zenon {
 
         }
 
-        /*for (int i = 0; i < m_routes[0].m_bezierBody.size(); i++) {
-            sf::CircleShape circle;
-            circle.setRadius(5.0f);
-            circle.setFillColor(sf::Color::Red);
-            circle.setOrigin(circle.getGlobalBounds().width / 2, circle.getGlobalBounds().height / 2);
-            circle.setPosition(m_routes[0].m_bezierBody[i].x, m_routes[0].m_bezierBody[i].y);
-            m_wps.push_back(circle);
-            for (int j = 0; j < m_routes[0].m_bRoutes.size(); j++) {
-                for (int k = 0; k < m_routes[0].m_bRoutes[j].m_bezierBody.size(); k++) {
-                    sf::CircleShape circle;
-                    circle.setRadius(5.0f);
-                    circle.setFillColor(sf::Color::Red);
-                    circle.setOrigin(circle.getGlobalBounds().width / 2, circle.getGlobalBounds().height / 2);
-                    circle.setPosition(m_routes[0].m_bRoutes[j].m_bezierBody[k].x, m_routes[0].m_bRoutes[j].m_bezierBody[k].y);
-                    m_wps.push_back(circle);
-                }
-            }
-
-        }
-
-        for (int i = 0; i < m_routes[0].m_bezierBody.size(); i++) {
-            sf::CircleShape circle;
-            circle.setRadius(5.0f);
-            circle.setFillColor(sf::Color::Magenta);
-            circle.setOrigin(circle.getGlobalBounds().width / 2, circle.getGlobalBounds().height / 2);
-            circle.setPosition(m_routes[0].m_bezierBody[i].x, m_routes[0].m_bezierBody[i].y);
-            m_wps.push_back(circle);
-        }
-
-        for (int i = 0; i < m_routes.size(); i++) {
-            m_pathsVertex.push_back(ToVertex(m_routes[i].m_bezierBody));
-            for (int j = 0; j < m_routes[i].m_bRoutes.size(); j++) {
-                m_pathsVertex.push_back(ToVertex(m_routes[i].m_bRoutes[j].m_bezierBody));
-            }
-        }*/
     }
 
     void SplashState::FreePlacer(int l_trap) {
@@ -750,6 +739,12 @@ namespace Zenon {
             m_heroes[i]->Draw();
         }
 
+        if (m_debugMode) {
+            this->m_data->window.draw(spawn1);
+            this->m_data->window.draw(spawn2);
+            this->m_data->window.draw(spawn3);
+        }
+
         for (int i = 0; i < m_enemies.size(); i++) {
             m_enemies.at(i)->Draw();
         }
@@ -760,7 +755,12 @@ namespace Zenon {
         } else
             this->m_data->window.setMouseCursorVisible(true);
 
-        this->m_data->window.draw(m_mouseCoordinates);
+
+
+        if (m_debugMode) {
+            this->m_data->window.draw(m_mouseCoordinates);
+        }
+
         if (!isCombatPhase)
             this->m_data->window.draw(m_countdownText);
 

@@ -15,7 +15,7 @@
 
 namespace Zenon {
 
-    Objective::Objective(GameDataRef l_data, sf::Vector2f l_position, const std::vector<Enemy*>& l_nearestEnemies, Bezier& l_routePath) : m_data(l_data), m_nearestEnemies(l_nearestEnemies), m_routePath(l_routePath) {
+    Objective::Objective(GameDataRef l_data, sf::Vector2f l_position, const std::vector<Enemy*>& l_nearestEnemies, std::vector<Bezier>& l_routePaths) : m_data(l_data), m_nearestEnemies(l_nearestEnemies), m_routePaths(l_routePaths) {
     }
 
     Objective::~Objective() {
@@ -31,12 +31,34 @@ namespace Zenon {
     }
 
     void Objective::TakeDamage(int l_factor) {
+        std::cout << "me pegan, soy el objetivo de la posicion: " << m_mainSprite.getPosition().x << ", " << m_mainSprite.getPosition().y << std::endl;
         m_life -= l_factor;
-        if (m_life <= 10) {
-            m_routePath.SetIntransitable();
+        if (m_life <= 20) {
+            for (int i = 0; i < m_routePaths.size(); i++) {
+                for (int j = 0; j < m_routePaths[i].m_bRoutes.size(); j++) {
+                    sf::Vector2f d = m_routePaths[i].m_bRoutes[j].m_endPoint - m_mainSprite.getPosition();
+                    float m = Module(d);
+                    if (m <= 30) {
+                        std::cout << "Tiene menis de 10 de vida, pongo intransitable la bezier: " << i << ", bRoute : " << j << std::endl;
+                        m_routePaths[i].m_bRoutes[j].SetIntransitable();
+                    }
+                }
+            }
         }
+
         if (m_life <= 0) {
             m_state = OBJECTIVE_DESTROYED_STATE;
+
+            for (int i = 0; i < m_routePaths.size(); i++) {
+                for (int j = 0; j < m_routePaths[i].m_bRoutes.size(); j++) {
+                    sf::Vector2f d = m_routePaths[i].m_bRoutes[j].m_bezierBody[m_routePaths[i].m_bRoutes[j].m_bezierBody.size() - 1] - m_mainSprite.getPosition();
+                    float m = Module(d);
+                    if (m <= 10) {
+                        std::cout << "la pongo intransitable\n";
+                        m_routePaths[i].m_bRoutes[j].SetIntransitable();
+                    }
+                }
+            }
 
             for (int i = 0; i < m_nearestEnemies.size(); i++) {
                 sf::Vector2f l_vec = m_nearestEnemies[i]->GetPosition() - m_mainSprite.getPosition();
@@ -45,8 +67,6 @@ namespace Zenon {
                     m_nearestEnemies[i]->TakeDamage(50);
                 }
             }
-
-            m_routePath.SetIntransitable();
         }
     }
 

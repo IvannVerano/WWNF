@@ -16,7 +16,7 @@ namespace Zenon {
 
     class Core : public Objective {
     public:
-        Core(GameDataRef l_data, sf::Vector2f l_position, const std::vector<Enemy*>& l_nearestEnemies, Bezier& l_routePath);
+        Core(GameDataRef l_data, sf::Vector2f l_position, const std::vector<Enemy*>& l_nearestEnemies, std::vector<Bezier>& l_routePaths);
         ~Core();
 
         void Update(float dt);

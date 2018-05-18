@@ -21,7 +21,7 @@ namespace Zenon {
     class Objective {
     public:
 
-        Objective(GameDataRef l_data, sf::Vector2f l_position, const std::vector<Enemy*>& l_nearestEnemies, Bezier& l_routePath);
+        Objective(GameDataRef l_data, sf::Vector2f l_position, const std::vector<Enemy*>& l_nearestEnemies, std::vector<Bezier>& l_routePaths);
         ~Objective();
 
         virtual void Update(float dt);
@@ -37,7 +37,7 @@ namespace Zenon {
 
         GameDataRef m_data;
         sf::Sprite m_mainSprite;
-        Bezier& m_routePath;
+        std::vector<Bezier>& m_routePaths;
         int m_life = 50;
         int m_state = OBJECTIVE_ACTIVE_STATE;
 

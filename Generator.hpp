@@ -18,7 +18,7 @@ namespace Zenon {
     class Generator : public Objective {
     public:
 
-        Generator(GameDataRef l_data, sf::Vector2f l_position, const std::vector<Enemy*>& l_nearestEnemies, Bezier& l_routePath);
+        Generator(GameDataRef l_data, sf::Vector2f l_position, const std::vector<Enemy*>& l_nearestEnemies, std::vector<Bezier>& l_routePaths);
         ~Generator();
 
         void Update(float dt);

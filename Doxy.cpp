@@ -199,19 +199,20 @@ namespace Zenon {
             }
         }
 
-        if (m_currentWP == m_path.m_bezierBody.size() - 1 && l_rNumber == 1) {
-            //std::cout << "He entrao\n";
-            m_path = m_path.m_bRoutes[m_path.m_bRoutes.size() - 1];
-            l_rNumber = 0;
-            m_currentWP = 2;
-        }
-
         if (l_rNumber == 1) {
             int ran = rand() % 100;
-            if (ran <= m_path.m_bRoutes[0].probability && m_path.m_bRoutes[0].IsTransitable()) {
+            bool stop = false;
+            int path;
+            for (int i = 0; i < m_path.m_bRoutes.size() && !stop; i++) {
+                if (m_path.m_bRoutes[i].m_startPoint.x == m_path.m_bPoints[m_currentWP].x && m_path.m_bRoutes[i].m_startPoint.y == m_path.m_bPoints[m_currentWP].y) {
+                    path = i;
+                    stop = true;
+                }
+            }
+            if (ran <= m_path.m_bRoutes[path].probability && m_path.m_bRoutes[path].IsTransitable()) {
                 //std::cout << "1 bifurcacion: entro porque cumplo prob\n";
                 l_rNumber = 0;
-                m_path = m_path.m_bRoutes[0];
+                m_path = m_path.m_bRoutes[path];
                 m_currentWP = 2;
             }
         }
@@ -266,8 +267,7 @@ namespace Zenon {
 
             if (m_animationCounter < m_mainAnimation.size() - 1) {
                 m_animationCounter++;
-            }
-            else {
+            } else {
                 m_animationCounter = 0;
             }
 

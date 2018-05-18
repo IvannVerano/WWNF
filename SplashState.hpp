@@ -38,6 +38,8 @@ namespace Zenon {
 
         void LoadPaths();
         void LoadAssets();
+        void LoadHeroes();
+        void LoadPlacers();
         void SpawnEnemy(sf::Vector2f l_position, int l_path);
         void SpawnDoxy(sf::Vector2f l_position, int l_path);
         void SpawnTrapper(sf::Vector2f l_position);
@@ -48,10 +50,8 @@ namespace Zenon {
         void TrapsDestroyed();
         void FreePlacer(int l_trap);
         void CheckColision();
-
         void CheckFail();
         void CheckDeadEnemies();
-
         sf::VertexArray ToVertex(std::vector<sf::Vector2f> l_points);
 
     private:
@@ -59,7 +59,7 @@ namespace Zenon {
 
         int m_trampa;
         int m_disponible;
-        int m_countdown = 30;
+        int m_countdown = 5;
 
         sf::Clock m_enemy_dead;
         sf::Clock m_spawnerClock;
@@ -101,7 +101,6 @@ namespace Zenon {
         std::vector<sf::Vector2f> m_loc_placers;
 
         sf::Clock m_preparationCountdown;
-
         sf::Clock doxy_frequency;
         sf::Clock berseker_frequency;
         sf::Clock trapper_frequency;
