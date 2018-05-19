@@ -34,7 +34,8 @@ namespace Zenon {
 
         int GetKiller();
         int GetActualState();
-
+        
+        void ResizeLifeIndicator();
 
     protected:
 
@@ -48,8 +49,11 @@ namespace Zenon {
 
         GameDataRef m_data;
         sf::Sprite m_enemySprite;
+        sf::RectangleShape m_lifeIndicator;
+        sf::RectangleShape m_redIndicator;
         const std::vector<Enemy*>& m_neighbors;
         int m_life;
+        int m_startLife;
         int m_state;
         int m_killer;
 

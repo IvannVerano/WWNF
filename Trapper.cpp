@@ -18,10 +18,19 @@ namespace Zenon {
     Trapper::Trapper(GameDataRef l_data, Enemy::TYPE l_type, sf::Vector2f l_position, Maps& l_map, const std::vector<Enemy*>& l_neighbors, const std::vector<Trampa*>& l_traps, const std::vector<Objective*>& l_objectives) :
     Enemy(l_data, l_type, l_position, l_neighbors), m_map(l_map), m_traps(l_traps), m_objectives(l_objectives) {
 
-        m_life = 5000;
+        m_life = 500;
+        m_startLife = m_life;
         m_movingFrames = m_data->assets.GetTexture("Trapper_animation");
         m_enemySprite.setTexture(m_movingFrames);
         
+        
+        m_lifeIndicator.setSize(sf::Vector2f(50,5));
+        m_lifeIndicator.setFillColor(sf::Color::Green);
+        m_lifeIndicator.setOrigin(m_lifeIndicator.getGlobalBounds().width/2, m_lifeIndicator.getGlobalBounds().height/2);
+        
+        m_redIndicator.setSize(sf::Vector2f(50,5));
+        m_redIndicator.setFillColor(sf::Color::Red);
+        m_redIndicator.setOrigin(m_lifeIndicator.getGlobalBounds().width/2, m_lifeIndicator.getGlobalBounds().height/2);
         
         m_animationMovement.push_back(sf::IntRect(120, 207, 24, 55));
         m_animationMovement.push_back(sf::IntRect(120, 207, 24, 55));
@@ -98,6 +107,9 @@ namespace Zenon {
 
     void Trapper::Update(float dt) {
 
+        m_lifeIndicator.setPosition(m_enemySprite.getPosition().x-5, m_enemySprite.getPosition().y - 85);
+        m_redIndicator.setPosition(m_enemySprite.getPosition().x -5, m_enemySprite.getPosition().y - 85);
+        
         if (m_state != TRAPPER_HITING_CORE_STATE) {
             if (m_state == TRAPPER_FOLLOWING_TRAP_STATE) {
                 std::cout << "me muevo hacia una trampa\n";
@@ -286,7 +298,9 @@ namespace Zenon {
             m_mainAnimation = m_animationMovement;
         }
         this->Animate();
-        this->m_data->window.draw(m_enemySprite);
+        m_data->window.draw(m_enemySprite);
+        m_data->window.draw(m_redIndicator);
+        m_data->window.draw(m_lifeIndicator);
     }
     
     void Trapper::Animate()

@@ -24,6 +24,14 @@ namespace Zenon {
         m_movingFrames = m_data->assets.GetTexture("Berseker_Move");
         m_enemySprite.setTexture(m_movingFrames);
 
+        
+        m_lifeIndicator.setSize(sf::Vector2f(50,5));
+        m_lifeIndicator.setFillColor(sf::Color::Green);
+        m_lifeIndicator.setOrigin(m_lifeIndicator.getGlobalBounds().width/2, m_lifeIndicator.getGlobalBounds().height/2);
+        
+        m_redIndicator.setSize(sf::Vector2f(50,5));
+        m_redIndicator.setFillColor(sf::Color::Red);
+        m_redIndicator.setOrigin(m_lifeIndicator.getGlobalBounds().width/2, m_lifeIndicator.getGlobalBounds().height/2);
 
         m_animationMovement.push_back(sf::IntRect(161, 62, 20, 33));
         m_animationMovement.push_back(sf::IntRect(161, 62, 20, 33));
@@ -117,6 +125,10 @@ namespace Zenon {
 
     void Berseker::Update(float dt) {
 
+        m_lifeIndicator.setPosition(m_enemySprite.getPosition().x-5, m_enemySprite.getPosition().y - 40);
+        m_redIndicator.setPosition(m_enemySprite.getPosition().x -5, m_enemySprite.getPosition().y - 40);
+        
+        
         if (m_state == BERSEKER_FOLLOWING_HERO_STATE) {
             if (m_checkHeroClock.getElapsedTime().asSeconds() >= BERSEKER_CHECKING_HERO_TIME) {
                 if (CheckNearHero()) {
@@ -221,6 +233,8 @@ namespace Zenon {
         }
         this->Animate();
         m_data->window.draw(m_enemySprite);
+        m_data->window.draw(m_redIndicator);
+        m_data->window.draw(m_lifeIndicator);
     }
 
     void Berseker::CheckState() {

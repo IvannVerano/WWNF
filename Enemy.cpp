@@ -20,6 +20,7 @@ namespace Zenon {
         m_type = l_type;
         m_killer = -1;
         m_life = 50;
+        m_startLife = m_life;
         m_state = ENEMY_STATE_ALIVE;
 
     }
@@ -53,6 +54,7 @@ namespace Zenon {
 
     void Enemy::TakeDamage(int l_factor) {
         m_life -= l_factor;
+        this->ResizeLifeIndicator();
         if (m_life < 0) {
             m_state = ENEMY_STATE_DEAD;
         }
@@ -72,6 +74,12 @@ namespace Zenon {
 
     const sf::Sprite &Enemy::GetSprite() const {
         return m_enemySprite;
+    }
+    
+    void Enemy::ResizeLifeIndicator()
+    {
+        float newLife = ((m_life*50)/m_startLife);
+        m_lifeIndicator.setSize(sf::Vector2f(newLife, 5));
     }
     
 

@@ -5,12 +5,12 @@
     <trap unlocked="0"/>
     <trap unlocked="1"/>
     <trap unlocked="1"/>
-    <trap unlocked="0"/>
     <trap unlocked="1"/>
-    <panicLevel level="60"/>
-    <panicLevel level="90"/>
-    <panicLevel level="90"/>
-    <panicLevel level="75"/>
-    <money quantity="1020"/>
-    <confidence quantity="1"/>
+    <trap unlocked="1"/>
+    <panicLevel level="5"/>
+    <panicLevel level="5"/>
+    <panicLevel level="5"/>
+    <panicLevel level="5"/>
+    <money quantity="1000"/>
+    <confidence quantity="3"/>
 </data>

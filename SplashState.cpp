@@ -97,6 +97,8 @@ namespace Zenon {
         while (this->m_data->window.pollEvent(event)) {
             if (sf::Event::Closed == event.type || sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
                 this->m_data->data.SaveChanges();
+                m_themePreparation.stop();
+                m_themeCombat.stop();
                 this->m_data->window.close();
             }
             if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
