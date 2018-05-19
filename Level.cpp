@@ -21,7 +21,7 @@ namespace Zenon
     
     void Level::SetPanicLevel(int l_position)
     {
-        m_panicLevel = m_data->reward.GetPanicIncrease(l_position);
+        m_panicLevel += m_data->reward.GetPanicIncrease(l_position);
     }
    
     void Level::SetPanic(int quantiy)

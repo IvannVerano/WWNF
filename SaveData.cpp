@@ -38,6 +38,8 @@ namespace Zenon {
             m_panics= m_panics->NextSiblingElement("panicLevel");
         }
         
+            
+        
         m_data->FirstChildElement("money")->QueryIntAttribute("quantity", &m_money);
         m_data->FirstChildElement("confidence")->QueryIntAttribute("quantity", &m_confidenceLevel);
         
@@ -143,7 +145,7 @@ namespace Zenon {
     }
 
     void SaveData::SetConfidenceLevel(int increment) {
-        if (m_confidenceLevel < 6)
+        if (m_confidenceLevel < 6 || increment<0)
             m_confidenceLevel += increment;
     }
 

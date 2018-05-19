@@ -326,12 +326,14 @@ namespace Zenon {
             }
         }
 
+        /*
         for (int i = 0; i < m_objectives.size(); i++) {
             if (m_objectives[i]->GetActualState() == OBJECTIVE_DESTROYED_STATE) {
                 delete m_objectives[i];
                 m_objectives.erase(m_objectives.begin() + i);
             }
         }
+         * */
 
 
 
@@ -814,9 +816,10 @@ namespace Zenon {
     }
 
     void SplashState::CheckFail() {
-        if (m_objectives[m_objectives.size() - 1]->GetActualState() == OBJECTIVE_DESTROYED_STATE) {
+        if (m_objectives[m_objectives.size() - 1]->GetActualState() == OBJECTIVE_DESTROYED_STATE) 
+        {
             m_themeCombat.stop();
-            this->m_data->data.SetConfidenceLevel(-3);
+            m_themePreparation.stop();
             this->m_data->machine.AddState(StateRef(new PlaneReturnScene(this->m_data, false)));
         }
     }

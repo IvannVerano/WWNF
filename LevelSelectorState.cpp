@@ -6,7 +6,7 @@
 
 namespace Zenon {
 
-    LevelSelectorState::LevelSelectorState(GameDataRef l_data, bool rewardisOn, bool chargeGame) : m_data(l_data) {
+    LevelSelectorState::LevelSelectorState(GameDataRef l_data, bool rewardisOn, bool chargeGame, bool firstLevel) : m_data(l_data) {
         if (rewardisOn)
             this->ProcessRewards();
 
@@ -15,6 +15,7 @@ namespace Zenon {
         }
 
         m_charging = chargeGame;
+        isfirstLevel = firstLevel;
     }
 
     void LevelSelectorState::ProcessRewards() {
@@ -23,6 +24,7 @@ namespace Zenon {
         m_data->data.SetConfidenceLevel(m_data->reward.GetConfidenceRestablish());
         if (m_data->reward.GetIdTrapRewarded() != -1)
             m_data->data.SetUnlockTrap(false, m_data->reward.GetIdTrapRewarded());
+        
     }
 
     void LevelSelectorState::Init() {
@@ -41,25 +43,26 @@ namespace Zenon {
 
 
         m_background.setTexture(m_data->assets.GetTexture("WorldMap"));
-
-        std::vector<int> c_auxPanics;
-        for (int i = 0; i < m_levels.size(); i++) {
-            m_levels[i]->SetPanicLevel(i);
-            m_levels[i]->CreateLevelRewards();
-            c_auxPanics.push_back(m_levels[i]->GetPanicLevel());
-        }
-        if (m_charging) {
-            std::cout << "Entro a actualizar" << std::endl;
-            m_data->data.UpdatePanicLevels(c_auxPanics);
-        }
-        //Si estamos cargando el juego, seteamos los niveles de pánico a lo que toca
-        if (!m_charging) {
-            std::vector<int> l_panic = m_data->data.GetPanicLevels();
-            for (int i = 0; i < l_panic.size(); i++) {
-                std::cout << "Panico: " << l_panic[i] << std::endl;
-                m_levels[i]->SetPanic(l_panic[i]);
+        
+        std::vector<int> c_auxPanic = m_data->data.GetPanicLevels();
+        std::vector<int> c_panicsNow;
+        for(int i = 0; i<c_auxPanic.size(); i++)
+            {
+                //meto el nivel de panico
+                m_levels[i]->SetPanic(c_auxPanic[i]);
+                //Si no es la primera partida, añado panicorl
+                if(!isfirstLevel)
+                {
+                    m_levels[i]->SetPanicLevel(i);
+                }
+                
+                c_panicsNow.push_back(m_levels[i]->GetPanicLevel());
+                
+                m_levels[i]->CreateLevelRewards();
+                
             }
-        }
+        m_data->data.UpdatePanicLevels(c_panicsNow);
+        m_data->data.SaveChanges();
 
 
 

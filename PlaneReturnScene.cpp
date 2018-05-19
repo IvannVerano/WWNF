@@ -18,6 +18,8 @@ namespace Zenon
         else
         {
             m_theme->openFromFile(FAILURE_THEME);
+            m_data->data.SetConfidenceLevel(-3);
+            std::cout<<"Nivel de confianza: "<<m_data->data.GetConfidenceLevel()<<std::endl;
         }
         
         m_theme->setVolume(50);
@@ -208,7 +210,15 @@ namespace Zenon
     {
         m_theme->stop();
         delete m_theme;
-        this->m_data->machine.AddState(StateRef(new GameOverState(this->m_data, m_data->data.GetMoney())));
+        if(m_data->data.GetConfidenceLevel() > 0)
+        {
+            m_data->data.SaveChanges();
+            this->m_data->machine.AddState(StateRef(new LevelSelectorState(m_data, isSuccess, true, false)));
+        }
+        else
+        {
+            this->m_data->machine.AddState(StateRef(new GameOverState(this->m_data, m_data->data.GetMoney())));
+        }
     }
     
     void PlaneReturnScene::SetPlaneRotation()

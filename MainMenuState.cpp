@@ -196,7 +196,7 @@ namespace Zenon {
 
     void MainMenuState::NewGame() {
         mainTheme.stop();
-        m_data->machine.AddState(StateRef(new LevelSelectorState(this->m_data, false, false)));
+        m_data->machine.AddState(StateRef(new LevelSelectorState(this->m_data, false, false, true)));
     }
 
     void MainMenuState::NewHelpState() {
@@ -207,6 +207,6 @@ namespace Zenon {
     void MainMenuState::ChargeGame()
     {
         mainTheme.stop();
-         m_data->machine.AddState(StateRef(new LevelSelectorState(this->m_data, false, true)));
+         m_data->machine.AddState(StateRef(new LevelSelectorState(this->m_data, false, true, true)));
     }
 }
