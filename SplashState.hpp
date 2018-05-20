@@ -71,6 +71,7 @@ namespace Zenon {
         sf::Text m_mouseCoordinates;
         sf::Text m_countdownText;
         sf::Sprite m_mouseConstruct;
+        sf::Sprite m_iluminationLayer;
         sf::Vector2f m_posicion;
         float m_spawnWait;
 

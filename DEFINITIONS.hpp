@@ -325,4 +325,6 @@
 #define SOUND_TURRET "resources/soundtrack/soundeffects/torreta.ogg"
 #define SWORD_SOUND "resources/soundtrack/soundeffects/espada.ogg"
 
+#define ILUMINATIONS "resources/iluminations.png"
+
 

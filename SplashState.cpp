@@ -32,6 +32,7 @@ namespace Zenon {
     }
 
     void SplashState::Init() {
+        m_iluminationLayer.setTexture(m_data->assets.GetTexture("Iluminations"));
         m_spawnWait = std::max(0.1f, 3.0f - (((float) 1.0f/*NIVEL DE PANICO */) / 99.0f) * 3.0f);
         std::cout << "Tienes " << m_trampasSel.size() << " trampas" << std::endl;
 
@@ -770,7 +771,7 @@ namespace Zenon {
 
         this->m_data->window.draw(m_dineroButton);
         this->m_data->window.draw(m_textoDinero);
-
+        this->m_data->window.draw(m_iluminationLayer);
         this->m_data->window.display();
     }
 

@@ -120,6 +120,8 @@ namespace Zenon {
         m_data->assets.LoadTexture("HelpReturn", RETURN_SPRITE);
         
         m_data->assets.LoadTexture("DoxyAnimation", DOXY_ANIMATION);
+        
+        m_data->assets.LoadTexture("Iluminations", ILUMINATIONS);
 
     }
 
