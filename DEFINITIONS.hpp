@@ -19,6 +19,7 @@
 #define PREPARE "resources/soundtrack/music/preparation.wav"
 #define COMBAT "resources/soundtrack/music/combat.wav"
 #define MAXIMUM_CHAR 50
+#define FILTRO_SPRITE "resources/filtro.png"
 
 //Relojes
 #define CLOCK_SELECTION 0.5f

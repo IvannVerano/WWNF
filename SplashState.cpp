@@ -33,6 +33,7 @@ namespace Zenon {
 
     void SplashState::Init() {
         m_iluminationLayer.setTexture(m_data->assets.GetTexture("Iluminations"));
+        m_filterLayer.setTexture(this->m_data->assets.GetTexture("filtro"));
         m_spawnWait = std::max(0.1f, 3.0f - (((float) 1.0f/*NIVEL DE PANICO */) / 99.0f) * 3.0f);
         std::cout << "Tienes " << m_trampasSel.size() << " trampas" << std::endl;
 
@@ -722,6 +723,8 @@ namespace Zenon {
         for (int i = 0; i < m_objectives.size(); i++) {
             m_objectives[i]->Draw();
         }
+        
+        this->m_data->window.draw(m_iluminationLayer);
 
         for (int i = 0; i < m_trampas.size(); i++) {
             if (m_trampas[i] != nullptr) {
@@ -771,7 +774,7 @@ namespace Zenon {
 
         this->m_data->window.draw(m_dineroButton);
         this->m_data->window.draw(m_textoDinero);
-        this->m_data->window.draw(m_iluminationLayer);
+        
         this->m_data->window.display();
     }
 

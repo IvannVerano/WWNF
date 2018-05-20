@@ -7,17 +7,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/user/NetBeansProjects/PresentacionReal/Hero.cpp</file>
-            <file>file:/home/user/NetBeansProjects/PresentacionReal/SplashState.hpp</file>
-            <file>file:/home/user/NetBeansProjects/PresentacionReal/Doxy.cpp</file>
-            <file>file:/home/user/NetBeansProjects/PresentacionReal/Enemy.cpp</file>
-            <file>file:/home/user/NetBeansProjects/PresentacionReal/Enemy.hpp</file>
-            <file>file:/home/user/NetBeansProjects/PresentacionReal/MainMenuState.cpp</file>
-            <file>file:/home/user/NetBeansProjects/PresentacionReal/DEFINITIONS.hpp</file>
-            <file>file:/home/user/NetBeansProjects/PresentacionReal/Berseker.cpp</file>
-            <file>file:/home/user/NetBeansProjects/PresentacionReal/SplashState.cpp</file>
-            <file>file:/home/user/NetBeansProjects/PresentacionReal/Doxy.hpp</file>
-            <file>file:/home/user/NetBeansProjects/PresentacionReal/Trapper.cpp</file>
+            <file>file:/home/ivan/NetBeansProjects/BetaSonora/MainMenuState.cpp</file>
+            <file>file:/home/ivan/NetBeansProjects/BetaSonora/MainMenuState.hpp</file>
+            <file>file:/home/ivan/NetBeansProjects/BetaSonora/DEFINITIONS.hpp</file>
+            <file>file:/home/ivan/NetBeansProjects/BetaSonora/GameOverState.cpp</file>
+            <file>file:/home/ivan/NetBeansProjects/BetaSonora/FaseSeleccionState.cpp</file>
+            <file>file:/home/ivan/NetBeansProjects/BetaSonora/HelpState.hpp</file>
+            <file>file:/home/ivan/NetBeansProjects/BetaSonora/main.cpp</file>
+            <file>file:/home/ivan/NetBeansProjects/BetaSonora/StateMachine.cpp</file>
+            <file>file:/home/ivan/NetBeansProjects/BetaSonora/Game.cpp</file>
+            <file>file:/home/ivan/NetBeansProjects/BetaSonora/HelpState.cpp</file>
+            <file>file:/home/ivan/NetBeansProjects/BetaSonora/LevelSelectorState.hpp</file>
         </group>
     </open-files>
 </project-private>

@@ -72,6 +72,7 @@ namespace Zenon {
         m_data->assets.LoadTexture("GUI_ADRENALINA_BLOCK", GUI_ADRENALINA_BLOCK);
         m_data->assets.LoadTexture("HERO_FACE2", SPRITE_HEROE_FACE2);
         m_data->assets.LoadTexture("Berseker_Move", BERSEKER_MOVE_ANIMATION);
+        m_data->assets.LoadTexture("filtro", FILTRO_SPRITE);
 
         m_data->assets.LoadTexture("Hielo", HIELO_SPRITE);
         m_data->assets.LoadTexture("GUI_HIELO", GUI_HIELO);
