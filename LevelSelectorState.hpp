@@ -3,6 +3,7 @@
 #include "State.hpp"
 #include "Game.hpp"
 #include "SFML/Graphics.hpp"
+#include <SFML/Audio.hpp>
 #include "Level.hpp"
 
 namespace Zenon {
@@ -32,5 +33,6 @@ namespace Zenon {
         bool selected = false;
         bool m_charging;
         bool isfirstLevel;
+        sf::Music m_theme;
     };
 }

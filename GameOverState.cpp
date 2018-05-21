@@ -20,10 +20,14 @@ namespace Zenon
     GameOverState::GameOverState(GameDataRef l_data, int l_punctuation): m_data(l_data)
     {
         m_punctuation = l_punctuation;
+        m_theme.openFromFile(GAMEOVER);
+        m_theme.setLoop(true);
+        m_theme.setVolume(50);
     }
     
     void GameOverState::Init()
     {
+        m_theme.play();
         m_bg.setTexture(m_data->assets.GetTexture("GOBG"));
         m_punctuation += m_data->data.GetGeneralPunctuation();
         m_yourPoints.setString("Civiles rescatados: "+std::to_string(m_data->data.GetGeneralPunctuation())+"\n\nDinero acumulado: "+std::to_string(m_punctuation - m_data->data.GetGeneralPunctuation())+"\n\nPUNTUACION FINAL: " + std::to_string(m_punctuation));
@@ -150,6 +154,7 @@ namespace Zenon
         close(sockfd);
         m_data->data.Reset();
         m_data->reward.ResetpanicLevels();
+        m_theme.stop();
         m_data->machine.AddState(StateRef(new MainMenuState(m_data)));
     }
     

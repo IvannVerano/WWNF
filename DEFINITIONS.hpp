@@ -18,6 +18,8 @@
 #define MAINMENUTHEME "resources/soundtrack/music/menu.wav"
 #define PREPARE "resources/soundtrack/music/preparation.wav"
 #define COMBAT "resources/soundtrack/music/combat.wav"
+#define INTERFACE "resources/soundtrack/music/interface.wav"
+#define GAMEOVER "resources/soundtrack/music/gameover.wav"
 #define MAXIMUM_CHAR 50
 #define FILTRO_SPRITE "resources/filtro.png"
 
@@ -327,5 +329,7 @@
 #define SWORD_SOUND "resources/soundtrack/soundeffects/espada.ogg"
 
 #define ILUMINATIONS "resources/iluminations.png"
+
+
 
 

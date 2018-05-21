@@ -16,6 +16,9 @@ namespace Zenon {
 
         m_charging = chargeGame;
         isfirstLevel = firstLevel;
+        m_theme.openFromFile(INTERFACE);
+        m_theme.setVolume(50);
+        m_theme.setLoop(true);
     }
 
     void LevelSelectorState::ProcessRewards() {
@@ -29,6 +32,8 @@ namespace Zenon {
 
     void LevelSelectorState::Init() {
 
+        m_theme.play();
+        
         Level * america = new Level(m_data, sf::Vector2f(2000, -1950), sf::Vector2f(630, 350), "America", sf::Vector2f(500, 450));
         m_levels.push_back(america);
 
@@ -110,6 +115,7 @@ namespace Zenon {
             }
 
             if (m_data->input.IsSpriteClicked(m_backButton, sf::Mouse::Left, m_data->window)) {
+                m_theme.stop();
                 m_data->machine.AddState(StateRef(new MainMenuState(this->m_data)));
             }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
@@ -133,6 +139,7 @@ namespace Zenon {
     }
 
     void LevelSelectorState::ChangeState() {
+        m_theme.stop();
         this-> m_data->machine.AddState(StateRef(new FaseSeleccionState(this->m_data)));
     }
 

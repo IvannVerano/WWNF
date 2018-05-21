@@ -16,7 +16,7 @@
 #include <netdb.h>
 #include <unistd.h>
 #include <iostream>
-
+#include <SFML/Audio.hpp>
 namespace Zenon
 {
     class GameOverState: public State
@@ -40,5 +40,7 @@ namespace Zenon
             GameDataRef m_data;
             int m_punctuation;
             bool isSent = false;
+            
+            sf::Music m_theme;
     };
 }
