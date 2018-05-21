@@ -77,21 +77,21 @@ namespace Zenon {
 
     void FaseSeleccionState::InitOptions() {
         m_emptyMap.setTexture(m_data->assets.GetTexture("Empty_Map"));
-        m_emptyMap.setScale(0.45, 0.45);
+        m_emptyMap.setScale(0.4, 0.4);
         m_emptyMap.setPosition(op1, op2);
 
         //Opciones que se añaden en el mapa
         sf::Sprite m_option1, m_option2, m_option3, m_bottom1, m_bottom2, m_bottom3, m_bottom1off, m_bottom2off, m_bottom3off;
         m_option1.setTexture(m_data->assets.GetTexture("Option1"));
-        m_option1.setScale(0.45, 0.45);
+        m_option1.setScale(0.4, 0.4);
         m_option1.setPosition(op1, op2);
 
         m_option2.setTexture(m_data->assets.GetTexture("Option2"));
-        m_option2.setScale(0.45, 0.45);
+        m_option2.setScale(0.4, 0.4);
         m_option2.setPosition(op1, op2);
 
         m_option3.setTexture(m_data->assets.GetTexture("Option3"));
-        m_option3.setScale(0.45, 0.45);
+        m_option3.setScale(0.4, 0.4);
         m_option3.setPosition(op1, op2);
 
         m_mapOptions.push_back(m_option1);
@@ -161,7 +161,7 @@ namespace Zenon {
         m_advertiseText.setFont(m_data->assets.GetFont("FUENTE_DINERO"));
         m_advertiseText.setString("Elige alguna ayuda (Cuidado, puedes quedarte sin recursos)");
         m_advertiseText.setCharacterSize(40);
-        m_advertiseText.setPosition(600, 720);
+        m_advertiseText.setPosition(630, 720);
     }
 
     void FaseSeleccionState::HandleInput() {

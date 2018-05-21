@@ -44,7 +44,7 @@ namespace Zenon {
         sf::Text m_moneyText;
         int op1 = 50;
         int op2 = 700;
-        int bottX = 600;
+        int bottX = 630;
         int bottY = 800;
         int m_Sum;
         int m_whSum;

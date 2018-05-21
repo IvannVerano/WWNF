@@ -724,7 +724,7 @@ namespace Zenon {
             m_objectives[i]->Draw();
         }
         
-        this->m_data->window.draw(m_iluminationLayer);
+        //this->m_data->window.draw(m_iluminationLayer);
 
         for (int i = 0; i < m_trampas.size(); i++) {
             if (m_trampas[i] != nullptr) {
