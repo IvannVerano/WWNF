@@ -47,11 +47,13 @@ namespace Zenon {
         int m_animationCounter = 0;
         bool m_pathCompleted = false;
         bool m_trapDestroyed = false;
+        bool animationdeadtriggered = false;
         
         sf::Texture m_movingFrames;
         std::vector<sf::IntRect> m_mainAnimation;
         std::vector<sf::IntRect> m_animationMovement;
         std::vector<sf::IntRect> m_attackAnimation;
+        std::vector<sf::IntRect> m_deadAnimation;
         sf::Clock m_aniClock;
         sf::Clock m_switchAnimation;
 

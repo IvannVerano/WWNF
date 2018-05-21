@@ -49,10 +49,12 @@ namespace Zenon {
         Objective* m_objTarget;
         const std::vector<Objective*>& m_objectives;
         
+        bool deadtriggered = false;
         
         sf::Texture m_movingFrames;
         std::vector<sf::IntRect> m_mainAnimation;
         std::vector<sf::IntRect> m_animationMovement;
+        std::vector<sf::IntRect> m_deadAnimation;
         sf::Clock m_aniClock;
         sf::Clock m_switchAnimation;
         int m_animationCounter = 0;

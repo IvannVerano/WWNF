@@ -247,7 +247,6 @@ namespace Zenon {
         std::cout << "Cuando salgo del FaseSeleccion, hay: " << m_trampasSel.size() << std::endl;
 
         if (m_trampasSel.size() > 0) {
-            m_trampasSel.push_back(m_trampasdisp.at(m_trampasdisp.size() - 1));
             m_data->machine.AddState(StateRef(new PlaneScene(this->m_data, m_trampasSel, m_theme)));
         }
     }

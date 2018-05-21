@@ -76,10 +76,10 @@ namespace Zenon
                 case 3:
                     m_info.setString(m_info.getString() + "Desbloqueas: Cristal de sanacion");
                 break;
-                case 4:
+                case 2:
                     m_info.setString(m_info.getString() +"Desbloqueas: Lanzallamas");
                 break;
-                case 5:
+                case 4:
                     m_info.setString(m_info.getString() +"Desbloqueas: Adrenalina en gas");
                 break;
                 case -1:

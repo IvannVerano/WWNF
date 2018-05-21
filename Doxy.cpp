@@ -64,6 +64,35 @@ namespace Zenon {
         m_animationMovement.push_back(sf::IntRect(74, 52, 36, 28));
         m_animationMovement.push_back(sf::IntRect(74, 52, 36, 28));
         m_animationMovement.push_back(sf::IntRect(74, 52, 36, 28));
+        
+        
+        m_deadAnimation.push_back(sf::IntRect(247,0,49,46));
+        m_deadAnimation.push_back(sf::IntRect(247,0,49,46));
+        m_deadAnimation.push_back(sf::IntRect(247,0,49,46));
+        m_deadAnimation.push_back(sf::IntRect(200,44,46,44));
+        m_deadAnimation.push_back(sf::IntRect(200,44,46,44));
+        m_deadAnimation.push_back(sf::IntRect(200,44,46,44));
+        m_deadAnimation.push_back(sf::IntRect(200,88,47,44));
+        m_deadAnimation.push_back(sf::IntRect(200,88,47,44));
+        m_deadAnimation.push_back(sf::IntRect(200,88,47,44));
+        m_deadAnimation.push_back(sf::IntRect(156,125,44,45));
+        m_deadAnimation.push_back(sf::IntRect(156,125,44,45));
+        m_deadAnimation.push_back(sf::IntRect(156,125,44,45));
+        m_deadAnimation.push_back(sf::IntRect(296,0,50,44));
+        m_deadAnimation.push_back(sf::IntRect(296,0,50,44));
+        m_deadAnimation.push_back(sf::IntRect(296,0,50,44));
+        m_deadAnimation.push_back(sf::IntRect(156,0,44,41));
+        m_deadAnimation.push_back(sf::IntRect(156,0,44,41));
+        m_deadAnimation.push_back(sf::IntRect(156,0,44,41));
+        m_deadAnimation.push_back(sf::IntRect(200,0,47,44));
+        m_deadAnimation.push_back(sf::IntRect(200,0,47,44));
+        m_deadAnimation.push_back(sf::IntRect(200,0,47,44));
+        m_deadAnimation.push_back(sf::IntRect(114,104,41,42));
+        m_deadAnimation.push_back(sf::IntRect(114,104,41,42));
+        m_deadAnimation.push_back(sf::IntRect(114,104,41,42));
+        m_deadAnimation.push_back(sf::IntRect(114,146,41,39));
+        m_deadAnimation.push_back(sf::IntRect(114,146,41,39));
+        m_deadAnimation.push_back(sf::IntRect(114,146,41,39));
 
         m_enemySprite.setTextureRect(m_animationMovement.at(0));
         m_mainAnimation = m_animationMovement;
@@ -288,7 +317,13 @@ namespace Zenon {
 
     void Doxy::Draw() {
         this->Animate();
-
+        
+        if(m_state == ENEMY_DYING_STATE && !deadtriggered)
+        {
+            m_mainAnimation = m_deadAnimation;
+            m_animationCounter = 0;
+            deadtriggered = true;
+        }
         m_data->window.draw(m_enemySprite);
         m_data->window.draw(m_redIndicator);
         m_data->window.draw(m_lifeIndicator);

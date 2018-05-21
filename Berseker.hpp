@@ -60,15 +60,18 @@ namespace Zenon {
 
         float m_damage = 20.0f;
         bool m_pathComplete = false;
+        bool animationdeadtriggered = false;
         
         sf::Clock ChangeAnim;
         sf::Texture m_movingFrames;
         std::vector<sf::IntRect> m_mainAnimation;
         std::vector<sf::IntRect> m_animationMovement;
         std::vector<sf::IntRect> m_attackAnimation;
+        std::vector<sf::IntRect> m_deadAnimation;
         sf::Clock m_aniClock;
         sf::Clock m_switchAnimation;
         int m_animationCounter = 0;
+        
 
     };
 }

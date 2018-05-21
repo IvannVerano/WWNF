@@ -52,7 +52,7 @@ namespace Zenon
         
         m_background.setTexture(m_data->assets.GetTexture("CleanMap"));
         
-        m_nextButton.setTexture(m_data->assets.GetTexture("Desplegar"));
+        m_nextButton.setTexture(m_data->assets.GetTexture("HelpReturn"));
         m_nextButton.setOrigin(m_nextButton.getGlobalBounds().width/2, m_nextButton.getGlobalBounds().height/2);
         
         
@@ -87,10 +87,10 @@ namespace Zenon
                 case 3:
                     m_trapUnlocked.setString("Trampa desbloqueada:\nCristal de sanacion");
                 break;
-                case 4:
+                case 2:
                     m_trapUnlocked.setString("Trampa desbloqueada:\nLanzallamas");
                 break;
-                case 5:
+                case 4:
                     m_trapUnlocked.setString("Trampa desbloqueada:\nAdrenalina en gas");
                 break;
                 case -1:

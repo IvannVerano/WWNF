@@ -88,6 +88,7 @@ namespace Zenon
             {
                 m_data->data.Reset();
                 m_data->reward.ResetpanicLevels();
+                m_theme.stop();
                 m_data->machine.AddState(StateRef(new MainMenuState(m_data)));
             }
         }

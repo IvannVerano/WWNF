@@ -267,7 +267,7 @@ namespace Zenon {
     }
 
     void Fighter::CheckIfTargetIsDead() {
-        if (m_enemies[m_target]->GetActualState() == ENEMY_STATE_DEAD) {
+        if (m_enemies[m_target]->GetActualState() == ENEMY_DYING_STATE) {
             m_target = -1;
             m_state = HERO_IDLE_STATE;
         }

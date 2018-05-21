@@ -18,7 +18,7 @@ namespace Zenon {
     Trapper::Trapper(GameDataRef l_data, Enemy::TYPE l_type, sf::Vector2f l_position, Maps& l_map, const std::vector<Enemy*>& l_neighbors, const std::vector<Trampa*>& l_traps, const std::vector<Objective*>& l_objectives) :
     Enemy(l_data, l_type, l_position, l_neighbors), m_map(l_map), m_traps(l_traps), m_objectives(l_objectives) {
 
-        m_life = 500;
+        m_life = 100;
         m_startLife = m_life;
         m_movingFrames = m_data->assets.GetTexture("Trapper_animation");
         m_enemySprite.setTexture(m_movingFrames);
@@ -90,6 +90,35 @@ namespace Zenon {
         m_attackAnimation.push_back(sf::IntRect(318, 100, 49, 48));
         m_attackAnimation.push_back(sf::IntRect(162, 100, 48, 47));
         m_attackAnimation.push_back(sf::IntRect(162, 100, 48, 47));
+        
+        m_deadAnimation.push_back(sf::IntRect(120,151,42,46));
+        m_deadAnimation.push_back(sf::IntRect(120,151,42,46));
+        m_deadAnimation.push_back(sf::IntRect(120,151,42,46));
+        m_deadAnimation.push_back(sf::IntRect(120,151,42,46));
+        m_deadAnimation.push_back(sf::IntRect(400,51,44,44));
+        m_deadAnimation.push_back(sf::IntRect(400,51,44,44));
+        m_deadAnimation.push_back(sf::IntRect(400,51,44,44));
+        m_deadAnimation.push_back(sf::IntRect(400,51,44,44));
+        m_deadAnimation.push_back(sf::IntRect(162,151,53,55));
+        m_deadAnimation.push_back(sf::IntRect(162,151,53,55));
+        m_deadAnimation.push_back(sf::IntRect(162,151,53,55));
+        m_deadAnimation.push_back(sf::IntRect(162,151,53,55));
+        m_deadAnimation.push_back(sf::IntRect(162,206,56,60));
+        m_deadAnimation.push_back(sf::IntRect(162,206,56,60));
+        m_deadAnimation.push_back(sf::IntRect(162,206,56,60));
+        m_deadAnimation.push_back(sf::IntRect(162,206,56,60));
+        m_deadAnimation.push_back(sf::IntRect(215,151,62,53));
+        m_deadAnimation.push_back(sf::IntRect(215,151,62,53));
+        m_deadAnimation.push_back(sf::IntRect(215,151,62,53));
+        m_deadAnimation.push_back(sf::IntRect(215,151,62,53));
+        m_deadAnimation.push_back(sf::IntRect(162,266,49,60));
+        m_deadAnimation.push_back(sf::IntRect(162,266,49,60));
+        m_deadAnimation.push_back(sf::IntRect(162,266,49,60));
+        m_deadAnimation.push_back(sf::IntRect(162,266,49,60));
+        m_deadAnimation.push_back(sf::IntRect(444,51,57,42));
+        m_deadAnimation.push_back(sf::IntRect(444,51,57,42));
+        m_deadAnimation.push_back(sf::IntRect(444,51,57,42));
+        m_deadAnimation.push_back(sf::IntRect(444,51,57,42));
         
         
         m_enemySprite.setTextureRect(m_animationMovement.at(0));
@@ -296,6 +325,13 @@ namespace Zenon {
         if(m_state == TRAPPER_FOLLOWING_CORE_STATE || m_state == TRAPPER_FOLLOWING_TRAP_STATE)
         {
             m_mainAnimation = m_animationMovement;
+        }
+        
+        if(m_state == ENEMY_DYING_STATE && !animationdeadtriggered)
+        {
+            m_animationCounter = 0;
+            m_mainAnimation = m_deadAnimation;
+            animationdeadtriggered = true;
         }
         this->Animate();
         m_data->window.draw(m_enemySprite);

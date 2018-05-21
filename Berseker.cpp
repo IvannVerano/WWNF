@@ -109,6 +109,35 @@ namespace Zenon {
         m_attackAnimation.push_back(sf::IntRect(204, 73, 26, 35));
         m_attackAnimation.push_back(sf::IntRect(204, 38, 30, 35));
 
+        m_deadAnimation.push_back(sf::IntRect(0,107,61,53));
+        m_deadAnimation.push_back(sf::IntRect(0,107,61,53));
+        m_deadAnimation.push_back(sf::IntRect(0,107,61,53));
+        m_deadAnimation.push_back(sf::IntRect(0,107,61,53));
+        m_deadAnimation.push_back(sf::IntRect(0,107,61,53));
+        m_deadAnimation.push_back(sf::IntRect(61,164,62,54));
+        m_deadAnimation.push_back(sf::IntRect(61,164,62,54));
+        m_deadAnimation.push_back(sf::IntRect(61,164,62,54));
+        m_deadAnimation.push_back(sf::IntRect(61,111,63,53));
+        m_deadAnimation.push_back(sf::IntRect(61,111,63,53));
+        m_deadAnimation.push_back(sf::IntRect(61,111,63,53));
+        m_deadAnimation.push_back(sf::IntRect(0,0,61,53));
+        m_deadAnimation.push_back(sf::IntRect(0,0,61,53));
+        m_deadAnimation.push_back(sf::IntRect(0,0,61,53));
+        m_deadAnimation.push_back(sf::IntRect(61,57,63,54));
+        m_deadAnimation.push_back(sf::IntRect(61,57,63,54));
+        m_deadAnimation.push_back(sf::IntRect(61,57,63,54));
+        m_deadAnimation.push_back(sf::IntRect(0,53,60,54));
+        m_deadAnimation.push_back(sf::IntRect(0,53,60,54));
+        m_deadAnimation.push_back(sf::IntRect(0,53,60,54));
+        m_deadAnimation.push_back(sf::IntRect(61,0,63,57));
+        m_deadAnimation.push_back(sf::IntRect(61,0,63,57));
+        m_deadAnimation.push_back(sf::IntRect(61,0,63,57));
+        m_deadAnimation.push_back(sf::IntRect(0,160,52,43));
+        m_deadAnimation.push_back(sf::IntRect(0,160,52,43));
+        m_deadAnimation.push_back(sf::IntRect(0,160,52,43));
+        m_deadAnimation.push_back(sf::IntRect(0,160,52,43));
+        
+        
         m_enemySprite.setTextureRect(m_animationMovement.at(0));
         m_enemySprite.setOrigin(m_enemySprite.getGlobalBounds().width / 2, m_enemySprite.getGlobalBounds().height / 2);
         m_enemySprite.setPosition(l_position);
@@ -220,6 +249,15 @@ namespace Zenon {
         for (int i = 0; i < m_debugCircles.size(); i++) {
             this->m_data->window.draw(m_debugCircles[i]);
         }
+        if(m_state == ENEMY_DYING_STATE && !animationdeadtriggered)
+        {
+            m_animationCounter = 0;
+            m_mainAnimation = m_deadAnimation;
+            animationdeadtriggered = true;
+            m_enemySprite.scale(0.8,0.8);
+            m_enemySprite.setPosition(m_enemySprite.getPosition().x-50, m_enemySprite.getPosition().y);
+        }
+            
         if (ChangeAnim.getElapsedTime().asSeconds() > 0.5f) {
             if (m_state == BERSEKER_HITING_HERO_STATE || m_state == BERSEKER_HITING_D) {
                 std::cout << "cambio a atack" << std::endl;
