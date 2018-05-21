@@ -29,13 +29,13 @@ namespace Zenon {
         srand(time(NULL));
 
         //Seteamos la laif
-        m_lifeIndicator.setSize(sf::Vector2f(50,5));
+        m_lifeIndicator.setSize(sf::Vector2f(50, 5));
         m_lifeIndicator.setFillColor(sf::Color::Green);
-        m_lifeIndicator.setOrigin(m_lifeIndicator.getGlobalBounds().width/2, m_lifeIndicator.getGlobalBounds().height/2);
-        
-        m_redIndicator.setSize(sf::Vector2f(50,5));
+        m_lifeIndicator.setOrigin(m_lifeIndicator.getGlobalBounds().width / 2, m_lifeIndicator.getGlobalBounds().height / 2);
+
+        m_redIndicator.setSize(sf::Vector2f(50, 5));
         m_redIndicator.setFillColor(sf::Color::Red);
-        m_redIndicator.setOrigin(m_lifeIndicator.getGlobalBounds().width/2, m_lifeIndicator.getGlobalBounds().height/2);
+        m_redIndicator.setOrigin(m_lifeIndicator.getGlobalBounds().width / 2, m_lifeIndicator.getGlobalBounds().height / 2);
         //Creamos animacion
         m_movingFrames = m_data->assets.GetTexture("DoxyAnimation");
         m_enemySprite.setTexture(m_movingFrames);
@@ -72,8 +72,8 @@ namespace Zenon {
 
     void Doxy::Update(float dt) {
 
-        m_lifeIndicator.setPosition(m_enemySprite.getPosition().x + m_lifeIndicator.getGlobalBounds().width/2, m_enemySprite.getPosition().y - 15);
-        m_redIndicator.setPosition(m_enemySprite.getPosition().x + m_lifeIndicator.getGlobalBounds().width/2, m_enemySprite.getPosition().y - 15);
+        m_lifeIndicator.setPosition(m_enemySprite.getPosition().x + m_lifeIndicator.getGlobalBounds().width / 2, m_enemySprite.getPosition().y - 15);
+        m_redIndicator.setPosition(m_enemySprite.getPosition().x + m_lifeIndicator.getGlobalBounds().width / 2, m_enemySprite.getPosition().y - 15);
         if (m_state == DOXY_HITING_STATE) {
 
             if (m_hitingClock.getElapsedTime().asSeconds() >= DOXY_HITING_TIME) {
@@ -82,7 +82,7 @@ namespace Zenon {
                 }
                 m_hitingClock.restart();
             }
-        } else {
+        } else if (m_state == ENEMY_STATE_ALIVE) {
             if (!m_pathCompleted) {
                 //SI HAY MAS DE UN ENEMIGO EN PANTALLA
                 if (m_neighbors.size() > 1) {
@@ -288,11 +288,11 @@ namespace Zenon {
 
     void Doxy::Draw() {
         this->Animate();
-        
+
         m_data->window.draw(m_enemySprite);
         m_data->window.draw(m_redIndicator);
         m_data->window.draw(m_lifeIndicator);
-        
+
     }
 
 

@@ -27,6 +27,7 @@ namespace Zenon {
         void SetKiller(int l_killer);
 
         const int GetId();
+        float GetDyingTime();
         Enemy::TYPE GetType();
         const sf::Sprite &GetSprite() const;
         sf::FloatRect GetGB();
@@ -34,7 +35,7 @@ namespace Zenon {
 
         int GetKiller();
         int GetActualState();
-        
+
         void ResizeLifeIndicator();
 
     protected:
@@ -51,6 +52,7 @@ namespace Zenon {
         sf::Sprite m_enemySprite;
         sf::RectangleShape m_lifeIndicator;
         sf::RectangleShape m_redIndicator;
+        sf::Clock m_dyingClock;
         const std::vector<Enemy*>& m_neighbors;
         int m_life;
         int m_startLife;

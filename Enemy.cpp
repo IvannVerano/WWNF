@@ -53,11 +53,18 @@ namespace Zenon {
     }
 
     void Enemy::TakeDamage(int l_factor) {
-        m_life -= l_factor;
-        this->ResizeLifeIndicator();
-        if (m_life < 0) {
-            m_state = ENEMY_STATE_DEAD;
+        if (m_state != ENEMY_DYING_STATE) {
+            m_life -= l_factor;
+            this->ResizeLifeIndicator();
+            if (m_life <= 0) {
+                m_dyingClock.restart();
+                m_state = ENEMY_DYING_STATE;
+            }
         }
+    }
+
+    float Enemy::GetDyingTime() {
+        return m_dyingClock.getElapsedTime().asSeconds();
     }
 
     void Enemy::SetKiller(int l_killer) {
@@ -75,13 +82,14 @@ namespace Zenon {
     const sf::Sprite &Enemy::GetSprite() const {
         return m_enemySprite;
     }
-    
-    void Enemy::ResizeLifeIndicator()
-    {
-        float newLife = ((m_life*50)/m_startLife);
-        m_lifeIndicator.setSize(sf::Vector2f(newLife, 5));
+
+    void Enemy::ResizeLifeIndicator() {
+        if (m_life >= 0) {
+            float newLife = ((m_life * 50) / m_startLife);
+            m_lifeIndicator.setSize(sf::Vector2f(newLife, 5));
+        }
     }
-    
+
 
 
 }

@@ -33,13 +33,12 @@ namespace Zenon {
     void Objective::TakeDamage(int l_factor) {
         std::cout << "me pegan, soy el objetivo de la posicion: " << m_mainSprite.getPosition().x << ", " << m_mainSprite.getPosition().y << std::endl;
         m_life -= l_factor;
-        if (m_life <= 20) {
+        if (m_life <= 30) {
             for (int i = 0; i < m_routePaths.size(); i++) {
                 for (int j = 0; j < m_routePaths[i].m_bRoutes.size(); j++) {
                     sf::Vector2f d = m_routePaths[i].m_bRoutes[j].m_endPoint - m_mainSprite.getPosition();
                     float m = Module(d);
                     if (m <= 30) {
-                        std::cout << "Tiene menis de 10 de vida, pongo intransitable la bezier: " << i << ", bRoute : " << j << std::endl;
                         m_routePaths[i].m_bRoutes[j].SetIntransitable();
                     }
                 }
@@ -53,7 +52,7 @@ namespace Zenon {
                 for (int j = 0; j < m_routePaths[i].m_bRoutes.size(); j++) {
                     sf::Vector2f d = m_routePaths[i].m_bRoutes[j].m_bezierBody[m_routePaths[i].m_bRoutes[j].m_bezierBody.size() - 1] - m_mainSprite.getPosition();
                     float m = Module(d);
-                    if (m <= 10) {
+                    if (m <= 30) {
                         std::cout << "la pongo intransitable\n";
                         m_routePaths[i].m_bRoutes[j].SetIntransitable();
                     }
@@ -64,7 +63,7 @@ namespace Zenon {
                 sf::Vector2f l_vec = m_nearestEnemies[i]->GetPosition() - m_mainSprite.getPosition();
                 float l_module = Module(l_vec);
                 if (l_module <= GENERATOR_DAM_AREA) {
-                    m_nearestEnemies[i]->TakeDamage(50);
+                    m_nearestEnemies[i]->TakeDamage(500);
                 }
             }
         }

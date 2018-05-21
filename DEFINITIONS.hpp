@@ -46,6 +46,8 @@
 #define SPEED_ANIMATION 0.5f
 #define ENEMY_STATE_ALIVE 1
 #define ENEMY_STATE_DEAD 0
+#define ENEMY_DYING_STATE 7
+#define ENEMY_DYING_TIME 1.0f
 #define ENEMY_SPEED 100.0f
 #define MINIMUM_WAYPOINT_DISTANCE 50.0f
 #define MINIMUM_NEIGHBOR_DISTANCE 50.0f
@@ -120,7 +122,7 @@
 //--- Generator ---//
 #define GENERATOR_SCALEX 0.5f
 #define GENERATOR_SCALEY 0.5f
-#define GENERATOR_DAM_AREA 150.0f
+#define GENERATOR_DAM_AREA 220.0f
 
 //--- Core ---//
 #define CORE_SCALEX 0.5f

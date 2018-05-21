@@ -306,17 +306,6 @@ namespace Zenon {
             }
         }
 
-        /*
-        for (int i = 0; i < m_objectives.size(); i++) {
-            if (m_objectives[i]->GetActualState() == OBJECTIVE_DESTROYED_STATE) {
-                delete m_objectives[i];
-                m_objectives.erase(m_objectives.begin() + i);
-            }
-        }
-         * */
-
-
-
         for (int i = 0; i < m_enemies.size(); i++) {
             if (m_enemies.at(i)->GetActualState() != ENEMY_STATE_DEAD) {
                 m_enemies.at(i)->Update(dt);
@@ -699,7 +688,7 @@ namespace Zenon {
         for (int i = 0; i < m_objectives.size(); i++) {
             m_objectives[i]->Draw();
         }
-        
+
         //this->m_data->window.draw(m_iluminationLayer);
 
         for (int i = 0; i < m_trampas.size(); i++) {
@@ -750,7 +739,7 @@ namespace Zenon {
 
         this->m_data->window.draw(m_dineroButton);
         this->m_data->window.draw(m_textoDinero);
-        
+
         this->m_data->window.display();
     }
 
@@ -798,8 +787,7 @@ namespace Zenon {
     }
 
     void SplashState::CheckFail() {
-        if (m_objectives[m_objectives.size() - 1]->GetActualState() == OBJECTIVE_DESTROYED_STATE) 
-        {
+        if (m_objectives[m_objectives.size() - 1]->GetActualState() == OBJECTIVE_DESTROYED_STATE) {
             m_themeCombat.stop();
             m_themePreparation.stop();
             this->m_data->machine.AddState(StateRef(new PlaneReturnScene(this->m_data, false)));
@@ -820,14 +808,16 @@ namespace Zenon {
 
     void SplashState::CheckDeadEnemies() {
         for (int i = 0; i < m_enemies.size(); i++) {
-            if (m_enemies[i]->GetActualState() == ENEMY_STATE_DEAD) {
-                for (int w = 0; w < m_trampas.size(); w++) {
-                    if (m_trampas[w] != nullptr) {
-                        m_trampas[w]->DeleteTarget(m_enemies[i]->GetId());
+            if (m_enemies[i]->GetActualState() == ENEMY_DYING_STATE) {
+                if (m_enemies[i]->GetDyingTime() >= ENEMY_DYING_TIME) {
+                    for (int w = 0; w < m_trampas.size(); w++) {
+                        if (m_trampas[w] != nullptr) {
+                            m_trampas[w]->DeleteTarget(m_enemies[i]->GetId());
+                        }
                     }
+                    delete m_enemies[i];
+                    m_enemies.erase(m_enemies.begin() + i);
                 }
-                delete m_enemies[i];
-                m_enemies.erase(m_enemies.begin() + i);
             }
         }
     }
